@@ -1,0 +1,7 @@
+This project contains the example java application(s) used to test the
+instrumentation based schedule controller. The applications need the
+"instrumentor.jar" in the "lib" directory. You can obtain this by
+running the "dist-to-test-proj" ant task in "dist.xml" in the
+schedule-controller project. The *.launch files are eclipse launch
+files that can be used to launch the example applications using the
+controller.

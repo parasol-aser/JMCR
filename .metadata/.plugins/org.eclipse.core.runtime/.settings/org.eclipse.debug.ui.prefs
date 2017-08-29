@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.eclipse.debug.ui.cancel_launch_with_compile_errors=always
+preferredTargets=default\:default|

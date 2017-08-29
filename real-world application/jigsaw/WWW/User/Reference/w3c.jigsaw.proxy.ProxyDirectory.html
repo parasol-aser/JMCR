@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>ProxyDirectory reference manual.</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  ProxyDirectory
+</H1>
+<P>
+This class implements a full blown caching-proxy module for <B>Jigsaw</B>.
+It relies on the w3c's HTTP client side API to handle both request forwarding
+and reply caching.
+<P>
+If the <A HREF="#handle-ftp">handle-ftp</A> attribute is set to <B>true</B>
+this resource will also fullfil FTP requests. It will <I>not</I> cache the
+result, however. Redirectin FTP traffic to an upward proxy can be done through
+the following (standard) Java properties (to be set in the
+<CODE>config/server.props</CODE> file):
+<PRE>ftpProxyPort=8080
+ftpProxyHost=cache-sop.inria.fr
+ftpProxySet=true
+</PRE>
+<P>
+<B>Warning</B>: Do <I>not</I> try to use this resource class in conjunction
+with the
+<A HREF="w3c.jigsaw.resources.VirtualHostResource.html">VirtualHostResource</A>
+class: HTTP specification doesn't allow to have virtual proxies.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.proxy.ProxyDirectory.html">ProxyDirectory</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.proxy.ForwardDirectory.html">ForwardDirectory</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The VirtualHostResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#handle-ftp">handle-ftp</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="handle-ftp">handle-ftp</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the proxy also handle FTP urls ? If set to <B>true</B> the proxy will
+    handle requests targeted toward ftp servers.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.proxy.ProxyDirectory.html,v 1.2 1996/09/25 14:23:13 abaird
+Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

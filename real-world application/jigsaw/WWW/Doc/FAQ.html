@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Jigsaw Frequently asked questions</title>
+  <link rel="stylesheet" type="text/css" href="style/doc.css">
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<div class="icons-w3c">
+<a href="../../"><img src="/Icons/w3c_home" border="0" alt="W3C logo"
+height="48" width="72"></a></div>
+
+<div class="icons-jigsaw">
+<a href="../"><img src="/Icons/jigsaw" border="0" alt="Jigsaw" height="49"
+width="212"></a></div>
+
+<div class="title">
+<h1 class="title">Jigsaw <br>
+<span class="subtitle">Frequently Asked Questions</span></h1>
+<hr noshade="noshade" width="70%" align="left">
+<a href="../Overview.html">Jigsaw Home</a> / <a
+href="Overview.html">Documentation Overview</a></div>
+
+<div class="body">
+<h1>What is <b>Jigsaw</b> ?</h1>
+<ul>
+  <li><a href="#purpose">What's the purpose of <b>Jigsaw</b>, why yet another
+    server ?</a></li>
+  <li><a href="#download">Where can I get <b>Jigsaw</b> ?</a></li>
+  <li><a href="#java">Why is <b>Jigsaw</b> written in Java ?</a></li>
+  <li><a href="#slow"><b>Jigsaw</b> is written in Java, it must be really
+    slow...</a></li>
+</ul>
+
+<h1>Using <b>Jigsaw</b></h1>
+<ul>
+  <li><a href="#Method-GET">The admin server reply "Method GET not
+    implemented.", how can I use it?</a></li>
+  <li><a href="#jigsaw-indexing">What's this <i>indexing</i> thing all about
+    ?</a></li>
+  <li><a href="User/authentication.html">How do I setup authentication
+  ?</a></li>
+  <li><a href="#pass-directory">How do I tie a resource to a directory not
+    under my server root?</a>[Sirilyan sirilyan@io.com]</li>
+  <li><a href="#CGI-scripts">How do I setup a CGI script ?</a></li>
+  <li><a href="#php3">How can I use php3 in <b>Jigsaw</b>?</a></li>
+  <li><a href="User/jsp.html">How can I use jsp in <b>Jigsaw</b>?</a></li>
+  <li><a href="User/proxy.html">How do I setup <b>Jigsaw</b> as a proxy
+  ?</a></li>
+  <li><a href="User/virtual-hosting.html">How do I setup virtual hosting in
+    <b>Jigsaw </b>?</a></li>
+  <li><a href="#index">How do I set the default document?</a></li>
+  <li><a href="User/mimetype.html">How to add a new Mime Type in
+  Jigsaw?</a></li>
+  <li><a href="#ssl">Does Jigsaw support SSL?</a></li>
+  <li><a href="#login">What is the default Login Name and Password for
+    JigAdmin?</a></li>
+</ul>
+
+<h1>Technical stuff</h1>
+<ul>
+  <li><a href="#extend">How can I extend <b>Jigsaw</b> ?</a></li>
+  <li><a href="Programmer/compile.html">How do I compile Jigsaw?</a></li>
+  <li><a href="#persist">Why does <b>Jigsaw</b> implements its own persistence
+    mechanism ?</a></li>
+  <li><a href="#client-hotjava">How can I use HotJava on top of your HTTP
+    client API ?</a></li>
+  <li><a href="#http-port">Running <b>Jigsaw</b> on port 80 under
+  UNIX</a></li>
+  <li><a href="#chroot">Chrooting <b>Jigsaw</b> under UNIX</a></li>
+  <li><a href="#Running">Running <b>Jigsaw</b> as a NT service.</a></li>
+</ul>
+
+<h1>Using Servlets</h1>
+<ul>
+  <li><a href="User/servlets.html#what-are-servlets">What are servlets
+  ?</a></li>
+  <li><a href="User/servlets.html#compile-servlet">How do I compile jigsaw to
+    use the servlets ?</a></li>
+  <li><a href="User/servlets.html#install-servlets">How do I install a servlet
+    ?</a></li>
+  <li><a href="User/servlets.html#servlet-indexer">How do I configure a
+    servlet indexer?</a></li>
+  <li><a href="User/servlets.html#servlet-props">How can I setup the servlets
+    properties?</a></li>
+  <li><a href="User/servlets.html#load-servlets">How does Jigsaw load local
+    servlet classes ?</a></li>
+  <li><a href="User/servlets.html#remote-servlets">How can I load remote
+    servlets ?</a></li>
+</ul>
+You think your question about <b>Jigsaw</b> is worth entering this list, you
+have a better formulation for some of the answers ? Mail to <a
+href="mailto:jigsaw@w3.org">jigsaw@w3.org</a> !
+
+<h2><a name="purpose"></a>What's the purpose of <b>Jigsaw</b> ?</h2>
+<b>Jigsaw</b> is the new W3C reference server. Its main purpose is to
+demonstrate new protocol features as they are defined (such as <a
+href="/Protocols/">HTTP/1.1</a> or <a href="/PICS/">PICS</a>), and to provide
+the basis for experimentations in the field of server software (such as the
+provided MUX prototypical implementation).
+
+<h2><a name="download"></a>Where can I get <b>Jigsaw</b> ?</h2>
+You can download <b>Jigsaw</b> distribution file in various formats, and using
+either ftp or http:
+<dl>
+  <dt>Windows zip files (1.5Mo)</dt>
+    <dd><ul>
+        <li><a href="ftp://ftp.w3.org/pub/jigsaw/jigsaw.zip">FTP</a></li>
+        <li><a
+        href="http://www.w3.org/pub/WWW/Jigsaw/jigsaw.zip">HTTP</a></li>
+      </ul>
+    </dd>
+  <dt>UNIX gzip tar file (700Ko)</dt>
+    <dd><ul>
+        <li><a href="ftp://ftp.w3.org/pub/jigsaw/jigsaw.tar.gz">FTP</a></li>
+        <li><a
+        href="http://www.w3.org/pub/WWW/Jigsaw/jigsaw.tar.gz">HTTP</a></li>
+      </ul>
+    </dd>
+</dl>
+
+<h2><a name="java"></a>Why is <b>Jigsaw</b> written in Java ?</h2>
+<a href="http://www.javasoft.com/">Java</a> has a number of advantages that
+fit well with our purposes. It provides portable threads and garbage
+collection, allows for a very dynamic server architecture. It's ability to
+move code around may be use in future development to experiment with the
+mobile code concept.
+
+<h2><a name="slow"></a><b>Jigsaw</b> is written in Java, it must be really
+slow...</h2>
+No so true ! Check out the <a
+href="http://www.w3.org/pub/WWW/Jigsaw/User/Introduction/performance.html">performance
+evaluation of <b>Jigsaw</b></a>, which indicates that it performs at least as
+well as the CERN server.
+
+<h2><a name="Method-GET"></a>The admin server reply "Method GET not
+implemented.", how can I use it?</h2>
+The administration server does not use plain HTTP but a variant of it. The
+only tool available for now is an application called <a
+href="User/AdminTools.html">JigAdmin</a>.
+
+<h2><a name="jigsaw-indexing"></a>What is this <i>indexing</i> thing all about
+?</h2>
+To a normal HTTP web-admin, <b>Jigsaw</b>'s configuration process might look
+really strange...<a href="Programmer/design.html"><b>Jigsaw</b>'s design</a>
+emphasis two different processing stage in serving documents:
+<dl>
+  <dt>Indexing stage</dt>
+    <dd>When documents <i>enter</i> the Web</dd>
+  <dt>Serving stage</dt>
+    <dd>When documents are served to clients</dd>
+</dl>
+In short the rationale for separating these two stages is to make the
+<i>serving stage</i> as efficient as possible, by having the <i>indexing
+stage</i> prepare as much as possible the work. A document <i>enter</i> the
+WEB space the first time <b>Jigsaw</b> serves it; this happen behind the scene
+most of the time, and consist in creating a <i>resource</i> for the document
+to be served by querying a <i>resource factory</i>. The current resource
+factory can be configured to create various kind of resources based either on
+the file name extensions, or (in case of a directory) based on its name.
+
+<p>However, once a resource is created, it no longer reflects the settings of
+the resource factory (see the <a href="User/indexers.html">indexers</a>); in
+some sense the information gets <i>compiled</i> so that at serving time,
+processing overhead is reduced as much as possible.</p>
+
+<h2><a name="pass-directory"></a>How do I tie a resource to a directory not
+under my server root?<br>
+Contributed by <i>Sirilyan &lt;sirilyan@io.com></i></h2>
+CERN server implemented this through the Pass directive, which let you map a
+server path to an absolute path on your file system. Jigsaw uses the
+org.w3c.jigsaw.resources.PassDirectory resource.
+
+<p>COOKBOOK METHOD: Create a new resource with <i>Add resources</i> in <a
+href="User/AdminTools.html">JigAdmin</a> at the location you want the new
+server path to exist. Assign whatever name you desire to the new resource, and
+assign <a
+href="Reference/org.w3c.jigsaw.resources.PassDirectory.html">org.w3c.jigsaw.resources.PassDirectory</a>
+for the class. Edit this new resource to change the pass-target attribute to
+the absolute path to the directory you want to serve.</p>
+
+<p>You may want to change the name attribute of the 'index' file in that
+directory to Overview.html. name and filename are two separate attributes in
+Jigsaw; this is also a poor man's (or a Win95/NT user's) symlink.</p>
+
+<p>Serving directories outside your server root may be a security risk.</p>
+
+<h2><a name="CGI-scripts"></a>How do I setup CGI scripts ?</h2>
+They are two ways to setup CGI scripts. The manual way requires that you
+describe each script to the server. Let's say your script's path relative to
+the server root is <tt>WWW/cgi-bin/myscript</tt>. You will first have to
+create an appropriate <a
+href="Reference/org.w3c.tools.resources.FileResource.html">org.w3c.tools.resources.FileResource</a>
+with a <a
+href="Reference/org.w3c.jigsaw.frames.CgiFrame.html">org.w3c.jigsaw.frames.CgiFrame</a>
+instance to wrap your script. See this <a
+href="User/resource.html">tutorials</a> to know how to create a resource in
+<b>Jigsaw</b>.
+
+<p>Then edit the newly created resource, and setup it's command line (the
+command line the server will use to run your script). Each line of the text
+field should represent one argument, the first one being the script full
+path.</p>
+
+<p>You can also register files of a given extension as scripts, by using a
+specialized <a href="User/indexers.html">indexer</a>.  When required, you can
+even specify the interpreter to be run to execute the script (for example,
+under Windows 95, or NT).</p>
+
+<h2><a name="php3"></a>How can I use php3 in <b>Jigsaw</b> ?</h2>
+This is quite easy, the best way is to do it directly using an indexer. php3
+scripts will be handled as CGIs (so see the FAQ entry above).
+
+<p>You need first to compile php3 as a cgi interpreter, then configure the
+"php3" extension in your <a href="User/Indexers.html">indexer</a> using a <a
+href="Reference/org.w3c.tools.resources.FileResource.html">FileResource</a>
+and a <a href="Reference/org.w3c.jigsaw.frames.CgiFrame.html">CgiFrame</a>,
+like aforementionned. Then, in your <a
+href="Reference/org.w3c.jigsaw.frames.CgiFrame.html">CgiFrame</a>, set the
+"interpreter" field to your php binary, and "Generates Form" to true.
+<i>(Note, this will work with Jigsaw 2.0.2 and up)</i></p>
+
+<h2><a name="index"></a>How do I set the default document?</h2>
+With <a href="User/JigAdmin/Overview.html">JigAdmin</a> select the the <a
+href="Reference/org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</a> (or
+subclass) associated to the <a
+href="Reference/org.w3c.tools.resources.DirectoryResource.html">DirectoryResource</a>
+(or subclass) where you want to modify the default document. Then, set the "<a
+href="Reference/org.w3c.jigsaw.frames.HTTPFrame.html#index">index</a>" field
+to your default document (eg: index.html).
+
+<p><i>Note: Don't forget to commit and save your changes</i>.</p>
+
+<h2><a name="ssl"></a>Does Jigsaw support SSL?</h2>
+There was a SSL version of Jigsaw, done at <a
+href="http://jcewww.iaik.tu-graz.ac.at/">IAIK</a>. With Jigsaw 2.2.3, released
+on november 27th 2003, there is a native SSL implementation 
+for the HTTP and WebDAV servers.
+
+
+<h2>What is the default Login Name and Password for JigAdmin?</h2>
+The default Login Name is: <b>admin</b>, the default Password is:
+<b>admin</b>.
+
+<p>This information is also available in the <a
+href="User/JigAdmin/running.html#auth">JigAdmin documentation</a>.</p>
+
+<h2><a name="extend"></a>How can I extend <b>Jigsaw</b> ?</h2>
+<b>Jigsaw</b> can be extended in a number of ways. Here are just three
+possible things you can play with, from the simplest to the complex ones:
+<ul>
+  <li>Writing new resource classes and new frame classes: you may want to read
+    the <a href="Programmer/writing-resources.html">tutorial</a> on this
+    subject before getting any further. You can think of this as being a n
+    efficient replacement for CGI scripts, although this is a much more
+    powerful environment to extend the server.</li>
+  <li>Writing new filter classes: if you want to experiment with specific
+    authentication needs, or if you require special logging formats. A <a
+    href="Programmer/writing-filters.html">tutorial</a> on writing new filters
+    is also available.</li>
+  <li>Hacking <b>Jigsaw</b>. Right now you can just override any of the
+    <b>Jigsaw</b> classes to replace its implementation. In the future, most
+    of the interesting things that you can do this way will be turned into
+    specific interfaces (as is already the case for logging right now).</li>
+</ul>
+
+<h2><a name="persist"></a>Why does <b>Jigsaw</b> implement its own persistence
+mechanism</h2>
+<b>Jigsaw</b> implements its own persistence mechanism while RMI already
+provides a way to serialize objects, why is it so, will it change ? What
+<b>Jigsaw</b> implements in the <tt>w3c.tools.store</tt> package is more then
+persistence. It provides both a way of serializing objects <i>and</i> a way of
+describing what and how the object will be dumped. The available
+meta-description of objects (that you can obtain through the
+<tt>getAttributes</tt> method of resources), is a central part of
+<b>Jigsaw</b> architecture, since it offers the ability to create generic
+resource editors. This is not likely to disappear.
+
+<p>However, <b>Jigsaw</b> persistence mechanism may be merged in the future to
+the RMI interface, just by providing an implementation of the
+<tt>readObject</tt> and <tt>writeObject</tt> method through its existing
+mechanism.</p>
+
+<h2><a name="client-hotjava"></a>How can I use HotJava on top of Jigsaw's HTTP
+client API ?</h2>
+<a href="http://www.javasoft.com/HotJava/index.html">HotJava</a> is Sun's Java
+based browser. If you want to experience an HTTP/1.1 compliant browser, you
+can run this browser on top of <b>Jigsaw</b>'s HTTP/1.1 compliant HTTP client
+API. To do so, you need to define the <tt>java.protocol.handler.pkgs</tt>
+property to <tt>w3c.www.protocol </tt>before launching HotJava. The best way
+to do so is to edit the HotJava property files.
+
+<p><b>Jigsaw</b>'s HTTP client API defines a number of other properties, if
+you are planing to use this setting, you should read the <a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/www/protocol/http/HttpManager.html">HttpManager</a>
+documentation to get the complete list of available properties. These will
+allow you to add caching, authentication, proxying and more to <a
+href="http://www.javasoft.com/HotJava/index.html">HotJava</a> !</p>
+
+<h2><a name="http-port"></a>Running <b>Jigsaw</b> on port 80 under UNIX</h2>
+As of release 1.0alpha5, <b>Jigsaw</b> can now run on port 80, without running
+as the <i>root</i> user. To implement that you need to install the relevant
+piece of native code. This C code has been compiled and tested under Solaris,
+porting it to a different platform/architecture should be pretty easy.
+
+<p>Follow the normal installation procedure, and try to run <b>Jigsaw</b> on a
+port greater than 1024. Once this work, stop <b>Jigsaw</b> (through
+<tt>/Admin/Exit</tt>), Make sure your LD_LIBRARY_PATH variable includes the
+directory containing <tt>libUnix.so</tt> (this is the <tt>Jigsaw/lib</tt>
+directory under the standard release).</p>
+
+<p>Select the user and group you want <b>Jigsaw</b> to run as. Make sure that
+user has read/write access to the entire <tt>config</tt> directory. Then, you
+just need to run <b>Jigsaw</b> through that special command line:</p>
+
+<p><tt>java org.w3c.jigsaw.Main -user <i>user</i> -group <i>group</i>
+&lt;other-options></tt></p>
+
+<p>Where <i>user</i> and <i>group</i> should provide (resp.) the user and the
+group you want <b>Jigsaw</b> to run as.</p>
+
+<p><b>Warning</b>: As the underlying UNIX process will change personnality
+right after acquiring the socket, the form based <i>restart</i> button
+(available from the properties editor) will no longer work, since the process
+will no longer be able to allocate a socket on port 80. <br>
+Under such a setting, the only way to restart <b>Jigsaw</b> is to kill it
+(through <tt>/Admin/Exit</tt>) and restart it manually.</p>
+
+<h2><a name="chroot"></a>Chrooting <b>Jigsaw</b> under UNIX</h2>
+As of release 1.0alpha5, <b>Jigsaw</b> can now - under UNIX - be chroot'ed. If
+you try to do so, you are supposed to have some experiences with chroot'ing
+programs. We will assume that you already have a correct root to run a
+standard HTTP server and that you have read and understood the <i>Running
+Jigsaw on port 80 </i><a href="#http-port">FAQ entry</a>.
+
+<p>You need to install Java in that root (using whatever prefered way you
+want). To install <b>Jigsaw</b>, I would recommend using the following
+directory structure:</p>
+<dl>
+  <dt>/usr/local/jigsaw/classes</dt>
+    <dd>Should contain <b>Jigsaw</b>'s current distribution <i>jigsaw.zip</i>
+      class file</dd>
+  <dt>/usr/local/jigsaw/extensions</dt>
+    <dd>Is used to add extensions to the server while running, and should be
+      included in your CLASSPATH, <i>before</i> you start <b>Jigsaw</b>.</dd>
+  <dt>/usr/local/jigsaw/lib</dt>
+    <dd>Should contain <b>Jigsaw</b>'s native code support  - ie
+      <i>libUnix.so</i> -(to make the appropriate UNIX system calls)</dd>
+</dl>
+Given that (don't forget to <i>symlink</i> the real <tt>/usr/local/jigsaw</tt>
+to the chroot'ed one), you should be able to reuse that script:
+<pre> #!/bin/sh
+# Jigsaw
+# $Id: FAQ.html,v 1.1 2010/06/15 12:27:24 smhuang Exp $
+# Jigsaw launcher
+ 
+# LD_LIBRARY_PATH will be set to work *only* before chroot, by the java script
+# We add here, support for PATH as they appear to be after the chroot
+ 
+CR_LD_LIBRARY_PATH=/usr/local/jigsaw/lib:/usr/local/java/lib/sparc:/usr/lib:/lib
+LD_LIBRARY_PATH=$CR_LD_LIBRARY_PATH:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+ 
+# CLASSPATH needs two hacks: one to include jigsaw.zip before chroot, and
+# an other one to include everything after chroot
+ 
+CLASSPATH=/0/w3c/abaird/sbroot/usr/local/jigsaw/classes/jigsaw.zip:/0/w3c/abaird
+/sbroot/usr/local/jigsaw/classes/servlet.zip:/0/w3c/abaird/sbroot/usr/local/jigs
+aw/classes/plus.zip:/0/w3c/abaird/sbroot/usr/local/jigsaw/extensions
+export CLASSPATH
+CR_CLASSPATH=/usr/local/jigsaw/classes/jigsaw.zip:/usr/local/jigsaw/classes/serv
+let.zip:/usr/local/jigsaw/classes/plus.zip:/usr/local/jigsaw/extensions
+CLASSPATH=$CR_CLASSPATH:$CLASSPATH
+export CLASSPATH
+ 
+# Ready to run jigsaw, now:
+ 
+cd /0/w3c/abaird/sbroot/jigsaw
+exec /usr/local/java/bin/java org.w3c.jigsaw.daemon.ServerHandlerManager $* -group n
+obody -user nobody -chroot /0/w3c/abaird/sbroot -root /jigsaw</pre>
+
+<h2><a name="Running"></a>Running Jigsaw as a NT service</h2>
+To be able to run Jigsaw as a service, you may use a tool allowing java
+programs to run as a service. You just have to make your choice in <a
+href="http://pharos.inria.fr/Java/search?term=s1:3428">this list</a>. Remember
+that the safest way to shut down Jigsaw is to use the <a
+href="User/JigAdmin/">administration interface</a> of <a
+href="User/jigkill.html">JigKill</a> <br>
+
+
+<p></p>
+</div>
+<!-- body -->
+
+<div class="footer">
+<hr noshade="noshade">
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a> <br>
+<span class="mini">$Id: FAQ.html,v 1.1 2010/06/15 12:27:24 smhuang Exp $</span>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> © 1999 <a
+href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>, <a
+href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">liability, </a><a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html">document use </a>and <a
+href="/Consortium/Legal/copyright-software.html">software licensing </a>rules
+apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public">public </a>and <a
+href="/Consortium/Legal/privacy-statement.html#Members">Member </a>privacy
+statements.</font></p>
+</div>
+</body>
+</html>

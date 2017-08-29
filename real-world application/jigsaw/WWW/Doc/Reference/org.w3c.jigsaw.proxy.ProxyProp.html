@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+  <TITLE>The ProxyProp reference manual</TITLE>
+  <LINK HREF="jigsaw@w3.org" REL="made">
+</HEAD>
+<BODY>
+<P>
+<A HREF="../../.." TARGET="_top_"><IMG SRC="../../../Icons//WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48">
+</A><A HREF="../../" TARGET="_top_">
+<IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw"BORDER="0"></A>
+  <hr noshade size="1">
+<A HREF="resources.html">All resources</A> <A HREF="frames.html">All frames
+</A> 
+  <hr noshade size="1">
+<H1>
+  ProxyProp
+</H1>
+<P>
+This class provides editable access to the client-side HTTP API that
+<B>Jigsaw</B> uses to proxy requests. 
+<P>
+  <hr noshade size="1">
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/proxy/ProxyProp.html">ProxyProp</A>
+class inerits from the following classes:
+<UL>
+  <LI>
+    <A HREF="org.w3c.tools.resources.Resource.html">Resource</A>
+  <LI>
+    <A HREF="org.w3c.jigsaw.config.PropertySet.html">PropertySet</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<H2>
+  Attributes description
+</H2>
+<P>
+The ProxyProp defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.connections.max">org.w3c.www.protocol.http.connections.max</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.connections.timeout">org.w3c.www.protocol.http.connections.timeout</A>
+  <LI>
+    <A HREF="#proxySet">proxySet</A>
+  <LI>
+    <A HREF="#proxyHost">proxyHost</A>
+  <LI>
+    <A HREF="#proxyPort">proxyPort</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.filters">org.w3c.www.protocol.http.filters</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.connections.max">org.w3c.www.protocol.http.connections.max</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The maximum number of connections the client side API is allowed to use to
+    external servers. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>5.</B>
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.connections.timeout">org.w3c.www.protocol.http.connections.timeout</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The timeout on the client socket
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>300000</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="proxySet">proxySet</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Indicates to use another proxy instead of going to origin servers. The proxy
+    to use is defined by <A HREF="#proxyHost">proxyHost</A> and
+    <A HREF="#proxyPort">proxyPort</A>. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>null</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="proxyHost">proxyHost</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When the <A HREF="#proxySet">proxySet</A> flag is set to <B>true</B>, this
+    attribute indicates the internet name of the proxy to use. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>null</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="proxyPort">proxyPort</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When the <A HREF="#proxySet">proxySet</A> flag is set to <B>true</B>, this
+    attribute indicates the port number on which the intermediate proxy is listening.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>80</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.filters">org.w3c.www.protocol.http.filters</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The list of filters you want to run on the client side HTTP API. A filter
+    is a class then can catch requests before they leave the proxy and get replies
+    has they come back. The currently available filters available for the proxy
+    is: 
+    <UL>
+      <LI>
+	w3c.www.protocol.http.cache.CacheFilter <I>A filter that provides HTTP/1.1
+	caching</I>. 
+      <LI>
+	w3c.www.protocol.http.DebugFilter <I>A filter that will dump outgoing requests
+	and incoming replies to the standard output.</I> 
+    </UL>
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value. It is highly recommended that you use
+    at least the <B>w3c.www.protocol.http.cache.CacheFilter</B> filter to provide
+    caching functionality. 
+</DL>
+<P>
+<P>
+  <hr noshade size="1">
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: org.w3c.jigsaw.proxy.ProxyProp.html,v 1.2 1998/03/27 08:21:28 bmahe
+Exp $</I>
+</BODY></HTML>

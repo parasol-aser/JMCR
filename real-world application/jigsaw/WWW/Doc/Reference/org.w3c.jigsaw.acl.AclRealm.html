@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+   <title>The AclRealm reference manual</title>
+<link HREF="jigsaw@w3.org" REL="made">
+<link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</style>
+</head>
+<body>
+<a href="../../../../WWW" TARGET="_top_"><img SRC="../../../Icons//WWW/w3c_home.gif" ALT="W3C" BORDER=0 height=48 width=72></a><a href="../../" TARGET="_top_"><img SRC="../../../Icons//jigsaw" ALT="Jigsaw" BORDER=0 ></a>
+<hr noshade size="1"><a href="resources.html">All resources </a><a href="frames.html">All
+frames&nbsp;</a>
+<hr noshade size="1">
+<h1>
+AclRealm</h1>
+This metadata frame is used to access the Jigsaw Realms through the Acl
+API.
+<p>
+<hr noshade size="1">
+<h2>
+Inherits</h2>
+The <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/acl/AclRealm.html">AclRealm</a>
+class inerits from the following classes:
+<ul>
+<li>
+<a href="org.w3c.tools.resources.Resource.html">Resource</a></li>
+
+<li>
+<a href="org.w3c.tools.resources.FramedResource.html">FramedResource</a></li>
+
+<li>
+<a href="org.w3c.tools.resources.ResourceFrame.html">ResourceFrame</a></li>
+
+<li>
+<a href="org.w3c.tools.resources.MetaDataFrame.html">MetaDataFrame</a></li>
+
+<li>
+<a href="org.w3c.jigsaw.acl.JAcl.html">JAcl</a></li>
+</ul>
+
+<hr noshade size="1">
+<h2>
+Attributes description</h2>
+The AclRealm defines the following attributes:
+<ul>
+<li>
+<a href="#realm">realm</a></li>
+
+<li>
+<a href="#users">users</a></li>
+
+<li>
+<a href="#methods">methods</a></li>
+</ul>
+
+<hr noshade size="1"><a NAME="realm"></a><tt>realm</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+&nbsp;The realm name</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+&nbsp;This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringAttribute.html">StringAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<hr noshade size="1"><a NAME="users"></a><tt>users</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+&nbsp;The list of the names of the users allowed to access the information
+protected by the authentication filter.</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+&nbsp;This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<hr noshade size="1"><a NAME="methods"></a><tt>methods</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+&nbsp;The set of methods to protect against. When undefined, the filter
+will protected all HTTP method, otherwise it will just protect against
+the given set of methods. Each method is given by its name (in upper case).</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+&nbsp;This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<hr noshade size="1">
+<p><i><a href="mailto:jigsaw@w3.org">Jigsaw Team</a></i>
+<br><i>$Id: org.w3c.jigsaw.acl.AclRealm.html,v 1.1 1999/07/26 14:25:17
+bmahe Exp $</i>
+</body>
+</html>

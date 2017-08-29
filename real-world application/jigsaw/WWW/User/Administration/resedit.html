@@ -1,0 +1,161 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <TITLE>The resource editor administration guide</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+  <A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG BORDER="0" SRC="/icons/WWW/w3c_home.gif"
+      ALT="w3c" WIDTH="72" HEIGHT="48"></A>
+  <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" WIDTH="212" HEIGHT="49"
+      BORDER="0"></A>
+<H1>
+  <B>Jigsaw </B>generic resource editors
+</H1>
+<P>
+<B>Jigsaw</B> uses the meta-resource description to generate automatically
+editors for specific resources.The generated editors actually uses HTML form,
+although this may change in the future. The fact that these editors are
+automatically generated makes them share the same user interface, which we
+describe in this document.
+<P>
+To give some insights about how the resource editors work, we will describe
+two representative instances of them: the <A HREF="#file-resource">FileResource
+editor</A>, and the <A HREF="#directory-resource">DirectoryResource</A> editor.
+<H2>
+  <A NAME="file-resource">The FileResource editor</A>
+</H2>
+<P>
+While reading this section, it might be a good idea to have another window
+displaying the
+<A HREF="../Reference/w3c.jigsaw.resources.FileResource.html">FileResource
+reference documentation</A>. You might also want to browse around its
+<A HREF="../api/w3c.jigsaw.resources.FileResource.html">api documentation</A>.
+<P>
+We will start by showing a screen dump of the file resource editor (this
+screen dump has been generated out of the document you get when you point
+your browser to <CODE>/User/Overview.html</CODE>).
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><IMG BORDER="0" SRC="redit.gif" ALT="" WIDTH="410" HEIGHT="549"></TD>
+  </TR>
+</TABLE>
+<P>
+If you have read <A HREF="propeditor.html">the administration guide for the
+property editor</A>, this may sound familiar to you. Anyway, we'll re-describe
+the general layout of the form here. The form is made of three distinct zones:
+<UL>
+  <LI>
+    The first zone (the form <I>header</I>), is the title section. For all editors,
+    this section will always include at least, the name of the resource being
+    edited (here, <I>Overview.html</I>), and its resource class
+    (<CODE>w3c.jigsaw.resources.FileResource</CODE>).
+  <LI>
+    The second zone (the <I>form card zone</I>) contains the actual data to be
+    edited. Here, the editor displays the resource attributes (check the
+    <A HREF="../Reference/w3c.jigsaw.resources.FileResource.html">FileResource
+    reference guide</A>)
+  <LI>
+    The last zone contains a number of links: each link points to another <I>form
+    card zone</I> that will allow you to edit another set of characteristic of
+    the resource. For an unfiltered file resource, the only other available card
+    is the one that allows you to add a new filter.
+</UL>
+<P>
+Just being curious, you may want to follow the <I>AddFilter</I> link, which
+should popup a form similar to the one below:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><IMG BORDER="0" ALIGN="Middle" SRC="rfedit.gif" ALT="" WIDTH="411" HEIGHT="199"></TD>
+  </TR>
+</TABLE>
+<P>
+The <I>form card zone</I> has changed, it now displays an area were you can
+type in the class of the filter you want to add (see the
+<A HREF="../Reference/filters.html">reference manual on filters </A>for the
+xhaustive list of them). Note also that the last zone now displays only an
+<I>Attribute</I> link, that you may follow to go back to the previous form
+card. Let's continue here by adding a filter to the
+<CODE>/User/Overview.html</CODE> resource. We'll just add a
+<A HREF="../Reference/w3c.jigsaw.filters.CounterFilter.html">CounterFilter</A>
+(a filter that counts the number of hits to some resource). We tyoe in the
+filter's class name <CODE>w3c.jigsaw.filters.CounterFilter</CODE>, and press
+the <I>OK</I> button. Here is the new form that you get back:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><IMG BORDER="0" SRC="rfadd.gif" WIDTH="408" HEIGHT="193"></TD>
+  </TR>
+</TABLE>
+<P>
+Notice the two new links at the bottom of the form: they allow you to
+respectively edit the filter attributes, and the attribute values the filter
+shadows for its target (see the
+<A HREF="../Introduction/architecture.html"><B>Jigsaw</B> architectural
+overview</A> for more informations on shadowed attribute values).
+<P>
+By now, you should know enough to use the generic editor. You may want to
+remove the CounterFilter filter from the <CODE>/User/Overview.html</CODE>
+resource, by following the <I>w3c.jigsaw.filters.CounterFilter</I> link,
+and pressing the <I>Remove</I> button that will appear here.
+<H2>
+  <A NAME="directory-resource">The DirectoryResource editor</A>
+</H2>
+<P>
+You may now want to have two additional windows, one displaying the
+<A HREF="../Reference/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource
+reference guide</A>, and the other displaying the DirectoryResource api
+documentation.
+<P>
+The directory resource editor is very similar to the file resource editor,
+however, it provides two additional form cards to display (and modify) its
+existing children resources, and to add new children resources. To get acquainted
+with these two new kind of forms, we will pop up the directory resource editor
+on the <CODE>/User</CODE> resource (which is a DirectoryResource instance).
+By pointing your browser to <CODE>/Admin/Editor/User</CODE>, and following
+the <I>ExistingResources</I> link you should get the following (and now familiar)
+form:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><IMG BORDER="0" SRC="dedit.gif" ALT="" WIDTH="348" HEIGHT="408"></TD>
+  </TR>
+</TABLE>
+<P>
+We still have our three zones, the title zone indicates that we are editing
+a DirectoryResource whose name is <CODE>User</CODE>. The bottom zone shows
+the usual navigation links. The form card zone, however, now displays the
+list of children resources of the directory resource. You can follow any
+of the links to edit the corresponding resource. There is also a new
+<I>Command</I> field, to indicate what operations you want to perform on
+the marked children resources. To mark a resource, click on the checkbox
+at the right of its name. You can then execute one of the selected command
+by pressing the <I>OK</I> button. The <B>update</B> command will update any
+attribute that depends on the wrapped file content, the <B>remove</B> command
+will delete the resource (but <I>not</I> the underlying file), and the
+<B>reindex</B> command will re-run the
+<A HREF="../Introduction/indexer.html">resource factory </A>to make it create
+a new resource for the wrapped file (this is usefull if you have changed
+your resource factory configuration).
+<P>
+By following the <I>AddingResource</I> link, you will get the following form:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><IMG BORDER="0" SRC="dadd.gif" ALT="" WIDTH="358" HEIGHT="316"></TD>
+  </TR>
+</TABLE>
+<P>
+This form prompts you for a resource name, and a resource class (consult
+the reference manual for the <A HREF="../Reference/resources.html">list of
+available resources</A>). Fill both of them to create a new resource, and
+press the <I>OK</I> button: the new resource is created, and you will be
+relocated to a suitable editor of it.
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: resedit.html,v 1.1 2010/06/15 12:20:58 smhuang Exp $</I>
+</BODY></HTML>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+   "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<HTML>
+<HEAD>
+    <link rel="stylesheet" type="text/css" href="../style/doc.css">
+    <TITLE>Jigsaw as a Proxy</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+    <H1 class="title">
+      Setting up Jigsaw as a proxy
+    </H1>
+    <hr NOSHADE width="70%" align="left">
+    <a href="../../Overview.html">Jigsaw Home</a> /
+    <a href="../Overview.html">Documentation Overview</a> /
+      <a href="Tutorials.html">Tutorials</a>
+    </div>
+    <div class="body">
+<p>
+Running Jigsaw as a proxy involves the following steps:
+
+<P><B>1)</B> Open a JigAdmin window (see <A HREF="AdminTools.html">JigAdmin
+documentation</A>)
+
+<P><B>2)</B> Create an instance of the <A HREF="../Reference/org.w3c.tools.resources.FramedResource.html">org.w3c.tools.resources.FramedResource</A>
+resource in the root resource store, by selecting the "<TT>Root</TT>"
+node and selecting "<TT>Add Resource</TT>" in the popup menu (right
+      click). Select FramedResource as the resource class. Type the resource
+name in the identifier field (ie proxy), and click on "<TT>Ok</TT>".
+<p>
+    <table>
+      <tr><td>
+	  <IMG SRC="images/proxy1.gif" VSPACE=20 HEIGHT=384 WIDTH=337
+	    alt="resource">
+	</td><td>
+	  <IMG SRC="images/proxy2.gif" VSPACE=20 HEIGHT=152 WIDTH=440
+	    alt="resource"> 
+	  </td></tr>
+    </table>
+    <IMG SRC="images/proxy2b.gif" VSPACE=20 HEIGHT=383 WIDTH=334
+      alt="resource">
+<P><B>3)</B> Add a ProxyFrame to your new resource. In the resource
+      editor, select the "<TT>proxy</TT>" node and click on "<TT>Add
+	Frame</TT>" in the popup menu (right click). Select
+      "<TT>org.w3c.jigsaw.proxy.ProxyFrame</TT>" as the frame class 
+      to add and click on "<TT>Ok</TT>".
+<p>
+    <table>
+      <tr><td>
+	  <IMG SRC="images/proxy3.gif" VSPACE=20 HEIGHT=325 WIDTH=316
+	    alt="resource">
+	</td><td>
+	  <IMG SRC="images/proxy4.gif" VSPACE=20 HEIGHT=119 WIDTH=422
+	    alt="resource"> 
+	  </td></tr>
+    </table>
+
+<P><B>4)</B> Select the "<TT>ProxyFrame</TT>" node and edit its attributes.
+      Type the old root resource name in the "<TT>local-root</TT>" field
+      (ie root) and click on the "<TT>Commit</TT>" button. Attributes
+      are described 
+      in the <A
+	HREF="../Reference/org.w3c.jigsaw.proxy.ProxyFrame.html">reference 
+	page</A> of ProxyFrame.
+<p>
+    <IMG SRC="images/proxy5.gif" VSPACE=20 HEIGHT=334 WIDTH=478
+      alt="resource">
+
+<p><B>5)</B> The proxy properties. Attributes are described in the <A HREF="../Reference/org.w3c.jigsaw.proxy.ProxyProp.html">reference
+page</A> of ProxyProp.
+
+      <IMG SRC="images/proxy6.gif" VSPACE=20 HEIGHT=401 WIDTH=666
+	alt="attributes"> 
+
+<p><B>6)</B> Edit the general properties. Set the "<TT>Root Name</TT>" property
+to <I>proxy </I>and click on the "<TT>Commit</TT>" button.
+    <p>
+      <IMG SRC="images/proxy7.gif" VSPACE=20 HEIGHT=401 WIDTH=666
+	alt="attributes"> 
+<p><B>7)</B> Save the configuration, <B>Jigsaw</B> is now running as a proxy.
+Reconfigure your browser to run it...and have fun !
+    </div> <!-- body -->
+    <div class="footer">
+<p>
+<HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: proxy.html,v 1.1 2010/06/15 12:23:01 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+    </div>
+</BODY>
+</HTML>

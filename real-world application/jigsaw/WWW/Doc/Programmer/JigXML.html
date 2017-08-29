@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>JigXML, The Jigsaw XML format</title>
+  <style type="text/css">.res { color: #0000FF}
+.value { font-weight: bold; color: black}
+.name { font-size: 12pt; font-style: normal; font-family: helvetica; font-weight: bold}
+.name { font-style: normal; font-family: helvetica; font-weight: bold; color: #FF0000}
+.type { text-decoration: underline}
+.type { color: #0000FF}</style>
+  <link href="../style/doc.css" rel="stylesheet" type="text/css">
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF" style="background-color:
+    #FFFFFF">
+   <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <h1 class="title">JigXML<br>
+	<span class="subtitle">The Jigsaw XML format</span>
+      </h1>
+      <hr width="70%" align="left" noshade="noshade">
+      <a href="../../">Jigsaw Home</a> / 
+      <a href="../">Documentation Overview</a>
+    </div>
+    <div class="body">
+<ul>
+  <li><a href="#Resources">Resources and Frames in JigXML</a></li>
+  <li><a href="#find">How to find the JigXML description of a resource?</a></li>
+  <li><a href="#administra">The administration Protocol</a></li>
+  <li><a href="#example">XSL example</a></li>
+</ul>
+
+<p><br>
+This document describe the format used by Jigsaw to store the resources
+metadata. As of 2.1.0, Jigsaw use <a href="../../../XML">XML</a> to store
+these data. A JigXML file describes a set of resources metadata, each container
+(eg: a directory) save its children's metadata in such a file (via the
+ResourceStoreManager). It is assumed that you are familiar with the <a
+href="design.html">Jigsaw architecture</a>.</p>
+
+<h1><a name="Resources">Resources and Frames in JigXML</a></h1>
+
+<p>Here is the structure of a resource and its frames:</p>
+<img src="resframe.gif" alt="A sample resource" vspace="20">
+
+
+<p>And here is the corresponding JigXML structure:</p>
+<pre class="sample"><span style="font-weight: normal; font-family:
+	helvetica"><span style="font-family: helvetica">&lt;jigxml version="1.0" xmlns="</span><a href="http://jigsaw.w3.org/JigXML/JigXML1.0" style="font-family: helvetica">http://jigsaw.w3.org/JigXML/JigXML1.0</a><span style="font-family: helvetica">">
+  &lt;</span></span><span class="res" style="font-weight: normal; font-family: helvetica">resource</span><span style="font-weight: normal; font-family: helvetica"> class='org.w3c.tools.resources.<span class="type">FileResource</span>'>
+    &lt;attribute name='<span class="name">identifier</span>' flag='6' class='org.w3c.tools.resources.StringAttribute'><span class="value">Overview.html</span>&lt;/attribute>  
+    &lt;resourcearray name='<span class="name">frames</span>' class='org.w3c.tools.resources.FrameArrayAttribute' length='1'>
+      &lt;<span class="res">resource</span></span><span style="font-weight: normal; font-family: helvetica"> class='org.w3c.jigsaw.frames.<span class="type">HTTPFrame</span>'>
+        &lt;attribute name='<span class="name">identifier</span>' flag='6' class='org.w3c.tools.resources.StringAttribute'><span class="value">http-frame</span>&lt;/attribute>     
+        &lt;resourcearray name='<span class="name">frames</span>' class='org.w3c.tools.resources.FrameArrayAttribute' length='0'>    
+        &lt;/resourcearray>     
+        &lt;attribute name='<span class="name">last-modified</span>' flag='3' class='org.w3c.tools.resources.DateAttribute'><span class="value">932126901168</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">oid</span>' flag='1' class='org.w3c.tools.resources.IntegerAttribute'><span class="value">@@NULL@@</span>&lt;/attribute>
+        &lt;attribute name='<span class="name">quality</span>' flag='2' class='org.w3c.tools.resources.DoubleAttribute'><span class="value">1.0</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">title</span>' flag='2' class='org.w3c.tools.resources.StringAttribute'><span class="value">The release notes</span>&lt;/attribute>
+        &lt;attribute name='<span class="name">content-language</span>' flag='2' class='org.w3c.jigsaw.frames.LanguageAttribute'><span class="value">en</span>&lt;/attribute>
+        &lt;attribute name='<span class="name">content-encoding</span>' flag='2' class='org.w3c.jigsaw.frames.EncodingAttribute'><span class="value">@@NULL@@</span>&lt;/attribute>
+        &lt;attribute name='<span class="name">content-type</span>' flag='2' class='org.w3c.jigsaw.frames.MimeTypeAttribute'><span class="value">text/html</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">content-length</span>' flag='1' class='org.w3c.tools.resources.IntegerAttribute'><span class="value">2345</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">icon</span>' flag='2' class='org.w3c.tools.resources.StringAttribute'><span class="value">text.gif</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">maxage</span>' flag='2' class='org.w3c.tools.resources.LongAttribute'><span class="value">@@NULL@@</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">send-md5</span>' flag='2' class='org.w3c.tools.resources.BooleanAttribute'><span class="value">false</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">allow-delete</span>' flag='2' class='org.w3c.tools.resources.BooleanAttribute'><span class="value">false</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">putable</span>' flag='2' class='org.w3c.tools.resources.BooleanAttribute'><span class="value">false</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">relocate</span>' flag='2' class='org.w3c.tools.resources.BooleanAttribute'><span class="value">true</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">index</span>' flag='2' class='org.w3c.tools.resources.StringAttribute'><span class="value">@@NULL@@</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">icondir</span>' flag='2' class='org.w3c.tools.resources.StringAttribute'><span class="value">/icons</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">browsable</span>' flag='2' class='org.w3c.tools.resources.BooleanAttribute'><span class="value">false</span>&lt;/attribute>     
+        &lt;attribute name='<span class="name">style-sheet-link</span>' flag='2' class='org.w3c.tools.resources.StringAttribute'><span class="value">/style/directory.css</span>&lt;/attribute>    
+      &lt;</span><span class="res" style="font-weight: normal; font-family: helvetica">/resource</span><span style="font-weight: normal; font-family: helvetica">>   
+    &lt;/resourcearray>   
+    &lt;attribute name='<span class="name">last-modified</span>' flag='3' class='org.w3c.tools.resources.DateAttribute'><span class="value">932126925406</span>&lt;/attribute>   
+    &lt;attribute name='<span class="name">oid</span>' flag='1' class='org.w3c.tools.resources.IntegerAttribute'><span class="value">2097344102</span>&lt;/attribute>  
+    &lt;attribute name='<span class="name">filename</span>' flag='2' class='org.w3c.tools.resources.FilenameAttribute'><span class="value">Overview.html</span>&lt;/attribute>
+    &lt;attribute name='<span class="name">file-stamp</span>' flag='1' class='org.w3c.tools.resources.DateAttribute'><span class="value">922721334000</span>&lt;/attribute>   
+    &lt;attribute name='<span class="name">file-length</span>' flag='1' class='org.w3c.tools.resources.IntegerAttribute'><span class="value">2345</span>&lt;/attribute>   
+    &lt;attribute name='<span class="name">backup</span>' flag='2' class='org.w3c.tools.resources.BooleanAttribute'><span class="value">false</span>&lt;/attribute>
+  &lt;</span><span class="res" style="font-weight: normal;
+	font-family: helvetica">/resource</span><span style="font-weight: normal; font-family: helvetica">>
+&lt;/jigxml></span></pre>
+
+<p style="font-family: helvetica">This sample describe the metadata of only
+one resource: "<code>Overview.html</code>". A resource is a set of attributes,
+each attribute is described by an <code>&lt;attribute></code> tag. The frames
+of a resource are described in a <code>&lt;resourcearray></code> tag, in this
+example the resource has only one frame (an HTTPFrame), and this frame is
+called "<code>http-frame</code>". A frame is a resource, so it's also a set of
+attributes.</p>
+
+<h1 style="font-family: helvetica"><a name="find">How to find the JigXML
+description of a resource?</a></h1>
+
+<p style="font-family: helvetica">The usual resources are stored in a
+repository (a file) located in the <code><span style="text-decoration:
+underline">&lt;INSTDIR>/Jigsaw/Jigsaw/config/stores</span></code> directory. A
+repository is used to store the children's configurations of one (and only
+one) container (eg: DirectoryResource). For example, the children's
+configurations of the root resource are stored in the file <code><span
+style="text-decoration:
+underline">&lt;INSTDIR>/Jigsaw/Jigsaw/config/stores/root.xml</span></code>.</p>
+
+<p style="font-family: helvetica">The associations between containers and
+repositories are stored in the file <code><span style="text-decoration:
+underline">stores/&lt;server-name>-index.xml</span></code> (eg:
+<code>http-server-index.xml</code>). Each container has a key, the index file
+stores the association between this key and the repository containing the
+children's configurations.</p>
+
+<p style="font-family: helvetica">Let me show you an example, in the
+description of the DirectoryResource (eg: <span style="text-decoration:
+underline">images</span>) you can read the following container key:</p>
+<pre class="sample"><span style="font-family: helvetica">&lt;<span class="res">resource</span> class='org.w3c.jigsaw.resources.<span class="type">DirectoryResource</span>'>
+  &lt;attribute name='<span class="name">identifier</span>' flag='6' class='org.w3c.tools.resources.StringAttribute'><span class="value">images</span>&lt;/attribute>
+  &lt;resourcearray name='frames' class='org.w3c.tools.resources.FrameArrayAttribute' length='1'>
+    &lt;<span class="res">resource</span> class='org.w3c.jigsaw.frames.<span class="type">HTTPFrame</span>'>
+      &lt;attribute name='identifier' flag='6' class='org.w3c.tools.resources.StringAttribute'>frame-0&lt;/attribute>
+      &lt;resourcearray name='frames' class='org.w3c.tools.resources.FrameArrayAttribute' length='0'>
+      &lt;/resourcearray>
+      &lt;attribute name='last-modified' flag='3' class='org.w3c.tools.resources.DateAttribute'>932127175430&lt;/attribute>
+      &lt;attribute name='oid' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='quality' flag='2' class='org.w3c.tools.resources.DoubleAttribute'>1.0&lt;/attribute>
+      &lt;attribute name='title' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='content-language' flag='2' class='org.w3c.jigsaw.frames.LanguageAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='content-encoding' flag='2' class='org.w3c.jigsaw.frames.EncodingAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='content-type' flag='2' class='org.w3c.jigsaw.frames.MimeTypeAttribute'>text/html&lt;/attribute>
+      &lt;attribute name='content-length' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='icon' flag='2' class='org.w3c.tools.resources.StringAttribute'>dir.gif&lt;/attribute>
+      &lt;attribute name='maxage' flag='2' class='org.w3c.tools.resources.LongAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='send-md5' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false&lt;/attribute>
+      &lt;attribute name='allow-delete' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false&lt;/attribute>
+      &lt;attribute name='putable' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false&lt;/attribute>
+      &lt;attribute name='relocate' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>true&lt;/attribute>
+      &lt;attribute name='index' flag='2' class='org.w3c.tools.resources.StringAttribute'>Overview.html&lt;/attribute>
+      &lt;attribute name='icondir' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@&lt;/attribute>
+      &lt;attribute name='browsable' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false&lt;/attribute>
+      &lt;attribute name='style-sheet-link' flag='2' class='org.w3c.tools.resources.StringAttribute'>/style/directory.css&lt;/attribute>
+    &lt;/<span class="res">resource</span>>
+  &lt;/resourcearray>
+  &lt;attribute name='last-modified' flag='3' class='org.w3c.tools.resources.DateAttribute'>932127175430&lt;/attribute>
+  &lt;attribute name='oid' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@&lt;/attribute>
+  <span style="background-color: #FFE500">&lt;attribute name='</span></span><span class="name" style="font-family: helvetica; background-color: #FFE500">key</span><span style="font-family: helvetica; background-color: #FFE500">' flag='1' class='org.w3c.tools.resources.IntegerAttribute'></span><span class="value" style="font-family: helvetica; background-color: #FFE500">83855963</span><span style="font-family: helvetica"><span style="background-color: #FFE500; font-family: helvetica">&lt;/attribute></span><span style="font-family: helvetica">
+  &lt;attribute name='dirstamp' flag='1' class='org.w3c.tools.resources.DateAttribute'>932031181000&lt;/attribute>
+  &lt;attribute name='indexer' flag='2' class='org.w3c.tools.resources.StringAttribute'>default&lt;/attribute>
+  &lt;attribute name='extensible' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>true&lt;/attribute>
+  &lt;attribute name='negotiable' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false&lt;/attribute>
+&lt;/</span><span class="res" style="font-family: helvetica">resource</span><span style="font-family: helvetica">></span></span></pre>
+
+<p>and  you will find the corresponding repository in the file <code><span
+style="text-decoration: underline">http-server-index.xml</span></code>:</p>
+<pre class="sample"><span style="font-family: helvetica">&lt;</span><span class="res" style="font-family: helvetica">resource</span><span style="font-family: helvetica"> class='org.w3c.tools.resources.store.</span><span class="type" style="font-family: helvetica">NewStoreEntry</span><span style="font-family: helvetica">'>
+  &lt;attribute name='</span><span class="name" style="font-family: helvetica">repository</span><span style="font-family: helvetica">' flag='4' class='org.w3c.tools.resources.StringAttribute'></span><span class="value" style="font-family: helvetica">6/st-6</span><span style="font-family: helvetica">&lt;/attribute>
+  <span style="background-color: #FFE500">&lt;attribute name='</span></span><span class="name" style="font-family: helvetica; background-color: #FFE500">key</span><span style="font-family: helvetica; background-color: #FFE500">' flag='4' class='org.w3c.tools.resources.IntegerAttribute'></span><span class="value" style="font-family: helvetica; background-color: #FFE500">83855963</span><span style="font-family: helvetica"><span style="background-color: #FFE500">&lt;/attribute></span>
+&lt;/</span><span class="res" style="font-family: helvetica">resource</span><span style="font-family: helvetica">></span><span style="font-family: helvetica"></span></pre>
+
+<p>So the children's configurations of the DirectoryResource <code><span
+style="text-decoration: underline">images</span></code> are stored in the
+repository <code><span style="text-decoration:
+underline">stores/6/st-6</span></code>.</p>
+
+<p>Specific resources like <span style="font-weight: bold">indexers</span> and
+<span style="font-weight: bold">realms</span> are stored in two other
+directories, <code><span style="text-decoration:
+underline">&lt;INSTDIR>/Jigsaw/Jigsaw/config/indexers</span></code> and
+<code><span style="text-decoration:
+underline">&lt;INSTDIR>/Jigsaw/Jigsaw/auth</span></code>.</p>
+
+<p></p>
+
+<p><span style="font-weight: bold">Note</span>: You can find the dtd (document
+type definition) of the <span style="font-weight: bold">JigXML</span> format at
+<a
+href="http://jigsaw.w3.org/JigXML/JigXML.dtd">http://jigsaw.w3.org/JigXML/JigXML.dtd</a>.</p>
+
+<h1><a name="administra">The administration protocol</a></h1>
+
+<p>The new administration protocol use the XML serialiation.</p>
+
+<p>Here is a sample request (add a <span class="type">DirectoryResource</span>
+called "<span class="value">new</span>" under <span style="text-decoration:
+underline">docs_space</span>, docs_space is an alias for the root
+resource).</p>
+<pre class="sample"><span style="font-weight: bold; font-family: helvetica">REGISTER-RESOURCE</span><span style="font-family: helvetica"> </span><span style="font-weight: normal; font-family: helvetica">/http-server/<span style="text-decoration: underline">docs_space</span>/ HTTP/1.1
+Date: Tue, 10 Aug 1999 15:17:53 GMT
+Content-Length: 212
+Content-Type: application/xml;type=jigsaw-config
+Accept: */*
+Host: ender.inria.fr:8009
+User-Agent: Jigsaw/2.1.0
+
+&lt;?xml version='1.0' encoding='UTF-8'?>
+&lt;jigxml version="1.0" xmlns="http://jigsaw.w3.org/JigXML/JigXML1.0">
+ &lt;</span><span class="res" style="font-weight: normal; font-family: helvetica">description</span><span style="font-weight: normal; font-family: helvetica"> </span><span class="name" style="font-family: helvetica">class</span><span style="font-weight: normal; font-family: helvetica">='</span><span class="" style="font-weight: normal; font-family: helvetica">org.w3c.tools.resources.<span class="type">DirectoryResource</span></span><span style="font-weight: normal; font-family: helvetica">' </span><span class="name" style="font-family: helvetica">name</span><span style="font-weight: normal; font-family: helvetica">='</span><span class="value" style="font-family: helvetica">new</span><span style="font-weight: normal; font-family: helvetica">'>
+ &lt;/</span><span class="res" style="font-weight: normal; font-family: helvetica">description</span><span style="font-weight: normal; font-family: helvetica">>
+&lt;/jigxml></span></pre>
+
+<p>Another one (set the "<span class="name">putable</span>" flag to <span
+class="value">true</span> on the HTTPFrame of <span style="text-decoration:
+underline">style</span>):</p>
+<pre class="sample"><span style="font-weight: bold; font-family: helvetica">SET-VALUES</span><span style="font-family: helvetica"> <span style="font-weight: normal">/http-server/docs_space/<span style="text-decoration: underline">style</span>?frame-0 HTTP/1.1
+Date: Tue, 10 Aug 1999 15:15:06 GMT
+Content-Length: 994
+Content-Type: application/xml;type=jigsaw-config
+Accept: */*
+Host: ender.inria.fr:8009
+
+&lt;?xml version='1.0' encoding='UTF-8'?>
+&lt;jigxml version="1.0" xmlns="http://jigsaw.w3.org/JigXML/JigXML1.0">
+ &lt;</span></span><span class="res" style="font-family: helvetica; font-weight: normal">resource</span><span style="font-family: helvetica; font-weight: normal"> class='org.w3c.jigsaw.frames.</span><span class="type" style="font-family: helvetica; font-weight: normal">HTTPFrame</span><span style="font-family: helvetica; font-weight: normal">'>
+  &lt;inherit class='org.w3c.tools.resources.ProtocolFrame'>
+   &lt;inherit class='org.w3c.tools.resources.ResourceFrame'>
+    &lt;inherit class='org.w3c.tools.resources.FramedResource'>
+     &lt;inherit class='org.w3c.tools.resources.Resource'>
+      &lt;inherit class='org.w3c.tools.resources.AttributeHolder'>
+       &lt;inherit class='java.lang.Object'>
+       &lt;/inherit>
+      &lt;/inherit>
+     &lt;/inherit>
+    &lt;/inherit>
+   &lt;/inherit>
+  &lt;/inherit>
+  &lt;implements class='org.w3c.tools.resources.event.AttributeChangedListener'/>
+  &lt;implements class='org.w3c.tools.resources.event.FrameEventListener'/>
+  &lt;implements class='java.lang.Cloneable'/>
+  &lt;attribute name='</span><span class="name" style="font-family: helvetica">putable</span><span style="font-family: helvetica; font-weight: normal">' flag='2' class='org.w3c.tools.resources.BooleanAttribute'></span><span class="value" style="font-family: helvetica">true</span><span style="font-family: helvetica; font-weight: normal">&lt;/attribute>
+ &lt;/</span><span class="res" style="font-family: helvetica; font-weight: normal">resource</span><span style="font-family: helvetica; font-weight: normal">>
+&lt;/jigxml></span></pre>
+
+<p></p>
+
+<h1><a name="example">XSL example</a></h1>
+
+<p>Just a little example of what can be done with JigXML and <a
+href="http://www.w3.org/Style/XSL/">XSL</a>. In this example, the <a
+href="http://jigsaw.w3.org/JigXML/xsl/root.xml">JigXML file</a> is transformed to
+an <a href="http://jigsaw.w3.org/JigXML/xsl/root.html">HTML file</a> using the
+following <a href="http://jigsaw.w3.org/JigXML/xsl/JigXML.xsl">XSL rules</a>.
+    </div> <!-- body -->
+    <div class="footer">
+<p></p>
+<hr noshade="noshade" width="100%">
+
+
+<p><a href="mailto:jigsaw@w3.org">Jigsaw Team</a> <br>
+<span class="mini">$Id: JigXML.html,v 1.18 1999/07/29 16:05:19 bmahe Exp
+$</span></p>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright"><span
+class="policyfooter">Copyright</span></a><span class="policyfooter">
+&nbsp;&copy;&nbsp; 1997 </span><a href="http://www.w3.org/"
+class="policyfooter">W3C</a><span class="policyfooter"> (</span><a
+href="http://www.lcs.mit.edu/" class="policyfooter">MIT</a><span
+class="policyfooter">, </span><a href="http://www.inria.fr/"
+class="policyfooter">INRIA</a><span class="policyfooter">, </span><a
+href="http://www.keio.ac.jp/" class="policyfooter">Keio</a><span
+class="policyfooter"> ), All Rights Reserved. W3C </span><a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"
+class="policyfooter"> liability,</a><span class="policyfooter"> </span><a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks" class="policyfooter">
+trademark</a><span class="policyfooter">, </span><a
+href="/Consortium/Legal/copyright-documents.html"
+class="policyfooter">document use </a><span class="policyfooter">and </span><a
+href="/Consortium/Legal/copyright-software.html" class="policyfooter">software
+licensing </a><span class="policyfooter">rules apply. Your interactions with
+this site are in accordance with our </span><a
+href="/Consortium/Legal/privacy-statement.html#Public" class="policyfooter">
+public</a><span class="policyfooter"> and </span><a
+href="/Consortium/Legal/privacy-statement.html#Members" class="policyfooter">
+Member</a><span class="policyfooter"> privacy statements.</span></font></p>
+    </div>
+</body>
+</html>

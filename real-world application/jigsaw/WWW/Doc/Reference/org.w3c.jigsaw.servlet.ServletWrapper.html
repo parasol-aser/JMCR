@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+   <title>The ServletWrapper reference manual</title>
+<link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</style>
+<link href="jigsaw@w3.org" rel="made">
+</head>
+<body>
+<a href="/" target="_top_"><img SRC="/Icons/WWW/w3c_home.gif" ALT="W3C" BORDER=0 height=48 width=72></a><a href="../../" target="_top_"><img SRC="../../../Icons//jigsaw" ALT="Jigsaw" BORDER=0 ></a>
+<hr noshade size="1"><a href="resources.html">All resources</a> <a href="frames.html">All
+frames&nbsp;</a>
+<hr noshade size="1">
+<h1>
+ServletWrapper</h1>
+This resource allows you to embed Servlets in Jigsaw. The ServletWrapper
+resource works in conjunction with a <a href="org.w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a>
+(or a subclass) associated with a <a href="org.w3c.jigsaw.servlet.ServletDirectoryFrame.html">ServletDirectoryFrame</a>
+, that acts as a context for a set of related servlets. You can install
+multiple servlet directory resources within the same Jigsaw process. The
+servletWrapper auto register a <a href="org.w3c.jigsaw.servlet.ServletWrapperFrame.html">ServletWrapperFrame</a>.
+<p>To install a servlet within Jigsaw, you need to install an instance
+of the ServletWrapper resource in the Jigsaw URL space, and then configure
+it and tell it what servlet class it should embed (by using the servlet-class
+parameter).
+<br>
+<hr noshade size="1">
+<h2>
+Inherits</h2>
+The <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/servlet/ServletWrapper.html">ServletWrapper</a>
+class inerits from the following classes:
+<ul>
+<li>
+<a href="org.w3c.tools.resources.Resource.html">Resource</a></li>
+
+<li>
+<a href="org.w3c.tools.resources.FramedResource.html">FramedResource</a></li>
+</ul>
+
+<hr noshade size="1">
+<h2>
+Attributes description</h2>
+The ServletWrapper defines the following attributes:
+<ul>
+<li>
+<a href="#servlet-class">servlet-class</a></li>
+
+<li>
+<a href="#servlet-parameters">servlet-parameters</a></li>
+
+<li>
+<a href="#auto-reload">auto-reload</a></li>
+
+<li>
+<a href="#servlet-timeout">servlet-timeout</a></li>
+</ul>
+
+<hr noshade size="1"><a NAME="servlet-class"></a><tt>servlet-class</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+The name of the main class for the servlet. That name should resolve to
+a subclass of java.servlet.Servlet. The servlet wrapper will only run the
+servlet when doable, it will otherwise (when the servlet class is not instantiable,
+or some other servlet initialization error occurs) emit an error message
+back to the client and report the problem in <b>Jigsaw</b>'s main error
+log.</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringAttribute.html">StringAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<hr noshade size="1"><a NAME="servlet-parameters"></a><tt>servlet-parameters</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+This attribute lists the servlet initialization parameters. Each attribute
+has a name and a value, both of them are instances of String.</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/PropertiesAttribute.html">PropertiesAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<hr noshade size="1"><a NAME="auto-reload"></a><tt>auto-reload</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+Should this wrapper reload modified servlet class?</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>true</b>.</dd>
+</dl>
+
+<hr noshade size="1"><a NAME="servlet-timeout"></a><tt>servlet-timeout</tt>
+<dl>
+<dt>
+<i>semantics</i></dt>
+
+<dd>
+Max idle time before a servlet is destroyed (in milliseconds), the servlet
+will never be destroyed if equals to -1.</dd>
+
+<dt>
+<i>type</i></dt>
+
+<dd>
+This attribute is an editable <a href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/LongAttribute.html">LongAttribute</a></dd>
+
+<dt>
+<i>default value</i></dt>
+
+<dd>
+This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<hr width="100%">
+<br><i><a href="mailto:jigsaw@w3.org">Jigsaw Team</a></i>
+<br><i>$Id: org.w3c.jigsaw.servlet.ServletWrapper.html,v 1.3 1998/03/27
+08:23:42 bmahe Exp $</i>
+</body>
+</html>

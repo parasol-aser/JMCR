@@ -1,0 +1,448 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>Resource tutorial.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG BORDER="0" SRC="/icons/WWW/w3c_home.gif"
+    ALT="" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" WIDTH="212" HEIGHT="49"
+    ALT="Jigsaw" BORDER="0"></A>
+<H1>
+  Writing a new resource class
+</H1>
+<P>
+This tutorial explains you how to write a new resource, by walking through
+a complete example. It is assumed that you are familiar with
+<A HREF="../Introduction/architecture.html"><B>Jigsaw</B> architecture</A>,
+and that you have understand the <A HREF="configuration.html">configuration
+tutorial</A>.
+<P>
+The resource we will write here, will display a message along with a set
+of customizable request headers. The tutorial will go through the following
+steps:
+<UL>
+  <LI>
+    <A HREF="#writing-resource-class">Writing the resource class,</A>
+  <LI>
+    <A HREF="#installing">Installing it and configuring it.</A>
+</UL>
+<H2>
+  <A NAME="writing-resource-class">Writing the resource class</A>
+</H2>
+<P>
+Before actually writing a new resource, some decisions must be made about:
+<UL>
+  <LI>
+    <A HREF="#picking-superclass">What will be it super-class</A>
+  <LI>
+    <A HREF="#picking-package">In what package should it go</A>
+  <LI>
+    <A HREF="#picking-attributes">What attribute should it define</A>
+  <LI>
+    <A HREF="#smart-caching">Being smart with caches</A>
+</UL>
+<H3>
+  <A NAME="picking-superclass">Picking a super-class</A>
+</H3>
+<P>
+Deciding for the super-class of your resource is a pretty simple process
+right now. Here are the rule of thumbs:
+<UL>
+  <LI>
+    If your resource is to wrap a directory (i.e. it will contain child resource),
+    then a good bet is to sub-class the
+    <A HREF="../api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>,
+    which provides you with the children store management.
+  <LI>
+    If your resource wraps some file (i.e. it serves files), then you probably
+    want to sub-class the
+    <A HREF="../api/w3c.jigsaw.resources.FileResource.html">FileResource</A>
+    class.
+  <LI>
+    If your resource is to handle forms, then you definetly want to pick a sub-class
+    of
+    <A HREF="../api/w3c.jigsaw.forms.PostableResource.html">PostableResource</A>
+    as your super-class. This will give you the form arguments decoding for free.
+  <LI>
+    Finally, if you want to write a fancy dynamic resource (like the
+    <A HREF="../api/w3c.jigsaw.status.ThreadStat.html">ThreadStat</A> one, for
+    example), then you will probably fallback by sub-classing the
+    <A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A>
+    class.
+</UL>
+<P>
+Given these short rules, it should be obvious that for our sample resource,
+what we want to do is to subclass the
+<A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A>.
+So right now, we can start writing the following piece of code (we will keep
+in bold the additional code we add as we walk through the example):
+<P>
+<TABLE ALIGN="CENTER" BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE><B>import <A HREF="../api/Package-w3c.www.http.html">w3c.www.http</A>.*;</B>
+<B>import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;</B>
+<B>import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources</A>.*;</B>
+<B>import <A HREF="../api/Package-w3c.tools.store.html">w3c.tools.store</A>.*;</B> 
+
+</PRE>
+      <PRE><B>public class FancyResource extends <A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> {</B>
+
+<B>}</B>
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+Note that we don't know yet were to put this file until we have selected
+an appropriate package for our resource.
+<H3>
+  <A NAME="picking-package">Selecting a package</A>
+</H3>
+<P>
+There is no particular problem with regard to the package your resource belong
+to: <B>Jigsaw</B> impose no constraint on this. The only thing you should
+be aware of is your CLASSPATH environment variable. This variable setting
+is particularly crucial in <B>Jigsaw</B> since it may impact its security:
+you don't want anyone to be able to plug new resource classes in the server
+!
+<P>
+For our sample resource, we can create a new package, let's call it
+<CODE>tutorial</CODE>, under the <B>Jigsaw</B> classes directory. We want
+this package to be under the <CODE>w3c.jigsaw</CODE> package. We can now
+create the appropriate directory
+(<CODE>src/classes/w3c/jigsaw/tutorial</CODE>), and write in it the following
+<CODE>FancyResource.java</CODE> file:
+<P>
+<TABLE ALIGN="CENTER" BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE><B>package w3c.jigsaw.tutorials ;</B>
+
+import <A HREF="../api/Package-w3c.www.http.html">w3c.www.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources</A>.*;
+import <A HREF="../api/Package-w3c.tools.store.html">w3c.tools.store</A>.*; 
+
+public class FancyResource extends <A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> {
+
+}
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<PRE>
+</PRE>
+<H3>
+  <A NAME="picking-attributes">Defining the attributes</A>
+</H3>
+<P>
+The next thing we have to figure out, is the list of attributes for our new
+resource. The
+<A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A>
+&nbsp;already defines a number of attributes (see the
+<A HREF="../Reference/w3c.jigsaw.resources.HTTPResource.html">reference
+manual</A>). Defining the set of attributes of a resource also defines the
+way the resource will be configured (since a resource is configured by editing
+its attribute values). Here, we want to be able to configure:
+<UL>
+  <LI>
+    The message that will be emited by the resource
+  <LI>
+    The name of the request headers that the resource should display
+</UL>
+<P>
+The message emited by the resource can be described as an editable
+<A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>,
+which defaults to <B>Hello</B>. The name of the request headers to dump can
+be encoded as a
+<A HREF="../api/w3c.tools.store.StringArrayAttribute.html">StringArrayAttribute</A>,
+each entry in the array giving the name of a header. If this last attribute
+is undefined, then we will emit all of the request headers in our reply.
+<P>
+Now that we now the attributes our resource is to have, we should declare
+them to the
+<A HREF="../api/w3c.tools.store.AttributeRegistry.html">AttributeRegistry</A>.
+This Registry keeps track of all the attributes of all resource classes.
+For each class it knows of, it maintains an ordered list of the attribute
+it defines. The fact that this list is ordered is important, since it allows
+for fast attribute value access (through a simple indirection in the attribute
+value array of each resource instance). Attribute declaration should be done
+at class initialization time, so we introduce a <B>static</B> statement in
+the class, whose purpose is to declare our attributes:
+<P>
+<TABLE ALIGN="CENTER" BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE>package w3c.jigsaw.tutorials ;
+
+import <A HREF="../api/Package-w3c.www.http.html">w3c.www.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources</A>.*; 
+import <A HREF="../api/Package-w3c.tools.store.html">w3c.tools.store</A>.*;
+
+public class FancyResource extends <A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> {
+
+	<B>// The message attribute index</B>
+<B>	protected static int ATTR_MESSAGE = -1 ;</B>
+<B>	// The headers attribute index</B>
+<B>	protected static int ATTR_HEADERS = -1 ;</B>
+
+	<B>static {</B>
+<B>		<A HREF="../api/w3c.tools.store.Attribute.html">Attribute</A> a   = null ;</B>
+<B>		Class     cls = null ;</B>
+<B>		</B>
+<B>		try {</B>
+<B>			cls = Class.forName("w3c.jigsaw.tutorials.FancyResource");</B>
+<B>		} catch (Exception ex) {</B>
+<B>			ex.printStackTrace() ;</B>
+<B>			System.exit(1) ;</B>
+<B>		}</B>
+<B>		// Register the message attribute:</B>
+<B>		a = new <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>("message", "Hello", Attribute.EDITABLE);</B>
+<B>		ATTR_MESSAGE = <A HREF="../api/w3c.tools.store.AttributeRegistry.html">AttributeRegistry</A>.registerAttribute(cls, a) ;</B>
+<B>		// Register the headers attribute:</B>
+<B>		a = new <A HREF="../api/w3c.tools.store.StringArrayAttribute.html">StringArrayAttribute</A>("headers", null, Attribute.EDITABLE) ;</B>
+<B>		ATTR_HEADERS = <A HREF="../api/w3c.tools.store.AttributeRegistry.html">AttributeRegistry</A>.registerAttribute(cls, a) ;</B>
+<B>	}</B>
+
+}
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+Notice how the attribute Registry returns back an attribute index for each
+of the attribute we register. This index can then be used as a parameter
+to the <CODE>setValue</CODE> and <CODE>getValue</CODE> methods of
+<A HREF="../api/w3c.tools.store.AttributeHolder.html">AttributeHolder</A>
+instances, to describe the attribute they should act on.
+<P>
+At this point, we have declared the set of attributes that our resource defines,
+the attribute Registry knows about it, we can now focus on the actual behavior
+of the resource. The only HTTP method that our resource will support is the
+<CODE>GET</CODE> method, which will synthetise a reply on the fly for each
+specific request. <B>Jigsaw</B> comes with a simple
+<A HREF="../api/w3c.jigsaw.html.HtmlGenerator.html">HtmlGenerator</A> class
+for generating HTML that we want to use for this purpose. The actual
+implementation of the method is the following:
+<P>
+<TABLE ALIGN="CENTER" BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE>package w3c.jigsaw.tutorials ;
+
+import <A HREF="../api/Package-w3c.www.http.html">w3c.www.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources</A>.*; 
+import <A HREF="../api/Package-w3c.tools.store.html">w3c.tool.store</A>.*;
+
+<B>import <A HREF="../api/Package-w3c.jigsaw.html.html">w3c.jigsaw.html</A>.* ;</B>
+
+public class FancyResource extends <A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> {
+	
+	// The message attribute index
+	protected static int ATTR_MESSAGE = -1 ;
+	// The headers attribute index
+	protected static int ATTR_HEADERS = -1 ;
+
+	static {
+		<A HREF="../api/w3c.tools.store.Attribute.html">Attribute</A> a   = null ;
+		Class     cls = null ;
+		
+		try {
+			cls = Class.forName("w3c.jigsaw.tutorials.FancyResource");
+		} catch (Exception ex) {
+			ex.printStackTrace() ;
+			System.exit(1) ;
+		}
+		// Register the message attribute:
+		a = new <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>("message", "Hello", Attribute.EDITABLE);
+		ATTR_MESSAGE = <A HREF="../api/w3c.tools.store.AttributeRegistry.html">AttributeRegistry</A>.registerAttribute(cls, a) ;
+		// Register the headers attribute:
+		a = new <A HREF="../api/w3c.tools.store.StringArrayAttribute.html">StringArrayAttribute</A>("headers", null, Attribute.EDITABLE) ;
+		ATTR_HEADERS = <A HREF="../api/w3c.tools.store.AttributeRegistry.html">AttributeRegistry</A>.registerAttribute(cls, a) ;
+	}
+
+	<B>/**</B>
+<B>	 * Display the resource message with the request headers.</B>
+<B>	 * @param request The request to handle.</B>
+<B>	 * @exception HTTPException If processing the request failed.</B>
+<B>	 */</B>
+
+<B>	public <A HREF="../api/w3c.jigsaw.http.Reply.html">Reply</A> get(<A HREF="../api/w3c.jigsaw.http.Request.html">Request</A> request) </B>
+<B>		throws <A HREF="../api/w3c.jigsaw.http.HTTPException.html">HTTPException</A></B>
+<B>	{</B>
+<B>		// Create the HTML generator, and set titles:</B>
+<B>		<A HREF="../api/w3c.jigsaw.html.HtmlGenerator.html">HtmlGenerator</A> g = new <A HREF="../api/w3c.jigsaw.html.HtmlGenerator.html">HtmlGenerator</A>("FancyResource");</B>
+<B>		g.append("&lt;h1&gt;FancyResource output&lt;/h1&gt;");</B>
+<B>		// Emit the message:</B>
+<B>		g.append("&lt;p&gt;"+getValue(ATTR_MESSAGE, null));</B>
+<B>		// Now emit the requested headers:</B>
+<B>		String headers[] = (String[]) getValue(ATTR_HEADERS, null) ;</B>
+<B>		if ( headers != null ) {</B>
+<B>			g.append("&lt;hr&gt;&lt;h2&gt;Request headers:&lt;/h2&gt;&lt;dl&gt;");</B>
+<B>			for (int i = 0 ; i &lt; headers.length ; i++) {</B>
+<B>				g.append("&lt;dt&gt;"+headers[i]+"&lt;/dt&gt;&lt;dd&gt;");</B>
+<B>				String value = request.getValue(headers[i]);</B>
+<B>				g.append((value == null) </B>
+<B>					 ? "&lt;em&gt;undefined&lt;/em&gt;"</B>
+<B>					 : value) ;</B>
+<B>			}</B>
+<B>		}</B>
+		<B>Reply reply = createDefaultReply(request, HTTP.OK) ;</B>
+<B>		reply.setStream(g) ;</B>
+<B>		return reply ;</B>
+<B>	}</B>
+
+}
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+We are done, you can now compile the above code, which should produce a
+<CODE>FancyResource.class</CODE> file, the next section will explain how
+to install it in the information space. Before switching to this, it is worth
+pointing out that the <I>instances</I> of our new resource class will be
+made persistent by the <B>Jigsaw</B> runtime: this means that once plugged
+into the resource space, a new instance of the FancyResource class will keep
+its attribute values across <B>Jigsaw</B> invocations.
+<H3>
+  <A NAME="smart-caching">Being smart with caches</A>
+</H3>
+<P>
+Before continuing into the installation of that new resources, we would like
+to look into caching issues. As written above, the output generated by our
+resource doesn't say nothing about wether it's cachable or not. Under these
+circumstances, most existing caches will try to cache the resource content.
+<P>
+Although what we really want is to prevent any sort of caching for that
+particular resource, since its output depends on the request it answers too.
+To handle this situation, we can use the newly defined request headers in
+HTTP/1.1. What we really want is to tell any caches between our resource
+and the client to keep out of the way. To do this, we need to set the
+<CODE>no-store</CODE> cache control directive, defined in HTTP/1.1.
+<P>
+This can be done by redefining the <CODE>createDefaultReply</CODE> method
+of our superclass in the following way:
+<P>
+<TABLE ALIGN="CENTER" BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE>package w3c.jigsaw.tutorials ;
+
+import <A HREF="../api/Package-w3c.www.http.html">w3c.www.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;
+import <A HREF="../api/Package-w3c.tools.store.html">w3c.tools.store</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources.*</A>.*;
+
+<B>import <A HREF="../api/Package-w3c.jigsaw.html.html">w3c.jigsaw.html</A>.* ;</B>
+
+public class FancyResource extends <A HREF="../api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> {
+	...
+
+    public Reply createDefaultReply(Request request, int status) {
+        Reply reply = super.createDefaultReply(request, status);
+        reply.setNoStore(true);
+        // Be friendly to HTTP/1.0 caches too:
+        reply.addPragma("no-cache");
+        return reply;
+    }
+	
+}
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+This set the <CODE>no-store</CODE> cache control directive, and it also set
+the <CODE>no-cache</CODE> pragma, in case there is an HTTP/1.0 proxy between
+our resource and the client.
+<H3>
+  <A NAME="installing">Installing the resource</A>
+</H3>
+<P>
+You are not supposed to have compiled the fancy resource class. What we want
+to do here, is actually using it in our exported space. For the sake of this
+example, we will just attach an instance of the fancy resource to
+<B>Jigsaw</B> documentation directory (the <CODE>/User</CODE> directory).
+Don't be afraid, you will also learn how to remove it from there by the end
+of this tutorial).
+<P>
+As you might have guess after reading the
+<A HREF="configuration.html">configuration tutorial</A>, what we are going
+to do here, is bring up the generic resource editor on the <CODE>/User</CODE>
+directory resource. Point your favorite browser to
+<CODE>/Admin/Editor/User</CODE>, and follow the link to
+<I>AddingResource</I>. This shows up a form prompting us for the resource
+name (i.e. the name of the resource in the URL space), and the resource class.
+Let's call our resource <CODE>fancy</CODE>, and the class, of course, is
+<CODE>w3c.jigsaw.tutorials.FancyResource</CODE>. We press the <I>OK</I> button
+to create the resource, then we follow the <I>ExistingResources</I> link.
+This link pops up &nbsp;the list of resources of the <CODE>/User</CODE>
+directory, we click on the <CODE>fancy</CODE> one. This brings up
+the&nbsp;editor for the attribute value of our fancy resource. We are mostly
+interested by our specific attributes: <CODE>message</CODE> and
+<CODE>headers</CODE>. Let's have fun here, first set the message to whatever
+you think is appropriate, then type in the name of the request header you
+want the resource to display (lower case, one per line). In my configuration
+I have set the message to <B>Testing the fancy resource</B>, and I have selected
+the <CODE>user-agent</CODE> and &nbsp;<CODE>accept</CODE> headers. Press
+the <I>OK</I> button: we are all set, let's test this by visiting the
+<CODE>/User/fancy</CODE> resource. Here is what I get with my configuration:
+<P>
+<TABLE ALIGN="CENTER" BORDER CELLPADDING="2">
+  <TR>
+    <TD><H3>
+	FancyResource output
+      </H3>
+      <P>
+      Testing the fancy resource
+      <H3>
+	  <HR>
+	Request headers:
+      </H3>
+      <DL>
+	<DT>
+	  user-agent
+	<DD>
+	  Mozilla/2.0 (X11; I; SunOS 5.3 sun4m)
+	<DT>
+	  accept
+	<DD>
+	  image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*
+      </DL>
+      <P>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+The example we have been walking through is probably one of the simplest
+one, however, by now, you should be able to read and understand the basic
+resource classes provided by <B>Jigsaw</B>. I would recommend reading them
+in the following order:
+<UL>
+  <LI>
+    You can start by going through the code of the
+    <A HREF="../api/w3c.jigsaw.resources.FileResource.html">FileResource</A>
+    , which is a little more complex then our fancy resource, but not much.
+  <LI>
+    You can then continue by browsing the
+    <A HREF="../api/w3c.jigsaw.forms.PostableResource.html">PostableResource</A>,
+    which is the one that you are most likely to use in real life. This should
+    allow you to write resources that handles the <CODE>POST</CODE> method.
+  <LI>
+    If you still have more courage, then try reading the
+    <A HREF="../api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>.
+    There is a significant increase in complexity here. since the directory resource
+    manages a children resource store. However, once you have understood the
+    code of this resource, then <B>Jigsaw</B> doesn't have much less you don't
+    know about.
+</UL>
+<P>
+Enjoy !
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: resource.html,v 1.1 2010/06/15 12:28:36 smhuang Exp $</I>
+<P>
+</BODY></HTML>

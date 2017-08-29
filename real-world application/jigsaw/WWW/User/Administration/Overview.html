@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0 Strict//EN">
+<HTML>
+<HEAD>
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Jigsaw administration guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home"
+    WIDTH="72" HEIGHT="48" ALT="W3C" BORDER="0"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" WIDTH="212"
+    HEIGHT="49" BORDER="0"></A>
+<H1>
+  Jigsaw Administration Guide
+</H1>
+<P>
+<B>Jigsaw</B> administration can (and should) be entirely done through the
+provided set of form based editors or by using the new graphical tool (see
+the available <A HREF="AdminTools.html">administration tools</A> for more
+details). These editors are generally mapped to URLs under the
+<CODE>/Admin</CODE> directory of your server. If you have read carefully
+<A HREF="../Introduction/architecture.html"><B>Jigsaw</B> architectural
+overview</A> , you should be aware that all configuration operations can
+be classified in one of the following categories:
+<UL>
+  <LI>
+    <A HREF="#global-configuration">Changing the server's global configuration</A>
+    &nbsp;
+  <LI>
+    <A HREF="#resource-factory">Configuring the resource factory</A>
+  <LI>
+    <A HREF="#editing-resources">Editing existing resource</A>
+</UL>
+<P>
+This administration guide will go through each of these operations, and explain
+you how to use the form-based editors to achieve them. Note that it is easier
+noew to use the <A HREF="JigAdm.html">graphical tool</A> (called
+<B><A HREF="JigAdm.html">JigAdmin</A></B>), 
+<H2>
+  <A NAME="global-configuration">Global server configuration</A>
+</H2>
+<P>
+The global server configuration is the set of settings that indicate to the
+server the environment in which it should run. This environment is implemented
+as a set of Java properties, whose complete description is available
+<A HREF="../Reference/resources.html#property">here</A>.
+<P>
+To edit these properties, <B>Jigsaw</B> comes with a form-based
+<I><A HREF="propeditor.html">property editor</A></I>, which allows you to:
+<UL>
+  <LI>
+    Change the setting of any of the properties,
+  <LI>
+    Test your changes (by restarting the server),
+  <LI>
+    Save your changes (once you're happy with them)
+</UL>
+<P>
+To edit the properties, just point your browser to
+<CODE>/Admin/Properties</CODE>, and follow the instructions there.
+<H2>
+  <A NAME="resource-factory">Configuring the resource factory</A>
+</H2>
+<P>
+The <A HREF="../Introduction/indexer.html">resource factory</A> is the piece
+of software that maps exiting objects (i.e. files and directories) to resource
+instances. It maintains two databases that can be edited through HTML forms.
+The first database, the <I>extensions database</I>&nbsp;tells the indexer
+how to map files having some given extensions to resources. The second database,
+the <I>directory templates database</I> tells the indexer how to map directories
+of a given name to resources.
+<H3>
+  The extensions database
+</H3>
+<P>
+The extensions database maps file extensions to either resource classes,
+or default attribute values. To change the extensions database, point your
+browser to <CODE>/Admin/Extensions</CODE>. This displays the list of currently
+defined extensions. You can remove existing extensions by marking them (click
+on the checkbox to the right of the name), and pressing the <I>Delete</I>
+button.
+<P>
+To add an extension, follow the <I>Add extension</I> link at the bottom of
+the form. This will prompt you for the extension name and an optional extension
+class. If no class is provided, the resource factory will assume that you
+just want to define a default set of attributes for the resources wrapping
+files having this extension (for example, you may want to state that the
+<CODE>en</CODE> extension should cause the resource that wrap the file to
+have its content-language attribute set to <B>en</B>.).
+<P>
+If you do provide a class (which should be a valid Java classname, such as
+<CODE>w3c.jigsaw.resources.FileResource</CODE>), then files having the given
+extension will be exported by an instance of that class. The reference guide
+comes with <A HREF="../Reference/resources.html">a complete description of
+all available classes</A>, but of course, you can define your own resource
+classes, and use them at will.
+<H3>
+  The directory template database
+</H3>
+<P>
+The directory templates database maps directory names to resources. When
+indexing a directory, the resource factory first looks for an existing directory
+template for the given name. If such a template exists, it is used (see below),
+otherwise, a default
+<A HREF="../Reference/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>
+is built to export the directory.
+<P>
+A directory template must specify the class of the resource to be used to
+export directories having the given name. This class will then determine
+what editor will be used to edit the directory templates attributes (keep
+in mind that these attributes will be used as default values for the actual
+resource instance). Directory template can be either <I>generic</I> or
+<I>normal</I>. Directory templates that are <I>generic</I> apply to all directory
+<I>below</I> them. This means, for example, that if you have defined a directory
+template for directories whose name are <CODE>foo</CODE>, and you then query
+the resource factory to build a resource for the directory
+<CODE>foo/x/y</CODE>, unless <CODE>x</CODE> or <CODE>y</CODE> have associated
+directory templates, the <CODE>foo</CODE> template will be used.
+<H2>
+  <A NAME="editing-resources">Editing existing resources</A>
+</H2>
+<P>
+<B>Jigsaw</B> allows you to edit particular resources at any time. Each resource
+attributes may be changed, and the changes will persist across server
+invocations. To change some resource attributes, you need to launch an editor
+on the appropriate resource instance. This is done (if you use the dfeault
+configuration), by pointing your browser to:
+<CODE>/Admin/Editor/<I>extraPath</I></CODE>, were <I>extraPath</I> is the
+path of the resource to be edited. For example, if you want to edit the
+<CODE>Admin</CODE> resource itself, then you can point your browser to
+<CODE>/Admin/Editor/Admin</CODE>.
+<P>
+Each resource class may define its own specific editor, although at this
+time, most of them uses the <A HREF="resedit.html">GenericResourceEditor</A>
+(or some sub-classes of it). This provides the ability to edit all the
+<I>editable</I> attributes of the target resource, and in the case of container
+resources, it will allow you to also edit the list of children resources.
+For more informations on specific resource editors, see the
+<A HREF="../Reference/resources.html">reference guide to resources</A>.
+<P>
+<P>
+  <HR>
+<A href="mailto:jigsaw@w3.org">Jigsaw Team</A> <BR>
+$Id: Overview.html,v 1.1 2010/06/15 12:20:59 smhuang Exp $
+</BODY></HTML>

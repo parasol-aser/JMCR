@@ -1,0 +1,369 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Jigsaw installation procedure</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<P>
+<A HREF="http://www.w3.org/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home"
+    ALT="w3c" BORDER=0 HEIGHT=48 WIDTH=72></A>&nbsp;<A HREF="http://www.w3.org/Jigsaw"
+    TARGET="_top_"><IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER=0 HEIGHT=49
+    WIDTH=212></A>
+<H1>
+  Installation Procedure
+</H1>
+<H3>
+  Prerequisite
+</H3>
+<P>
+Before reading further make sure:
+<UL>
+  <LI>
+    That you have downloaded the latest <B>Jigsaw</B> distribution (version 1.0beta)
+  <LI>
+    That you have downloaded any implementation of <B>Java</B> for your platform
+    (<B>Jigsaw</B> 1.0beta will compile and run only with a 1.1 JDK)
+  <LI>
+    If you're using the zip distribution, make sure it's&nbsp; at least version
+    6.x
+</UL>
+<P>
+This document describes how to install <B>Jigsaw</B>. As an example, we are
+assuming that you are running either on Windows (be it 95 or NT) or on UNIX,
+even though <B>Jigsaw</B> will (should ?) run on <I>any</I> platform that
+supports <B>Java</B>.
+<P>
+The installation process involves the following steps:
+<UL>
+  <LI>
+    <A HREF="#unpack">Unpack the distribution file</A>
+  <LI>
+    <A HREF="#env">Set up some environment variables</A>
+  <LI>
+    <A HREF="#run">Run <B>Jigsaw</B></A>
+</UL>
+<H2>
+  Note on upgrading (<A HREF="#unpack">skip if not upgrading</A>)
+</H2>
+<P>
+The upgrade may require two steps if you are upgrading from a version earlier
+than alpha5. If it is not the case, read the following section, otherwise,
+go to the <A HREF="#upgradealpha5">Alpha4 to Alpha5 </A>part before upgrading
+to beta.
+<H3>
+  Upgrade from 1.0alpha5 to 1.0beta<A NAME="upgradebeta"></A><!-- -->
+</H3>
+<P>
+Once again, an automatic upgrade from your old version of <B>Jigsaw</B> has
+been provided. During the upgrade process, <B>Jigsaw</B> will give you
+information about this upgrade process. Be sure to have the upgrade package
+needed for this operation, <TT>upgrade.zip </TT>for Windows,
+<TT>upgrade.tar.gz</TT> for UNIX. Those packages are in the
+<TT>Jigsaw/upgrade</TT> directory.
+<P>
+It is strongly recommended to keep a backup of your current configuration.
+Backup'ing the configuration can be done using any tools, if <I>INSTDIR</I>
+is the place where you installed the previous release of <B>Jigsaw</B>:
+<TABLE BORDER CELLPADDING=2 >
+  <CAPTION>
+    Backuping the config&nbsp;
+  </CAPTION>
+  <TR>
+    <TD>UNIX</TD>
+    <TD>cd <I>INSTDIR</I>; tar cvf - config &gt; config.tar</TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD>cd <I>INSTDIR</I>; zip -r config.zip config</TD>
+  </TR>
+</TABLE>
+<P>
+If you use the following instructions, you can re-install using:
+<TABLE BORDER CELLPADDING=2 >
+  <CAPTION>
+    Restoring a backed up configuration&nbsp;
+  </CAPTION>
+  <TR>
+    <TD>UNIX</TD>
+    <TD>cd <I>INSTDIR</I>; tar xomvf - config.tar</TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD>cd <I>INSTDIR</I>; unzip config.zip</TD>
+  </TR>
+</TABLE>
+<P>
+Now, you must install the new configuration files in your configuration
+directory, taken from the update zip.
+<TABLE BORDER CELLPADDING=2 >
+  <CAPTION>
+    Installing the new configuration files&nbsp;
+  </CAPTION>
+  <TR>
+    <TD>UNIX</TD>
+    <TD>cd <I>INSTDIR/</I>Jigsaw/Jigsaw/config; gzip -c -d upgrade.tar.gz | tar
+      xomvf -</TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD>cd <I>INSTDIR</I>/Jigsaw/Jigsaw/config; unzip upgrade.zip</TD>
+  </TR>
+</TABLE>
+<P>
+Be careful, if you have already an "admin" realm for your Authentification,
+be sure to put back the backuped version. This realm is used by the
+administration server.
+<P>
+To complete the upgrade of <B>Jigsaw</B>, you only have to start jigsaw
+(<TT>w3c.jigsaw.Main</TT>). During this last step, <B>Jigsaw</B> will emit
+traces of what happened, the result will be stored in
+<TT>INSTDIR/Jigsaw/Jigsaw/config/upgrade2to3.txt</TT>. Check this file for
+errors.
+<H3>
+  Upgrade from 1.0alpha4 to 1.0alpha5<A NAME="upgradealpha5"></A><!-- -->
+</H3>
+<P>
+For those of you who have already installed a previous release of
+<B>Jigsaw</B>, you should be aware that since version 1.0alpha4,
+<B>Jigsaw</B> has a facility for automatically upgrading your configuration
+files. You will note that the first time you run a newer release of
+<B>Jigsaw</B>, it will tell you about that upgrading process, and how it
+goes.
+<P>
+<B>Note</B>: for the upgrade process to happen, it is <I>mandatory</I> that
+you run <B>Jigsaw</B> the old way, through the <TT>w3c.jigsaw.http.httpd</TT>
+class. Once the upgrade is done, you can safely start using the modern command
+line (ie the <TT>w3c.jigsaw.Main</TT>). That's a bug !
+<P>
+It is recommended that you keep a backup of the previous configuration, by
+packing all the <TT>config</TT> directory in an archive file. Backup'ing
+the configuration can be done using any tools, if <I>INSTDIR</I> is the place
+where you installed the previous release of <B>Jigsaw</B>:
+<TABLE BORDER CELLPADDING=2 >
+  <CAPTION>
+    Backuping the config&nbsp;
+  </CAPTION>
+  <TR>
+    <TD>UNIX</TD>
+    <TD>cd <I>INSTDIR</I>; tar cvf - config &gt; config.tar</TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD>cd <I>INSTDIR</I>; zip -r config.zip config</TD>
+  </TR>
+</TABLE>
+<P>
+If you use the following instructions, you can re-install using:
+<TABLE BORDER CELLPADDING=2 >
+  <CAPTION>
+    Restoring a backed up configuration&nbsp;
+  </CAPTION>
+  <TR>
+    <TD>UNIX</TD>
+    <TD>cd <I>INSTDIR</I>; tar xomvf - config.tar</TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD>cd <I>INSTDIR</I>; unzip config.zip</TD>
+  </TR>
+</TABLE>
+<P>
+Last but not least, once your configuration has been upgraded, you may want
+:
+<UL>
+  <LI>
+    To copy the <TT>Jigsaw/Jigsaw/WWW/Admin</TT> directory into your (empty ?)
+    <TT>Admin</TT> directory, the <TT>Overview.html</TT> document available there
+    provides a nice frame based toolbar.
+  <LI>
+    To install a
+    <TT><A HREF="../Reference/w3c.jigsaw.contrib.SalvagerResource.html">w3c.jigsaw.contrib.SalvagerResource</A></TT>
+    and a
+    <TT><A HREF="../Reference/w3c.jigsaw.contrib.CheckpointResource.html">w3c.jigsaw.contrib.CheckpointResource</A></TT>
+    in your <TT>/Admin</TT> directory
+</UL>
+<H2>
+  <A NAME="unpack"></A>Unpacking the distribution file
+</H2>
+<P>
+Pick a place to unpack the distribution: we'll call this directory the
+<I>installation directory</I> (abreviated as&nbsp; <I>INSTDIR</I>). This
+can be any directory, you just have to change your current working directory
+to it:
+<TABLE BORDER CELLPADDING=2 >
+  <TR>
+    <TD>UNIX</TD>
+    <TD><PRE>cd <I>INSTDIR</I>
+</PRE>
+    </TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD><PRE>cd <I>INSTDIR</I>
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+Now unpack the file:
+<TABLE BORDER CELLPADDING=2 >
+  <TR>
+    <TD>UNIX</TD>
+    <TD><PRE>cat jigsaw.tar.gz | gzip -d | tar xomvf -
+</PRE>
+    </TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD><PRE>unzip jigsaw.zip
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+This will create a number of directories under the <B>Jigsaw</B> directory:
+<DL>
+  <DT>
+    <TT>Jigsaw/src</TT>
+  <DD>
+    Contains <B>Jigsaw</B> sources.
+  <DT>
+    <TT>Jigsaw/classes</TT>
+  <DD>
+    Contains the pre-compiled classes.
+  <DT>
+    <TT>Jigsaw/lib</TT>
+  <DD>
+    Contains some native code support for solaris.
+  <DT>
+    <TT>Jigsaw/Jigsaw</TT>
+  <DD>
+    Is a sample root directory to run the server in. This directory in turns
+    contain the following sub-directories:
+    <DL>
+      <DT>
+	<TT>Jigsaw/Jigsaw/config</TT>
+      <DD>
+	Is the configuration directory for the server
+      <DT>
+	<TT>Jigsaw/Jigsaw/logs</TT>
+      <DD>
+	Is the normal directory for log files
+      <DT>
+	<TT>Jigsaw/Jigsaw/bin</TT>
+      <DD>
+	Contains some shell scripts to help you start <B>Jigsaw</B>.
+      <DT>
+	<TT>Jigsaw/Jigsaw/cache</TT>
+      <DD>
+	The directory to use for caching when using <B>Jigsaw</B> as a caching proxy.
+      <DT>
+	<TT>Jigsaw/Jigsaw/WWW</TT>
+      <DD>
+	Is your exported file space
+    </DL>
+</DL>
+<P>
+You are now ready for the next section, which explains how to setup your
+environment.
+<H2>
+  <A NAME="env"></A>Setting up your environment
+</H2>
+<P>
+As <B>Jigsaw</B> is just a set of Java classes, you need to specify to the
+Java interpreter the place where <B>Jigsaw</B> classes are stored. This is
+usually done by setting some CLASSPATH environment variable. This is simply
+done by the following command:
+<TABLE BORDER CELLPADDING=2 >
+  <TR>
+    <TD>UNIX</TD>
+    <TD><PRE># This depends on the shell you are using, we're assuming <TT>/bin/sh</TT>
+CLASSPATH=<I>INSTDIR</I>/Jigsaw/classes/jigsaw.zip
+export CLASSPATH
+</PRE>
+    </TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD><PRE>set CLASSPATH=<I>INSTDIR</I>\Jigsaw\classes\jigsaw.zip
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+Don't forget to change <I>INSTDIR</I> with the absolute path of the place
+you have unpacked the distribution.&nbsp;&nbsp;&nbsp;&nbsp; You should now
+be ready to run <B>Jigsaw</B>.
+<P>
+<B>Warning</B>: on some Windows Java implementation, prefixing the CLASSPATH
+with the disk drive letter may cause some confusion. If java complains about
+not being able to find some class, you may want to remove the disk drive
+letter from the CLASSPATH.
+<H2>
+  <A NAME="run"></A>Running <B>Jigsaw</B>
+</H2>
+<P>
+You are now all set to run <B>Jigsaw</B>. Just type in the following command:
+<TABLE BORDER CELLPADDING=2 >
+  <TR>
+    <TD>UNIX</TD>
+    <TD><PRE>cd <I>INSTDIR</I>/Jigsaw/Jigsaw
+java w3c.jigsaw.Main -host<I> host</I> -root <I>INSTDIR</I>/Jigsaw/Jigsaw
+</PRE>
+    </TD>
+  </TR>
+  <TR>
+    <TD>Windows</TD>
+    <TD><PRE>cd <I>INSTDIR\</I>Jigsaw\Jigsaw
+java w3c.jigsaw.Main -host <I>host</I> -root <I>INSTDIR\</I>Jigsaw\Jigsaw
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+Don't forget to susbstitute to <I>INSTDIR</I> the absolute path of the location
+where you have unpacked the distribution file, and to <I>host</I> the full
+IP hostname of the machine running <B>Jigsaw</B>.
+<P>
+<B>Jigsaw</B> should be running, and will probably have emited a message
+like:
+<PRE>www24:Jigsaw$ bin/jigsaw -root `pwd`&nbsp;
+loading properties from: /0/w3c/abaird/puzzles/JigEdit/config/server.props
+Jigsaw[1.0beta]: serving at http://www43.inria.fr:8009/
+</PRE>
+<P>
+Indicating that it is waiting to meet your browser at the given URL.
+<H2>
+  Further reading
+</H2>
+<P>
+At this point, it is recommended that you start reading the documentation,
+available from your server at <TT>/User</TT> (i.e. in the above example,
+the full URL would be <TT>http://www24.w3.org:8001/User</TT>.
+<P>
+Here is a roadmap to the documentation:
+<UL>
+  <LI>
+    You should first start by reading the <A HREF="architecture.html">architecture
+    overview.</A>
+  <LI>
+    You should then configure your server to meet your need. There are two sources
+    of documentation for this stage:
+    <UL>
+      <LI>
+	The <A HREF="../Administration/Overview.html">administration guide</A>
+      <LI>
+	The <A HREF="../Tutorials/configuration.html">configuration tutorial</A>
+      <LI>
+	The Jigsaw aministration tool.
+    </UL>
+  <LI>
+    At this point, you should have understood the configuration process, you
+    can now browse the rest of the documentation in whatever order you want.
+</UL>
+<P>
+  <HR>
+<A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A> <BR>
+$Id: installation.html,v 1.1 2010/06/15 12:20:09 smhuang Exp $
+</BODY></HTML>

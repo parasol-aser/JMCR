@@ -1,0 +1,645 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+  <!-- Changed by: Benoit Mahe, 18-Jul-1997 -->
+  <META NAME="GENERATOR" CONTENT="Mozilla/3.01Gold (X11; I; SunOS 5.5 sun4u) [Netscape]">
+  <TITLE>SSIResource extension tutorial</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<P>
+<!-- Changed by: Benoit Mahe,  1-Jul-1997 -->
+<P>
+<!-- Created by GNNpress --><!-- Changed by: Anselm Baird-Smith,  4-Feb-1997
+--><A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw.gif" ALT="Jigsaw"
+    BORDER=0 HEIGHT=49 WIDTH=212></A>
+<H1>
+  SSIResource extension tutorial
+</H1>
+<P>
+The SSIResource
+(<A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">w3c.jigsaw.ssi.SSIResource</A>)
+is a Jigsaw resource that provides a flexible way of generating part of the
+content of a document from individual pieces. This may sound too general,
+and that's because there is little constraint on the way the constituent
+pieces are generated. For example, one use of the SSIResource is the traditional
+one: the content of any resource can be embedded within any document exported
+by the SSIResource, by using the <TT>include</TT> command from the default
+command registry. Some other of the default commands allow you to include
+the size of the document, the time of day, the hit count, and other general
+data.
+<P>
+One of the goals of this tutorial is to show that the SSIResource is useful
+beyond its traditional use, as a powerful way of creating documents with
+a dynamically generated content. It is assumed that you are familiar with
+the administration of Jigsaw in general.
+<H2>
+  Commands and registries
+</H2>
+<P>
+The SSIResource will scan through the text of the file looking for a special
+kind of HTML comment. If it finds something of the form <TT>&lt;!--#command
+par_1=val_1 par_2=val_2 ... par_n=val_n --&gt;</TT>, it will interpret it
+as a command. <TT>par_1</TT> ... <TT>par_n </TT>are the names of the parameters,
+and <TT>val_1</TT> ... <TT>val_n</TT> are their values. The values can optionaly
+be enclosed in single or double quotes; otherwise they are delimited by ASCII
+white space. For example, the string <TT>&lt;!--#include
+virtual="doc.html"--&gt;</TT> denotes a&nbsp;call to a command called "include",
+with one parameter called "virtual" that has&nbsp;a&nbsp;value of "doc.html".
+<P>
+Upon finding a command, the SSIResource will look it up in&nbsp;an object
+called the <I>command registry</I>. The command registry returns the <I>command
+</I>that is registered by that name. Then, it will call the command's
+<TT>execute</TT> method with the specified parameters, and with other contextual
+data.
+<P>
+Command registries are objects of class
+<A HREF="../api/w3c.jigsaw.ssi.CommandRegistry.html">w3c.jigsaw.ssi.CommandRegistry</A>.
+Since this is an abstract class, a concrete implementation of one must be
+available for SSIResource to work. One such implementation is supplied with
+the distribution: it is
+<A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry.html">w3c.jigsaw.ssi.DefaultCommandRegistry</A>,
+which includes the bread-and-butter SSI commands. Commands are implementations
+of the <A HREF="../api/w3c.jigsaw.ssi.Command.html">w3c.jigsaw.ssi.Command
+</A>interface or
+<A HREF="../api/w3c.jigsaw.ssi.ControlCommand.html">w3c.jigsaw.ssi.ControlCommand</A>.
+The SSIResource declares a <TT>registryClass</TT> attribute, which is set
+to the particular command registry to use in parsing a given document.
+<P>
+Therefore, the way to extend the SSIResource is to create (either from scratch
+or by subclassing an existing one) a command registry that knows about the
+new commands that are being added. A good way to become familiar with these
+classes is too look at the code for
+<A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry.html">DefaultCommandRegistry</A>
+and its superclass,
+<A HREF="../api/w3c.jigsaw.ssi.BasicCommandRegistry.html">BasicCommandRegistry</A>,
+and at the code for the default commands (in rough order of complexity):
+<A HREF="../api/w3c.jigsaw.ssi.SampleCommand.html">SampleCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.CountCommand.html">CountCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.ConfigCommand.html">ConfigCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.FSizeCommand.html">FSizeCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.FLastModCommand.html">FLastModCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.EchoCommand.html">EchoCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.IncludeCommand.html">IncludeCommand,</A>
+<A HREF="../api/w3c.jigsaw.ssi..jdbc.jdbcCommand.html">jdbcCommand,</A>
+<A HREF="../api/w3c.jigsaw.ssi.CounterCommand.html">CounterCommand,</A>
+<A HREF="../api/w3c.jigsaw.ssi.servlets.ServletCommand.html">ServletCommand</A>.
+<P>
+SSIResource allows you to create control commands like loop and test. These
+commands implements the
+<A HREF="../api/w3c.jigsaw.ssi.ControlCommand.html">w3c.jigsaw.ssi.ControlCommand
+</A>interface. Here is the code of the default control commands :
+<A HREF="../api/w3c.jigsaw.ssi.IfCommand.html">IfCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.ElseCommand.html">ElseCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.EndifCommand.html">EndifCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.LoopCommand.html">LoopCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.ExitloopCommand.html">ExitloopCommand</A>,
+<A HREF="../api/w3c.jigsaw.ssi.EndloopCommand.html">EndloopCommand</A>. The
+<A HREF="../api/w3c.jigsaw.ssi.Command.html">w3c.jigsaw.ssi.Command
+</A>interface has been modified, a new method was added (getValue). This
+method is used by some control commands (if) to get some value relative to
+the command.
+<P>
+Let's have a look of what can be done with control commands :
+<P>
+This shtml page display the content of the users database.
+<PRE>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Database SSI&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+      &lt;h1&gt;Database SSI&lt;/h1&gt;
+      &lt;p&gt;This Server Side Include extension allows you to query a database,
+         to make some loop and some tests.
+        (which I am doing right now) 
+
+&lt;!--#jdbc select="SELECT * FROM users" name="result" driver="COM.imaginary.sql.msql.MsqlDriver" url="jdbc:msql://www43.inria.fr:4333/users" --&gt;
+
+        &lt;p&gt;The query has run, here is all the results:&lt;p&gt;
+        &lt;table border=2&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;b&gt;Name&lt;/td&gt;&lt;td&gt;&lt;b&gt;Login&lt;/td&gt;
+        &lt;td&gt;&lt;b&gt;Email&lt;/td&gt;&lt;td&gt;&lt;b&gt;Age&lt;/td&gt;&lt;/tr&gt;   
+&lt;!--#loop name="loop1" --&gt;
+      &lt;!--#jdbc name="result" next="true" --&gt;
+
+      &lt;!--#if name="if1" command="jdbc" var="result" equals="empty" --&gt;
+                &lt;!--#exitloop name="loop1" --&gt;
+      &lt;!--#endif name="if1" --&gt;
+      
+      &lt;!-- the three lines above can be changed in : --&gt;
+      
+      &lt;!--#exitloop name="loop1" command="jdbc" var="result" equals="empty" --&gt;
+
+        &lt;tr&gt;&lt;td&gt;
+        &lt;!--#jdbc name="result" column="1" --&gt;
+        &lt;/td&gt;&lt;td&gt;
+        &lt;!--#jdbc name="result" column="2" --&gt;
+        &lt;/td&gt;&lt;td&gt;
+        &lt;!--#jdbc name="result" column="3" --&gt;
+        &lt;/td&gt;&lt;td&gt;
+        &lt;!--#jdbc name="result" column="4" --&gt;
+        &lt;/td&gt;&lt;/tr&gt;
+&lt;!--#endloop name="loop1" --&gt;
+        &lt;/table&gt;
+      &lt;hr&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+<H2>
+  IfCommand : the source code
+</H2>
+<P>
+This command implements the <I>classic</I> if statement. This command can
+only be used with
+<A HREF="../api/w3c.jigsaw.ssi.EndifCommand.html">EndifCommand</A> and
+(optionnaly) with
+<A HREF="../api/w3c.jigsaw.ssi.ElseCommand.html">ElseCommand</A>.
+<PRE>
+package w3c.jigsaw.ssi;
+
+import java.util.*;
+
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http.*</A> ;
+import <A HREF="../api/Package-w3c.www.http.html">w3c.www.http.*</A> ;
+import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources.*</A> ;
+import <A HREF="../api/Package-w3c.util.html">w3c.util.*</A> ;
+
+<B></B>
+<B>/**</B>
+<B> * Implementation of the SSI <CODE>if</CODE> command.  </B>
+<B> * @author Benoit Mahe :<I>bmahe@sophia.inria.fr</I></B>
+<B> */ </B>
+
+public class IfCommand implements <A HREF="../api/w3c.jigsaw.ssi.ControlCommand.html">ControlCommand</A> {
+  private final static String  NAME  = "if";
+  private final static boolean debug = true;
+<B>    </B>
+<B>  // The parameters accepted by the if command </B>
+  private static final String keys[] = { 
+    "name",
+    "command",
+    "var",
+    "equals"
+  };
+<B></B>
+<B>  // Used to store the position of each if command </B>
+  protected static Hashtable ifstore = null;
+
+  static {
+     ifstore = new Hashtable(23);
+  }
+<B></B>
+<B>  /**</B>
+<B>   * Returns the (String) value of the given variable.</B>
+<B>   * @return a String instance.</B>
+<B>   */ </B>
+  public String getValue(Dictionary variables, String var) {
+    return null;
+  }
+
+  protected static int getPosition(String name) 
+    throws ControlCommandException    
+  {
+    Integer pos = (Integer)ifstore.get(name);
+    if (pos == null)
+      throw new ControlCommandException(NAME,"Position unknown.");
+     else return pos.intValue();
+  }
+
+<B></B>
+<B>  /**</B>
+<B>   * register the command position in the structure</B>
+<B>   * witch store the SSIResource.</B>
+<B>   */ </B>
+  public void setPosition(<A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">SSIResource</A> resource,
+			  <A HREF="../api/w3c.jigsaw.ssi.CommandRegistry.html">CommandRegistry</A> registry,
+			  <A HREF="../api/w3c.util.ArrayDictionary.html">ArrayDictionary</A> parameters,
+			  Dictionary variables,
+			  int position) 
+  {
+    Object values[] = parameters.getMany(keys);
+    String name     = (String) values[0];
+    if (name != null)
+      ifstore.put(resource.getURLPath()+":"+name, new Integer(position));
+  }
+<B></B>
+<B>  /**</B>
+<B>   * Executes this command. Might modify variables.</B>
+<B>   * Must <EM>not</EM> modify the parameters.</B>
+<B>   * It may handle conditional requests, <EM>except</EM> that if</B>
+<B>   * it replies with a status of HTTP.NOT_MODIFIED, it <EM>must</EM></B>
+<B>   * still reply with a content (the same content that it would have</B>
+<B>   * returned for an inconditional request).  This is because</B>
+<B>   * further SSI commands down the line may decide thay they have</B>
+<B>   * been modified, and then a content must be emitted by SSIResource.</B>
+<B>   * @param request the original HTTP request</B>
+<B>   * @param parameters The parameters for this command</B>
+<B>   * @param variables The global variables for the parse </B>
+<B>   * @return a Reply with the output from the command */ </B>
+
+  public <A HREF="../api/w3c.jigsaw.http.Reply.html">Reply</A> execute(<A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">SSIResource</A> resource,
+		       <A HREF="../api/w3c.jigsaw.http.Request.html">Request</A> request,
+		       <A HREF="../api/w3c.util.ArrayDictionary.html">ArrayDictionary</A> parameters,
+		       Dictionary variables) 
+  { <B></B>
+<B>    // Empty reply </B>
+    return resource.createCommandReply(request, HTTP.OK);
+  }
+
+  protected boolean check(<A HREF="../api/w3c.jigsaw.ssi.CommandRegistry.html">CommandRegistry</A> registry,
+		          <A HREF="../api/w3c.util.ArrayDictionary.html">ArrayDictionary</A> parameters,
+		          Dictionary variables)
+  {
+    Object values[] = parameters.getMany(keys);
+    String name     = (String) values[0];
+    String command  = (String) values[1];
+    String var      = (String) values[2];
+    String equals   = (String) values[3];
+    
+    if ((command == null) || (var == null) || (equals == null))
+      return false;
+    Command cmd = registry.lookupCommand(command);
+    String value = cmd.getValue(variables,var);
+    <B>// here is the test</B>
+    return value.equals(equals);
+  }
+<B></B>
+<B>  /**</B>
+<B>   * Give the next position in the structure witch</B>
+<B>   * store the SSIResource.</B>
+<B>   */ </B>
+  public int jumpTo(<A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">SSIResource</A> resource,
+		    <A HREF="../api/w3c.jigsaw.ssi.CommandRegistry.html">CommandRegistry</A> registry,
+		    <A HREF="../api/w3c.util.ArrayDictionary.html">ArrayDictionary</A> parameters,
+		    Dictionary variables)
+    throws ControlCommandException
+  {
+    Object values[] = parameters.getMany(keys);
+    String name     = (String) values[0];
+    if (name != null) {
+      if (check(registry,parameters,variables))
+	return getPosition(resource.getURLPath()+":"+name)+1;
+      try {
+	return (ElseCommand.getPosition(resource.getURLPath()+":"+name)+1);
+      } catch (ControlCommandException ex) {
+	return (EndifCommand.getPosition(resource.getURLPath()+":"+name)+1);
+      }
+    }
+    throw new ControlCommandException(NAME,"name not initialized.");    
+  }
+<B></B>
+<B>  /** </B>
+<B>   * Returns the name of this command. <EM>(Case sensitivity is up to</EM></B>
+<B><EM>   * the <CODE>lookupCommand</CODE> method in the command registry.)</EM></B>
+<B>   * @return the name of the command</B>
+<B>   * @see w3c.jigsaw.ssi.CommandRegistry#lookupCommand</B>
+<B>   */ </B>
+  public String getName() {
+    return NAME;
+  }
+
+}
+
+</PRE>
+<P>
+With this in mind, let's implement a useful extension of SSIResource.
+<H2>
+  A server statistics page with SSIResource
+</H2>
+<P>
+There is an existing Jigsaw resource
+(<A HREF="../api/w3c.jigsaw.status.Statistics.html">w3c.jigsaw.status.Statistics</A>)
+that is used to display the internal statistics of the server. In what follows,
+we will mimic the functionality of this resource with an SSI command. There
+is an object that supplies all these statistics for us; its class is
+<A HREF="../api/w3c.jigsaw.http.httpdStatistics.html">w3c.jigsaw.http.httpdStatistics</A>
+and it can be obtained from the server. Our SSI command will query this object
+and emit the values. We'd like to be able to use it like this: &lt;!--#stat
+data=&lt;type&gt; --&gt;, where &lt;type&gt; specifies the particular statistic
+that is going to be inserted, and is one of:
+<UL>
+  <LI>
+    <TT>serverLoad</TT>
+  <LI>
+    <TT>freeThreads</TT>
+  <LI>
+    <TT>idleThreads</TT>
+  <LI>
+    <TT>totalThreads</TT>
+  <LI>
+    <TT>hitCount</TT>
+  <LI>
+    <TT>meanReqTime</TT>
+  <LI>
+    <TT>maxReqTime</TT>
+  <LI>
+    <TT>maxReqURL</TT>
+  <LI>
+    <TT>minReqTime</TT>
+  <LI>
+    <TT>minReqUrl</TT>
+  <LI>
+    <TT>emittedBytes</TT>
+</UL>
+<P>
+Each of them will correspond to one of the methods in httpdStatistics.
+<H3>
+  Writing the <TT>stat</TT> command
+</H3>
+<P>
+This command can be written in a very straightforward manner. All we have
+to do is:
+<OL>
+  <LI>
+    Obtain the httpdStatistics instance from the server.
+  <LI>
+    Call in it the appropriate method, according to the data parameter.
+  <LI>
+    Return a reply with this value as content.
+</OL>
+<P>
+This translates to the following java class, which will be called
+StatCommand:<BR>
+<TABLE CELLPADDING=2 >
+  <CAPTION ALIGN="Bottom">
+  </CAPTION>
+  <TBODY>
+    <TR>
+      <TD><PRE>package w3c.jigsaw.tutorials ;
+
+import java.util.* ;
+
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http.*</A> ;
+import<A HREF="../api/w3c.www.http.HTTP.html"> w3c.www.http.HTTP</A> ;
+import <A HREF="../api/Package-w3c.jigsaw.ssi.html">w3c.jigsaw.ssi.*</A> ;
+import <A HREF="../api/Package-w3c.util.html">w3c.util.*</A> ;
+
+public class StatCommand implements <A HREF="../api/w3c.jigsaw.ssi.Command.html">Command</A> {
+    private static final String NAME = "stat" ;
+
+    public final String getName()
+    {
+        return NAME ;
+    }
+
+    <B>// Unuseful here</B>
+    public String getValue(Dictionary variables, String variable) {
+	return null;
+    }
+    
+    public <A HREF="../api/w3c.jigsaw.http.Reply.html">Reply</A> execute(<A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">SSIResource</A> resource,
+                          <A HREF="../api/w3c.jigsaw.http.Request.html">Request</A> request,
+                          <A HREF="../api/w3c.util.ArrayDictionary.html">ArrayDictionary</A> parameters,
+                          Dictionary variables)
+    {
+        <B>// Obtain the statistics from the server</B>
+        <A HREF="../api/w3c.jigsaw.http.httpdStatistics.html">httpdStatistics</A> stats = resource.getServer().getStatistics() ;
+
+        <B>// Get the parameter specifying the kind of statistic to emit.</B>
+        String data = (String) parameters.get("data") ;
+
+        <B>// If the parameter is not supplied, do nothing</B>
+        if(data == null)
+            return null ;
+
+        <B>// Otherwise, compare it against the possible different keywords</B>
+<B>        // (Since there are no "pointers to methods", this is the simplest way it</B>
+<B>        // can be written)</B>
+        long result = -1 ;
+        String urlResult = null ;
+        if(data.equalsIgnoreCase("serverload")) {
+            result = stats.getServerLoad() ;
+        } else if(data.equalsIgnoreCase("freethreads")) {
+            result = stats.getFreeThreadCount() ;
+        } else if(data.equalsIgnoreCase("idlethreads")) {
+            result = stats.getIdleThreadCount() ;
+        } else if(data.equalsIgnoreCase("totalthreads")) {
+            result = stats.getTotalThreadCount() ;
+        } else if(data.equalsIgnoreCase("hitcount")) {
+            result = stats.getHitCount() ;
+        } else if(data.equalsIgnoreCase("meanreqtime")) {
+            result = stats.getMeanRequestTime() ;
+        } else if(data.equalsIgnoreCase("maxreqtime")) {
+            result = stats.getMaxRequestTime() ;
+        } else if(data.equalsIgnoreCase("maxrequrl")) {
+            urlResult = stats.getMaxRequestURL().toExternalForm() ;
+        } else if(data.equalsIgnoreCase("minreqtime")) {
+            result = stats.getMinRequestTime() ;
+        } else if(data.equalsIgnoreCase("minrequrl")) {
+            urlResult = stats.getMinRequestURL().toExternalForm() ;
+        } else if(data.equalsIgnoreCase("emittedbytes")) {
+            result = stats.getEmittedBytes() ;
+        } else return null ;
+
+        <B>// Make a reply with the datum and return it</B>
+        <A HREF="../api/w3c.jigsaw.http.Reply.html">Reply</A> reply = resource.createCommandReply(request, HTTP.OK) ;
+        reply.setContent( urlResult == null
+                          ? Long.toString(result)
+                          : urlResult ) ;
+        return reply ;
+    }
+}
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+  <TBODY>
+    <TR>
+      <TD>Listing 1: The command class</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>
+The <A HREF="../api/w3c.jigsaw.ssi.Command.html">Command</A> interface defines
+three methods. The <TT>getName</TT> method simply returns a String with the
+name of the command. The getValue method returns a value relative to the
+given parameter (Used by control commands).The <TT>execute</TT> method is
+the one that does the work. This method can be thought of as the <TT>get</TT>
+method in a resource: it takes, among other things, a
+<A HREF="../api/w3c.jigsaw.http.Request.html">Request</A> object, and it
+produces a <A HREF="../api/w3c.jigsaw.http.Reply.html">Reply</A> object.
+The SSIResource will insert the contents of the replies of each of the commands
+(<I>partial replies</I>) into the main, global, content, and it will also
+merge the relevant headers of the partial replies into the headers of the
+global reply. Besides taking a request, the <TT>execute</TT> method takes
+these arguments as well:
+<DL>
+  <DT>
+    <TT><A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">w3c.jigsaw.ssi.SSIResource</A>
+    resource</TT>
+  <DD>
+    This is the SSIResource that is executing the command.
+  <DT>
+    <TT><A HREF="../api/w3c.util.ArrayDictionary.html">w3c.util.ArrayDictionary</A>
+    parameters</TT>
+  <DD>
+    The parameters that the command is called with. An ArrayDictionary is a subclass
+    of java.util.Dictionary. The parameters are stored as strings with the parameter
+    names as keys.
+  <DT>
+    <TT>java.util.Dictionary variables</TT>
+  <DD>
+    The current set of variables. A command may change its behavior according
+    to the values of these variables, and it can also modify the variables. The
+    meaning of the variables is
+    <A HREF="../Reference/w3c.jigsaw.ssi.SSIResource.html#very-global-variables">almost</A>
+    completely command- and command registry-dependent. The
+    <A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry.html">DefaultCommandRegistry</A>
+    uses the variables to keep state across different command calls in the same
+    document, such as the current date and time formats.
+</DL>
+<P>
+The <TT>execute</TT> method can also return <B><TT>null</TT></B>, which is
+interpreted as the absence of output. There are some subtle differences between
+the <TT>execute</TT> method and a regular resource <TT>get</TT> method. In
+particular, care must be taken if dealing with conditional requests. This
+example is simple enough that this is not a concern.
+<P>
+Now that the command itself is finished, we need to make it part of a command
+registry, so that it can be actually used in documents.
+<H3>
+  Writing a command registry
+</H3>
+<P>
+Since we'd like to be able to use the "standard" SSI commands in adition
+to our brand-new <TT>stat</TT> command, it's not a bad idea to make our new
+registry a subclass DefaultCommandRegistry. The way to do this is very
+straightforward: <BR>
+<TABLE CELLPADDING=2 >
+  <CAPTION ALIGN="Bottom">
+  </CAPTION>
+  <TBODY>
+    <TR>
+      <TD><PRE>package w3c.jigsaw.tutorials ;
+
+import <A HREF="../api/Package-w3c.jigsaw.ssi.html">w3c.jigsaw.ssi.*</A> ;
+
+public class MyCommandRegistry extends <A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry">DefaultCommandRegistry</A> {       
+    public MyCommandRegistry()
+    {
+        registerCommand(new StatCommand()) ;
+    }
+}
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+  <TBODY>
+    <TR>
+      <TD>Listing 2: The command registry class</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>
+The constructor simply calls the <TT>registerCommand</TT> method (defined
+in
+<A HREF="../api/w3c.jigsaw.ssi.BasicCommandRegistry.java">BasicCommandRegistry</A>),
+with a new instance of the command that we're adding.
+<P>
+We're now ready to use this command in a future document.
+<H3>
+  Using the new registry
+</H3>
+<P>
+One way of using the newly-created command registry is to change the
+<TT>registryClass</TT> attribute defined for the <TT>.shtml</TT> extension
+to "<TT>w3c.jigsaw.tutorials.MyCommandRegistry</TT>". After doing that, Jigsaw
+will use the new registry when indexing new files with the <TT>.shtml</TT>
+extension (or reindexing old files). Then we can create a file that makes
+use of the new command, and place it in a Jigsaw-accesible directory. For
+example, we could do this:<BR>
+<TABLE CELLPADDING=2 >
+  <CAPTION ALIGN="Bottom">
+  </CAPTION>
+  <TBODY>
+    <TR>
+      <TD><PRE>&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN"&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Refresh" content="5"&gt;
+    &lt;title&gt;Server Statistics&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;ul&gt;
+        &lt;li&gt;hits: <B>&lt;!--#stat data=hitCount  --&gt;</B>
+        &lt;li&gt;bytes: <B>&lt;!--#stat data=emittedBytes  --&gt;</B>
+      &lt;/ul&gt;
+      &lt;p&gt;Request processing times:
+      &lt;table border&gt;
+        &lt;tr&gt;
+          &lt;th align="center"&gt; min
+          &lt;th align="center"&gt; avg
+          &lt;th align="center"&gt; max
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th align="center"&gt; <B>&lt;!--#stat data=minReqTime  --&gt;</B>
+          &lt;th align="center"&gt; <B>&lt;!--#stat data=meanReqTime  --&gt;</B>
+          &lt;th align="center"&gt; <B>&lt;!--#stat data=maxReqTime  --&gt;</B>
+        &lt;/tr&gt;   
+      &lt;/table&gt;
+      &lt;p&gt;Thread counts:
+      &lt;table border&gt;
+        &lt;tr&gt;
+          &lt;th align="center"&gt; free
+          &lt;th align="center"&gt; idle
+          &lt;th align="center"&gt; total
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th align="center"&gt; <B>&lt;!--#stat data=freeThreads  --&gt;</B>
+          &lt;th align="center"&gt; <B>&lt;!--#stat data=idleThreads  --&gt;</B>
+          &lt;th align="center"&gt; <B>&lt;!--#stat data=totalThreads  --&gt;</B>
+      &lt;/table&gt;
+      &lt;p&gt;Current load: <B>&lt;!--#stat data=serverLoad  --&gt;</B>
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+      </TD>
+    </TR>
+  </TBODY>
+  <TBODY>
+    <TR>
+      <TD>Listing 3: A possible use of the new command</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>
+The above document will produce exactly the same output that the
+<A HREF="../api/w3c.jigsaw.status.Statistics.html">Statistics</A> resource
+would emit.
+<H2>
+  What have we gained?
+</H2>
+<P>
+At this point we can compare two different approaches to generating HTML
+dynamically. The first one involves writing a new, specialized, resource.
+The approach illustrated in this tutorial consists&nbsp;of writing an SSI
+command and serving the document with the SSIResource. Doing it this way
+has these advantages:
+<UL>
+  <LI>
+    The structure of the served document is not hard-coded. Instead, the Java
+    code only expresses the minimal needed functionality (in this case, that
+    of emitting server statistics), while the markup of the document can be modified
+    without having to recompile.
+  <LI>
+    Different functionalities can be mixed in a more orthogonal way. That is,
+    it is inefficient at best to create a resource that combines the function
+    of two existing resources. By distilling the functionality into SSI commands,
+    it is straightforward to make a registry that has all the needed commands.
+</UL>
+<P>
+One disadvantage of the SSI approach is the extra overhead incurred at serve-time
+of constructing the content from the pieces supplied by the commands. The
+SSIResource tries to avoid this overhead as much as possible. The most important
+optimization in this&nbsp;respect is the fact that the parsing of the document
+(i.e., scanning the text for commands, and reading the parameters) is done
+only when the file is modified. Even then, each command needs to check its
+parameters, which <I>does</I> add to serve-time overhead.
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:anto@w3.org">Antonio Ram&iacute;rez<BR>
+</A>$Id: SSIResource.html,v 1.1 2010/06/15 12:28:36 smhuang Exp $</I>
+</BODY></HTML>

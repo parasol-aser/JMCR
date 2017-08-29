@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<HTML>
+<HEAD>
+    <TITLE>ResourceFilter tutorial</TITLE>
+    <link rel="stylesheet" type="text/css" href="../style/doc.css">
+    <LINK rel="Stylesheet" media="screen" type="text/css"
+      href="style-font-lock.css">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <H1 class="title">
+	Jigsaw<br>
+	<span class="subtitle">Resource's filter tutorial</span>
+      </H1>
+      <hr NOSHADE width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> /
+      <a href="../Overview.html">Documentation Overview</a> /
+      <a href="Tutorials.html">Tutorials</a>
+    </div>
+    <div class="body">
+<p>
+This tutorial assumes that your are familiar with <A HREF="../User/architecture.html"><B>Jigsaw</B>
+architecture</A>, and that you have read both the <A HREF="../User/configuration.html">configuration</A>
+and the <A HREF="../User/resource.html">resource</A> tutorials. It will
+explain you the last major concept of <B>Jigsaw</B> you should be aware
+of: resource filters.
+
+<P><B>Note</B>: In Jigsaw2.0, filters must be attached to frames, NOT resources!
+
+<P>As was said in the architectural overview of <B>Jigsaw</B>, each HTTP
+request ends up performed by some target resource and frame instance. For
+the sake of simplicity, we didn't mentioned at that time, that frame classes
+provided with the <B>Jigsaw</B> server inherits from the <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FramedResource.html">FramedResource</A>
+class. All instances of this class are able to manage a set of frames that
+can be filters: these filters, which are to be instances of sub-classes
+of <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/ResourceFilter.html">ResourceFilter</A>,
+are called-back twice during request processing:
+<UL>
+<LI>
+During lookup: before the actual target of the request has been selected.
+The <TT><A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/ResourceFilter.html#ingoingFilter">ingoingFilter</A></TT>
+method of the filter gets called with the request as a parameter.</LI>
+
+<LI>
+After the request has been processed by the target resource. The <TT><A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/ResourceFilter.html#outgoingFilter">outgoingFilter</A></TT>
+of the filter gets called with the request and the reply as parameters.</LI>
+</UL>
+A resource filter is itself a resource: this means, in particular, that
+it is described - like all other resources - by a Java class, and a set
+of attributes. It also means that it can be pickled/unpickled, etc.
+
+<P>The remaining of this tutorial will walk through the code of the <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/CounterFilter.html">CounterFilter</A>.
+This filter just counts the number of hits to its target resource. Before
+going any further, you should again make sure you have understand the <A HREF="../User/resource.html">resource
+tutorial</A>. This tutorial has two sections: <A HREF="#counter-filter">the
+first one </A>will describe our filter's code, and the <A HREF="#installing">second
+one</A> will explain how to attach it to a frame of the target resource.
+<H1>
+<A NAME="counter-filter"></A>The CounterFilter class</H1>
+Its my hope that you will be amazed by how easy this filter is to code.
+As for writing new resource classes, the first thing we need to is to define
+the set of attributes that our filter will handle. In the case of a simple
+counter filter, the only attribute we need is simply the counter itself.
+Assuming we want our class to be in the <TT>org.w3c.jigsaw.filters</TT>
+package, we start by writing the following piece of code:
+<DIV CLASS="box">
+<PRE><SPAN class="comment">// CounterFilter.java
+// $Id: writing-filters.html,v 1.1 2010/06/15 12:22:16 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</SPAN>
+<SPAN class="keyword">package</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">jigsaw</SPAN>.<SPAN class="type">filters</SPAN>;
+
+<SPAN class="keyword">import</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">tools</SPAN>.<SPAN class="reference">resources</SPAN>.*;
+<SPAN class="keyword">import</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">jigsaw</SPAN>.<SPAN class="reference">http</SPAN>.*;
+<SPAN class="keyword">import</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">jigsaw</SPAN>.<SPAN class="reference">resources</SPAN>.*;
+
+<SPAN class="comment">/**
+&nbsp;* Count the number of hits to the target.
+&nbsp;* This resource maintains the number of hits to some target resource, as
+&nbsp;* one of its persistent attribute.
+&nbsp;* It will decorate the request on the way in with a fake field
+&nbsp;* &lt;code>org.w3c.jigsaw.filters.CounterFilter.count&lt;/code>, that will
+&nbsp;* hold the current hit counts for the target resource to use.
+&nbsp;*/</SPAN>
+
+<SPAN class="reference">public</SPAN>&nbsp;<SPAN class="keyword">class</SPAN>&nbsp;<SPAN class="function-name">CounterFilter</SPAN>&nbsp;<SPAN class="keyword">extends</SPAN>&nbsp;<SPAN class="type">ResourceFilter</SPAN> {
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">/**
+&nbsp;&nbsp;&nbsp;&nbsp; * The name of the piece if state that receives the hit count value.
+&nbsp;&nbsp;&nbsp;&nbsp; * To get to the hit-count, use the &lt;code>getState&lt;/code> method of&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; * Request, with the following key.
+&nbsp;&nbsp;&nbsp;&nbsp; */</SPAN>
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="reference">public</SPAN>&nbsp;<SPAN class="type">static</SPAN>&nbsp;<SPAN class="type">final</SPAN>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">String</SPAN>&nbsp;<SPAN class="variable-name">STATE_COUNT</SPAN> = "<SPAN class="doc-string">org.w3c.jigsaw.filters.CounterFilter.count</SPAN>";
+
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">/**
+&nbsp;&nbsp;&nbsp;&nbsp; * Attribute index - The counter attribute.
+&nbsp;&nbsp;&nbsp;&nbsp; */</SPAN>
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="preprocessor">protected</SPAN>&nbsp;<SPAN class="type">static</SPAN>&nbsp;<SPAN class="type">int</SPAN>&nbsp;<SPAN class="variable-name">ATTR_COUNTER</SPAN> = -1 ;
+
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">static</SPAN> {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">Attribute</SPAN>&nbsp;<SPAN class="variable-name">a</SPAN>&nbsp;&nbsp; =&nbsp;<SPAN class="keyword">null</SPAN> ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">Class</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="variable-name">cls</SPAN> =&nbsp;<SPAN class="keyword">null</SPAN> ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="keyword">try</SPAN> {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cls = Class.forName("<SPAN class="string">org.w3c.jigsaw.filters.CounterFilter</SPAN>") ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;<SPAN class="keyword">catch</SPAN> (<SPAN class="type">Exception</SPAN>&nbsp;<SPAN class="variable-name">ex</SPAN>) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ex.printStackTrace() ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.exit(1) ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">// Declare the counter attribute
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a =&nbsp;<SPAN class="keyword">new</SPAN>&nbsp;<SPAN class="type">IntegerAttribute</SPAN>("<SPAN class="string">counter</SPAN>"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ,&nbsp;<SPAN class="keyword">new</SPAN>&nbsp;<SPAN class="type">Integer</SPAN>(0)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , Attribute.EDITABLE) ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ATTR_COUNTER = AttributeRegistry.registerAttribute(cls, a) ;
+&nbsp;&nbsp;&nbsp; }
+}</PRE>
+</DIV>
+This code does the following: it starts by declaring our resource filter
+class, and specify (through the <TT>static</TT> statement) its counter
+attribute, which is an editable integer attribute, whose default value
+is <B>0</B>. We register this attribute to the AttributeRegistry, and get
+back the <I>token</I> for accessing the attribute. If some of this seems
+unfamiliar, then refer to the <A HREF="../User/resource.html">resource
+tutorial</A>.
+
+<P>We can now implement the <TT>ingoingFilter</TT> method of our filter,
+which is as simple as you might expect:
+<DIV CLASS="box">
+<PRE><SPAN class="comment">// CounterFilter.java
+// $Id: writing-filters.html,v 1.1 2010/06/15 12:22:16 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</SPAN>
+<SPAN class="keyword">package</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">jigsaw</SPAN>.<SPAN class="type">filters</SPAN>;
+
+<SPAN class="keyword">import</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">tools</SPAN>.<SPAN class="reference">resources</SPAN>.*;
+<SPAN class="keyword">import</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">jigsaw</SPAN>.<SPAN class="reference">http</SPAN>.*;
+<SPAN class="keyword">import</SPAN>&nbsp;<SPAN class="reference">org</SPAN>.<SPAN class="reference">w3c</SPAN>.<SPAN class="reference">jigsaw</SPAN>.<SPAN class="reference">resources</SPAN>.*;
+
+<SPAN class="comment">/**
+&nbsp;* Count the number of hits to the target.
+&nbsp;* This resource maintains the number of hits to some target resource, as
+&nbsp;* one of its persistent attribute.
+&nbsp;* It will decorate the request on the way in with a fake field
+&nbsp;* &lt;code>org.w3c.jigsaw.filters.CounterFilter.count&lt;/code>, that will
+&nbsp;* hold the current hit counts for the target resource to use.
+&nbsp;*/</SPAN>
+
+<SPAN class="reference">public</SPAN>&nbsp;<SPAN class="keyword">class</SPAN>&nbsp;<SPAN class="function-name">CounterFilter</SPAN>&nbsp;<SPAN class="keyword">extends</SPAN>&nbsp;<SPAN class="type">ResourceFilter</SPAN> {
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">/**
+&nbsp;&nbsp;&nbsp;&nbsp; * The name of the piece if state that receives the hit count value.
+&nbsp;&nbsp;&nbsp;&nbsp; * To get to the hit-count, use the &lt;code>getState&lt;/code> method of&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; * Request, with the following key.
+&nbsp;&nbsp;&nbsp;&nbsp; */</SPAN>
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="reference">public</SPAN>&nbsp;<SPAN class="type">static</SPAN>&nbsp;<SPAN class="type">final</SPAN>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">String</SPAN>&nbsp;<SPAN class="variable-name">STATE_COUNT</SPAN> = "<SPAN class="doc-string">org.w3c.jigsaw.filters.CounterFilter.count</SPAN>";
+
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">/**
+&nbsp;&nbsp;&nbsp;&nbsp; * Attribute index - The counter attribute.
+&nbsp;&nbsp;&nbsp;&nbsp; */</SPAN>
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="preprocessor">protected</SPAN>&nbsp;<SPAN class="type">static</SPAN>&nbsp;<SPAN class="type">int</SPAN>&nbsp;<SPAN class="variable-name">ATTR_COUNTER</SPAN> = -1 ;
+
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">static</SPAN> {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">Attribute</SPAN>&nbsp;<SPAN class="variable-name">a</SPAN>&nbsp;&nbsp; =&nbsp;<SPAN class="keyword">null</SPAN> ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">Class</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="variable-name">cls</SPAN> =&nbsp;<SPAN class="keyword">null</SPAN> ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="keyword">try</SPAN> {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cls = Class.forName("<SPAN class="string">org.w3c.jigsaw.filters.CounterFilter</SPAN>") ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;<SPAN class="keyword">catch</SPAN> (<SPAN class="type">Exception</SPAN>&nbsp;<SPAN class="variable-name">ex</SPAN>) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ex.printStackTrace() ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.exit(1) ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">// Declare the counter attribute
+</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a =&nbsp;<SPAN class="keyword">new</SPAN>&nbsp;<SPAN class="type">IntegerAttribute</SPAN>("<SPAN class="string">counter</SPAN>"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ,&nbsp;<SPAN class="keyword">new</SPAN>&nbsp;<SPAN class="type">Integer</SPAN>(0)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , Attribute.EDITABLE) ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ATTR_COUNTER = AttributeRegistry.registerAttribute(cls, a) ;
+&nbsp;&nbsp;&nbsp; }
+
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="comment">/**
+&nbsp;&nbsp;&nbsp;&nbsp; * We count all accesses, even the one that failed.
+&nbsp;&nbsp;&nbsp;&nbsp; * We also define the&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; * &lt;code>org.w3c.jigsaw.filters.CounterFilter.count&lt;/code>
+&nbsp;&nbsp;&nbsp;&nbsp; * request state as the number of hits on that resource (stored as
+&nbsp;&nbsp;&nbsp;&nbsp; * an Integer instance).
+&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;</SPAN><SPAN class="keyword">@param&nbsp;</SPAN><SPAN class="variable-name">request</SPAN><SPAN class="comment"> The request being processed.
+&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;</SPAN><SPAN class="keyword">@return&nbsp;</SPAN><SPAN class="comment">Always &lt;strong>null&lt;/strong>.
+&nbsp;&nbsp;&nbsp;&nbsp; */</SPAN>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="reference">public</SPAN>&nbsp;<SPAN class="type">synchronized</SPAN>&nbsp;<SPAN class="type">ReplyInterface</SPAN>&nbsp;<SPAN class="function-name">ingoingFilter</SPAN>(<SPAN class="type">RequestInterface</SPAN>&nbsp;<SPAN class="variable-name">req</SPAN>) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">Request</SPAN>&nbsp;<SPAN class="variable-name">request</SPAN> = (<SPAN class="type">Request</SPAN>) req;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="type">int</SPAN>&nbsp;<SPAN class="variable-name">i</SPAN> = getInt (ATTR_COUNTER, 0) + 1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setInt(ATTR_COUNTER, i) ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="keyword">if</SPAN>(! request.hasState(STATE_COUNT))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; request.setState(STATE_COUNT,&nbsp;<SPAN class="keyword">new</SPAN>&nbsp;<SPAN class="type">Integer</SPAN>(i)) ;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN class="keyword">return</SPAN>&nbsp;<SPAN class="keyword">null</SPAN>;
+&nbsp;&nbsp;&nbsp; }
+
+}</PRE>
+</DIV>
+<I>That's all !</I> However, this needs a bit more explanations. First
+of all, you might be surprised that we didn't provide an implementation
+for the <TT>outgoingFilter</TT> method. There is one reasons for this:
+our super-class provide an empty <TT>outgoingFilter</TT> method, this solves
+the compiler problem.
+
+<P>Note that the counter value will be made persistent across servers invocation
+by the <B>Jigsaw</B> runtime. To be clear, this means that you can shutdown
+the server, and restart it: the count will keep up to date. Now, enough
+coding, let's play with our filter, the next section explains how to attach
+an instance of the filter to some target resource.
+<H1>
+<A NAME="installing"></A>Installing the filter</H1>
+First, let's decide on some resource we want to count access to. For the
+sake of simplicity, let's say we want to count the number of accesses to
+the <TT>/User</TT> directory resource. As you might have guess, the first
+thing we want to do is to launch the <A HREF="../User/AdminTools.html">admin
+tool</A>. Then setting up a filter to the <TT>/User</TT> directory resource
+involves the followings steps:
+<OL>
+<LI>
+Select the "<TT>User</TT>" node in the tree.</LI>
+
+<LI>
+Click on the "Frames" button.</LI>
+
+<LI>
+Expand the "<TT>User</TT>" node in the little tree (you should see a HTTPFrame
+or any subclass).</LI>
+
+<LI>
+Select the HTTPFrame node.</LI>
+
+<LI>
+Click on "Back to Add Frame menu"</LI>
+
+<LI>
+Then select the filter's class (ie <TT>org.w3c.jigsaw.filters.CounterFilter</TT>)</LI>
+
+<LI>
+Click on "Add Frame"</LI>
+</OL>
+Now your filter is added, but we could need to customize it:
+<OL>
+<LI>
+Click on the "<TT>Frames</TT>" button of the "<TT>User</TT>" node. (previous
+steps 1,2,3)</LI>
+
+<LI>
+Expand the little tree (right part of the window)</LI>
+
+<LI>
+Select the "<TT>CounterFilter</TT>" node</LI>
+
+<LI>
+Change the attribute you want. In this case, you don't need to change anything.
+(Don't forget to commit your changes)</LI>
+</OL>
+The actual count is <B>0</B>, and we don't care about the filter's name.
+
+<P>Now, we can access <TT>/User</TT> (point your browser to <TT>/User</TT>).
+Reload the filter's editor...the value is now <B>1</B>.
+<BR>&nbsp;
+<H1>
+Further reading</H1>
+If you want to understand better the concept of filters, then you can look
+at the available filters, here is a path (by increasing complexity):
+<UL>
+<LI>
+Start by reading the code of the <A HREF="samples/DebugFilter.html">DebugFilter</A>.
+This one has an <TT>outgoingFilter</TT> method, and doesn't represent a
+significant step in complexity.</LI>
+
+<LI>
+You can then try to read the code of the <A HREF="samples/AccessLimitFilter.html">AccessLimitFilter</A>.
+It doesn't use more features then the one above, but the synchronized methods
+it relies on are significantly more complex then the previous to examples.</LI>
+
+<LI>
+Now, if you are courageous enough, you can go to the <A HREF="samples/GenericAuthFilter.html">GenericAuthFilter</A>.
+Once you have understand this one, then you can carry on with the following
+lists of possible filters (left as an exercise to the reader)</LI>
+
+<LI>
+Try to write a filter that will log the referer field of the requests (this
+can be pretty easy if done in the naive way, and can become much complex
+if you want to use a something more efficient).</LI>
+</UL>
+Enjoy !
+    </div> <!-- body -->
+    <div class="footer">
+<P>
+<HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: writing-filters.html,v 1.1 2010/06/15 12:22:16 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+</div>
+</BODY>
+</HTML>
