@@ -180,6 +180,8 @@
 
         	<exclude name="edu/tamu/aser/rvtest/weblech/WeblechTest.java"/>
         	<exclude name="edu/tamu/aser/rvtest/jigsaw/JigsawTest.java"/>
+        	<exclude name="edu/tamu/aser/rvtest/derby/DerbyTest.java"/>
+
             <classpath refid="mcr-test.classpath"/>
         </javac>
     </target>
