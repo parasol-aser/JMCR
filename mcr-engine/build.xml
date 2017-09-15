@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="aser-engine">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="mcr-engine">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="/Applications/Eclipse.app/Contents/Eclipse/"/>
     <property name="mcr-controller.location" value="../mcr-controller"/>
@@ -12,7 +12,7 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="aser-engine.classpath">
+    <path id="mcr-engine.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/ant.jar"/>
         <pathelement location="lib/jcommander-1.36.jar"/>
@@ -48,7 +48,7 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <exclude name="main/java/"/>
-            <classpath refid="aser-engine.classpath"/>
+            <classpath refid="mcr-engine.classpath"/>
         </javac>
     	
     	<delete file="../dist/engine.jar" />
