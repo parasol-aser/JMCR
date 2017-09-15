@@ -1,5 +1,4 @@
 sudo: required
-os: osx
 language: java
 jdk:
   - oraclejdk8
