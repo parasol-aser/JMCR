@@ -30,7 +30,7 @@ public class ConstraintsSolving
 {
 	protected static String SMT = ".smt";
 	protected static String OUT = ".smtout";
-	protected static String Z3_PATH = "/usr/local/bin/z3";       //the path of z3
+	protected static String Z3_PATH = "z3";//"/usr/local/bin/z3";       //the path of z3
 
 	File outFile,smtFile;
 	protected List<String> CMD;
