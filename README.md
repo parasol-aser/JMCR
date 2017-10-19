@@ -1,6 +1,6 @@
 # Maximal-Causality-Reduction (MCR) Java version
 
-MCR is a stateless model checker wrapped around an efficient reduction algorithm. It works on the trace of a program and constructs ordering constraints over the trace to generate other possible schedules. It takes the values of the writes and reads to prune redundant executions. By enforcing at least one read to return a different value, it generates a new schedule which drives the program to reach a new state. 
+MCR is a stateless model checker powered by an efficient reduction algorithm. It systematically explores the state-space of the program by collecting runtime traces of the program executions and constructing ordering constraints over the traces to generate other possible schedules. It captures the values of the writes and reads to prune redundant explorations. By enforcing at least one read to return a different value, it generates a new schedule which drives the program to reach a new state. 
 
 # Design of MCR
 
@@ -83,7 +83,7 @@ package edu.tamu.aser.rvtest;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import edu.tamu.aser.exploration.JUnit4ReExRunner;
+import edu.tamu.aser.exploration.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
 public class Example {
@@ -156,7 +156,7 @@ The following trace triggered this error:
 
 
 # Useful Documents
-* [ECOOP'17] [Speeding Up Maximal Causality Reduction with Static Dependency Analysis](https://huangshiyou.github.io/files/Huang-ECOOP-2017-16.pdf)`
+* [ECOOP'17] [Speeding Up Maximal Causality Reduction with Static Dependency Analysis](https://huangshiyou.github.io/files/Huang-ECOOP-2017-16.pdf)
 
 * [OOPSLA'16] [Maximal Causality Reduction for TSO and PSO](https://huangshiyou.github.io/files/mcr_relax-huang.pdf)
 
