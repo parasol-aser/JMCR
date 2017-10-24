@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Example" project="mcr-test" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.tamu.aser.rvtest.omcr.example" time="0.332">
+    <testcase name="test" classname="edu.tamu.aser.rvtest.omcr.example" time="0.332"/>
+  </testsuite>
+</testrun>

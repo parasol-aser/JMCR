@@ -1,0 +1,19 @@
+import java.util.Vector;
+
+public class TestCopy {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Vector<String> v1 = new Vector<>();
+		Vector<String> v2 = new Vector<>();
+		v1.add("a");
+		v1.add("b");
+		v2.add("a");
+		v2.add("c");
+		Vector<String> v3 = v1;
+		Vector<String> v4 = v2;
+		v3.addAll(v4);
+		System.out.println(v1);
+	}
+
+}

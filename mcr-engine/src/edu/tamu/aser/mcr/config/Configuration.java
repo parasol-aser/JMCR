@@ -28,9 +28,15 @@ public class Configuration {
 	public static String class_name = null;
 	public static String class_path = null;
 	
+	//for OMCR
+	public static boolean OMCR = false;
+	
 	
 	//called in the rvinstrumentor file
 	public static void setup() {
+		
+		OMCR = Boolean.parseBoolean(System.getProperty("omcr"));
+		
 		class_name = System.getProperty("class_name");
 		//this is for the constraints reduction using static dependency analysis
 		if (Optimize){		

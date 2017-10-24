@@ -1,0 +1,32 @@
+package edu.tamu.aser.rvtest.omcr;
+
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import edu.tamu.aser.exploration.JUnit4MCRRunner;
+
+@RunWith(JUnit4MCRRunner.class)
+public class example {
+
+	private static int x,y,z;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	@Test
+	public void test() throws InterruptedException {
+		try {
+			x = 0;
+			y = 0;
+			z = 0;
+		example.main(null);
+		} catch (Exception e) {
+			System.out.println("here");
+			fail();
+		}
+	}
+
+}
