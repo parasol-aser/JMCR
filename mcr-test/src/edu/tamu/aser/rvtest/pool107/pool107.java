@@ -61,7 +61,7 @@ public class pool107 {
         pool.setMinIdle(3);
         
         pool._numActive = 3;
-        factory.activeCount = 3;
+        factory.activeCount = 6;
         // Above two lines should equal to pool.borrowObject()
         //Object obj = pool.borrowObject(); // numActive = 1, numIdle = 0
         

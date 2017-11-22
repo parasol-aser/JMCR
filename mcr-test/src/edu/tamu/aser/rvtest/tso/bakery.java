@@ -12,8 +12,13 @@ import edu.tamu.aser.exploration.JUnit4MCRRunner;
 @RunWith(JUnit4MCRRunner.class)
 public class bakery {
 	
-	final static int N1 = 1;
-	final static int N2 = 1;
+	//for state space exposion
+//	final static int N1 = 10;
+//	final static int N2 = 10;
+	
+	//for bug exposion
+	final static int N1 = 20;
+	final static int N2 = 20;
 	
 	final static int NUM = 2;
 	public static int[] enter = new int[NUM];
@@ -74,10 +79,10 @@ public class bakery {
 				int i = 0;
 				lock(i);
 				x = 1;
-//				if(x!=1){
-//					System.out.println("error");
-//					fail();
-//				}
+				if(x!=1){
+					fail();
+					System.out.println("error");
+				}
 				
 				unlock(i);
 				

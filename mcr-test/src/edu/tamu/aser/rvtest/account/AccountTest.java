@@ -1,5 +1,7 @@
 package edu.tamu.aser.rvtest.account;
 
+
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -263,6 +265,7 @@ public class AccountTest extends Failable {
         }
 
         if (account.amount != 100) {
+        	fail("result is not correct.");
             //fail("Multi-threaded deposits and withdrawals caused incorrect account state!");
         	System.out.println("Multi-threaded deposits and withdrawals caused incorrect account state!");
         }

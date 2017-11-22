@@ -10,10 +10,18 @@ import edu.tamu.aser.exploration.JUnit4MCRRunner;
 @RunWith(JUnit4MCRRunner.class)
 public class lamport {
 
-	final static int N1 = 1;
-	final static int N2 = 1;
-	final static int N3 = 1;
-	final static int N4 = 1;
+	//for state space exploration
+//	final static int N1 = 4;
+//	final static int N2 = 4;
+//	final static int N3 = 4;
+//	final static int N4 = 4;
+	
+	//for bug exposion evaluations
+	final static int N1 = 10;
+	final static int N2 = 10;
+	final static int N3 = 10;
+	final static int N4 = 10;
+	
 	
 	public static int flag1;
 	public static int flag2;
@@ -71,8 +79,10 @@ public class lamport {
 				//critical section
 				shared = 1;
 				//assert(x==1);
-				if(shared != 1)
+				if(shared != 1) {
+					fail();
 					System.out.println("error");
+				}
 				y = 0;
 				flag1 = 0;
 				
@@ -102,10 +112,10 @@ public class lamport {
 						
 						continue;
 					}
-					y = 1;
+					y = 2;
 					if(x != 2){
 						flag2 = 0;
-						while (flag2 >= 1) {
+						while (flag1 >= 1) {
 							if(n3++ > N3)break;
 						}
 						if(y != 2){
@@ -124,8 +134,10 @@ public class lamport {
 				
 				//critical section
 				shared = 2;
-				if(shared != 2)
+				if(shared != 2) {
+					fail();
 					System.out.println("error");
+				}
 				//assert(x==2);
 				y = 0;
 				flag2 = 0;

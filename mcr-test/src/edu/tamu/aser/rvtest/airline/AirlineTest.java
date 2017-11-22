@@ -1,6 +1,9 @@
 package edu.tamu.aser.rvtest.airline;
 
 import junit.framework.Assert;
+import omcr.airline.airline;
+
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,12 +17,12 @@ public class AirlineTest {
         AirlineTest airlineTest = new AirlineTest();
 //        airlineTest.test5ThreadsFullInvarient();
 //        airlineTest.test5ThreadsNotTooMany();
-//        airlineTest.test5ThreadsNotTooFew();
+        airlineTest.test5ThreadsNotTooFew();
 //        airlineTest.test3ThreadsFullInvarient();
 //        airlineTest.test3ThreadsNotTooMany();
 //        airlineTest.test3ThreadsNotTooFew();
 //        airlineTest.test2ThreadsFullInvarient();
-        airlineTest.test2ThreadsNotTooMany();
+//        airlineTest.test2ThreadsNotTooMany();
 //        airlineTest.test2ThreadsNotTooFew();
     }
     
@@ -59,9 +62,9 @@ public class AirlineTest {
         testNotTooFewTicketsSold();
     }
 
-     @Test
+//     @Test
     public void test5ThreadsFullInvarient() throws Exception {
-        makeBookings(5);
+        makeBookings(6);
         testFullInvarient();
     }
 
@@ -73,7 +76,7 @@ public class AirlineTest {
 
     //@Test
     public void test5ThreadsNotTooFew() throws Exception {
-        makeBookings(5);
+        makeBookings(6);
         testNotTooFewTicketsSold();
     }
 
@@ -84,23 +87,36 @@ public class AirlineTest {
         airline.makeBookings();
     }
 
-    public void testFullInvarient() {
+    @SuppressWarnings("deprecation")
+	public void testFullInvarient() {
         if (airline.numberOfSeatsSold != airline.maximumCapacity) {
             Assert.fail("Too many or too few tickets were sold! Number of tickets sold: " + airline.numberOfSeatsSold + " out of max: "
                     + airline.maximumCapacity);
         }
     }
 
-    public void testNotTooManyTicketsSold() {
+    @SuppressWarnings("deprecation")
+	public void testNotTooManyTicketsSold() {
         if (airline.numberOfSeatsSold > airline.maximumCapacity) {
             Assert.fail("Too many were sold! Number of tickets sold: " + airline.numberOfSeatsSold + " out of max: " + airline.maximumCapacity);
         }
     }
 
-    public void testNotTooFewTicketsSold() {
+    @SuppressWarnings("deprecation")
+	public void testNotTooFewTicketsSold() {
         if (airline.numberOfSeatsSold < airline.maximumCapacity) {
             Assert.fail("Too few were sold! Number of tickets sold: " + airline.numberOfSeatsSold + " out of max: " + airline.maximumCapacity);
         }
     }
+    
+    @Test
+	public void test() throws InterruptedException {
+		try {
+			AirlineTest.main(null);
+		} catch (Exception e) {
+			System.out.println("here");
+			fail();
+		}
+	}
 
 }

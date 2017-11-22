@@ -1,4 +1,7 @@
 package edu.tamu.aser.mcr;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,10 +51,9 @@ public class ExploreSeedInterleavings {
 	private static boolean isfulltrace =false;
 	
 	//prefix-setOfEquivalentPrefixes_map
-	private static HashMap<Vector<String>, Set<Vector<String>>> mapPrefixEquivalent = 
+	public static HashMap<Vector<String>, Set<Vector<String>>> mapPrefixEquivalent = 
 			new HashMap<>();
-	
-	private static Vector<Set<Vector<String>>> vtrEquivalentClass = new Vector<Set<Vector<String>>>();
+	public static long memUsed = 0;
 
 	/**
 	 * Trim the schedule to show the last 100 only entries
@@ -172,12 +174,15 @@ public class ExploreSeedInterleavings {
 			}
 		}  //end while
 		
+		memUsed += memSize(vReadValuePrefixes);
+		
 		if (Configuration.OMCR) {
 			//local
 			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass =
 					new HashMap<>();
 			//compute the equivalent prefixes
 			computeEquPrefixes(vReadValuePrefixes,trace,schedule_prefix, localMapPrefixEquClass);
+			memUsed += memSize(localMapPrefixEquClass);
 			//
 			Set<Vector<String>> equPrefixes = null;
 			if (mapPrefixEquivalent.containsKey(schedule_prefix)) {
@@ -613,7 +618,7 @@ public class ExploreSeedInterleavings {
 		}
 			
 		//debugging
-		System.out.println("prefix: " + schedule_a);
+//		System.out.println("prefix: " + schedule_a);
 		
 		if(!isfulltrace) {
 		    //add the schedule prefix to the head of the new schedule to make it a complete schedule
@@ -708,7 +713,7 @@ public class ExploreSeedInterleavings {
 			}
 				
 			//debugging
-			System.out.println("prefix: " + schedule_a);
+//			System.out.println("prefix: " + schedule_a);
 			
 			if(!isfulltrace) {
 			    //add the schedule prefix to the head of the new schedule to make it a complete schedule
@@ -794,7 +799,7 @@ public class ExploreSeedInterleavings {
 	 */
 	public static void execute(Trace trace, Vector<String> schedule_prefix) {
 		
-		System.err.println(schedule_prefix);
+//		System.err.println(schedule_prefix);
 		
 		Configuration.numReads = 0;
 		Configuration.rwConstraints = 0;
@@ -816,5 +821,23 @@ public class ExploreSeedInterleavings {
 			genereteCausallyDifferentSchedules(engine,trace,schedule_prefix);
 			
 		}		
+	}
+	
+	//compute the memory used
+	public static int memSize(Object o){
+        try{
+//            System.out.println("Index Size: " + ((ByteArrayOutputStream) o).size());
+            ByteArrayOutputStream baos=new ByteArrayOutputStream();
+            ObjectOutputStream oos=new ObjectOutputStream(baos);
+            oos.writeObject(o);
+            oos.close();
+//            System.out.println("Data Size: " + baos.size() + "bytes.");
+            return baos.size();
+        }catch(IOException e){
+            e.printStackTrace();
+            return -1;
+        }
+        
+        
 	}
 }

@@ -7,4 +7,14 @@
 		<item value="1758" key="DIALOG_X_ORIGIN"/>
 		<item value="214" key="DIALOG_Y_ORIGIN"/>
 	</section>
+	<section name="ExternalProjectImportWizard">
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="344" key="DIALOG_X_ORIGIN"/>
+		<item value="224" key="DIALOG_Y_ORIGIN"/>
+	</section>
 </section>
