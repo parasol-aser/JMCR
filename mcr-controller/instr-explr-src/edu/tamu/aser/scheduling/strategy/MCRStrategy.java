@@ -222,7 +222,29 @@ public class MCRStrategy extends SchedulingStrategy {
                     }
                 }
 			    
-			    
+			    //what if the chosenObject is still null??
+			    //it might not correct
+			    if (chosenObject == null) {
+		            chosenIndex = 0;
+		            while (true) {
+		                chosenObject = getChosenObject(chosenIndex, objectChoices);
+		                  
+		                if(choiceType.equals(ChoiceType.THREAD_TO_FAIR)
+		                        && chosenObject.equals(previousThreadInfo))
+		                {
+		                    //change to a different thread
+		                }
+		                else 
+		                    break;
+		                chosenIndex++;
+		                
+		            }
+		            
+		        }
+		        
+		        MCRStrategy.choicesMade.add(chosenIndex);
+		                
+		        this.previousThreadInfo = (ThreadInfo) chosenObject;
                 return chosenObject;
             }
 			

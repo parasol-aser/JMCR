@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.Boolean"/>
+<fullyQualifiedTypeName name="javafx.scene.transform.Shear"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject"/>
+<fullyQualifiedTypeName name="edu.kit.joana.api.sdg.SDGBuildPreparation.Config"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.config.Configuration"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.ReadNode"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.WriteNode"/>
+<fullyQualifiedTypeName name="org.apache.tools.ant.taskdefs.optional.javah.Kaffeh"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.Trace"/>
+<fullyQualifiedTypeName name="com.google.common.collect.Multiset.Entry"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.util.Stack"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.LockNode"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.AbstractNode"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.UnlockNode"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.fastinfoset.util.ContiguousCharArrayArray"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.rvtest.omcr.airline.airline"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.rvtest.omcr.Critical"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.lang.Runtime"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.mcr.ExploreSeedInterleavings"/>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="omcr.ticketorder.TicketsOrderSim"/>
+<fullyQualifiedTypeName name="omcr.manager.Manager"/>
+<fullyQualifiedTypeName name="org.junit.internal.runners.statements.Fail"/>
+<fullyQualifiedTypeName name="omcr.garage.GarageTest"/>
+</qualifiedTypeNameHistroy>

@@ -1,5 +1,8 @@
 package edu.tamu.aser.exploration;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,6 +24,7 @@ import edu.illinois.imunit.internal.parsing.ParseException;
 import edu.illinois.imunit.internal.parsing.ScheduleParser;
 import edu.illinois.imunit.internal.parsing.TokenMgrError;
 import edu.tamu.aser.MCRProperties;
+import edu.tamu.aser.mcr.ExploreSeedInterleavings;
 import edu.tamu.aser.mcr.trace.Trace;
 
 /**
@@ -33,6 +37,8 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
 
     private static final String INVALID_SYNTAX_MESSAGE = "Ignoring schedule because of invalid syntax: name = %s value = %s .\nCaused by: %s";
     private static final String EXPECT_DEADLOCK_MSG = "Expecting deadlock!";
+    
+    private static int used;
 
     /**
      * Currently executing test method and notifier and schedule.
@@ -62,9 +68,9 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
     
     private Thread getNewExplorationThread() {
         return new Thread() {
-            public void run() {
-                             
+            public void run() {                           
                 while (Scheduler.canExecuteMoreSchedules()) {
+//                    long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
                     Scheduler.startingScheduleExecution();
                     JUnit4MCRRunner.super.runChild(method, wrappedNotifier);  //after choosen all the objects
                     if (wrappedNotifier.isTestFailed()) {
@@ -85,6 +91,10 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
                         }                        
                     }
                     Scheduler.completedScheduleExecution();    //one schedule completed
+//                    long after = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+//                    
+//                    used += after - before;
+                    
                 }
                 //all schedules have been finished
                 // notify runner that exploration has completed
@@ -99,6 +109,8 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
     //and after instrumentation
     @Override
     protected void runChild(final FrameworkMethod method, RunNotifier notifier) {
+               
+        this.used = 0;
         this.currentTestMethod = method;
         this.currentTestNotifier = notifier;
         Trace.appname = method.getMethod().getDeclaringClass().getName();
@@ -186,6 +198,10 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
         }   //end while
         wrappedNotifier.testExplorationFinished();
         Scheduler.completedExploration();
+        
+        //
+        
+        System.err.println("memory used: " + ExploreSeedInterleavings.memUsed + "bytes.");
     }
 
 

@@ -10,8 +10,8 @@ import edu.tamu.aser.exploration.JUnit4MCRRunner;
 @RunWith(JUnit4MCRRunner.class)
 public class dekker {
 
-	final static int N1 = 1;
-	final static int N2 = 1;
+	final static int N1 = 4;
+	final static int N2 = 4;
 	
 	public static int flag1;
 	public static int flag2;
@@ -48,8 +48,10 @@ public class dekker {
 				
 				//critical section
 				x = 1;
-				if(x != 1)
+				if(x != 1) {
+					fail();
 					System.out.println("error");
+				}
 				//assert(x==1);
 				turn = 2;
 				flag1 = 0;
@@ -82,8 +84,10 @@ public class dekker {
 				
 				//critical section
 				x = 2;
-				if(x != 2)
+				if(x != 2) {
+					fail();
 					System.out.println("error");
+				}
 				//assert(x==2);
 				turn = 1;
 				flag2 = 0;

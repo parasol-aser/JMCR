@@ -67,6 +67,7 @@ public class StartExploring implements Runnable {
 			ExploreSeedInterleavings.setQueue(exploreQueue);
 			traceObj.finishedLoading(true);
 			ExploreSeedInterleavings.execute(traceObj, schedule_prefix);
+			ExploreSeedInterleavings.memUsed += ExploreSeedInterleavings.memSize(ExploreSeedInterleavings.mapPrefixEquivalent);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

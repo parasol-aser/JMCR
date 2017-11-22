@@ -1,0 +1,18 @@
+unsat
+(error "line 99 column 10: model is not available")
+(:add-rows            53
+ :assert-lower        10
+ :assert-upper        17
+ :binary-propagations 3
+ :bound-prop          6
+ :conflicts           1
+ :max-memory          1.05
+ :memory              0.68
+ :mk-bool-var         38
+ :mk-clause           6
+ :num-allocs          4940
+ :pivots              20
+ :propagations        3
+ :rlimit-count        1948
+ :time                0.00
+ :total-time          0.01)

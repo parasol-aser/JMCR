@@ -11,7 +11,7 @@ import edu.tamu.aser.exploration.JUnit4MCRRunner;
 @RunWith(JUnit4MCRRunner.class)
 public class peterson {
 	
-	final static int COUNT = 1;
+	final static int COUNT = 10;
 	public static int flag1;
 	public static int flag2;
 	public static int turn;
@@ -38,6 +38,10 @@ public class peterson {
 				
 				//cs
 				x = 1;
+				if(x != 1){
+//					fail();
+					System.out.println("error");
+				}
 				flag1 = 0;
 				
 			}
@@ -57,7 +61,10 @@ public class peterson {
 				
 				//cs
 				x = 2;
-				
+				if(x != 2) {
+//					fail();
+					System.out.println("error");
+				}
 				flag2 = 0;
 			}
 		});
