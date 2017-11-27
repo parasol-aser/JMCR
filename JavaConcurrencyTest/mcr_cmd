@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# args validation
+
+
+usage() {
+	cat <<EOU
+usage: $0 [options] test_class [parameters]
+  e.g., $0 edu.tamu.aser.rvtest_simple_tests.Example
+  options:
+  	--help -h usage
+	--debug -D print debug information
+	--static -S using static analysis
+	--class_path absolute_dir -c absolute_dir (Default: bin/)
+	--memmory-model MM -m MM selecting the memory model SC/TSO/PSO (Dedault: SC)
+EOU
+	exit 1
+}
+
+if [ "$#" = 0 ]; then
+   usage ;
+   exit 1 ;   
+fi
+   
+declare -a ARGS
+ARGS=($@)
+
+for ((j = 0; j < $#; j++)) ; do
+	# echo ${ARGS[$j]}
+	case "${ARGS[$j]}" in
+		--debug) ARGS[$j]=-D ;;
+		--static) ARGS[$j]=-S ;;
+		--memmory-model) ARGS[$j]=-m ;;
+		--class_path) ARGS[$j]=-c ;;
+		--*) usage ; exit 1 ;;
+		*) ARGS[$j]="${ARGS[$j]}" ;;
+	esac
+done
+
+debug="false"   #default: not show the debug infrormation
+static_opt="false" 
+model=SC         #default: using sequential consistency memmory model
+
+class_path=$(pwd)/bin
+class_name=""
+params=""
+
+while getopts "DSm:hc:" opt ; do
+	case "$opt" in
+		D) debug="true" ;;
+		S) static_opt="true" ;;
+		m) model="$OPTARG" ;;
+		c) class_path="$OPTARG" ;;
+		h) usage ; exit 1 ;;
+		*) break ;;
+	esac
+done
+
+shift "$((OPTIND-1))"
+
+declare -a TEST
+TEST=($@)
+
+class_name=${TEST[0]}
+for ((j = 1; j < $#; j++)) ; do
+	params="$params ${TEST[$j]}"
+done
+
+# functions
+# $1 -- test class
+function runTests()
+{
+    echo "Running tests from: ${class_name}"    
+
+    java -ea -javaagent:lib/iagent.jar \
+    	-cp 'bin:../dist/*:../lib/*'  \
+     	-Ddebug=$debug \
+     	-Dstatic_opt=$static_opt \
+     	-Dmemory_model=$model  \
+     	-Dclass_path=$class_path  -Dclass_name=$class_name \
+     	org.junit.runner.JUnitCore $class_name $params
+}
+
+# test if it needs to run the static analysis to generate the SGD
+if [ "$static_opt" == "true" ]; then
+	java -cp "../generateSDG/bin:../generateSDG/lib/*" generateSDG.generateSDG $class_path $class_name
+fi
+
+runTests ${test_class}
