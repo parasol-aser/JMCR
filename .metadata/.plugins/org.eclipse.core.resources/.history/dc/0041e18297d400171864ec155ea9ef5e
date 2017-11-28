@@ -1,0 +1,15 @@
+package concurrent.linkedblockingdeque.tests;
+
+import java.util.Deque;
+
+public class LinkedBlockingDequeTest {
+	
+	BlockingDeque<String> deque = new LinkedBlockingDeque<String>();
+
+	deque.addFirst("1");
+	deque.addLast("2");
+
+	String two = deque.takeLast();
+	String one = deque.takeFirst();
+
+}

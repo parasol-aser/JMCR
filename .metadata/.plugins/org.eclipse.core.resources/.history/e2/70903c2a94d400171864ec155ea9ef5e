@@ -1,0 +1,5 @@
+package concurrent.arrayblockingqueue.tests;
+
+public class BlockingQueueTest {
+
+}
