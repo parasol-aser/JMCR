@@ -1,0 +1,5 @@
+package concurrent.hashmap.tests;
+
+public class ThreadLocalRandom {
+
+}

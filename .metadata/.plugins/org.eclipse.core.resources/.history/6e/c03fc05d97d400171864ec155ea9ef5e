@@ -1,0 +1,5 @@
+package concurrent.linkedblockingdeque.tests;
+
+public class LinkedBlockingDequeTest {
+
+}
