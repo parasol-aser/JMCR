@@ -1,0 +1,11 @@
+package concurrent.tests;
+
+import java.util.concurrent.ConcurrentHashMap;
+
+public class TestConcurrencyHashMap3 {
+	
+	ConcurrentHashMap<Integer,String> conHashMap = new ConcurrentHashMap<Integer,String>();
+	public static void main(String args[]) {
+		
+	}
+}
