@@ -19,7 +19,7 @@ import concurrent.linkedblockingdeque.tests.LinkedBlockingDequeTest;
  */
 public class reentranlockTest {
 
-    private final ReentrantLock lock = new ReentrantLock();
+    private static ReentrantLock lock;
     private int count = 0;
 
      //Locking using Lock and ReentrantLock
@@ -88,6 +88,7 @@ public class reentranlockTest {
     @Test
 	public void test() throws InterruptedException {
 		try {
+			lock = new ReentrantLock();
 			reentranlockTest.main(null);
 		} catch (Exception e) {
 			System.err.println("here");
