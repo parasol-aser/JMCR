@@ -10,9 +10,13 @@ import edu.tamu.aser.exploration.JUnit4MCRRunner;
 @RunWith(JUnit4MCRRunner.class)
 public class RVExample {
 
+	
+	private int z=0;
 	private static int x;
 	private static int y;
 	private static Object lock; 
+	
+	
 	
 	public static void main(String[] args) {	
 		Thread t1 = new Thread(new Runnable() {

@@ -3,22 +3,16 @@ package edu.tamu.aser.mcr.constraints;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.*;
-
 import org.w3c.tools.sexpr.SimpleSExprStream;
 
 import edu.tamu.aser.mcr.config.Configuration;
 import edu.tamu.aser.mcr.config.Util;
 import edu.tamu.aser.mcr.graph.ReachabilityEngine;
-import sun.nio.cs.ext.MacArabic;
 
 /**
  * Constraint solving with Z3 solver
