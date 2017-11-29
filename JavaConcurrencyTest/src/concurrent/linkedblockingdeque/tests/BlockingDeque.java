@@ -34,7 +34,9 @@
  */
 
 package concurrent.linkedblockingdeque.tests;
-import java.util.*;
+import java.util.Deque;
+import java.util.Iterator;
+//import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import concurrent.arrayblockingqueue.tests.BlockingQueue;
