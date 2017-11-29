@@ -1,0 +1,18 @@
+sudo: required
+
+language: java
+
+jdk:
+  - oraclejdk8
+
+before_install:
+  - mkdir -p ~/.local/bin
+  - mkdir -p ~/.local/lib
+  - export PATH=~/.local/bin:$PATH
+  - export LD_LIBRARY_PATH=~/.local/lib:$LD_LIBRARY_PATH
+  - ./scripts/install-z3.sh
+
+script:
+  - cd mcr-test
+  - ant
+  - ./mcr_cmd edu.tamu.aser.rvtest_simple_tests.Example
