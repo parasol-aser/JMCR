@@ -3,12 +3,10 @@ package test.reentranlock;
 import static org.junit.Assert.fail;
 
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import concurrent.linkedblockingdeque.tests.LinkedBlockingDequeTest;
+import edu.tamu.aser.exploration.JUnit4MCRRunner;
 
 /**
  * Java program to show, how to use ReentrantLock in Java.
@@ -17,6 +15,7 @@ import concurrent.linkedblockingdeque.tests.LinkedBlockingDequeTest;
  *
  * @author  Javin Paul
  */
+@RunWith(JUnit4MCRRunner.class)
 public class reentranlockTest {
 
     private static ReentrantLock lock;
