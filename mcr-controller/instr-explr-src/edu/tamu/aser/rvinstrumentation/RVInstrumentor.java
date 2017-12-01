@@ -64,6 +64,21 @@ public class RVInstrumentor {
             return false;
         }
         
+//        System.err.println("insted class: " + name);
+        
+//        if (name.sub) {
+//            
+//        }
+        
+//        if(name.equals("java/util/concurrent/ArrayBlockingQueue")){
+//            return true;
+//        }
+        
+        //concurrent classes
+//        if (name.startsWith("java/util/concurrent/ConcurrentHashMap") && !name.equals("java/util/concurrent/ConcurrentHashMap")) {
+//            return true;
+//        }
+        
         String pckgName = INSTRUMENTATION_PACKAGES_DEFAULT;
         int lastSlashIndex = name.lastIndexOf(SLASH);
         // Non-default package
@@ -179,6 +194,7 @@ public class RVInstrumentor {
                      * instrument the class
                      */
                     if (shouldInstrumentClass(name)) {
+                        System.out.println("Instrumented " + name);
                         ClassReader classReader = new ClassReader(bytes); //bytes is the .class we are going to read
                         ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
 

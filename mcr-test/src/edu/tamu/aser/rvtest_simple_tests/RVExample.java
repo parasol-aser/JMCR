@@ -2,6 +2,8 @@ package edu.tamu.aser.rvtest_simple_tests;
 
 import static org.junit.Assert.*;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -12,7 +14,7 @@ public class RVExample {
 
 	private static int x;
 	private static int y;
-	private static Object lock; 
+	private static Object lock = new Object();
 	
 	public static void main(String[] args) {	
 		Thread t1 = new Thread(new Runnable() {
@@ -69,7 +71,7 @@ public class RVExample {
 		try {
 			x = 0;
 			y = 0;
-			lock = new Object();
+//			lock = new Object();
 			RVExample.main(null);
 		} catch (Exception e) {
 			System.out.println("here");

@@ -2,8 +2,6 @@
 import java.util.Collections;
 import java.util.Vector;
 
-import com.sun.xml.internal.fastinfoset.util.ContiguousCharArrayArray;
-
 
 public class TestCopy {
 

@@ -900,11 +900,23 @@ public class RVRunTime {
 	    
 
 	    Trace trace = MCRStrategy.getTrace();
+//	    while(trace == null){
+//	        try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//	        Thread.yield();
+//	        trace = MCRStrategy.getTrace();
+//	    }
 	    if (isPrim(v)) {
             
             trace.updateInitWriteValueToAddress(o == null ? "." + SID
                     : System.identityHashCode(o) + "." + SID, v + "");
         } else {
+//            String addr = o == null ? "_." + SID : System.identityHashCode(o) + "_." + SID;
+//            String value = System.identityHashCode(v) + "_";
             trace.updateInitWriteValueToAddress(o == null ? "_." + SID
                     : System.identityHashCode(o) + "_." + SID,
                     System.identityHashCode(v) + "_");
