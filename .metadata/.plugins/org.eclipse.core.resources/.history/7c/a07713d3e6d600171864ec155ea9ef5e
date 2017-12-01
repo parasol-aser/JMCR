@@ -5,19 +5,20 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="mcr-controller">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../../../Applications/Eclipse.app/Contents/Eclipse/"/>
-    <property name="JavaConcurrencyTest.location" value="../JavaConcurrencyTest"/>
+    <property name="ECLIPSE_HOME" value="/Applications/Eclipse.app/Contents/Eclipse/"/>
     <property name="mcr-test.location" value="../mcr-test"/>
+    <property name="jigsaw.location" value="../real-world application/jigsaw"/>
+    <property name="weblech.location" value="../real-world application/weblech"/>
     <property name="mcr-engine.location" value="../mcr-engine"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
     <path id="mcr-engine.classpath">
         <pathelement location="${mcr-engine.location}/bin"/>
         <pathelement location="${mcr-engine.location}/lib/ant.jar"/>
         <pathelement location="${mcr-engine.location}/lib/jcommander-1.36.jar"/>
         <pathelement location="${mcr-engine.location}/lib/h2-rvpredict.jar"/>
-        <pathelement location="${ECLIPSE_HOME}"/>
+        <pathelement location="${mcr-engine.location}/lib/com.microsoft.z3.jar"/>
         <pathelement location="${mcr-engine.location}/lib/jigsaw-sexpr.jar"/>
         <pathelement location="${mcr-engine.location}/lib/joana.api.jar"/>
         <pathelement location="${mcr-engine.location}/lib/joana.ifc.sdg.core.jar"/>
@@ -26,13 +27,12 @@
         <pathelement location="${mcr-engine.location}/lib/joana.wala.core.jar"/>
         <pathelement location="${mcr-engine.location}/lib/joana.wala.dictionary.jar"/>
         <pathelement location="${mcr-engine.location}/lib/joana.wala.jodroid.jar"/>
-        <pathelement location="${mcr-engine.location}/lib/com.microsoft.z3.jar"/>
     </path>
     <path id="mcr-controller.classpath">
         <pathelement location="bin"/>
+        <pathelement location="lib/imunit.jar"/>
         <pathelement location="lib/junit.jar"/>
         <pathelement location="lib/org.hamcrest.core.jar"/>
-        <pathelement location="lib/imunit.jar"/>
         <pathelement location="lib/guava-21.0.jar"/>
         <pathelement location="lib/asm.jar"/>
         <path refid="mcr-engine.classpath"/>
@@ -41,6 +41,7 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="instr-explr-src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -65,16 +66,39 @@
             <src path="instr-explr-src"/>
             <classpath refid="mcr-controller.classpath"/>
         </javac>
+    	
+    	<delete file="../dist/instrumentor.jar" />
+    	
+    	<jar destfile="../dist/instrumentor.jar" compress="true">
+    		<fileset dir="instr-explr-src">			
+    		    <include name="RVMANIFEST.MF" />
+    		</fileset>
+    		<fileset dir="bin">
+    			<include name="**/*.class" />
+    		</fileset>
+    		<fileset dir=".">			
+    			<include name="default.properties" />
+    		</fileset>
+    		
+    	</jar>
+    	
     </target>
+              	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
-        <ant antfile="build.xml" dir="${JavaConcurrencyTest.location}" inheritAll="false" target="clean"/>
-        <ant antfile="build.xml" dir="${JavaConcurrencyTest.location}" inheritAll="false" target="build">
+        <ant antfile="build.xml" dir="${mcr-test.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${mcr-test.location}" inheritAll="false" target="build">
             <propertyset>
                 <propertyref name="build.compiler"/>
             </propertyset>
         </ant>
-        <ant antfile="build.xml" dir="${mcr-test.location}" inheritAll="false" target="clean"/>
-        <ant antfile="build.xml" dir="${mcr-test.location}" inheritAll="false" target="build">
+        <ant antfile="build.xml" dir="${jigsaw.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${jigsaw.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${weblech.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${weblech.location}" inheritAll="false" target="build">
             <propertyset>
                 <propertyref name="build.compiler"/>
             </propertyset>
