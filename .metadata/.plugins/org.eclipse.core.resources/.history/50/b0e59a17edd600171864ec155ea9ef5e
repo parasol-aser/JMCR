@@ -10,8 +10,10 @@
     <property name="mcr-controller.location" value="../mcr-controller"/>
     <property name="mcr-test.location" value="../mcr-test"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
+
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+
     <path id="mcr-engine.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/ant.jar"/>
@@ -54,12 +56,7 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <exclude name="main/java/"/>
-            <exclude name="edu/tamu/aser/db/"/>
-            <exclude name="edu/tamu/aser/engines/CPRaceDetect.java"/>
-            <exclude name="edu/tamu/aser/engines/CPEngine.java"/>
-            <exclude name="edu/tamu/aser/violation/"/>
-            <exclude name="edu/tamu/aser/mcr/Race.java"/>
-            <exclude name="edu/tamu/aser/property/EREProperty.java"/>
+
             <classpath refid="mcr-engine.classpath"/>
         </javac>
     </target>
