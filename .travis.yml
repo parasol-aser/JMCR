@@ -15,4 +15,4 @@ before_install:
 script:
   - cd mcr-test
   - ant
-  - ./mcr_cmd edu.tamu.aser.rvtest_simple_tests.Example
+  
