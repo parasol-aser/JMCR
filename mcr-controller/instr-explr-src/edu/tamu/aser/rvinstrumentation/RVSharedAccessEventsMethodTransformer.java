@@ -208,6 +208,20 @@ public class RVSharedAccessEventsMethodTransformer extends AdviceAdapter impleme
                             RVConfig.instance.LOG_UNLOCK_INSTANCE,
                             RVConfig.instance.DESC_LOG_UNLOCK_INSTANCE);
                 }
+                else if (name.equals("lockInterruptibly") && desc.equals("()V")) {
+                    //@ Alan: for handling reentranlock
+                    maxindex_cur++;
+                    int index = maxindex_cur;
+                    mv.visitVarInsn(ASTORE, index);// objectref
+                    // Comment out because of MCR lock
+                    // mv.visitInsn(opcode);
+                    addBipushInsn(mv, ID);
+                    mv.visitVarInsn(ALOAD, index);
+
+                    mv.visitMethodInsn(INVOKESTATIC, RVInstrumentor.logClass,
+                            RVConfig.instance.LOG_LOCK_INSTANCE,
+                            RVConfig.instance.DESC_LOG_LOCK_INSTANCE);
+                }
     	         else
     	             mv.visitMethodInsn(opcode, owner, name, desc);
             }
