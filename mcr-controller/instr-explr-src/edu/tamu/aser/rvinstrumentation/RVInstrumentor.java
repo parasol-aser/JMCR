@@ -70,6 +70,10 @@ public class RVInstrumentor {
 //            
 //        }
         
+//        if(name.equals("java/util/concurrent/ArrayBlockingQueue")){
+//            return true;
+//        }
+        
         //concurrent classes
 //        if (name.startsWith("java/util/concurrent/ConcurrentHashMap") && !name.equals("java/util/concurrent/ConcurrentHashMap")) {
 //            return true;

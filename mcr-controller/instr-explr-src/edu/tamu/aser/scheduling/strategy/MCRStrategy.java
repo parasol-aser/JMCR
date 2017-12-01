@@ -114,12 +114,12 @@ public class MCRStrategy extends SchedulingStrategy {
 			prefix.add(choice);
 		}
 
-		if (Configuration.DEBUG) {
+//		if (Configuration.DEBUG) {
 		    System.out.print("<< Exploring trace executed along causal schedule " + i + ": ");
 	        i++;
-	        System.out.println(choicesMade);
+	        System.err.println(choicesMade);
 	        System.out.print("\n");
-        }
+//        }
         
 
 		//executeMultiThread(trace, prefix);
