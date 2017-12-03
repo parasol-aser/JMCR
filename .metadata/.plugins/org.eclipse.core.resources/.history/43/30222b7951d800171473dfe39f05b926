@@ -1,0 +1,16 @@
+import java.io.IOException;
+
+public class TestZ3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 ProcessBuilder processBuilder = new ProcessBuilder("z3");
+		 try {
+			processBuilder.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,9 @@
+
+public class TestZ3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 ProcessBuilder processBuilder = new ProcessBuilder("z3");
+	}
+
+}
