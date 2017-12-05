@@ -52,6 +52,12 @@ public class MCRProperties extends Properties {
                 System.err.println("No" + DEFAULT_PROPERTIES);
             }
             
+            //default.property path
+//            System.out.println("Working Directory = " +
+//                    System.getProperty("user.dir"));
+//            String path = this.getClass().toString();
+            
+//            load(MCRProperties.class.getResourceAsStream(DEFAULT_PROPERTIES));
             load(this.getClass().getResourceAsStream(DEFAULT_PROPERTIES));
             // Load user provided properties
             if (propertiesFileLocation != null) {

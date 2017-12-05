@@ -153,6 +153,10 @@ public class RVInstrumentor {
         storePropertyValues(mcrProps.getProperty(MCRProperties.INSTRUMENTATION_CLASSES_ALLOW_PREFIXES_KEY), classPrefixesToAllow);
         storePropertyValues(mcrProps.getProperty(MCRProperties.INSTRUMENTATION_CLASSES_ALLOW_KEY), classesToAllow);
         
+        
+        
+        pckgPrefixesToIgnore.remove("com/google");
+        
         /* @Alan set the memory model */
         String memory_model = System.getProperty("memory_model");
         if (memory_model != null && !memory_model.isEmpty()) {
@@ -194,7 +198,7 @@ public class RVInstrumentor {
                      * instrument the class
                      */
                     if (shouldInstrumentClass(name)) {
-                        System.out.println("Instrumented " + name);
+//                        System.err.println("Instrumented " + name);
                         ClassReader classReader = new ClassReader(bytes); //bytes is the .class we are going to read
                         ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
 

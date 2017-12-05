@@ -22,7 +22,6 @@
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.fastinfoset.util.ContiguousCharArrayArray"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
@@ -41,4 +40,10 @@
 <fullyQualifiedTypeName name="omcr.manager.Manager"/>
 <fullyQualifiedTypeName name="org.junit.internal.runners.statements.Fail"/>
 <fullyQualifiedTypeName name="omcr.garage.GarageTest"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radix.RadixTree"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrenttrees.common.PrettyPrinter"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrenttrees.common.Iterables"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radix.node.concrete.DefaultCharArrayNodeFactory"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radix.node.util.PrettyPrintable"/>
 </qualifiedTypeNameHistroy>
