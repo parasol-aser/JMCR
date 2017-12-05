@@ -1,0 +1,78 @@
+name: ConcurrentLinkedHashMap
+parameters:
+  debug: false
+
+# Global time out for load tests
+timeOut: 86400000 # 1 day in millis
+
+listeners:
+  - com.googlecode.concurrentlinkedhashmap.TestStatusListener
+
+tests:
+  - name: Standard Tests
+    parameters:
+      capacity: 100
+    packages:
+      - name: com.googlecode.concurrentlinkedhashmap
+        exclude:
+          - RingBufferTest
+          - MemoryLeakTest
+          - MultiThreadedTest
+
+  - name: Load Tests
+    parameters:
+      threads: 250
+      statusInterval: 5 # in seconds
+    classes:
+      - com.googlecode.concurrentlinkedhashmap.MemoryLeakTest
+
+  - name: Stress Tests
+    parameters:
+      iterations: 40000
+      capacity: 50000
+      threads: 20
+      timeOut: 30 # in seconds
+    classes:
+      - com.googlecode.concurrentlinkedhashmap.MultiThreadedTest
+
+  - name: Cache Benchmark
+    parameters:
+      initialCapacity: 500000
+      maximumCapacity: 5000
+      concurrencyLevel: 32
+      runId: ""
+      cache:
+        # Guava
+        # ConcurrentHashMap
+        # NonBlockingHashMap
+        # LinkedHashMap_Lru_Sync
+        ConcurrentLinkedHashMap
+    classes:
+      - com.googlecode.concurrentlinkedhashmap.benchmark.CacheBenchmark
+
+  - name: Caliper Benchmark
+    parameters:
+      warmupMillis: 10000
+      runMillis: 5000
+      timeUnit: ns
+    classes:
+      - com.googlecode.concurrentlinkedhashmap.benchmark.GetPutBenchmark
+
+  - name: Efficiency Benchmark
+    parameters:
+      passes: 3
+      capacity: 5000
+      generatorMultipler: 5
+      workingSetMultiplier: 50
+    classes:
+      - com.googlecode.concurrentlinkedhashmap.benchmark.EfficiencyBenchmark
+
+  - name: PerfHash Benchmark
+    parameters:
+      readRatio: 95
+      threadMin: 10
+      threadMax: 100
+      threadIncrement: 10
+      hashTableSize: 1000
+    classes:
+      - com.googlecode.concurrentlinkedhashmap.benchmark.PerfHashBenchmark

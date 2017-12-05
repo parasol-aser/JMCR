@@ -1,5 +1,0 @@
-package concurrent.tests;
-
-public class TestConcurrencyHashMap3 {
-
-}

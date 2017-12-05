@@ -1,7 +1,0 @@
-package concurrent.tests;
-
-public class TestConcurrencyHashMap3 {
-	public static void main(String args[]) {
-		
-	}
-}

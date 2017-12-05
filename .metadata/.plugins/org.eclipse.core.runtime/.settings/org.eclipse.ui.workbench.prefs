@@ -2,7 +2,8 @@
 //org.eclipse.ui.commands/state/org.eclipse.wst.xml.views.XPathView.processor.xpathprocessor/org.eclipse.ui.commands.radioState=xpath10
 ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.jdt.ui.presentation
 ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.jdt.ui.editors.textfont
-PLUGINS_NOT_ACTIVATED_ON_STARTUP=org.eclipse.m2e.discovery;
+PLUGINS_NOT_ACTIVATED_ON_STARTUP=
+UIActivities.org.eclipse.plugInDevelopment=true
 eclipse.preferences.version=1
 org.eclipse.jdt.ui.PropertiesFileEditor.textfont=1|Monaco|12.0|0|COCOA|1|Monaco;
 org.eclipse.jdt.ui.editors.textfont=1|Monaco|14.0|0|COCOA|1|Monaco;
