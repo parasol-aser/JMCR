@@ -1304,3 +1304,307 @@ Caused by: org.codehaus.plexus.util.xml.pull.XmlPullParserException: Unrecognise
 2017-12-04 23:56:51,787 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/stormpot-master/src/main/resources
 2017-12-04 23:56:51,789 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2017-12-04 23:56:51,790 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/stormpot-master/src/test/resources
+2017-12-05 00:07:23,852 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 00:07:23,854 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 00:07:24,890 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 00:07:24,891 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 00:07:25,593 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 00:07:25,593 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/stormpot-master/src/main/resources
+2017-12-05 00:07:25,602 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 00:07:25,602 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/stormpot-master/src/test/resources
+2017-12-05 10:13:35,563 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:13:35,564 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:13:35,566 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:13:35,588 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:14:04,495 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:14:04,496 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:14:04,498 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:14:04,499 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:14:42,308 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:14:42,309 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:14:42,312 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:14:42,313 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:16:17,965 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:16:17,967 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:16:17,969 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:16:17,969 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-05 10:16:37,039 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:16:37,040 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:16:37,041 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:16:37,041 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:16:49,793 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:16:49,793 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:16:49,795 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:16:49,795 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:18:19,290 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:18:19,292 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:18:19,293 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:18:19,295 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:18:30,704 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:18:30,706 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:18:30,716 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:18:30,720 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:18:53,680 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:18:53,680 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:18:53,682 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:18:53,682 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:19:36,076 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:19:36,077 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:19:36,079 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:19:36,080 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:24:54,028 [Worker-41] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/pom.xml.
+2017-12-05 10:24:54,513 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:24:54,513 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:24:55,549 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:24:55,551 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-05 10:24:57,388 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:24:57,388 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:24:57,391 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:24:57,392 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:24:58,830 [Worker-47] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/pom.xml.
+2017-12-05 10:24:59,060 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:24:59,060 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:24:59,421 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:24:59,424 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-05 10:26:29,705 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:26:29,705 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:26:29,709 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:26:29,710 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 10:26:40,531 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:26:40,531 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 10:26:40,534 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 10:26:40,535 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 11:36:15,435 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 11:36:15,438 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 11:36:15,440 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 11:36:15,441 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 11:36:36,786 [Worker-74] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 11:36:36,786 [Worker-74] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 11:36:36,787 [Worker-74] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 11:36:36,789 [Worker-74] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:20:18,906 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:18,907 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:20:18,912 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:18,915 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:20:39,608 [Worker-89] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:39,609 [Worker-89] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:20:39,610 [Worker-89] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:39,611 [Worker-89] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:20:44,045 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:44,045 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:20:44,048 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:44,049 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:20:51,480 [Worker-96] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:51,483 [Worker-96] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:20:51,488 [Worker-96] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:20:51,488 [Worker-96] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:29:25,671 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:29:25,672 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:29:25,674 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:29:25,675 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:29:36,326 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:29:36,326 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:29:36,328 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:29:36,328 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:30:01,026 [Worker-99] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:30:01,027 [Worker-99] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:30:01,028 [Worker-99] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:30:01,029 [Worker-99] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:30:14,481 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:30:14,482 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:30:14,486 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:30:14,487 [Worker-102] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:37:28,197 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:37:28,199 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:37:28,202 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:37:28,204 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:37:34,499 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:37:34,500 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:37:34,501 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:37:34,502 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:38:41,838 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:38:41,839 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:38:41,841 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:38:41,842 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:38:50,061 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:38:50,063 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:38:50,065 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:38:50,066 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:39:12,320 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:39:12,321 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:39:12,322 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:39:12,323 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:39:47,574 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:39:47,578 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:39:47,579 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:39:47,581 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:40:32,455 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:40:32,455 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:40:32,456 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:40:32,457 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:40:36,944 [Worker-104] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:40:36,944 [Worker-104] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:40:36,950 [Worker-104] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:40:36,951 [Worker-104] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:40:42,479 [Worker-106] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:40:42,479 [Worker-106] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:40:42,482 [Worker-106] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:40:42,484 [Worker-106] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 13:43:02,337 [Worker-105] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:43:02,338 [Worker-105] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 13:43:02,340 [Worker-105] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 13:43:02,340 [Worker-105] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:16:00,717 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:16:00,720 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:16:00,721 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:16:00,722 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:16:31,991 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:16:31,993 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:16:31,995 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:16:31,996 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:16:52,124 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:16:52,124 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:16:52,127 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:16:52,128 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:17:01,333 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:01,333 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:17:01,334 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:01,335 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:17:05,076 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:05,077 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:17:05,079 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:05,080 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:17:19,164 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:19,164 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:17:19,165 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:19,166 [Worker-127] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:17:49,358 [Worker-126] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:49,359 [Worker-126] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:17:49,361 [Worker-126] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:49,361 [Worker-126] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:17:55,309 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:55,309 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:17:55,315 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:17:55,316 [Worker-118] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:18:06,485 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:18:06,486 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:18:06,487 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:18:06,488 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:18:22,850 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:18:22,850 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:18:22,852 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:18:22,852 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:20:03,225 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:20:03,227 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:20:03,230 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:20:03,231 [Worker-122] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:20:40,398 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:20:40,401 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:20:40,403 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:20:40,403 [Worker-125] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:25:15,442 [Worker-130] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:25:15,442 [Worker-130] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:25:15,455 [Worker-130] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:25:15,458 [Worker-130] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:25:23,569 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:25:23,569 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:25:23,570 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:25:23,570 [Worker-124] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:32:12,146 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:32:12,147 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:32:12,148 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:32:12,149 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:32:35,556 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:32:35,556 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:32:35,560 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:32:35,561 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:37:34,367 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:37:34,368 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:37:34,370 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:37:34,371 [Worker-133] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:37:49,422 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:37:49,422 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:37:49,424 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:37:49,424 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:37:57,340 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:37:57,340 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:37:57,342 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:37:57,343 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:41:19,120 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:41:19,123 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:41:19,125 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:41:19,127 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:41:27,441 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:41:27,441 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:41:27,442 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:41:27,442 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:41:42,053 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:41:42,054 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:41:42,055 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:41:42,056 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:42:19,763 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:42:19,764 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:42:19,765 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:42:19,765 [Worker-134] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:42:28,664 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:42:28,665 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:42:28,667 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:42:28,668 [Worker-136] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:42:35,014 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:42:35,015 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:42:35,020 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:42:35,021 [Worker-140] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 14:55:49,321 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:55:49,322 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 14:55:49,332 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 14:55:49,333 [Worker-144] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 15:11:21,774 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 15:11:21,775 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 15:11:21,778 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 15:11:21,779 [Worker-139] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-05 15:18:21,162 [Worker-146] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 15:18:21,163 [Worker-146] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-05 15:18:21,225 [Worker-146] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-05 15:18:21,225 [Worker-146] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-08 15:26:44,912 [Worker-800] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 15:26:44,920 [Worker-800] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/menagerie-master/src/main/resources
+2017-12-08 15:26:44,923 [Worker-800] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 15:26:44,976 [Worker-800] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-08 15:26:45,030 [Worker-800] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.objectdriven.maven:maven-zookeeper-plugin:jar:1.0-SNAPSHOT is missing, no dependency information available
+2017-12-08 15:29:38,062 [Worker-797] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 15:29:38,064 [Worker-797] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/menagerie-master/src/main/resources
+2017-12-08 15:29:38,068 [Worker-797] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 15:29:38,069 [Worker-797] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-08 15:29:38,076 [Worker-797] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.objectdriven.maven:maven-zookeeper-plugin:jar:1.0-SNAPSHOT is missing, no dependency information available
+2017-12-08 17:05:36,432 [Worker-837] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repository.jboss.org/nexus/content/groups/public/org/apache/zookeeper/zookeeper/3.3.3/zookeeper-3.3.3-sources.jar
+2017-12-08 17:05:36,571 [Worker-837] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/zookeeper/zookeeper/3.3.3/zookeeper-3.3.3-sources.jar
+2017-12-08 17:05:36,742 [Worker-837] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/zookeeper/zookeeper/3.3.3/zookeeper-3.3.3-sources.jar
+2017-12-08 17:05:36,836 [Worker-837] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.apache.zookeeper:zookeeper:3.3.3
+2017-12-08 17:05:37,239 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 17:05:37,239 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/menagerie-master/src/main/resources
+2017-12-08 17:05:37,240 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 17:05:37,241 [Worker-833] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-08 17:05:37,246 [Worker-833] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.objectdriven.maven:maven-zookeeper-plugin:jar:1.0-SNAPSHOT is missing, no dependency information available
+2017-12-08 18:10:47,539 [Worker-871] INFO  o.e.m.i.discovery.MavenDiscovery - No lifecyle mapping found at jar:file:/var/folders/r9/sv6x0v8j4r145btfhw0npn700000gn/T/RemoteBundleDiscoveryStrategy8718135554725403339.tmp/org.eclipse.m2e.discovery.oss_catalog_1.6.jar_7198470003172870564.jar!/lifecycle%2Forg.eclipse.m2e.discovery.lifecyclemapping.m2e-egit.xml
+2017-12-08 18:10:47,542 [Worker-871] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-egit does not contain lifecycle mapping metadata
+2017-12-08 18:10:47,551 [Worker-871] INFO  o.e.m.i.discovery.MavenDiscovery - No lifecyle mapping found at jar:file:/var/folders/r9/sv6x0v8j4r145btfhw0npn700000gn/T/RemoteBundleDiscoveryStrategy8718135554725403339.tmp/org.eclipse.m2e.discovery.oss_catalog_1.6.jar_7198470003172870564.jar!/lifecycle%2Forg.eclipse.m2e.discovery.lifecyclemapping.m2e-subversive.xml
+2017-12-08 18:10:47,551 [Worker-871] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subversive does not contain lifecycle mapping metadata
+2017-12-08 18:12:13,088 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 18:12:13,088 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-08 18:12:13,091 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 18:12:13,092 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-08 18:17:14,098 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 18:17:14,099 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-08 18:17:14,100 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 18:17:14,101 [Worker-867] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-08 18:17:18,536 [Worker-873] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 18:17:18,536 [Worker-873] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-08 18:17:18,538 [Worker-873] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-08 18:17:18,539 [Worker-873] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-09 23:52:47,806 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/junit/junit/4.12/junit-4.12-sources.jar
+2017-12-09 23:52:47,888 [Worker-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/junit/junit/4.12/junit-4.12-sources.jar
+2017-12-09 23:52:47,946 [Worker-3] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for junit:junit:4.12
+2017-12-09 23:52:48,840 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-09 23:52:48,842 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/stormpot-master/src/main/resources
+2017-12-09 23:52:48,845 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-09 23:52:48,845 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/stormpot-master/src/test/resources

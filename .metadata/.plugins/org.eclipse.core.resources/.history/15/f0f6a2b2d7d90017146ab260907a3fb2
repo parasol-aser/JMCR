@@ -1,0 +1,8 @@
+package com.googlecode.concurrentlinkedhashmap;
+
+public class MCRTest {
+	public MCRTest() {
+		// TODO Auto-generated constructor stub
+	}
+	@Test
+}

@@ -30,7 +30,6 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.lang.Runtime"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -40,10 +39,20 @@
 <fullyQualifiedTypeName name="omcr.manager.Manager"/>
 <fullyQualifiedTypeName name="org.junit.internal.runners.statements.Fail"/>
 <fullyQualifiedTypeName name="omcr.garage.GarageTest"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radix.RadixTree"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.common.PrettyPrinter"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.common.Iterables"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radix.node.concrete.DefaultCharArrayNodeFactory"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radix.node.util.PrettyPrintable"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.ConcurrentTestHarness.TestResult"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.ConcurrentTestHarness"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="net.sf.ehcache.statistics.extended.SemiExpiringStatistic"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap"/>
+<fullyQualifiedTypeName name="org.junit.After"/>
+<fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.MemoryLeakTest"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

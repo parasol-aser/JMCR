@@ -1,4 +1,4 @@
-# List of external plug-in models previously loaded. Timestamp: 1512432428741
+# List of external plug-in models previously loaded. Timestamp: 1512490613825
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/ch.qos.logback.classic_1.0.7.v20121108-1250.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/ch.qos.logback.core_1.0.7.v20121108-1250.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/ch.qos.logback.slf4j_1.0.7.v201505121915.jar
@@ -89,6 +89,7 @@ file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.apache.xml.serialize
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.apache.xmlrpc_3.0.0.v20100427-1100.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.aspectj.runtime_1.8.6.20150608154244.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.aspectj.weaver_1.8.6.20150608154244.jar
+file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.basepom.m2e.mycila-license_1.1.0.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.bibsonomy.texlipseextension_0.1.0.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.aether.api_1.0.1.v20141111.jar
 file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.aether.connector.basic_1.0.1.v20141111.jar

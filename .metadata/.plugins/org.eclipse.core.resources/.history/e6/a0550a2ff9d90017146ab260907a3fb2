@@ -1,0 +1,5 @@
+package mcr.tests;
+
+public class MemoryLeakTest {
+
+}

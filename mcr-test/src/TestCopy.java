@@ -28,6 +28,12 @@ public class TestCopy {
 		v1.toString();
 		System.out.println(v1);
 		
+		String s = "sfd)";
+		System.out.println(s);
+		s.replace(")", "");
+		System.out.println(s);
+		
+		
 	}
 
 }

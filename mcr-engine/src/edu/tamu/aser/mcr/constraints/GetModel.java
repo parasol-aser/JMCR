@@ -81,7 +81,8 @@ public class GetModel
 					if (line.contains(":time")) {
 //						String[] vStrings = line.split("\\s+");
 						String time = line.split("\\s+")[2];
-						float f= Float.valueOf(time);
+						
+						float f= Float.valueOf(time.replace(")", ""));
 						float t = f*1000;
 						Configuration.solveTime += t;
 						break;
@@ -100,7 +101,7 @@ public class GetModel
 					if (line.contains(":time")) {
 //						String[] vStrings = line.split("\\s+");
 						String time = line.split("\\s+")[2];
-						float f= Float.valueOf(time);
+						float f= Float.valueOf(time.replace(")", ""));
 						float t = f*1000;
 						Configuration.solveTime += t;
 						break;

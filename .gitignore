@@ -36,3 +36,9 @@ mcr-*/bin
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# folders
+######################
+z3-osx/
+z3-ubuntu/
+z3
