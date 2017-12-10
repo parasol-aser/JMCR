@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TimeoutTest" project="stormpot-master" tests="17" started="17" failures="0" errors="0" ignored="0">
+  <testsuite name="stormpot.TimeoutTest" time="0.315">
+    <testcase name="differentUnitsForSameValuesGivesSameHashcode" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="timeoutCanBeZeroOrLess" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="timeUnitCannotBeNull" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="timeoutsAreEqualToThemselves" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="specifyingTimeoutInBaseUnitMustDoNoConversion" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="timeoutsAreNotEqualToNull" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="nonBaseValuesMustBeReproducible" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="sameValuesOfDifferentUnitsGivesDifferentHashcode" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="equalTimeoutsMustHaveSameHashCode" classname="stormpot.TimeoutTest" time="0.31"/>
+    <testcase name="timeoutsWithEqualValueButDifferentUnitsAreEqual" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="differentTimeoutValuesAreNotEqual" classname="stormpot.TimeoutTest" time="0.001"/>
+    <testcase name="baseTimeUnitMustNotBeNull" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="sameValueAndUnitGivesSameHashCode" classname="stormpot.TimeoutTest" time="0.001"/>
+    <testcase name="canGetTimeoutInBaseUnit" classname="stormpot.TimeoutTest" time="0.001"/>
+    <testcase name="timeoutValueMustConvertExactlyToBaseUnit" classname="stormpot.TimeoutTest" time="0.001"/>
+    <testcase name="differentValueGivesDifferentHashcode" classname="stormpot.TimeoutTest" time="0.0"/>
+    <testcase name="timeoutsAreNotEqualToObjectsOfDifferentClasses" classname="stormpot.TimeoutTest" time="0.001"/>
+  </testsuite>
+</testrun>

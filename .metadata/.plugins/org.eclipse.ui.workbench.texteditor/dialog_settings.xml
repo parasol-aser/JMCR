@@ -2,18 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="concurrent" key="selection"/>
+		<item value="Z3_PATH" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Z3_PATH"/>
+			<item value="readBuffers"/>
+			<item value="dependen"/>
+			<item value="jun"/>
+			<item value="junit"/>
+			<item value="main"/>
 			<item value="concurrent"/>
 			<item value="Value for &apos;TEST&apos;"/>
-			<item value="thread"/>
-			<item value="google"/>
-			<item value="test5ThreadsNotTooFew"/>
-			<item value="Parameter"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Int"/>

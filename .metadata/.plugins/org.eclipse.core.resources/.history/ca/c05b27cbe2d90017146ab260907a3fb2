@@ -1,0 +1,17 @@
+package mcr.tests;
+
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import edu.tamu.aser.exploration.JUnit4MCRRunner;
+
+@RunWith(JUnit4MCRRunner.class)
+public class MCRTest {
+	public MCRTest() {
+		// TODO Auto-generated constructor stub
+	}
+	@Test
+	public void test(){
+		
+	}
+}

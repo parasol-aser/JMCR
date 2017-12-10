@@ -14,8 +14,8 @@
 	</section>
 	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
 		<item value="480" key="width"/>
-		<item value="400" key="x"/>
-		<item value="83" key="y"/>
+		<item value="1680" key="x"/>
+		<item value="363" key="y"/>
 		<item value="489" key="height"/>
 	</section>
 	<section name="MavenProjectImportWizardPage">
@@ -34,5 +34,11 @@
 			<item value="[groupId].[artifactId]-[version]"/>
 			<item value="[name]"/>
 		</list>
+	</section>
+	<section name="org.eclipse.m2e.editor.dialogs.ManageDependenciesDialog">
+		<item value="1169" key="width"/>
+		<item value="1656" key="x"/>
+		<item value="251" key="y"/>
+		<item value="450" key="height"/>
 	</section>
 </section>

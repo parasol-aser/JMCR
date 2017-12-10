@@ -1,8 +1,0 @@
-unsat
-(error "line 49 column 10: model is not available")
-(:max-memory   0.68
- :memory       0.64
- :num-allocs   3245
- :rlimit-count 380
- :time         0.00
- :total-time   0.01)

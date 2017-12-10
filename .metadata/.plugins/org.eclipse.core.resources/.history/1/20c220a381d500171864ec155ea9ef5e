@@ -1,5 +1,0 @@
-package concurrent.hashmap.tests;
-
-public class CounterTest {
-
-}

@@ -132,6 +132,9 @@ public class RVInstrumentor {
         for (String pckgPrefix : pckgPrefixesToIgnore) {
             //System.out.println(pckgPrefix);
             if (pckgName.startsWith(pckgPrefix)) {
+                if (pckgName.startsWith("com/googlecode")) {
+                    return true;
+                }
                 packagesThatWereNOTInstrumented.add(pckgName);
                 return false;
             }
@@ -155,7 +158,7 @@ public class RVInstrumentor {
         
         
         
-        pckgPrefixesToIgnore.remove("com/google");
+//        pckgPrefixesToIgnore.remove("com/google");
         
         /* @Alan set the memory model */
         String memory_model = System.getProperty("memory_model");
@@ -198,7 +201,7 @@ public class RVInstrumentor {
                      * instrument the class
                      */
                     if (shouldInstrumentClass(name)) {
-//                        System.err.println("Instrumented " + name);
+                        System.err.println("Instrumented " + name);
                         ClassReader classReader = new ClassReader(bytes); //bytes is the .class we are going to read
                         ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
 

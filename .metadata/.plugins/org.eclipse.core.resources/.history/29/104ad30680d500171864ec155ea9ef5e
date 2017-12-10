@@ -1,5 +1,0 @@
-package concurrent.atomic.tests;
-
-public class AtomicReferenceTest {
-
-}
