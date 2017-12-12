@@ -28,7 +28,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
     private static final String EXPLORATION_STATS_FOOTER = "=================================================";
     private static final String EXPLORATION_STATS_HEADER = "=============== EXPLORATION STATS ===============";
 
-    private static final long TIMEOUT_ONE_HOUR_IN_MSEC = 1000L * 60L * 60L;   //20 mins to 60 mins
+    private static final long TIMEOUT_ONE_HOUR_IN_MSEC = 10*1000L * 60L * 60L;   //20 mins to 600 mins
 
     private final static Long timeoutValue = Long.parseLong(MCRProperties.getInstance().getProperty(MCRProperties.EXPLORATION_TIMEOUT_KEY,
             "" + TIMEOUT_ONE_HOUR_IN_MSEC));

@@ -40,3 +40,28 @@ Caused by: java.lang.NullPointerException
 	at com.googlecode.concurrenttrees.mcr.tests.ConcurrentReversedRadixTreeTest.getNodeFactory(ConcurrentReversedRadixTreeTest.java:28)
 	at com.googlecode.concurrenttrees.mcr.tests.ConcurrentReversedRadixTreeTest.<clinit>(ConcurrentReversedRadixTreeTest.java:32)
 	... 5 more
+
+
+#Test 5: concurrentlinkedhashmap.MCRMemoryLeakTest
+
+java.lang.RuntimeException: java.lang.NullPointerException
+        at com.googlecode.concurrentlinkedhashmap.ConcurrentTestHarness$1.run(ConcurrentTestHarness.java:111)
+Caused by: java.lang.NullPointerException
+        at edu.tamu.aser.scheduling.ThreadInfo.releasedLock(ThreadInfo.java:71)
+        at edu.tamu.aser.exploration.Scheduler.performUnlock(Scheduler.java:725)
+        at edu.tamu.aser.rvinstrumentation.RVRunTime.logUnlock(RVRunTime.java:1303)
+        at com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap.tryToDrainBuffers(ConcurrentLinkedHashMap.java:419)
+        at com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap.afterWrite(ConcurrentLinkedHashMap.java:404)
+        at com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap.put(ConcurrentLinkedHashMap.java:727)
+        at com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap.put(ConcurrentLinkedHashMap.java:698)
+        at com.googlecode.concurrentlinkedhashmap.MCRMemoryLeakTest$1.run(MCRMemoryLeakTest.java:74)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+        at com.googlecode.concurrentlinkedhashmap.ConcurrentTestHarness$1.run(ConcurrentTestHarness.java:106)
+
+.Attempting to release lock that has was not acquired
+Not sure about what's wrong here? It should be because some events not captured?
+=============== EXPLORATION STATS ===============
+NUMBER OF SCHEDULES: 1
+EXPLORATION TIME: 0:08:11
+A failure was detected during this exploration!
+=================================================

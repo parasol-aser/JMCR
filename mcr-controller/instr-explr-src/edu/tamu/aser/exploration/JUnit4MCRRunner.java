@@ -72,7 +72,7 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
                 while (Scheduler.canExecuteMoreSchedules()) {
 //                    long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
                     Scheduler.startingScheduleExecution();
-                    System.out.println("======>> Starting Schedule Execution Done!");
+//                    System.out.println("======>> Starting Schedule Execution Done!");
                     JUnit4MCRRunner.super.runChild(method, wrappedNotifier);  //after choosen all the objects
                     if (wrappedNotifier.isTestFailed()) {
                         wrappedNotifier.getFailure().getException().printStackTrace();
@@ -118,7 +118,7 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
         Map<String, Orderings> schedules = collectSchedules();
         
         
-        System.out.println("=======>> runChild !");
+//        System.out.println("=======>> runChild !");
         
         if (!schedules.isEmpty()) {
             for (Entry<String, Orderings> schedule : schedules.entrySet()) {

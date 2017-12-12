@@ -3220,3 +3220,498 @@ org.eclipse.core.runtime.CoreException: Launch configuration MemoryLeakTest refe
 2017-12-11 23:36:55,809 [Worker-456] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
 2017-12-11 23:36:55,810 [Worker-456] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2017-12-11 23:36:55,811 [Worker-456] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:05:17,953 [Worker-490] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:05:17,956 [Worker-490] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-tree/code/src/main/resources
+2017-12-12 10:05:17,969 [Worker-490] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:05:17,971 [Worker-490] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 46 resources
+2017-12-12 10:24:27,878 [Worker-499] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:24:27,880 [Worker-499] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:24:27,882 [Worker-499] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:24:27,884 [Worker-499] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:24:37,887 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:24:37,887 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:24:37,888 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:24:37,889 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:25:29,064 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:25:29,065 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:25:29,065 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:25:29,066 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:26:02,200 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:26:02,200 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:26:02,205 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:26:02,207 [Worker-497] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:26:20,673 [Worker-495] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:26:20,673 [Worker-495] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:26:20,675 [Worker-495] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:26:20,675 [Worker-495] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:54:30,186 [Worker-502] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/pom.xml.
+2017-12-12 10:54:30,681 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:54:30,682 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:54:31,750 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:54:31,753 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 10:54:34,034 [Worker-512] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:54:34,034 [Worker-512] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:54:34,036 [Worker-512] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:54:34,036 [Worker-512] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 10:58:45,794 [Worker-509] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/pom.xml.
+2017-12-12 10:58:46,310 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:58:46,310 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:58:47,567 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:58:47,570 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 10:58:48,638 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:58:48,638 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 10:58:48,641 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 10:58:48,641 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:00:54,140 [Worker-513] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/pom.xml.
+2017-12-12 11:00:54,507 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:00:54,508 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:00:55,534 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:00:55,536 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 11:00:57,701 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:00:57,701 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:00:57,702 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:00:57,702 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:02:57,402 [Worker-513] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/pom.xml.
+2017-12-12 11:02:57,830 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:02:57,830 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:02:58,741 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:02:58,743 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 11:03:00,628 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:03:00,628 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:03:00,631 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:03:00,632 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:06:24,222 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:06:24,226 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:06:24,227 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:06:24,227 [Worker-502] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:06:28,273 [Worker-520] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/pom.xml.
+2017-12-12 11:06:28,620 [Worker-520] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:06:28,621 [Worker-520] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:06:29,582 [Worker-520] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:06:29,585 [Worker-520] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 11:06:31,474 [Worker-519] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:06:31,475 [Worker-519] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:06:31,477 [Worker-519] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:06:31,477 [Worker-519] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:09:29,540 [Worker-509] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/pom.xml.
+2017-12-12 11:09:29,834 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:09:29,834 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:09:30,362 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:09:30,366 [Worker-509] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 11:10:21,839 [Worker-522] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:10:21,840 [Worker-522] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:10:21,842 [Worker-522] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:10:21,843 [Worker-522] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:11:09,131 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:11:09,134 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:11:09,659 [Worker-521] ERROR o.e.m.c.i.embedder.EclipseLogger - Manifest com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:jar:1.4.3-SNAPSHOT : The default package '.' is not permitted by the Import-Package syntax. 
+ This can be caused by compile errors in Eclipse because Eclipse creates 
+valid class files regardless of compile errors.
+The following package(s) import from the default package [com.googlecode.concurrentlinkedhashmap]
+2017-12-12 11:11:09,672 [Worker-521] ERROR o.e.m.c.i.embedder.EclipseLogger - Error(s) found in manifest configuration
+2017-12-12 11:11:09,674 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:11:09,674 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:14:02,395 [Worker-523] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/pom.xml.
+2017-12-12 11:14:02,571 [Worker-523] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.cachebench:cache-benchmark:jar:r7903 is missing, no dependency information available
+2017-12-12 11:14:02,731 [Worker-523] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /concurrentlinkedhashmap-master/src/main/java
+2017-12-12 11:14:02,737 [Worker-523] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /concurrentlinkedhashmap-master/src/test/java
+2017-12-12 11:14:02,737 [Worker-523] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /concurrentlinkedhashmap-master/src/test/resources
+2017-12-12 11:14:04,399 [Worker-523] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 2 sec
+2017-12-12 11:14:04,616 [Worker-525] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.cachebench:cache-benchmark:jar:r7903 is missing, no dependency information available
+2017-12-12 11:14:04,632 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:14:04,633 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:14:04,641 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:14:04,642 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:14:37,098 [Worker-513] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:1.4.3-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/pom.xml.
+2017-12-12 11:14:37,329 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:14:37,329 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:14:37,433 [Worker-513] WARN  o.e.m.c.i.embedder.EclipseLogger - Manifest com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:jar:1.4.3-SNAPSHOT : Unused Private-Package instructions, no such package(s) on the class path: [!*]
+2017-12-12 11:14:37,434 [Worker-513] WARN  o.e.m.c.i.embedder.EclipseLogger - Manifest com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:jar:1.4.3-SNAPSHOT : Unused Export-Package instructions: [com.googlecode.concurrentlinkedhashmap.*] 
+2017-12-12 11:14:37,435 [Worker-513] WARN  o.e.m.c.i.embedder.EclipseLogger - Manifest com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:jar:1.4.3-SNAPSHOT : Unused Import-Package instructions: [sun.misc.*] 
+2017-12-12 11:14:37,435 [Worker-513] WARN  o.e.m.c.i.embedder.EclipseLogger - Manifest com.googlecode.concurrentlinkedhashmap:concurrentlinkedhashmap-lru:jar:1.4.3-SNAPSHOT : The JAR is empty: The instructions for the JAR named com.googlecode.concurrentlinkedhashmap.lru did not cause any content to be included, this is likely wrong
+2017-12-12 11:14:37,451 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:14:37,451 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 11:14:39,101 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:14:39,101 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:14:39,102 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:14:39,102 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:15:17,228 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:15:17,230 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:15:17,232 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:15:17,232 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:15:41,160 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:15:41,161 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:15:41,164 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:15:41,164 [Worker-525] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:16:35,885 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:16:35,886 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:16:35,888 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:16:35,888 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:17:10,041 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:17:10,041 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:17:10,043 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:17:10,043 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:19:07,780 [Worker-524] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:19:07,781 [Worker-524] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:19:07,782 [Worker-524] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:19:07,782 [Worker-524] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:19:26,328 [Worker-526] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:19:26,328 [Worker-526] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 11:19:26,330 [Worker-526] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:19:26,331 [Worker-526] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:30:25,356 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:30:25,357 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:30:25,358 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:30:25,359 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:31:50,409 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:31:50,410 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:31:50,415 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:31:50,416 [Worker-521] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:33:22,046 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:33:22,047 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:33:22,051 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:33:22,052 [Worker-513] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 11:34:44,562 [Worker-532] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:34:44,562 [Worker-532] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 11:34:44,565 [Worker-532] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 11:34:44,566 [Worker-532] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 13:00:20,081 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:00:20,084 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 13:00:20,089 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:00:20,098 [Worker-552] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 13:07:07,382 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:07:07,382 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master/src/main/resources
+2017-12-12 13:07:07,384 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:07:07,387 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 13:07:07,918 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:07:07,918 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 13:07:07,921 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:07:07,922 [Worker-545] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2017-12-12 13:09:07,069 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRMemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRMemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:309) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,073 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRMemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRMemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:310) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,076 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRMemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRMemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager.launchConfigurationChanged(LaunchManager.java:2166) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.writeNewFile(LaunchConfigurationWorkingCopy.java:384) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave0(LaunchConfigurationWorkingCopy.java:250) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:220) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:173) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:311) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,077 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:309) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,078 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:310) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,081 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager.launchConfigurationChanged(LaunchManager.java:2166) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.writeNewFile(LaunchConfigurationWorkingCopy.java:384) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave0(LaunchConfigurationWorkingCopy.java:250) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:220) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:173) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:311) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,083 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:309) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,084 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:310) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,086 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MemoryLeakTest references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager.launchConfigurationChanged(LaunchManager.java:2166) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.writeNewFile(LaunchConfigurationWorkingCopy.java:384) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave0(LaunchConfigurationWorkingCopy.java:250) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:220) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:173) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:311) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,087 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRMultiThreadedTest (1) references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRMultiThreadedTest (1) references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:309) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,088 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRMultiThreadedTest (1) references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRMultiThreadedTest (1) references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setDirty(LaunchConfigurationWorkingCopy.java:552) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.setAttribute(LaunchConfigurationWorkingCopy.java:425) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:310) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:09:07,091 [Worker-545] ERROR o.e.m.j.i.l.MavenLaunchConfigurationListener - Launch configuration MCRMultiThreadedTest (1) references non-existing project concurrentlinkedhashmap-master.
+org.eclipse.core.runtime.CoreException: Launch configuration MCRMultiThreadedTest (1) references non-existing project concurrentlinkedhashmap-master.
+	at org.eclipse.jdt.launching.JavaRuntime.abort(JavaRuntime.java:1408) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.jdt.launching.JavaRuntime.getJavaProject(JavaRuntime.java:1283) ~[org.eclipse.jdt.launching_3.8.0.v20150527-0946.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.updateLaunchConfiguration(MavenLaunchConfigurationListener.java:53) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.launchConfigurationChanged(MavenLaunchConfigurationListener.java:38) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:229) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42) [org.eclipse.equinox.common_3.7.0.v20150402-1709.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:209) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchManager.launchConfigurationChanged(LaunchManager.java:2166) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.writeNewFile(LaunchConfigurationWorkingCopy.java:384) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave0(LaunchConfigurationWorkingCopy.java:250) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:220) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.doSave(LaunchConfigurationWorkingCopy.java:173) [org.eclipse.debug.core_3.10.0.v20150303-1130.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:311) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenRuntimeClasspathProvider.disable(MavenRuntimeClasspathProvider.java:335) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.jdt.internal.launch.MavenLaunchConfigurationListener.mavenProjectChanged(MavenLaunchConfigurationListener.java:70) [org.eclipse.m2e.jdt_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.notifyProjectChangeListeners(ProjectRegistryManager.java:783) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.applyMutableProjectRegistry(ProjectRegistryManager.java:930) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:98) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob$1.call(ProjectRegistryRefreshJob.java:1) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1355) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob.run(ProjectRegistryRefreshJob.java:81) [org.eclipse.m2e.core_1.7.0.20160603-1933.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.7.0.v20150330-2103.jar:na]
+2017-12-12 13:16:46,905 [Worker-552] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.github.chrisvest:stormpot:3.0-SNAPSHOT @ /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/pom.xml.
+2017-12-12 13:16:47,042 [Worker-552] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /mcr-test-concurrent-objectPool/src/main/java
+2017-12-12 13:16:47,043 [Worker-552] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /mcr-test-concurrent-objectPool/src/test/java
+2017-12-12 13:16:47,084 [Worker-552] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 0 sec
+2017-12-12 13:16:47,912 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:16:47,912 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-tree/code/src/main/resources
+2017-12-12 13:16:48,459 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:16:48,466 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 46 resources
+2017-12-12 13:16:48,675 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:16:48,675 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap/src/main/resources
+2017-12-12 13:16:48,677 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:16:48,677 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-12 13:16:49,726 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:16:49,727 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2017-12-12 13:16:49,729 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:16:49,729 [Worker-558] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2017-12-12 13:24:03,511 [Worker-561] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:24:03,512 [Worker-561] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2017-12-12 13:24:03,514 [Worker-561] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:24:03,514 [Worker-561] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2017-12-12 13:28:23,683 [Worker-563] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:28:23,685 [Worker-563] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2017-12-12 13:28:23,686 [Worker-563] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:28:23,686 [Worker-563] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2017-12-12 13:36:29,618 [Worker-566] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:36:29,619 [Worker-566] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2017-12-12 13:36:29,620 [Worker-566] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-12 13:36:29,620 [Worker-566] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
