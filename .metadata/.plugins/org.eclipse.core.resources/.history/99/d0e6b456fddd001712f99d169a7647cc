@@ -1,0 +1,10 @@
+
+public class ForTest {
+	
+	int x;
+	
+	public void set(int x){
+		this.x= x;
+	}
+	
+}

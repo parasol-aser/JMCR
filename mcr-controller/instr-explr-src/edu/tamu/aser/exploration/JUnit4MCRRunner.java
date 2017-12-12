@@ -72,6 +72,7 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
                 while (Scheduler.canExecuteMoreSchedules()) {
 //                    long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
                     Scheduler.startingScheduleExecution();
+                    System.out.println("======>> Starting Schedule Execution Done!");
                     JUnit4MCRRunner.super.runChild(method, wrappedNotifier);  //after choosen all the objects
                     if (wrappedNotifier.isTestFailed()) {
                         wrappedNotifier.getFailure().getException().printStackTrace();
@@ -115,6 +116,9 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
         this.currentTestNotifier = notifier;
         Trace.appname = method.getMethod().getDeclaringClass().getName();
         Map<String, Orderings> schedules = collectSchedules();
+        
+        
+        System.out.println("=======>> runChild !");
         
         if (!schedules.isEmpty()) {
             for (Entry<String, Orderings> schedule : schedules.entrySet()) {
@@ -220,10 +224,10 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
         }
         
         //why write it twice here??
-        Schedule schAnno = currentTestMethod.getAnnotation(Schedule.class);
-        if (schAnno != null) {
-            collectSchedule(schAnno, schedules);
-        }
+//        Schedule schAnno = currentTestMethod.getAnnotation(Schedule.class);
+//        if (schAnno != null) {
+//            collectSchedule(schAnno, schedules);
+//        }
         return schedules;
     }
 

@@ -900,6 +900,11 @@ public class RVRunTime {
 	    
 
 	    Trace trace = MCRStrategy.getTrace();
+	    if (trace ==null) {
+	        //when the tested class contains some initializations
+	        //the trace is null when mcr is run from the terminal
+            return;
+        }
 //	    while(trace == null){
 //	        try {
 //                Thread.sleep(100);

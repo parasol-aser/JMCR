@@ -1,0 +1,42 @@
+
+#Test 1:ConcurrentRadixTreeTest
+status: success
+
+=============== EXPLORATION STATS ===============
+NUMBER OF SCHEDULES: 78
+EXPLORATION TIME: 0:00:44
+=================================================
+
+#Test 2:ConcurrentSuffixTreeTest
+status: success
+
+=============== EXPLORATION STATS ===============
+NUMBER OF SCHEDULES: 189
+EXPLORATION TIME: 1:00:00
+A timeout has occurred after 1:00:00
+=================================================
+
+#Test 3:ConcurrentInvertedRadixTreeTest
+status: success
+
+
+=============== EXPLORATION STATS ===============
+NUMBER OF SCHEDULES: 78
+EXPLORATION TIME: 0:00:44
+=================================================
+
+
+#Test 4:ConcurrentReversedRadixTreeTest
+status: failed
+
+java.lang.ExceptionInInitializerError
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:86)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+Caused by: java.lang.NullPointerException
+	at edu.tamu.aser.rvinstrumentation.RVRunTime.logFieldAcc(RVRunTime.java:868)
+	at com.googlecode.concurrenttrees.mcr.tests.ConcurrentReversedRadixTreeTest.getNodeFactory(ConcurrentReversedRadixTreeTest.java:28)
+	at com.googlecode.concurrenttrees.mcr.tests.ConcurrentReversedRadixTreeTest.<clinit>(ConcurrentReversedRadixTreeTest.java:32)
+	... 5 more

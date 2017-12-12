@@ -24,7 +24,7 @@ public class ConstraintsSolving
 {
 	protected static String SMT = ".smt";
 	protected static String OUT = ".smtout";
-	protected static String Z3_PATH = "../z3-osx/bin/z3";       //the path of z3
+	protected static String Z3_PATH = "/usr/local/bin/z3";       //the path of z3
 	
 	private String OS = System.getProperty("os.name").toLowerCase();
 
@@ -72,11 +72,11 @@ public class ConstraintsSolving
         boolean inQuote = false;
         CMD = new ArrayList<>();
         
-        if (OS.indexOf("mac") >= 0) {
-        	Z3_PATH = "../z3-osx/bin/z3";
-		} else {
-			Z3_PATH = "../z3-ubuntu/bin/z3";
-		}
+//        if (OS.indexOf("mac") >= 0) {
+//        	Z3_PATH = "../z3-osx/bin/z3";
+//		} else {
+//			Z3_PATH = "../z3-ubuntu/bin/z3";
+//		}
         
         CMD.add(Z3_PATH);
         for(String arg: quotes){
