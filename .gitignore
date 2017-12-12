@@ -42,3 +42,7 @@ Thumbs.db
 z3-osx/
 z3-ubuntu/
 z3
+bench_mcr/
+mcr-test-concurrent-tree/
+mcr-test-concurrent-linkedHashMap/
+mcr-test-concurrent-objectPool/

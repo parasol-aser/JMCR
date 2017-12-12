@@ -1,0 +1,5 @@
+package com.googlecode.concurrentlinkedhashmap;
+
+public class MCRConcurrentMapTest {
+
+}

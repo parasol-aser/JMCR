@@ -2,8 +2,13 @@ package edu.tamu.aser.rvtest_simple_tests;
 
 import static org.junit.Assert.*;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.sun.org.apache.bcel.internal.generic.StackInstruction;
 
 import edu.tamu.aser.exploration.JUnit4MCRRunner;
 
@@ -13,6 +18,9 @@ public class Example {
 	private static int x, y;
 	static int a,b;
 	//private static Object lock = new Object();
+	
+//	static ReLock reLock = new ReLock();
+	static int s = 0;
 
 	public static void main(String[] args) {
 		Thread t1 = new Thread(new Runnable() {
