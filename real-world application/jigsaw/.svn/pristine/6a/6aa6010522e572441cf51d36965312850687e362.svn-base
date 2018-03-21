@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>ProtocolFrame.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// ProtocolFrame.java
+// $Id: ProtocolFrame.html,v 1.1 2010/06/15 12:20:06 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="type">resources</span> ;
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">ProtocolFrame</span> <span class="keyword">extends</span> <span class="type">ResourceFrame</span> {}
+
+    </pre>
+  </body>
+</html>

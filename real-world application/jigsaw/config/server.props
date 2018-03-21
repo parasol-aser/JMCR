@@ -1,0 +1,5 @@
+org.w3c.jigsaw.daemon.handlers=http-server
+http-server.org.w3c.jigsaw.daemon.class=org.w3c.jigsaw.http.httpd
+#admin-server.org.w3c.jigsaw.daemon.class=org.w3c.jigsaw.admin.AdminServer
+#|admin-server
+

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.2 Strict//EN">
+<HTML>
+  <HEAD>
+    <link rel="stylesheet" type="text/css" href="style/jigsaw.css">
+    </style>
+    <TITLE>Jigsaw Overview</TITLE>
+  </HEAD>
+  <BODY BGCOLOR="white">
+    <P>
+      <A href="../"><IMG BORDER="0" SRC="/icons/WWW/w3c_home"
+	  ALT="W3C" WIDTH="72" HEIGHT="48">
+      </A><IMG BORDER="0" SRC="/icons/jigsaw" WIDTH="212" HEIGHT="49"
+	ALT="Jigsaw"> 
+    <H1 class="title">
+      Jigsaw Overview
+    </H1>
+    <HR noshade width="70%" align="left">
+    
+    <P>
+      This is your home page, served by <b>Jigsaw</b> !
+    <p> You can edit it as the file
+      <CODE>&lt;INSTDIR&gt;/Jigsaw/Jigsaw/WWW/Overview.html</CODE>.
+    <P>
+      For further questions, comments, criticisms, a
+      <A HREF="mailto:www-jigsaw@w3.org">mailing list</A> is
+      available, to subscribe send email to <A
+	HREF="mailto:www-jigsaw-request@w3.org">
+	www-jigsaw-request@w3.org</A> with the word <I>subscribe</I>
+      in the subject. Before posting, you're welcome to check the
+      <A HREF="http://lists.w3.org/Archives/Public/www-jigsaw/threads.html">
+	mailing list archive</A>.
+    <p> 
+    <H2>
+      Configuring the server
+    </H2>
+    <P>
+      As of 2.0.0, <B>Jigsaw</B>'s configuration is handled through
+      a full-blown Java application named <B>JigAdmin</B>. To run that
+      application, run the following commands:
+      <DIV class="box">
+      <PRE style="font-family: Helvetica; font-size: 10pt">Windows
+          set CLASSPATH=&lt;INSTDIR&gt;\Jigsaw\classes\jigsaw.jar;&lt;INSTDIR&gt;\Jigsaw\classes\jigadmin.jar;&lt;INSTDIR&gt;\Jigsaw\classes\sax.jar;&lt;INSTDIR&gt;\Jigsaw\classes\xp.jar;.
+          java org.w3c.jigadmin.Main -root &lt;INSTDIR&gt;\Jigsaw\Jigsaw http://<I>yourmachine</I>:8009/
+
+Unix
+          export CLASSPATH=&lt;INSTDIR&gt;/Jigsaw/classes/jigsaw.jar:&lt;INSTDIR&gt;/Jigsaw/classes/jigadmin.jar:&lt;INSTDIR&gt;/Jigsaw/classes/&lt;INSTDIR&gt;/Jigsaw/classes/sax.jar:&lt;INSTDIR&gt;/Jigsaw/classes/xp.jar:.
+          java org.w3c.jigadmin.Main -root &lt;INSTDIR&gt;/Jigsaw/Jigsaw http://<I>yourmachine</I>:8009/</PRE></DIV>
+    <p> If you still use the old JigAdmin with the
+      following commands:
+      <DIV class="box">
+      <PRE style="font-family: Helvetica; font-size: 10pt">Windows
+          set CLASSPATH=&lt;INSTDIR&gt;\Jigsaw\classes\jigsaw.jar;&lt;INSTDIR&gt;/Jigsaw/classes/sax.jar;&lt;INSTDIR&gt;/Jigsaw/classes/xp.jar;.
+          java org.w3c.jigadm.Main -root &lt;INSTDIR&gt;\Jigsaw\Jigsaw http://<I>yourmachine</I>:8009/
+      
+Unix
+          export CLASSPATH=&lt;INSTDIR&gt;/Jigsaw/classes/jigsaw.jar:&lt;INSTDIR&gt;/Jigsaw/classes/sax.jar:&lt;INSTDIR&gt;/Jigsaw/classes/xp.jar
+          java org.w3c.jigadm.Main -root &lt;INSTDIR&gt;/Jigsaw/Jigsaw http://<I>yourmachine</I>:8009/</PRE></DIV>
+    <P>
+    <H2>
+      More Infos
+    </H2>
+    <UL>
+      <LI>
+	<A HREF="/Doc/">Jigsaw User's Guide</A>
+      <LI>
+	<A HREF="RelNotes.html">Latest Release Notes</A>
+      <LI>
+	<A HREF="http://www.w3.org/Jigsaw/">Jigsaw's home page
+	</A>(remote)
+      <LI>
+	<A HREF="http://jigsaw.w3.org/">Demo site</A> (remote)
+    </UL>
+    <P>
+    <HR noshade>
+    Enjoy !<BR>
+    <A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A>
+  </BODY>
+</HTML>

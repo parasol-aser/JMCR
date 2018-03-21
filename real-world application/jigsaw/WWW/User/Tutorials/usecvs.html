@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>CVS tutorial</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home" WIDTH="72" HEIGHT="48"
+    BORDER="0"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" BORDER="0" WIDTH="212" HEIGHT="49"></A>
+<H1>
+  Editing your web site with Jigsaw
+</H1>
+<P>
+This tutorial is devoted to collaborative editing of your web site through
+<B>Jigsaw</B>. The tools described here are still undergoing test, but as
+of today, it has been used to edit entirely <B>Jigsaw</B>'s documentation.
+<P>
+The basic guideline for that project is to <I>avoid</I> reinventing the weel,
+by reusing an existing revision control system, namely cvs. The set of resources
+described here act as a front end to that tool, and assume a particular
+organization of your web site.
+<P>
+Before reading further, you should be familiar with:
+<DL>
+  <DT>
+    cvs
+  <DD>
+    GNU's Revision Control System.
+  <DT>
+    Jigsaw admin
+  <DD>
+    The configuration process of <B>Jigsaw</B>. You should at least have a good
+    understanding of the <A HREF="configuration.html">configuration tutorial</A>.
+</DL>
+<H2>
+  The basic model
+</H2>
+<P>
+As we rely as much as possible on CVS, this first section explains how your
+website has to be organized in order to support <B>Jigsaw</B>'s editing
+capabilities.
+<P>
+The idea is for the server space (ie documents served by the server) to be
+one "local" cvs space, corresponding to the state of the CVS repository at
+<I>publish</I> time. Each user that has authoring access to the site also
+has its own "local" space, following CVS conventions. A typicall setting
+would be for example:
+<DL>
+  <DT>
+    /usr/local/jigsaw/WWW
+  <DD>
+    To be a checkeout module of CVS, used by the server to serve documents
+  <DT>
+    ~fred/WWW
+  <DD>
+    The "local" CVS space of user <I>fred</I>.
+  <DT>
+    ~joe/WWW
+  <DD>
+    The "local" CVS space of user <I>joe</I>.
+</DL>
+<P>
+Two instances of <B>Jigsaw</B> are run: one for editing each user's local
+space - we will call it <B>JigEdit</B><I> </I>in the rest of that document,
+and the main "public" one for serving the server space. The rest of this
+documents describe the tools to be used on <B>JigEdit</B> (the public server
+is just a normal server, it can even not be <B>Jigsaw</B>).
+<P>
+The tools described here provide a mean for each user to keep track of the
+documents he/she has edited, to <I>publish</I> them to the public server
+(by cvs updating it's space), and to run any CVS command through a form based
+interface.
+<H2>
+  Setting up JigEdit
+</H2>
+<P>
+<B>Jigsaw</B> comes with three tools to support collaborative editing:
+<DL>
+  <DT>
+    A CVS front end
+    (<A HREF="../Reference/w3c.jigsaw.cvs.CvsDirectoryResource.html">w3c.jigsaw.cvs.CvsDirectoryResource</A>)
+  <DD>
+    A single resource, that provides a full featured form based CVS interface
+  <DT>
+    A AutoLookupDirectory
+    (<A HREF="../Reference/w3c.jigsaw.cvs.AutoLookupDirectory.html">w3c.jigsaw.cvs.AutoLookupDirectory</A>)
+  <DD>
+    That will checkout on-the-fly appropriate directories in particular user's
+    space.
+  <DT>
+    The PutFilter
+    (<A HREF="../Reference/w3c.jigsaw.filters.PutList.html">w3c.jigsaw.filters.PutFilter</A>)
+  <DD>
+    That will keep track of the documents edited by one user, but which have
+    not yet been <I>published</I>.
+</DL>
+<P>
+When working in conjunction, these resources and filters provide a way for
+each user to edit its own copy of the web site, and to publish (potentially
+later on) a set of ready-for-delivery documents.
+<P>
+To set <B>JigEdit</B> up, the first step is to create a directory template,
+mapping all <CODE>CVS</CODE> directories to the CvsDirectoryResource. To
+do this, go to /Admin/Directories, and create a non-generic directory template
+for directories named <CODE>CVS</CODE>; map them to the
+<CODE>w3c.jigsaw.cvs.CvsDirectoryResource</CODE> class.
+<P>
+Once this is done, you need to <I>register</I> authoring users to
+<B>JigEdit</B>. To do so, you must first export their local space to
+<B>JigEdit</B>, the best way is to use a
+<A HREF="../Reference/w3c.jigsaw.resources.PassDirectory.html">w3c.jigsaw.resources.PassDirectory
+</A>resource. 
+<P>
+Then for each user, create an instance of the PutListResource
+(<A HREF="../Reference/w3c.jigsaw.filters.PutListResource.html">w3c.jigsaw.filters.PutListResource</A>)
+to keep track of their edits. This resource is fed by the PutList filter
+(<A HREF="../Reference/w3c.jigsaw.filters.PutFilter.html">w3c.jigsaw.filters.PutFilter</A>),
+that you should plug on each user's top resource. The PutFilter communicates
+with the PutListResource, by getting its URL from the <CODE>put-list</CODE>
+attribute (which should provide the absolute path of the PutListResource
+that handles that user's put list).
+<P>
+  <HR>
+<P>
+<P>
+<P>
+<P>
+<P>
+<P>
+</BODY></HTML>

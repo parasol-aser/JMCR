@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jigxml version="1.0" xmlns="http://jigsaw.w3.org/JigXML/JigXML1.0">
+ <resource class='org.w3c.tools.resources.store.ResourceStoreState'>
+  <attribute name='rskey' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>27</attribute>
+ </resource>
+</jigxml>

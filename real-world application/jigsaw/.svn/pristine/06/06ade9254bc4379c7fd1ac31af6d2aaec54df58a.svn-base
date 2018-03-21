@@ -1,0 +1,185 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Template for administration documentation of resources</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+<IMG SRC="/icons/WWW/w3c_home.gif" ALT="W3C" BORDER="0" WIDTH="72"
+    HEIGHT="48"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  ProxyProp
+</H1>
+<P>
+This class provides editable access to the client-side HTTP API that
+<B>Jigsaw</B> uses to proxy requests.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.proxy.ProxyProp.html">ProxyProp</A> class
+inherits from the following classes:
+<UL>
+  <LI>
+    PropertySet (aka abstract class)
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.proxy.ProxySet.html">ProxyProp</A> defines
+the following attributes:
+<UL>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.filters">w3c.www.protocol.http.filters</A>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.connections.max">w3c.www.protocol.http.connections.max</A>
+  <LI>
+    <A HREF="#proxySet">proxySet</A>
+  <LI>
+    <A HREF="#proxyHost">proxyHost</A>
+  <LI>
+    <A HREF="#proxyPort">proxyPort</A>
+</UL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.www.protocol.http.filters">w3c.www.protocol.http.filters</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The list of filters you want to run on the client side HTTP API. A filter
+    is a class then can catch requests before they leave the proxy and get replies
+    has they come back. The currently available filters available for the proxy
+    is:
+    <DL>
+      <DT>
+	w3c.www.protocol.http.cache.CacheFilter
+      <DD>
+	A filter that provides HTTP/1.1 caching.
+      <DT>
+	w3c.www.protocol.http.DebugFilter
+      <DD>
+	A filter that will dump outgoing requests and incoming replies to the standard
+	output.
+    </DL>
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.tools.store.StringArrayAttribute.html">StringArrayAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value. <B>It is highly recommended that you
+    use at least the </B><I>w3c.www.protocol.http.cache.CacheFilter</I> <B>filter
+    to provide caching functionality</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.www.protocol.http.connections.max">w3c.www.protocol.http.connections.max</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The maximum number of connections the client side API is allowed to use to
+    external servers.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.tools.store.IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <STRONG>5</STRONG>. It should be set according
+    to the number of expected users of the proxy. The default value is intended
+    for at most two users.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="proxySet">proxySet</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Indicates to use another proxy instead of going to origin servers. The proxy
+    to use is defined by <A HREF="#proxyHost">proxyHost</A> and
+    <A HREF="#proxyPort">proxyPort</A>.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.tools.store.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <STRONG>false</STRONG>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="proxyHost">proxyHost</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When the <A HREF="#proxySet">proxySet</A> flag is set to
+    <STRONG>true</STRONG>, this attribute indicates the internet name of the
+    proxy to use.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults <STRONG>null</STRONG> and should be set along with
+    <A HREF="#proxySet">proxySet</A>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="proxyPort">proxyPort</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When the proxySet flag is set to <STRONG>true</STRONG>, this attribute indicates
+    the port number on which the intermediate proxy is listening.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.toole.store.IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value, and should be set along with
+    <A HREF="#proxySet">proxySet</A>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.proxy.ProxyProp.html,v 1.1 1996/09/25 14:23:14 abaird
+Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

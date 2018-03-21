@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>ResourceFrame.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// ResourceFrame.java
+// $Id: ResourceFrame.html,v 1.1 2010/06/15 12:20:07 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="type">resources</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.* ;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.* ;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="reference">event</span>.*;
+
+<span class="comment">/**
+ * The resource frame class. A ResourceFrame can be attached to a
+ * resource.
+ */</span>
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">ResourceFrame</span> <span class="keyword">extends</span> <span class="type">FramedResource</span> 
+    <span class="keyword">implements</span> <span class="type">AttributeChangedListener</span>
+{
+
+    <span class="comment">/**
+     * Our FrameEventListener.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">transient</span> <span class="type">FrameEventListener</span> <span class="variable-name">frameListener</span> = <span class="keyword">null</span>;
+
+    <span class="comment">/**
+     * Our target resource.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">FramedResource</span> <span class="variable-name">resource</span> = <span class="keyword">null</span>;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span>   = <span class="keyword">null</span> ;
+	<span class="type">Class</span>     <span class="variable-name">cls</span> = <span class="keyword">null</span> ;
+	<span class="comment">// Get a pointer to our own class:
+</span>	<span class="keyword">try</span> {
+	    cls  = Class.forName("<span class="string">org.w3c.tools.resources.ResourceFrame</span>") ;
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace() ;
+	    System.exit(1) ;
+	}
+    }
+
+    <span class="comment">/**
+     * Get the file part of the URL this resource is attached to.
+     * </span><span class="keyword">@return </span><span class="comment">An URL object specifying the location in the information 
+     *    space of this resource.
+     */</span>
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getURLPath</span>() {
+	<span class="keyword">return</span> getString(ATTR_URL, getResource().getURLPath()) ;
+    }
+
+    <span class="comment">/**
+     * Get the space entry for that resource. This Object is use to
+     * retrieve the resource in the resource space.
+     * A ResourceFrame has no SpaceEntry.
+     * </span><span class="keyword">@return </span><span class="comment">always null.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">SpaceEntry</span> <span class="function-name">getSpaceEntry</span>() {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+    <span class="string">private</span> <span class="type">ResourceReference</span> <span class="variable-name">self</span> = <span class="keyword">null</span>;
+    <span class="comment">/**
+     * Get The FrameReference of this frame, or &lt;strong&gt;null&lt;/strong&gt;
+     * if this frame is not registered.
+     * </span><span class="keyword">@return </span><span class="comment">A ResourceReference instance.
+     */</span>
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">getFrameReference</span>() {
+	<span class="keyword">if</span> ((self == <span class="keyword">null</span>) &&  (resource != <span class="keyword">null</span>)) {
+	    self = resource.getFrameReference(<span class="reference">this</span>);
+	}
+	<span class="keyword">return</span> self;
+    }
+
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">getResourceReference</span>() {
+	<span class="keyword">return</span> getFrameReference();
+    }
+  
+    <span class="comment">/**
+     * If our target resource has some children, we could have
+     * some attribute to give to them.
+     * </span><span class="keyword">@param </span><span class="variable-name">attrs</span><span class="comment"> A Hashtable.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">void</span> <span class="function-name">updateDefaultChildAttributes</span>(<span class="type">Hashtable</span> <span class="variable-name">attrs</span>) {
+	<span class="comment">//nothing here
+</span>    }
+
+    <span class="comment">/**
+     * Check if this kind of request can be perform by this resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> A RequestInterface instance
+     * </span><span class="keyword">@return </span><span class="comment">a boolean.
+     */</span>
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">checkRequest</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>) {
+	<span class="keyword">return</span> <span class="keyword">true</span>;
+    }
+
+    <span class="comment">/**
+     * FIXME doc
+     */</span> 
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">perform</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>, <span class="type">NotAProtocolException</span>
+	{
+	    <span class="keyword">return</span> <span class="reference">super</span>.perform(request);
+	}
+
+    <span class="comment">/**
+     * FIXME doc
+     */</span> 
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">lookup</span>(<span class="type">LookupState</span> <span class="variable-name">ls</span>, <span class="type">LookupResult</span> <span class="variable-name">lr</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+	{
+	    <span class="comment">//FIXME does a frame can have frames other than filters?
+</span>	    <span class="comment">//exclude filters?
+</span>	    <span class="type">ResourceFrame</span> <span class="variable-name">frames</span>[] = getFrames();
+	    <span class="keyword">if</span> (frames != <span class="keyword">null</span>) {
+		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable-name">i</span> = 0 ; i < frames.length ; i++) {
+		    <span class="keyword">if</span> (frames[i] == <span class="keyword">null</span>)
+			<span class="keyword">continue</span>;
+		    <span class="keyword">if</span> (frames[i].lookup(ls,lr))
+			<span class="keyword">return</span> <span class="keyword">true</span>;
+		}
+	    }
+	    <span class="comment">//
+</span>	    <span class="comment">// FIXME unuseful.
+</span>	    <span class="comment">//
+</span>	    <span class="keyword">if</span> ( ls.hasMoreComponents() ) {
+		<span class="comment">// We are not a container resource, and we don't have children:
+</span>		lr.setTarget(<span class="keyword">null</span>);
+		<span class="keyword">return</span> <span class="keyword">false</span>;
+	    } <span class="keyword">else</span> {
+		<span class="comment">// We are done !
+</span>		<span class="comment">//    org.w3c.util.Trace.showTrace("lookup done : "+
+</span>		<span class="comment">//		    this+", "+resource.getResourceReference());
+</span>		lr.setTarget(resource.getResourceReference());
+		<span class="keyword">return</span> <span class="keyword">true</span>;
+	    }
+	}
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">processEvent</span>(<span class="type">ResourceEvent</span> <span class="variable-name">evt</span>) {
+	<span class="keyword">if</span> (evt <span class="keyword">instanceof</span> <span class="type">FrameEvent</span>) {
+	    fireFrameEvent((<span class="type">FrameEvent</span>)evt);
+	} <span class="keyword">else</span> <span class="keyword">if</span> (evt <span class="keyword">instanceof</span> <span class="type">AttributeChangedEvent</span>) {
+	    fireAttributeChangeEvent((<span class="type">AttributeChangedEvent</span>)evt);
+	}
+    }
+
+    <span class="comment">/**
+     * Add a frame event listener.
+     * </span><span class="keyword">@param </span><span class="variable-name">l</span><span class="comment"> The new frame event listener.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">addFrameEventListener</span>(<span class="type">FrameEventListener</span> <span class="variable-name">l</span>) {
+	frameListener = ResourceEventMulticaster.add(frameListener, l);
+    }
+
+    <span class="comment">/**
+     * Remove a frame event listener.
+     * </span><span class="keyword">@param </span><span class="variable-name">l</span><span class="comment"> The listener to remove.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">removeFrameEventListener</span> (<span class="type">FrameEventListener</span> <span class="variable-name">l</span>) {
+	frameListener = ResourceEventMulticaster.remove(frameListener, l);
+    }
+
+    <span class="comment">/**
+     * Post a frameEvent.
+     * </span><span class="keyword">@param </span><span class="variable-name">the</span><span class="comment"> frame event type.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">void</span> <span class="function-name">postFrameEvent</span>(<span class="type">int</span> <span class="variable-name">type</span>) {
+	<span class="keyword">if</span> (frameListener != <span class="keyword">null</span>) {
+	    <span class="type">FrameEvent</span> <span class="variable-name">evt</span> = <span class="keyword">new</span> <span class="type">FrameEvent</span>(<span class="reference">this</span>, type);
+	    postEvent(evt);
+	}
+    }
+
+    <span class="comment">/**
+     * Fire a frameEvent.
+     * </span><span class="keyword">@param </span><span class="variable-name">the</span><span class="comment"> frame event type.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">void</span> <span class="function-name">fireFrameEvent</span>(<span class="type">FrameEvent</span> <span class="variable-name">evt</span>) {
+	<span class="keyword">if</span> (frameListener != <span class="keyword">null</span>) {
+	    <span class="type">int</span> <span class="variable-name">type</span> = evt.getID();
+	    <span class="keyword">switch</span> (type) {
+	    <span class="keyword">case</span> <span class="reference">Events.FRAME_ADDED </span>:
+		frameListener.frameAdded(evt);
+		<span class="keyword">break</span>;
+	    <span class="keyword">case</span> <span class="reference">Events.FRAME_MODIFIED </span>:
+		frameListener.frameModified(evt);
+		<span class="keyword">break</span>;
+	    <span class="keyword">case</span> <span class="reference">Events.FRAME_REMOVED </span>:
+		frameListener.frameRemoved(evt);
+		<span class="keyword">break</span>;
+	    }
+	}
+    }
+
+    <span class="comment">/**
+     * Listen its resource.
+     */</span>
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">attributeChanged</span>(<span class="type">AttributeChangedEvent</span> <span class="variable-name">evt</span>) {
+	displayEvent( <span class="reference">this</span>, evt );
+	setValue(ATTR_LAST_MODIFIED, <span class="keyword">new</span> <span class="type">Long</span>(System.currentTimeMillis()));
+    }
+
+    <span class="comment">/**
+     * This handles the &lt;code&gt;FRAME_MODIFIED&lt;/code&gt; kind of events.
+     * </span><span class="keyword">@param </span><span class="variable-name">evt</span><span class="comment"> The event describing the change.
+     */</span>
+  
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">frameModified</span>(<span class="type">FrameEvent</span> <span class="variable-name">evt</span>) {
+	displayEvent( <span class="reference">this</span>, evt );
+	markModified();
+	postFrameEvent(evt.getID());
+    }
+
+    <span class="comment">/**
+     * We overide setValue, to fire event.
+     * </span><span class="keyword">@param </span><span class="variable-name">idx</span><span class="comment"> The index of the attribute to modify.
+     * </span><span class="keyword">@param </span><span class="variable-name">value</span><span class="comment"> The new attribute value.
+     */</span>
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">setValue</span>(<span class="type">int</span> <span class="variable-name">idx</span>, <span class="type">Object</span> <span class="variable-name">value</span>) {
+	<span class="reference">super</span>.setValue(idx,value);
+	<span class="keyword">if</span> (idx != ATTR_LAST_MODIFIED)
+	    postFrameEvent(Events.FRAME_MODIFIED); 
+    }
+
+    <span class="comment">/**
+     * Get the target resource.
+     * </span><span class="keyword">@return </span><span class="comment">a resource instance.
+     */</span>
+    <span class="reference">public</span> <span class="type">FramedResource</span> <span class="function-name">getResource</span>() {
+	<span class="keyword">return</span> resource;
+    }
+
+    <span class="comment">/**
+     * Register a target resource. Called after initialize,
+     * set the context. getServer() can be call only after
+     * this method call.
+     * @parame resource The resource to register.
+     */</span> 
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">registerResource</span>(<span class="type">FramedResource</span> <span class="variable-name">resource</span>) {
+	<span class="reference">this</span>.resource = resource;
+	postFrameEvent(Events.FRAME_ADDED);
+	setValue(ATTR_CONTEXT, resource.getContext());
+    }
+
+    <span class="comment">/**
+     * Register a target resource.
+     * @parame resource The resource to register.
+     */</span> 
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">unregisterResource</span>(<span class="type">Resource</span> <span class="variable-name">resource</span>) {
+	<span class="comment">//FIXME (can we have more than one resource? )
+</span>	<span class="reference">this</span>.resource = <span class="keyword">null</span>;
+	postFrameEvent(Events.FRAME_REMOVED);
+    }
+
+}
+
+    </pre>
+  </body>
+</html>

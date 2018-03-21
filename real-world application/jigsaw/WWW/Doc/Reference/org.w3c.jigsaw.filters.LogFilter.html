@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <TITLE>Template for administration documentation of resources</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="../../.." TARGET="_top_"><IMG SRC="../../../Icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="../.." TARGET="_top_">
+<IMG SRC="../../../Icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <hr noshade size="1">
+<A HREF="resources.html">All Resources</A> <A HREF="frames.html">All
+frames</A>
+  <hr noshade size="1">
+<H1>
+  LogFilter
+</H1>
+<P>
+The log filter purpose is to allow very detail logging of a particular area
+of your web server. The logs produced by this filter can be as verbose as
+you want (it allows you to log any request or reply field, check the
+<A HREF="#request-headers">request-headers</A> and
+<A HREF="#reply-headers">reply-headers</A> attribute).
+<P>
+This filter generates a very verbose log format, consisting of a sequence
+of <I>records</I>. Each record is made of a number of lines of the following
+format:
+<PRE><CODE><I>property</I>=<I>value</I></CODE>
+</PRE>
+<P>
+A property , whose name is always in lower case, can be either:
+<UL>
+  <LI>
+    The special, record delimiter <STRONG>url</STRONG> property. That property
+    always indicate the request url, and mark the beginning of the properties
+    logging that request.
+  <LI>
+    The <STRONG>request.*</STRONG> set of properties indicate the value of a
+    request header field. If the log filter is configured to log, say the request
+    referer header, then when it is available, the log filter will emit a line
+    logging its value as <STRONG>request.referer</STRONG>.
+  <LI>
+    The <STRONG>&nbsp;reply.*</STRONG> set of properties are used to denote reply
+    header values. For example, when logging the reply
+    <STRONG>content-location</STRONG> header, the log filter will emit a line
+    logging its value as <STRONG>reply.content-location</STRONG>.
+</UL>
+<P>
+As an example, if you configure the logger to log the Refer , User-Agent
+and Accept HTTP request headers, along with the Content-Length reply header,
+&nbsp;the following kind of log will be outputed:
+<PRE>...
+url=http://www43.inria.fr:8008/Admin/
+request.user-agent=Mozilla/3.0 (X11; I; SunOS 5.5 sun4u)
+request.accept=image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*
+reply.content-length=908
+url=http://www43.inria.fr:8008/Admin/Properties
+request.referer=http://www43.inria.fr:8008/Admin/
+request.user-agent=Mozilla/3.0 (X11; I; SunOS 5.5 sun4u)
+request.accept=image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*
+reply.content-length=615
+url=http://www43.inria.fr:8008/Admin/Properties/general
+request.referer=http://www43.inria.fr:8008/Admin/Properties
+request.user-agent=Mozilla/3.0 (X11; I; SunOS 5.5 sun4u)
+request.accept=image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*
+reply.content-length=3829
+...
+</PRE>
+<P>
+This extract is made of tree record, logging a transaction on respectively
+http://www43.inria.fr:8008/Admin/, http://www43.inria.fr:8008/Admin/Properties
+and http://www43.inria.fr:8008/Admin/Properties/general.
+<P>
+  <hr noshade size="1">
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/LogFilter.html">LogFilter</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    ResourceFilter (aka abstract class)
+</UL>
+<P>
+  <hr noshade size="1">
+<H2>
+  Attributes description
+</H2>
+<P>
+The HTTPResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#request-headers">request-headers</A>
+  <LI>
+    <A HREF="#reply-headers">reply-headers</A>
+  <LI>
+    <A HREF="#logfile">logfile</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="request-headers">request-headers</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The list of request HTTP headers to log. All header names are to be entered
+    in <B>lower</B> case, one header per line. For each entered header, an
+    appropriate line will be added in all records, provided the requested header
+    exists for the given transaction.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to the resource that loaded it into memory, as explained
+    above.
+</DL>
+<P>
+  <hr noshade size="1">
+<A NAME="reply-headers">reply-headers</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The list of HTTP reply headers to log. All header names are to be entered
+    in <B>lower</B> case, one header per line. For each entered header, an
+    appropriate line will be added to each log record.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to the resource that loaded it into memory, as explained
+    above.
+</DL>
+<P>
+  <hr noshade size="1">
+<A NAME="logfile">logfile</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the file to output &nbsp;the log to.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FileAttribute.html">FileAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value. The log filter will not log anything
+    until this is set to a correct file name.
+</DL>
+<P>
+  <hr noshade size="1">
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.contrib.LogFilter.html,v 1.2 1996/12/09 03:17:12 jigsaw
+Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

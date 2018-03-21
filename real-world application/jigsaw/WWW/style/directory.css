@@ -1,0 +1,22 @@
+BODY {
+  color: black; 
+  background: white;
+  font-family: serif;
+}
+H1 {
+  color: white; 
+  background: teal; 
+  font-weight: bold; 
+  font-size: large; 
+  font-family: helvetica, sans-serif; 
+  font-style:italic;
+  margin-top: 3.0%; 
+  padding: 1%; 
+  border: none; 
+  width: 100.0%;
+}
+A {
+  text-decoration : none;
+  color: teal; 
+  font-weight: bold;
+}

@@ -1,0 +1,2241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+  <HEAD>
+    <TITLE>Documentation Overview</TITLE>
+    <link rel="stylesheet" type="text/css" href="style/jigsaw2.css">
+  </HEAD>
+  <BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+    <div class="icons-w3c">
+      <a href="../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72"></a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212"></a>
+    </div>
+
+    <div class="title">
+      <H1 class="title">
+	Jigsaw<br>
+	<span class="subtitle">release notes</span>
+      </H1>
+      <hr noshade width="70%">
+    </div>
+
+    <div class="left">
+      <p class="link">
+	<span class="linktitle">Jigsaw releases</span><br>
+	<a class="local" href="#2.2.6">2.2.6</a><br>
+	<a class="local" href="#2.2.5">2.2.5</a><br>
+	<a class="local" href="#2.2.4">2.2.4</a><br>
+	<a class="local" href="#2.2.3">2.2.3</a><br>
+	<a class="local" href="#2.2.2">2.2.2</a><br>
+	<a class="local" href="#2.2.1">2.2.1</a><br>
+	<a class="local" href="#2.2.0">2.2.0</a><br>
+	<a class="local" href="#2.1.2">2.1.2</a><br>
+	<a class="local" href="#2.0.5">2.0.5</a><br>
+	<a class="local" href="#2.1.1">2.1.1</a><br>
+	<a class="local" href="#2.0.4">2.0.4</a><br>
+	<a class="local" href="#2.1.0">2.1.0</a><br>
+	<a class="local" href="#2.0.3">2.0.3</a><br>
+	<a class="local" href="#2.0.2">2.0.2</a><br>
+	<a class="local" href="#2.0.1">2.0.1</a><br>
+	<a class="local" href="#2.0.0">2.0.0</a><br>
+	<a class="local" href="#2.0beta3">2.0 beta3</a><br>
+	<a class="local" href="#2.0beta2">2.0 beta2</a><br>
+	<a class="local" href="#2.0beta1">2.0 beta1</a><br>
+	<a class="local" href="#2.0alpha1">2.0 alpha1</a>
+      <p class="link">
+	<a class="local" href="#1.0beta2">1.0 beta2</a><br>
+	<a class="local" href="#1.0beta1">1.0 beta1</a><br>
+	<a class="local" href="#1.0beta">1.0 beta</a><br>
+	<a class="local" href="#1.0alpha5">1.0alpha5</a><br>
+	<a class="local" href="#1.0alpha4">1.0alpha4</a><br>
+	<a class="local" href="#1.0alpha3">1.0alpha3</a><br>
+	<a class="local" href="#1.0alpha2">1.0alpha2</a><br>
+	<a class="local" href="#1.0alpha1">1.0alpha1</a><br>
+    </div>
+    <div class="body">
+      <p class="pintro">
+      Following the normal W3C conventions, there were two different
+      kind of releases of <b>Jigsaw</b>. Member release are provided
+      to W3C members, a month in advance of the Public
+      Release. Depending on their status the member release may get a
+      different release number then the public release. On this page,
+      you will find the release notes for the different versions of
+      <b>Jigsaw</b> (which don't necessarily coincide with member
+      release). From the beginning of 1998, the releases are only
+      public ones, we still add the word "public" to avoid any
+      confusion.</p>
+    
+    <p class="pintro"><span class="larger">NOTE!</span> The odd number in the
+      middle state that this is NOT a stable release, not that it is unstable,
+      but it means that not all the features are present, and that some more
+      testing is needed until it gets its even middle number.</p>
+
+      <h2><a name="2.2.6"></a>Jigsaw 2.2.6</h2>
+      <b>A public release, made on April 10th, 2007.</b>
+
+      <p>This version is a bugfix and optimized version of 2.2.5. It may be
+         the latest using jdk1.2 only code.</p>
+
+
+      <h3>New Features</h3>
+       <p>
+	Support for more XML Parsers in the Resources deserialization code
+      </p>
+      
+      <ul>
+	<li>Added support for connection reuse policies in the 
+	  Client stack.</li>
+	<li>Added a default policy to reuse the same connection when the 
+	  thread matches (in HttpBasicConnection)</li>
+	<li>Added a socket timeout on request
+	  parsing, to avoid having it linked to request timeout</li>
+	<li>The Servlet runner thread now use the server
+	  timeout mechanism to interrupt the running thread when the server
+	  is closing the request on timeout.</li>
+	<li>Added a method to print Dates in ISO 8601 format without 
+	  milliseconds</li>
+	<li>Added a "detach" method to HttpBasicConnection to remove a 
+	  connection from the list of used client connections but without 
+	  closing the socket immediately (used when the client hits a 
+	  HTTP/1.0 server that doesn't send Content-Length). </li>
+	
+      <h3>Bug Fixes</h3>
+      <ul>  
+	<li>Fixed cookie parsing bug, if the cookie value contains a '='</li>
+	<li>Fixed SAX parsing of stores and remote resource description (allow multiple 'characters' call for one value)</li>
+	<li>Removed an unneeded synchronization point in HTTPFrame.getURL()</li>
+	<li>Added an extra SP when exporting auth headers with different components</li>
+	<li>Fixed source code to remove 'enum' as it is now a keywork starting with JDK 1.5</li>
+	<li>Fixed client connection deletion in connection reuse, it was leading to a leak in the client hashtable (and to lots of connections in CLOSE_WAIT).</li>
+	<li>Fixed bug in DateParser (wrong timezone offset) thanks to Menno Jonkers</li>
+	<li>Optimized a bit Digest Auth (the RFC2069 one) and implemented Digest Auth with qop="auth" per RFC2617 (available with SecurityLevel set to 2), See DigestQopAuthPrincipal</li>
+	<li>Fixed a few WebDAV properties that were using wrong formats</li>
+	<li>HeaderFilter now sets the relevant headers even when the reply is sent via the exception mechanism.</li>
+	<li>More SSL and servlet related patches from Thomas Kopp.</li>
+	<li>ActiveStream patch, under some condition, the same data 
+	  could be re-read a data chunk (thanks to Doug Borland)</li>
+	<li>The servlet parameter decoding now uses the right charset.</li>
+	<li>Fixed error when file timestamp was not modified but the file was actually modified.</li>
+	<li>Fixed deadlock during store change notification when the sweeper is running (very rare)</li>
+	<li>Fixed server client count when load is raising from LIGHT to DEAD</li>
+	<li>Fixed Segment information unpickle, as the segment start and size were not properly parsed, leading to an infinite loop</li>
+	<li>More SSL patches from Thomas Kopp, see <a href="http://dev.w3.org/cvsweb/java/classes/org/w3c/jigsaw/https/SSLAdapter.java?rev=1.7&amp;content-type=text/x-cvsweb-markup">changelog</a> for more details.</li>
+
+	<li>Fixed connection count when MimeParser did not started and connection was new.</li>
+	<li>Client stack now reuses the
+	  connection timeout parameter.</li>
+      </ul>
+
+      <h2><a name="2.2.5"></a>Jigsaw 2.2.5</h2>
+      <b>A public release, made on June 8th, 2005.</b>
+
+      <p>This version is a bugfix and optimized version of 2.2.4.
+	It contains an updated version of the SSL code (that may require 
+	the use of jdk1.4). </p>
+
+      <h3>New Features</h3>
+       <p>
+	New Digest Authentication code has been added. 
+	It now conforms to 
+	<a href="http://www.ietf.org/rfc/rfc2617.txt">RFC2617</a>. 
+	The old code was implementing only the 
+	<a href="http://www.ietf.org/rfc/rfc2069.txt">RFC2069</a> 
+	version of the Digest Authentication.
+      </p>
+      
+      <p>
+	WebDAV support has been improved, interoperating with most WebDAV
+	clients now.
+      </p>
+      
+      <h3>Bug Fixes</h3>
+      
+<ul>
+  <li>Added a "detach" method to HttpBasicConnection to remove a connection from the list of used client connections but without closing the socket immediately (used when the client hits a HTTP/1.0 server that doesn't send Content-Length). </li>
+  <li>Fixed client connection deletion in connection reuse, it was leading to a leak in the client hashtable (and to lots of connections in CLOSE_WAIT).</li>
+  <li>Fixed bug in DateParser (wrong timezone offset) thanks to Menno Jonkers</li>
+
+  <li>Optimized a bit Digest Auth (the RFC2069 one) and implemented Digest Auth with qop="auth" per RFC2617 (available with SecurityLevel set to 2), See DigestQopAuthPrincipal</li>
+  <li>Fixed a few WebDAV properties that were using wrong formats</li>
+  <li>Added a method to print Dates in ISO 8601 format without milliseconds</li>
+  <li>HeaderFilter now sets the relevant headers even when the reply is sent via the exception mechanism.</li>
+  <li>ActiveStream patch, under some condition, the same data 
+	could be re-read a data chunk (thanks to Doug Borland)</li>
+  <li>The servlet parameter decoding now uses the right charset.</li>
+  <li>The Servlet runner thread now use the server
+	timeout mechanism to interrupt the running thread when the server
+	is closing the request on timeout.</li>
+
+  <li>Fixed error when file timestamp was not modified but the file was actually modified.</li>
+  <li>Fixed deadlock during store change notification when the sweeper is running.</li>
+  <li>Fixed server client count when load is raising from LIGHT to DEAD</li>
+
+  <li>Fixed Segment information unpickle, as the segment start and size were not properly parsed, leading to an infinite loop</li>
+  <li>More SSL patches from Thomas Kopp, see <a href="http://dev.w3.org/cvsweb/java/classes/org/w3c/jigsaw/https/SSLAdapter.java?rev=1.7&amp;content-type=text/x-cvsweb-markup">changelog</a> for more details.</li>
+  <li>Fixed connection count when MimeParser did not started and connection was new.</li>
+</ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Added a socket timeout on request
+	  parsing, to avoid having it linked to request timeout</li>
+	<li>Added a default policy to reuse the same connection when the thread matches (in HttpBasicConnection)</li>
+	<li>Added support for connection reuse policies in the Client stack.</li>
+	<li>Client stack now reuses the connection timeout parameter.</li>      
+      </ul>
+
+
+      <h2><a name="2.2.4"></a>Jigsaw 2.2.4</h2>
+      <b>A public release, made on February 18th, 2004.</b>
+
+      <p>This version is a bugfix and optimized version of 2.2.3.
+	It contains an updated version of the SSL code (that may require 
+	the use of jdk1.4). It contains a <strong>security fix</strong>, so
+	you are encouraged to update as soon as possible.</p>
+
+      <h3>New Features</h3>
+       <p>The HTTP Client stack has been completely reworked to be 
+	faster and to avoid keeping information on too many remote servers.
+	The client stack now also has a timeout on connect.
+      </p>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fix in the client stack persistent connection handler. It now closes the socket and mark the connection free when a "Connection: close" header is in the reply.</li>
+	<li>SSL patches from Thomas Kopp.</li>
+	<li>URI components now generate an exception when a separator is found</li>
+	<li>Memory usage optimization of the serialization of a resource.</li>
+	<li>Read/write of stores is now more fault tolerant.</li>
+	<li>Fixed the client stack use of connections, also the global server knowledge hastable is now trimmed the right way.</li>
+	<li>Fixed StatisticsFrame to use less StringBuffers</li>
+	<li>Added a configurable timeout on connect, for the HTTP client stack. <code>org.w3c.www.protocol.http.connections.connTimeout</code> (defaulting to 1000ms)</li>
+	<li>Fixed ContainerResource check for
+	  duplicate key, the "new key" algorithm is now more random
+	  (ie it uses the
+	  whole scale instead of the object serial mask), as it was leading to
+	  infinite loops on huge sites.</li>
+      </ul>
+
+      <h2><a name="2.2.3"></a>Jigsaw 2.2.3</h2>
+      <b>A public release, made on November 27th, 2003.</b>
+
+      <p>This version is a bugfix and optimized version of 2.2.2.
+	It also includes Jigedit with WebDAV support, a package with
+	a specific WebDAV configuration will follow, and a tutorial to do the
+	<a href="Doc/User/webdav.html">WebDAV setup</a> is already online.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li>SSL support for HTTP and WebDAV servers, thanks to 
+	  <a href="mailto:Thomas.Kopp@dialogika.de">Thomas Kopp</a>, 
+	a <a href="Doc/User/ssl.html">tutorial</a> is available</li>
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fixed internal copy in DAVFrame in the 
+	  case of a SSL server</li>
+	<li>Added the underlying exception in the
+	  HttpManager to distinguish between errors in the client stack.</li>
+	<li>Fixed ContainerResource check for
+	  duplicate key, the "new key" algorithm is now more random (ie it uses the
+	  whole scale instead of the object serial mask), as it was leading to
+	  infinite loops on huge sites.</li>
+	<li>Fixed deadlock in NegotiatedFrame.
+	  getVary() allowed a backward sync chain.</li>
+	<li>Added a "equiv" method in MimeType to
+	  check for text/xml - application/xml rough equivalence on PUT</li>
+	<li>Added Long support in HttpBuffer and
+	  HttpParser</li>
+	<li>Fixed lock ordering in NewStoreEntry to
+	  avoid a deadlock</li>
+	<li>Verification of connection availability
+	  on POST changed (need to have a fd_err + select to do it in a better
+	  way)</li>
+	<li>Fixed deadlock when a file resource
+	  mark its parent as modified (backward locking, again)</li>
+	<li>CvsRunner now uses File.createTempFile
+	  instead of hardcoded /tmp (was <a
+	    href="http://lists.w3.org/Archives/Public/www-jigsaw/2003MayJun/0019.html">problematic
+	    on windows platform</a>)</li>
+	<li>Fixed deadlock in FileResource
+	  (backward locking)</li>
+	<li>Fixed CgiFrame to accept more output
+	  from Cgis (triggered my perl cgi library)</li>
+	<li>Added TeraBytes support for statistics
+	  frame</li>
+	<li>Fixed notifyUnload in ForwardFrame to
+	  avoid nullpointer exception (<a
+	    href="http://lists.w3.org/Archives/Public/www-jigsaw/2003MarApr/0019.html">patch
+	    from Brian Laird</a>)</li>
+	<li>Fixed getParameterMap of ServlerRequest
+	  to map servlet2.3 spec</li>
+	<li>CacheFilter now normalize the URL
+	  before any processing to avoid duplication on capitalization</li>
+	<li>Fixed test for socket close in jdk1.4
+	  specific part, added a property to allow retries on two-steps request, in
+	  the case of error on headers (thx to Phil Blake from IBM pointing me this
+	  one)</li>
+	<li>Writers for resource serialization,
+	  both in admin server and ResourceStoreManager now force UTF-8 encoding
+	  (as XML is declared to be UTF-8)</li>
+	<li>Error recovery on parsing errors of
+	  serialized resources, allowing stores to continue loading</li>
+	<li>Cleaned stat generation and added
+	  hits/sec</li>
+	<li>HtmlGenerator now uses HTML4.01 and
+	  adds the charset parameter if it is known</li>
+	<li>Added finer grain statistics by
+	  separating dynamic from static generated replies</li>
+	<li>Fixed replaying of 1xx replies back to
+	  the client</li>
+	<li>Fixed HttpCacheControl to add new
+	  values for a directive that appears several times</li>
+	<li>Re-fixed validators for If-Match</li>
+	<li>dupRequest in proxy now removes
+	  Proxy-Authorization, thx to Thomas Kriegelstein</li>
+	<li>Client now send back a BAD_REQUEST when
+	  the http request parser in strict mode throw an exception</li>
+	<li>Fixed header name+":" parsing to
+	  include implied LWS</li>
+	<li>proxy now serves GATEWAY_TIMEOUT and
+	  BAD_GATEWAY as it should</li>
+	<li>Kludge for Age and maxValue -&gt; must
+	  use Long instead of integers</li>
+	<li>Fixed sharing default for the cache to
+	  match the one of CacheProp (true)</li>
+	<li>Strict HTTP header parsing mode made
+	  more valid wrt quoted strings</li>
+	<li>More error handling in strict mode to
+	  generate BAD_REQUEST replies</li>
+	<li>A server-side "lenient" HTTP parsing
+	  property has been added, decoupled from the client-side one, settable via
+	  GeneralProperties in JigAdmin</li>
+	<li>Parsing of field-value now has a
+	  strict/lenient mode</li>
+	<li>Revalidation on HEAD now invalidates on
+	  new values</li>
+	<li>Fixed handling of errors during HTTP
+	  headers parsing in the proxy, now returns a BAD_GATEWAY</li>
+	<li>Parsing of HttpInteger now generates an
+	  exception on overflow</li>
+	<li>Accept header is no longer
+	  automatically added by the proxy when the client request do not have
+	  it.</li>
+	<li>Fixed deadlock in ServletWrapper wrt
+	  lock ordering of timeout manager, when different instances of the servlet
+	  are created while some are timeouting</li>
+	<li>Handling of HTTP exception in the
+	  ForwardFrame is changed, direct HTTP exception now generates a 502 Bad
+	  Gateway instead of a 504</li>
+	<li>Precondition failed in the cache now
+	  generate an exception with a complete reply (ie: not reusing "wrong"
+	  informations from the cached resource)</li>
+	<li>HttpCacheControl raw bytes shouldn't be
+	  unquoted before parsing</li>
+	<li>Replies from a shared cache now remove
+	  the header list protected by a private cache-control</li>
+	<li>Headers protected by a no-cache
+	  directive are no longer stored</li>
+	<li>Cache-Control now parses extensions
+	  instead of throwing an exception</li>
+	<li>Host header normalization now uses case
+	  insensitive URI scheme comparison</li>
+	<li>Proxy now forwards back the 100
+	  Continue reply from the upstream server</li>
+	<li>Multiple 100 results now in multiple
+	  ContinueEvents</li>
+	<li>Validators (If-None-Match...) in the
+	  EntityCacheResource are now matching the one in HTTPFrame</li>
+	<li>Default freshness lifetime for cgi with
+	  no header info is now 0.</li>
+	<li>Cache is not used when a no-store
+	  directive is present in the request</li>
+	<li>Overflow in Max-Forward leads to an
+	  exception and a 5xx reply now, instead of forwarding a wrong value</li>
+	<li>Added consistency checks in the cache
+	  for revalidated resources</li>
+	<li>Fixed ForwardFrame to check
+	  chuked/Content-Length mismatch by reusing the duplicated request/reply
+	  that actually has the right information</li>
+	<li>Fixed CacheFilter to do stricter
+	  host:port check before invalidating resources on PUT/POST/DELETE</li>
+	<li>Invalidation of Content-Location now
+	  uses relative URIs (was partly done, a typo was in the way)</li>
+	<li>Fixed CacheStore to avoid calls on
+	  LRUNodes, as synchronization is missing on the SyncLRUList in this
+	  case.</li>
+	<li>CacheGeneration uses a more stricter
+	  way of crawling the LRUlist of files to delete</li>
+	<li>Fixed parsing of Content-Range (support
+	  for unknown length)</li>
+	<li>Fixed XMP parsing in JpegHeaders</li>
+	<li>Fixed servlet flush notification to
+	  avoid race condition problems with sendError/sendRedirect and such.</li>
+	<li>Fixed http Client to avoid aborting on
+	  strange servlet related IOExceptions (see org.w3c.jigsaw.http.Client
+	  rev1.71 log for in depth explanations)</li>
+	<li>CgiFrame now display in the server
+	  console stderr of forked Cgis (prevent some cgi lockups on Win
+	  platform)</li>
+	<li>Added a way to restransmit some buggy
+	  but not defined in rfc2616 headers (cookies, not to name it)</li>
+	<li>Invalidation of Location and
+	  Content-Location was wrongly assuming that resource were live in the
+	  cache, leading to errors for valid requests</li>
+	<li>Fixed If-Match if the resource ETag is
+	  weak (currently, it can happen only in the cache)</li>
+	<li>Fixed JpegHeaders to deliver XMP at the
+	  beginning of the XML and not at the beginning of the chunk</li>
+	<li>Fixed JpegComFrame, the parameter was
+	  unescaped twice, problematic with application/???+xml mime types</li>
+	<li>Added JpegXmpFrame, to extract
+	  automatically XMP from Jpeg images</li>
+	<li>Fixed revalidation in HTTPFrame when
+	  both If-None-Match and If-Modified-Since are present</li>
+	<li>Implemented Vary support and
+	  revalidation of negotiated resources in the client-side HTTP cache</li>
+	<li>Implemented 410 Gone permanent support
+	  via the new "shrinkable" flag of DirectoryResource (similar to
+	  "extensible" for for deletions)</li>
+	<li>Cached resources were incorrectly
+	  asking for revalidation every time once marked invalid.</li>
+	<li>Cache now serve HEAD from the cache</li>
+	<li>Cache now invalidate resource in
+	  Location or Content-Location for POST, PUT and DELETE, if host matches
+	  the requested URL</li>
+	<li>Added \CHAR escaping in quoted string
+	  of a header parameter</li>
+	<li>Client stack will retry requests only
+	  if it is a known idempotent resource</li>
+	<li>Fixed TRACE to allow it again to be
+	  proxied</li>
+	<li>Fixed bug in Expectation check in the
+	  proxy, and in the general case.</li>
+	<li>Fixed bug in continuation with empty
+	  lines</li>
+	<li>Fixed bug in header continuation
+	  parsing</li>
+	<li>GZIPFilter was incorrectly setting
+	  Transfer-Encoding instead of Content-Encoding</li>
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Memory usage reduction</li>
+      </ul>
+
+
+      <h2><a name="2.2.2"></a>Jigsaw 2.2.2</h2>
+      <b>A public release, made on January 8th, 2003.</b>
+
+      <p>This version is a bugfix and optimized version of 2.2.1.
+	It also includes Jigedit with WebDAV support, a package with
+	a specific WebDAV configuration will follow, and a tutorial to do the
+	<a href="Doc/User/webdav.html">WebDAV setup</a> is already online.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li>SSL support for HTTP and WebDAV servers, thanks to 
+	  <a href="mailto:Thomas.Kopp@dialogika.de">Thomas Kopp</a>, 
+	<a href="http://dev.w3.org/cvsweb/~checkout~/java/classes/org/w3c/jigsaw/https/readme.txt?rev=1.1&amp;content-type=text/plain">raw documentation</a> 
+	  is available</li>
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fixed ForwardFrame to forbid forward of
+	  Content-Location when reply is chunked</li>
+	<li>Fixed ForwardFrame to remove received
+	  Trailer header</li>
+	<li>Fixed HTTP stack's Reply to allow body
+	  on OPTIONS per rfc2616</li>
+	<li>Fixed lock ordering in HTTPFrame
+	  regarding methods on Container (deadlock reported 5/12/2002)</li>
+	<li>Fixed deadlock in Resource.getParent(),
+	  when both child and parent try to lock each other.</li>
+	<li>Deadlock fixes in the HTTP client
+	  stack</li>
+	<li>Removed potential conflicting
+	  Connection: header values in the HTTP client stack during discovery
+	  of HTTP capabilities</li>
+	<li>Fixed RedirectedFrame to avoid
+	  ipv6-like hosts when it is a ipv4 one.</li>
+	<li>Added a way to optimize by not
+	  unloading big stores, depending on a tunable limit.</li>
+	<li>Ensure that keys in the
+	  ResourceStoreManager are not used twice when generated</li>
+	<li>Fixed the default encoding used in
+	  JigsawHttpServletResponse per servlet 2.3 API</li>
+	<li>Solved the deadlock problem with
+	  negotiated frame, directory listing, and everything that needs
+	  backward traversal of the resource tree.</li>
+	<li>Fixed JigsawHttpServletResponse, it now
+	  checks that the stream has been commited
+	  before screaming</li>
+	<li>Fixed Base64Decoder based on Jeffery
+	  Collins &lt;jcollins@boulder.net&gt; original patch</li>
+	<li>Fixed JigsawHttpServletRequest
+	  getCharacterEncoding to return null when undefined instead of the
+	  iso-8859-1 default.</li>
+	<li>Fixed ContentLengthInputStream, it now
+	  send an IOException when the stream is cut too early in read()</li>
+	<li>Fixed HttpURLConnection getContentType
+	  was raising an exception rather than returning null</li>
+	<li>Various updates in the HTTP stack, to
+	  consume less memory and use non-deprecated Date API.</li>
+	<li>Integrated cookie parsing patch
+	  contributed by Julien Mudry &lt;jmu@elca.ch&gt;</li>
+	<li>URL in jdk1.4 can have an empty file
+	  element, it is now translated to '/' for all methods but
+	  OPTIONS, where it is '*'</li>
+	<li>Special files "aux", "con", etc. can no
+	  longer be created by the indexer on Windows platform 
+	  (still possible on other platforms as those files are not special
+	  there).</li>
+	<li>Fixed servlet wrapper to close the
+	  input stream when needed, also when a relocate or an error is
+	  triggered from the servlet, an exception is raised if the client 
+	  already got (part of) the reply.</li>
+	<li>ServletWrapper now take the feeding
+	  thread from a thread cache (avoid keeping too many open threads)</li>
+	<li>Fixed reuse of connection in the HTTP
+	  Client stack, by using jdk1.4 method on socket (uses reflection to
+	  keep the code backward compatible)</li>
+	<li>Fixed HTTP compliance of chunked
+	  request, and proxy of request without body</li>
+	<li>Redid the InetAddress dump in the
+	  logger as well as the status code dump</li>
+	<li>Memory and performance upgrade of the
+	  infamous CommonLogger and ExtendedCommonLogger, who were  the primary
+	  culprits in the memory usage once the stores are loaded.</li>
+	<li>Started to find and elimnate all
+	  unnecessary memory allocated</li>
+	<li>Fixed directory index of
+	  ZipDirectoryResource, to delete and get size information the right
+	  way</li>
+	<li>Fixed ZipFrame to allow automagic
+	  destruction of stale entries in the underlying zip</li>
+	<li>Error reported when an error occur in
+	  the file system does not display the PATH any longer to avoid
+	  disclosing</li>
+	<li>Fixed a potential leak (never emptied
+	  hashtable) in HttpManager</li>
+	<li>Fixed RelocateFrame to accomodate
+	  new ipv6 scan of host in URL</li>
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Memory usage reduction</li>
+	<li>CPU usage reduction (mostly the loggers that are the hotspots)</li>
+      </ul>
+
+      <h2><a name="2.2.1"></a>Jigsaw 2.2.1</h2>
+      <b>A public release, made on April 8th, 2002.</b>
+
+      <p>This version fixes bugs, especially a security bug of version 2.2.0
+	It also includes Jigedit with WebDAV support, a package with
+	a specific WebDAV configuration will follow, and a tutorial to do the
+	<a href="Doc/User/webdav.html">WebDAV setup</a> is already online.
+	It is also the first release <a href="mailto:carine@w3.org">Carine
+	  Bournez</a> worked on.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li><a href="Doc/User/jigshell.html">JigShell</a>, a small utility
+	<li>WebDAV enabled JigEdit</li>
+	<li>Implementation of <a href="http://httpd.apache.org/">Apache</a> 
+<a href="http://httpd.apache.org/docs/mod/mod_asis.html">mod_asis</a>.</li>
+	<li>PushCache package, contributed by 
+	  <a href="mailto:Paul.Henshaw@fantastic.com">Paul Henshaw</a> from 
+	  The Fantastic Corporation.</li>
+	<li>TidyPutFilter, a filter to validate automatically the
+	  <a href="http://www.w3.org/MarkUp/#xhtml1">XHTML</a> or
+	  <a href="http://www.w3.org/MarkUp/#previous">HTML</a> sent via the
+	  PUT method, using 
+	  <a href="http://sourceforge.net/projects/jtidy">JTidy</a>.</li>
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Previously uncaught error (ie: non Protocol ones) during lookup
+	  are now resoved by sending a 400 Bad
+          Request </li>
+	<li>Fixed the way exception filters are called in httpd. Side 
+	  effect, ErrorFilter works again </li>
+	<li>Fixed a bug in TE Filter that was compressiong twice the stream
+	  (need to figure out why it was called
+          twice though) </li>
+	<li>Fixed semantic of ; in the URI, with the right info given 
+	  during lookup</li>
+	<li>SECURITY FIX: Fixed security bug regarding URI parsing</li>
+	<li>Added a flag to remove the URI from default error pages as well
+	  as the proxy module (SECURITY FIX: avoiding cross
+          scripting attacks)</li>
+	<li>Fixed ServletMapper to do redirect the right way (host parsing).
+	  It was interacting with new jdk1.4
+          ipv6 scan </li>
+	<li>Merged patches from 
+	  <a href="mailto:Thomas.Kopp@dialogika.de">Thomas Kopp</a>
+	  concerning servlets:
+	  servlet loading, behaviour of
+          SingleThreadModel </li>
+	<li>Reverted 1.3 API calls to 1.2, or used reflection to use 
+	  jdk1.3 only methods in the push package</li>
+	<li>Added a specific frame to handle MKCOL and other 
+	  collection-related WebDAV methods in Jigedit</li>
+	<li>Fixed WebDAV implementation, it now sends all the requested
+	  properties in a PROPFIND, with the
+          right statuds for the undefined ones.</li>
+	<li>Modified AclFilter to take benefit of skipBody </li>
+	<li>Added skipBody in Request, it allows a filter to skip an eventual
+	  body in a better way than error
+          recovery. </li>
+	<li>Fixed bug when Content-Type was not set (it was set but the value
+	  of the HttpMimeType was null,
+          defeating the usual check) </li>
+	<li>Fixed If-None-Match during the creation of a FileResource</li>
+	<li>Fixed trailing / for negotiated resources, it was ignored, 
+	  resulting in bad relative links </li>
+	<li>Fixed If-None-Match in HTTPFrame, it now handles *</li>
+	<li>ResourceStoreManager will issue a warning when a store raise an
+	  exception during save, the general
+          save will continue (it was not the case before)</li>
+	<li>In CvsFileFrame, cvs update is performed also prior to a PUT.</li>
+	<li>Added stronger synchronization for log rotation. </li>
+	<li>Fixed indexer so that fake file resource can be created, as it 
+	  may be dangerous for directories, it is still
+          forbidden on those. </li>
+	<li>Fixed deadlock in DirectoryListerFrame, a lock was not done
+	  resulting in locks done in the wrong order
+          in concurrent access </li>
+	<li>Fix NewStoreEntry, hashtable of loaded ResourceReference is now
+	  cleared when the store is
+          unloaded. </li>
+	<li>Fix in EditableSlider, now a textfield can resize the boundaries 
+	  of the slider, a non-extensible mode is
+          also available </li>
+	<li>Fixed RedirectedFrame to add Content-Location after the internal
+	  redirect, and Referer is kept.</li>
+	<li>Fixed NegotiatedFrame to gather filters from the selected
+	  resource, collected during the lookup,
+          instead of the perform. However perform may select the resource if
+	  the state is lost because of another filter.</li>
+	<li>Fixed error replies for JigEdit on a 412</li>
+	<li>Added synchronization fo class loading in servlet's class
+	  loader</li>
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Resurrected -port as an undocumented deprecated feature.</li>
+	<li>Added CountInputStream, to get the actual number of bytes 
+	  read.</li>
+	<li>ByteArrayOutputStream now accept also InputStream</li>
+	<li>Implemented jdk1.2 API getErrorStream of HttpURLConnection</li>
+	<li>Implemented ETag override to match Apache FileETag directive in
+	  JigEdit</li>
+      </ul>      
+
+      <h2><a name="2.2.0"></a>Jigsaw 2.2.0</h2>
+      <b>A public release, made on March 13th, 2001.</b>
+
+      <p>This release is the first stabilized version of the 2.1 series, now
+	renumbered as 2.2. It also includes WebDAV support, a package with
+	a specific WebDAV configuration will follow, and a tutorial to do the
+	<a href="Doc/User/webdav.html">WebDAV setup</a> is already online.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li>WebDAV implementation
+	<li>org.w3c.util.DateParser: a parser for date in ISO 8601 format. 
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fixed Allow: header depending on the frame configuration.</li>
+	<li>StringAttribute now accept null as a valid value.</li>
+	<li>Fixed jigadmin to allow removing some attributes.</li>
+	<li>Fixed VirtualHost lookup to use the host part of the resolved URI 
+	  instead of only the Host header</li>
+	<li>Fixed Host: header checking for HTTP/1.1 requests</li>
+	<li>Bug fixed in ServletProperties Reader (InitArgs separator)</li>
+	<li>RuntimeException throwned when the servlet container has no 
+	  ServletDirectory.</li>
+	<li>Fixed VirtualHostFrame for fully qualified request in the URI on 
+	  not default ports.</li>
+	<li>Fixed / -> %2F for the URI trick for rdf metadata</li>
+	<li>Fixed caching for authenticated resources</li>
+	<li>Fixed logname for october (10)</li>
+	<li>Fixed Content-Length to 0 for a 201 Created without a body</li>
+	<li>Compliancy fix in the cache, entity headers removed from a Not
+	  Modified reply</li>
+	<li>Fixed slider in JigAdmin to auto expand near the limits</li>
+	<li>Fixed NullPointerException in ETag-based PUT on Negotiated 
+	  Resource.</li>
+	<li>Fixed Chunking when 0 bytes were received, the stream was wrongly
+	  closed.</li>
+	<li>Servlet errors are now propagated the right way, and the monitor
+	  always released. </li>
+	<li>Chunking is allowed on Connection: close</li>
+	<li>Connection: close requests now adds the header automatically in
+	  the reply</li>
+	<li>Logger can now log the original URL during an internal redirect 
+	<li>Fixed Digest Auth bug (well update of the spec) regarding unquoted
+	  parameters in the credential</li>
+	<li>Fixed TRACE method, now done directly at the server level, as it
+	  is only used as an echo.</li>
+	<li>Robustness fix, servlet are now killed after the right timeout</li>
+	<li>Fix problem with servlet timeouts and errors/redirects.</li>
+	<li>Various fixes for persistent jdbc connections</li>
+	<li>Fixed bug in HttpBasicServer, when the number of IP for a host was
+	  updated with less IPs</li>
+	<li>Fixed compliancy bug for OPTIONS * (Content-Length is now
+	  explicitly 0)</li>
+	<li>Fixed log time when the server ran into daylight saving changes.
+	</li>
+	<li>And several other ones...</li>
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>HTTP Compliancy improved</li>
+	<li>Servlet now reuse Jigsaw filtering system even on the way back</li>
+	<li>Added support for mirroring from a non-root resource (providing
+	  all the underneath links are relatives)
+	<li>Creation of NegotiatedResources in DirectoryResource is now 
+	  incremental. 
+	<li>Added more statistics about resource store usage 
+      </ul>      
+
+      <h2><a name="2.1.2"></a>Jigsaw 2.1.2</h2>
+      <b>A public release, made on August 9th, 2000.</b>
+
+      <p>This release is the updated and enhanced version of the 2.1.1 release
+	it includes all the new features found in 2.0.5 and stability has been
+	vastly improved since 2.1.1, for both server and client side, also
+	servlet and jsp support has been improved.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li>CC/PP implementation.
+	<li>Persistent Jdbc connection handler.
+	<li>HTTP/0.9 support in client side API (*sigh*)
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Many fixes for JSP support
+	<li>Fixed init of log rotation and log format
+	<li>Fixed several deadlocks in during indexing+save+event processing
+	<li>Fixed HTML4.0 compliancy of container listings
+	<li>Fixed requestDispatcher for VirtualHosts
+	<li>Fixed problem with getServerName and Host with no port number.
+	<li>Connections count and overall stability in SocketClientFactory
+	<li>ETag generation fixed when a non-file resource is involved.
+	<li>Fixed XMLResourceWriter, child list for jigadmin was not encoded.
+	<li>Fixed CommonLogger, some entries were missing when the buffer
+	  length was reached.
+	<li>Fixed a bug in HTTPFrame leading to modification of the stores
+	  for every load of a store.
+	<li>Fixed AclRealm so that AuthUser state is added to the request
+	<li>Fixed JpegHeaders to release the file decriptors on the file
+	<li>Fixed JigAdmin to correct URI not ended with '/' 
+	  (leading to an error when using jdk1.3)
+	<li>Fixed Slider in Jigadmin so that it checks the bound to avoid 
+	  problems 
+	<li>Fixed a bug in ServletMappefFrame (pathinfo not corectly set) 
+	<li>Fixed a bug in ServletResponse.sendRedirect() 
+	<li>Fixed HTTP/1.0 request in client side when a body is there and
+	  an error is replied
+	<li>Fixed FowardFrame to close connection when amgibuity can be raised
+	  by the client-side reply concerning Content-Length. 
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Added a lenient HTTP headers parsing mode to be kind to
+	  ill-configured servers
+	<li>-host option resurrected
+	<li>CgiFrame can reuse the frame config
+	<li>JpegHeaders can extract metadata from digital cameras
+	<li>NegotiableFrame now uses ordering for Accept:
+	<li>Better Statistics Frame
+	<li>HttpAccept can have a quality factor
+	<li>Jigadmin can do a local reindex (that's what people usually want)
+	<li>Relocate and Redirect redone to be more flexible.
+	<li>MimeType can now be cloned
+	<li>Charset support, independant of the Mime Type
+	<li>Added get/setSMaxAge to be nice for caches
+	<li>Automatic log rotation in CommonLogger and ExtendedCommonLogger
+	<li>Statistics frames are now giving more informations
+	<li>HTTPFrame can have multiple indexes
+	<li>HTTPFrame generate index for generic containers
+	<li>ThreadCache is now using a FIFO for the free threads, to deal
+	  with some broken jdk.
+      </ul>      
+
+      <h2><a name="2.0.5"></a>Jigsaw 2.0.5</h2>
+      <b>A public release, made on July 5th, 2000.</b>
+
+      <p>This release is the updated and enhanced version of the 2.0.4 release
+	it includes all the new features available in 2.1.1, like servlet 2.2
+	support and JSP support. Also many bug fixes for improved stability
+	and HTTP/1.1 compliance.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li>Servlet 2.2 support (except for .war as it is too
+	  "file" oriented).
+	<li>Charset support
+	<li>NoCache filter to deal with broken browsers.
+	<li>Shutdown hook, to save the configuration in case of emergency
+	  (requires jdk1.3 to work, but jdk1.3 is NOT required to run Jigsaw)
+	<li>Automatic log rotation.
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fixed loggers to have a good date for HTTP/0.9 requests on 
+	  dateless replies
+	<li>Fixed JigAdmin to correct URI not ended with '/' 
+	  (leading to an error when using jdk1.3)
+	<li>Fixed a bug in HTTPFrame leading to modification of the stores
+	  for every load of a store.
+	<li>Fixed AclRealm so that AuthUser state is added to the request
+	<li>Fixed JpegHeaders to release the file decriptors on the file
+	<li>Fixed ETag generation when a non-file resource is there.
+	<li>Loggers fixed, some entries were dropped when buffer was full
+	<li>Some servlet parameters were lost in servlet call.
+	<li>Fixed SocketClientFactory for more stability and better idle
+	  connection removal.
+	<li>Fixed problem with getServerName() when port is 80
+	<li>Fixed return code when servlet is not available
+	<li>Fixed HttpBasicConnection to avoid caching IP forever.
+	<li>Fixed RequestDispatcher with VirtualHost
+	<li>Various fixes for JSP support.
+	<li>Fixed ServletPropertyReader for servlet preload.
+	<li>Fixed default port recognition in the lookup phase of the proxy
+	<li>Fixed synchronized call in HttpBasicServer to avoid deadlock 
+	<li>bug fixed that was preventing binding on a specific IP
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Added a lenient HTTP headers parsing mode to be kind to
+	  ill-configured servers
+	<li>-host option resurrected
+	<li>CgiFrame can reuse the frame config
+	<li>JpegHeaders can extract metadata from digital cameras
+	<li>NegotiableFrame now uses ordering for Accept:
+	<li>Better Statistics Frame
+	<li>HttpAccept can have a quality factor
+	<li>Jigadmin can do a local reindex (that's what people usually want)
+	<li>Relocate and Redirect redone to be more flexible.
+	<li>MimeType can now be cloned
+	<li>Charset support, independant of the Mime Type
+	<li>Added get/setSMaxAge to be nice for caches
+	<li>Automatic log rotation in CommonLogger and ExtendedCommonLogger
+	<li>Statistics frames are now giving more informations
+	<li>HTTPFrame can have multiple indexes
+	<li>HTTPFrame generate index for generic containers
+      </ul>      
+
+      <h2><a name="2.1.1"></a></h2>
+
+      <h2>Jigsaw 2.1.1</h2>
+      <b>A public release, made on March 6th, 2000.</b>
+
+      <p>This release is the updated and enhanced version of the 2.1.0 release
+	it includes all the new features available in 2.0.4, as well as new 
+	ones, like servlet 2.2 support.
+      </p>
+      
+      <h3>New Features</h3>
+      <ul>
+	<li><a href="http://www.w3.org/TR/photo-rdf/">Image metadata</a>
+	  extraction
+	<li>Servlet 2.2 support (except for .war as it is too
+	  "file" oriented).
+	<li>Charset support
+	<li>new rfc2616 compliant cache (almost finished)
+	<li>NoCache filter to deal with broken browsers.
+	<li>Shutdown hook, to save the configuration in case of emergency
+	  (not yet functional, it will work with java2 1.3 and up)
+	<li>Automatic log rotation.
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Bug fixed in RealmCatalog and AuthRealm
+	<li>internal lookup bug in ProxyFrame
+	<li>Fixed bug in the creation of frame arrays
+	<li>Fixed an unload notification that was not passed to frames
+	<li>Fixed a deadlock in the ResourceStoreManager
+	<li>Fixed an extra Content-Type sent in the admin protocol.
+	<li>ChunkedInputStream now notifies an EOF if it happens while you
+	  ask to read for more bytes than available (was potentially waiting
+	  forever before that!)
+	<li>Fixed HttpBasicServer, when the client part has to do a two stage
+	  HTTP/1.1 request on behalf of a 1.0 client (proxy)
+	<li>Fixed ChunkedOutputStream, it is now more optimized and a 
+	  potential char to byte convertion problem has been removed. Also,
+	  the closing of the stream has been fixed.
+	<li>Fixed Base64 encoder and decoder, to avoid a potential char to
+	  byte conversion error
+	<li>modified the attribute name for last modified, as it was
+	  interacting badly with revalidations
+	<li>Fixed MimeType matching
+	<li>Fixed bug in HttpMessage, The proxy stopped to forward the
+	  SetCookie header 
+	<li>Invalid XML characters are now encoded
+	<li>FileAttribute now pickles a String, mandatory for remote admin
+	<li>Resource store upgrader redone so that it works for jdk1.2.2
+	<li>Fixed bug preventing binding on a specific IP
+	<li>Redone Relocate and Redirect frames so that virtual hosts and
+	  proxies are now supported.
+	<li>Fixed static declaration of inner classes in XMLProperties
+	<li>fixed HttpAccept to use quality factor as it should
+	<li>Fixed LookupState to use ; in the URI during lookup.
+	<li>Fixed init code of AttributeHolder
+	<li>Fixed race condition in resource store loading
+	<li>Fixed getRealPath in ServletContext
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Added a more clever (and expensive) loop check in the Proxy, 
+	  it check for the IP and not for the host only
+	<li>Relocate and Redirect redone to be more flexible.
+	<li>MimeType can now be cloned
+	<li>Charset support, independant of the Mime Type
+	<li>Added get/setSMaxAge to be nice for caches
+	<li>Automatic log rotation in CommonLogger and ExtendedCommonLogger
+	<li>Statistics frames are now giving more informations
+	<li>HTTPFrame can have multiple indexes
+	<li>HTTPFrame generate index for generic containers
+      </ul>      
+
+      <h2><a name="2.0.4"></a></h2>
+
+      <h2>Jigsaw 2.0.4</h2>
+      <b>A public release, made on January the 21th, 2000.</b>
+
+      <p>This release is a backport of all enhancements that does not deal
+	with XML serialization and also a bufix release.
+      </p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>Image metadata extraction
+	<li>Servlet.properties parsed at startup
+	<li>Charset support
+	<li>NoCache filter to deal with broken browsers.
+      </ul>      
+      
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Bug fixed in RealmCatalog and AuthRealm
+	<li>internal lookup bug in ProxyFrame
+	<li>Fixed bug in the creation of frame arrays
+	<li>Fixed an unload notification that was not passed to frames
+	<li>Fixed a deadlock in the ResourceStoreManager
+	<li>Fixed an extra Content-Type sent in the admin protocol.
+	<li>ChunkedInputStream now notifies an EOF if it happens while you
+	  ask to read for more bytes than available (was potentially waiting
+	  forever before that!)
+	<li>Fixed HttpBasicServer, when the client part has to do a two stage
+	  HTTP/1.1 request on behalf of a 1.0 client (proxy)
+	<li>Fixed ChunkedOutputStream, it is now more optimized and a 
+	  potential char to byte convertion problem has been removed. Also,
+	  the closing of the stream has been fixed.
+	<li>Fixed Base64 encoder and decoder, to avoid a potential char to
+	  byte conversion error
+	<li>Fixed cached entry invalidation, it now marks the entry to be
+	  revalidated next time rather than removing it directly from the
+	  cache (helps disconnected operation).
+	<li>Fixed header update during revalidation not matching 200 or 304
+	  (ex: auth failed)
+	<li>modified the attribute name for last modified, as it was
+	  interacting badly with revalidations
+	<li>JigsawRequestDispatcher in servlet is now cloning the request
+	  before an include or a forward
+	<li>Fixed MimeType matching
+	<li>CacheFilter no longer caches replies with Set-Cookies
+	<li>Fixed bug in HttpMessage, The proxy stopped to forward the
+	  SetCookie header 
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Added a more clever (and expensive) loop check in the Proxy, 
+	  it check for the IP and not for the host only
+	<li>Better servlet 2.1 support
+	<li>Better caching algorithms, (completely redone for 2.1.>0).
+      </ul>
+
+      <h2><a name="2.1.0"></a></h2>
+
+      <h2>Jigsaw 2.1.0</h2>
+      <b>A public release, made on September the 9th, 1999.</b>
+
+      <p>This release is the first release using the new serialization scheme.
+	It allows you to change the way the serialization is done. 
+	As an exemple, and to provide an easier access to the configuration.
+      </p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>New serialization scheme, the current version uses XML, see 
+	  <a href="Doc/Programmer/JigXML.html">the JXML format</a> for more 
+	  information on how to read the serialized files.</li>
+	<li>New admin exchange format, using 
+	  <a href="Doc/Programmer/JigXML.html">JXML</a>, it allows you to
+	  create administration scripts.</li>
+	<li>A new upgrader will convert automatically the old Jigsaw stores
+	  to the new format, the old stores are kept in a backup directory.
+      </ul>      
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>more HttpRange can now be created: "-500","500-", by using -1 as 
+	  the default value</li>
+	<li>The request parser now skip the body if sent directly by the client
+	  when an error occured.</li>
+	<li>Servlet are destroyed only if all the connections are closed</li>
+	<li>Lister in Jigedit now defines the ACTION in the FORM</li>
+	<li>Servlet bug fixed in getResource(), thanks to James Clark.
+      </ul>
+      
+      <h3>Improvements</h3>
+      <ul>
+	<li>Directory listing now ends the URI of the containers with a "/", 
+	  preventing an extra redirect</li>
+	<li>Logger now has a property to define the logging directory</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+	<li>The jdbmResourceStore has not yet been ported, a consequence is
+	  the lack of CacheFilter in the proxy, but it will be replaced soon
+	  by a completely new cache.</li>
+      </ul>
+
+      <h2><a name="2.0.3"></a></h2>
+
+      <h2>Jigsaw 2.0.3</h2>
+      <b>A public release, made on July the 27th, 1999.</b>
+
+      <p>This release is a bugfix version of the 2.0.2, while 2.1.0 will add 
+	new feature and will completely change the way the resources are 
+	serialized).
+	Meanwhile, there are new functionalities, like the new Acl api, which 
+	replaces the old auth schemes.</p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>new Acl API, more flexible than the previous auth scheme.</li>
+	<li>Redirecter Frame now handles PATH_INFO.</li>
+	<li>Charset and language dialects negotiation.</li>
+	<li>Added MimeTypeArray and other basic attributes arrays.</li>
+      </ul>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Bad request handling is better, previously, HTTP/1.1 without a 
+	  Host: header or a full URI was just closing the connection.</li>
+	<li>Servlet indexer can now index servlets with full package name</li>
+	<li>Bad permission on a file now fires an exception, rather than
+	  (possibly) hanging.</li>
+	<li>MimeAttribute null balue is now handled in jigadm</li>
+	<li>Cache is now sending the right size for null documents</li>
+	<li>Servlet's getReader now takes care of the encoding.</li>
+	<li>ServletRequest now merges URI parameters and body parameters.</li>
+	<li>Fixed ResourceEvent bug (unloaded resources are no longer receiving
+	  events)</li>
+	<li>Cache is no longer blocking for non-sized multipart documents.</li>
+	<li>Fixed loop in proxy when the proxy was on port 80 (fixed also if
+	  it is the default https port)</li>
+	<li>Fixed timestamp problem when a file has been modified in the past
+	  (clock skew is a pain)</li>
+	<li>Fixed max-connection and notification of waiting threads during the
+	  deletion of an old kept-alive connection</li>
+	<li>Cached VaryResource are now checking ETag the right way, no more
+	  304 replies when it was just a cache revalidation.</li>
+	<li>Multiple cookies are now sent using multiple headers (ugly but 
+	  cookies ARE ugly).</li>
+	<li>Fixed ResourceStoreManager initialization, when another root 
+	  resource was set, it may end up in resource duplication and 
+	  problems while attaching frames/filters, also it was causing 
+	  deletion loops. WARNING! You may have to redo your configuration if 
+	  you changed the root resource!</li>
+	<li>Fixed servlet timeout unit</li>
+	<li>SSI Frame and servlet interaction fixed (no more chunking in that
+	  case)</li>
+	<li>Logger and port can be changed while the server is running.</li>
+	<li>The "No logger" warning is more explicit</li>
+      </ul>
+
+      <h3>Improvements</h3>
+      <ul>
+	<li>Servlet timeout can be disabled</li>
+	<li>Servlet cookie maxage can now be -1 (unlimited)</li>
+	<li>Language negotiation has been redone, it now check dialects
+	  also</li>
+	<li>Content negotiation now takes the order into account</li>
+	<li>Realms now have a real feeder (administration tool)</li>
+	<li>Added bind address so that multiple interfaces can be bound.</li>
+	<li>Client garbage collection scheme has been redone, allowing smoother
+	  handling of clients when load goes up (it means also better
+	  performances)</li>
+	<li>MirrorFrame now tweaks also temporary redirects</li>
+	<li>Md5 constructor now allows an encoding string.</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+      <h2><a name="2.0.2">Jigsaw 2.0.2</a></h2>
+      <b>A public release, made on March the 31th, 1999.</b>
+
+      <p>This release includes the first version of the new administration tool
+	(jigadmin, v2). Along with that, numerous improvement over the old
+	version, like servlet API 2.1 support.</p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>Digest Authentication</li>
+	<li>Http Extension Framework (HttpExtFrame)</li>
+	<li>New JigAdmin. This one should be more intuitive than the other, but
+	  still, you probably need to understand the design to take best out of
+	  it.</li>
+	<li>JSDK2.1 (Servlet API) support.</li>
+	<li>Per servlet timeout is possible</li>
+	<li>JNI port of LibUnix, thanks to Roland Mainz</li>
+	<li>New logger ExtendedCommonLogger, doing log rotation and using ECLF
+	  format</li>
+	<li>*forbid* can be used as a Container index</li>
+	<li>Log file resolver, to do DNS resolution offline</li>
+	<li>ServletMapperFrame, used to map a file to a servlet (see the FAQ
+	  entry about JSP)</li>
+      </ul>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>HttpChallenge fix, the byte buffer is now recomputed when it
+	  changes.</li>
+	<li>Redirect fix for virtual hosts</li>
+	<li>Relocate fix for virtual hosts</li>
+	<li>Frame identifier now used in FrameReference as you may have 
+	  multiple instances of the same class attached to a resource</li>
+	<li>ContentLengthInputStream and ChunkedInputStream now throws an
+	  IOException when an error occurs</li>
+	<li>201 Created now generates the right response</li>
+	<li>FileAttribute is now sent as a String in the admin protocol to 
+	  avoid automatic conversion of jdk1.2</li>
+	<li>When indexing a file with multiple extensions, frames attirbutes
+	  are now aggregated. <b>It requires the use of the new default 
+	    indexer</b> provided in the distribution, as the Content-Type
+	  for modifiers (like .fr) is now
+	  set to *none*</li>
+	<li>VirtualHost now remove automatically the ":80" added by some
+	  robots.</li>
+	<li>Extension matching process now does "perfect" match, then case
+	  insensitive match if desired.</li>
+	<li>CgiFrame has now PATH_TRANSLATED defined</li>
+	<li>RedirecterFrame now forward the query string as expected.</li>
+      </ul>
+
+      <h3>Improvements</h3>
+      <ul>
+	<li>index resolution for containers now add Content-Location</li>
+	<li>PUT on negotiated resources is handled using ETags</li>
+	<li>Users can add environment variable in the CgiFrame 
+	  configuration</li>
+	<li>ETag generation is done in one place, so you can overload it.</li>
+	<li>URLDecoder updated to use InputStream AND Readers</li>
+	<li>ContentTypeIndexer can now use wildcards (well only *) in its mime
+	  type definitions.</li>
+	<li>ThreadCache behaviour near the limit is now the right one, also 
+	  there is a feature to wait for all the thread of the cache.</li>
+	<li>PassDirectory can now act as a normal DirectoryResource is the
+	  pass-target is not set</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="2.0.1"></a>Jigsaw 2.0.1</h2>
+      <b>A public release, made on January the 18th, 1999.</b>
+
+      <p>This release has been done to allow people to use the admin tool 
+	despite a JDK1.2 bug. So the fixed bug list is quite short!</p>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Nasty kludge (creation of an useless object) to prevent bug in 
+	  JDK1.2 classloader</li>
+	<li>Garbage collection of old client connection redone.</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="2.0.0"></a>Jigsaw 2.0.0</h2>
+      <b>A public release, made on December the 24th, 1998.</b>
+
+      <p>This is the final version of the 2.0 version of <b>Jigsaw</b>. 
+	This is a bugfix release of the <b>2.0beta3</b>.</p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>DELETE method implemented both on normal resources and on CVS 
+	  resources. By default DELETE is not enabled</li>
+	<li>New version of JigEdit (documentation pending)</li>
+	<li>JDK1.2 fixes, it now compile gracefully with JDK1.2, which means
+	  that the usual warnings are thrown.</li>
+      </ul>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>HttpCacheControl bug on "no-cache"</li>
+	<li>Event model for ResourceFrame fixed</li>
+	<li>Deleted variants of a Negotiated Frame are now removed from the
+	  list of variants</li>
+	<li>PageCompile fix for \ under Windows and possible clash on class
+	  name.</li>
+	<li>getCookies method for Servlets</li>
+	<li>NegotiatedFrame throw a 404 if no variant are present (after a
+	  delete)</li>
+	<li>Servlets called from SSI don't close the stream any longer.</li>
+	<li>AdminReader and PlainRemoteResource are now URLEncoding the URIs
+	  .</li>
+	<li>File system sensitivity check is now working during the lookup.
+	</li>
+	<li>First access on some resources may return an error as the parent
+	  was not created, now fixed.</li>
+	<li>File Descriptor leak fixed on ugly configurations.</li>
+      </ul>
+
+      <h3>Enhancements</h3>
+
+      <p>Documentation is still evolving, and, as always, feedback welcome!</p>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="2.0beta3"></a>Jigsaw 2.0beta3</h2>
+      <b>A public release, made on October the 2nd, 1998.</b>
+
+      <p>This is a bug fix release of the previous <b>2.0beta2.</b></p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>PageCompilation, allow you to do fancy server side includes</li>
+	<li>The ZipIndexer allow you to serve files contained in a zip.</li>
+	<li>Port of the LabelBureau</li>
+	<li>ServletIndexer allow you to index servlet and remove the .class
+	  automatically</li>
+	<li>ProxyDispatcher rules editor, and re-parsing of the rules.</li>
+      </ul>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Various bug fixes on servlets</li>
+	<li>Properties editable directly in JigAdmin (mICP, proxy dispatcher,
+	  servlet)</li>
+	<li>servlet classloader revamped.</li>
+	<li>ProxyFrame lookup bug (inifnite redirect on itself) fixed</li>
+	<li>Observable properties now works better.</li>
+	<li>Jigadm gives now more feedback during save and such.</li>
+	<li>Jigadm crash on latest JDK fixed.</li>
+	<li>HTTP/1.1 fixes according to the latest
+	  draft-ietf-http-v11-spec-rev-05</li>
+	<li>Jigsaw client now reuses connections the right way</li>
+	<li>Tons of deadlocks and error recovery added in the internal 
+	  handling of the cache of the proxy</li>
+	<li>getRequestURI now works according to JSDK's api.</li>
+	<li>fixes in the ZipDirectory</li>
+      </ul>
+
+      <h3>Enhancements</h3>
+      <ul>
+	<li>The documentation is evolving, but still, constructive comments are
+	  welcome!</li>
+	<li>JigAdmin GUI gives more feedback. Designers, feel free to work
+	  on the GUI!</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="2.0beta2"></a>Jigsaw 2.0beta2</h2>
+      <b>A public release, made on July the 10th, 1998.</b>
+
+      <p>This is a bug fix release of the previous <b>2.0beta1</b>.</p>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>Complete JSDK/2.0 servlet API support. It even includes session
+	  tracking.</li>
+	<li>Some filters to demonstrate HTTP/1.1 interoperability like the
+	  UseProxyFilter.</li>
+	<li>HourLimiterFilter, to restrict access during some time.</li>
+	<li>Content-Type indexers to use all the Content-Type information given in a
+	  PUT.</li>
+      </ul>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Broken resources can now be deleted</li>
+	<li>Many HTTP/1.1 fixes according to the
+	  draft-ietf-http-v11-spec-rev-03.</li>
+	<li>Partial Content fixed (it was sending one byte too much)</li>
+	<li>Missing Content-Length</li>
+	<li>Content-MD5 to ensure end-to-end message integrity check.</li>
+	<li>Events within frames and resources now fixed.</li>
+	<li>Bug in SSI frame (event related).</li>
+	<li>Many Cookies fixes, it is now implementing more things than before.</li>
+	<li>Tracking of the "real" root resource.</li>
+	<li>some more timeouts to solve the problem of blocked threads</li>
+	<li>Fixes in jdbm, to fix the way the buckets were splitted in the
+	  cache.</li>
+	<li>Virtual Hosting was broken when issuing redirects, now fixed with the
+	  creation of a specific resource: VitrualHostResouce.</li>
+	<li>Range requests from cached resources now have the real value.</li>
+      </ul>
+
+      <h3>Enhancements</h3>
+      <ul>
+	<li>The documentation! It is not perfect yet, and comments are welcome to
+	  improve it.</li>
+      </ul>
+
+      <p></p>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="2.0beta1"></a>Jigsaw 2.0beta1</h2>
+      <b>A public release, made on April the 8th, 1998.</b>
+
+      <p>This is the first complete release of the new Jigsaw, with the <a
+	  href="Doc/Programmer/design.html">new internal design</a>.</p>
+
+      <h3>Bug Fixes</h3>
+
+      <p>There was almost no bug fix in the new resource model of Jigsaw, but there
+	was some modification of the HTTP stack, mainly about the handling of the PUT
+	method.</p>
+
+      <h3>New Features</h3>
+
+      <p>All the resources of the 1.0beta2 has been ported to the new 2.0 version.
+	This includes:</p>
+      <ul>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/RedirecterFrame.html">RedirecterFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/VirtualHostFrame.html">VirtualHostFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/CgiFrame.html">CgiFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigedit/cvs/CvsFrame.html">CvsFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigedit/frames/CvsFileFrame.html">CvsFileFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigedit/tools/ToolsListerFrame.html">ToolsListerFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigedit/filters/PutListFrame.html">PutListFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/PostableFrame.html">PostableFrame</a></li>
+	<li><!-- <a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/map/MapFrame.html"> -->MapFrame<!-- </a> --></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/proxy/ForwardFrame.html">ForwardFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/proxy/ProxyFrame.html">ProxyFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/resources/PasswordEditorFrame.html">PasswordEditorFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/resources/CheckpointFrame.html">CheckpointFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/resources/DirectoryListerFrame.html">DirectoryListerFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/status/GcStatFrame.html">GcStatFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/status/StatisticsFrame.html">StatisticsFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/status/ThreadStatFrame.html">ThreadStatFrame</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/CookieFilter.html">CookieFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/HeaderFilter.html">HeaderFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/LogFilter.html">LogFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/CounterFilter.html">CounterFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/DebugFilter.html">DebugFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/GZIPFilter.html">GZIPFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigedit/filters/PutFilter.html">PutFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/CacheFilter.html">CacheFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/AccessLimitFilter.html">AccessLimitFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/PutSizeFilter.html">PutSizeFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/ErrorFilter.html">ErrorFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigedit/filters/GrepPutFilter.html">GrepPutFilter</a></li>
+	<li><a
+	    href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/ProcessFilter.html">ProcessFilter</a></li>
+      </ul>
+
+      <p>The new <a href="Doc/">documentation</a> is also more complete.</p>
+
+      <h3>Incompatible changes</h3>
+
+      <p>To avoid the name length limit on the Mac, the resource files used by
+	<b>JigAdmin</b> are now stored in a zip, the old version of <b>JigAdmin</b>
+	will not work with this new version, you then need to upgrade both the server
+	and the client to do administration.</p>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="2.0alpha1"></a>Jigsaw 2.0alpha1</h2>
+      <b>A public release, made on January the 31th, 1998.</b>
+
+      <p>This 2.0 release is the first release of the new <a
+	  href="Doc/Programmer/design.html">internal design</a> of Jigsaw.</p>
+
+      <h3>Bug Fixes</h3>
+
+      <p>This version as all the bug fixes of the 1.0beta2 about protocol issues.
+	Other bug fixes have no meaning here as the internals of Jigsaw have been
+	reworked.</p>
+
+      <h3>Incompatibles changes</h3>
+      <ul>
+	<li>The name of the classes are now <tt>org.w3c</tt>... instead of
+	  <tt>w3c</tt>...</li>
+	<li>The resources are no longer linked with the protocol, protocole frames
+	  are added to the raw resources</li>
+	<li>The resources are limited, DirectoryResource, FileResource,
+	  PassDirectory, FramedResource, ContainerResource and
+	  ExternalContainer.</li>
+	<li>The new frames are:
+	  <ul>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/ProtocolFrame.html">ProtocolFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/HTTPFrame.html">HTTPFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/ResourceFrame.html">ResourceFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/NegotiatedFrame.html">NegotiatedFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/RelocateFrame.html">RelocateFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/ssi/SSIFrame.html">SSIFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/servlet/ServletDirectoryFrame.html">ServletDirectoryFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/servlet/ServletWrapperFrame.html">ServletWrapperFrame</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/auth/AuthFilter.html">AuthFilter</a></li>
+	    <li><a
+		href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/auth/GenericAuthFilter.html">GenericAuthFilter</a></li>
+	  </ul>
+	</li>
+	<li>The filters are no longer placed on the resource, but on the protocol
+	  frame.</li>
+	<li>The admin server has been reworked to support framed frames.</li>
+	<li>Support for active Resources through listeners. (bean-like event
+	  model).</li>
+	<li>Modification of the <b>JigAdmin </b>configuration tool to support
+	  protocol frames and framed frames.</li>
+	<li>The root store of the distribution is no longer needed to start a new
+	  server, it creates its own store if none are present.</li>
+	<li>The ResourceStoreManager has been completely modified, so the old
+	  configurations for the 1.0beta serie will no longer work. You will have to
+	  reconfigure your server entirely!</li>
+	<li>The form-based configuration is invalid now and has been removed. You
+	  MUST use the administration server to configure <b>Jigsaw</b></li>
+      </ul>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>True reindexing now exists (This is real reindexing rather than deleting
+	  the resource).</li>
+	<li><b>Jigsaw</b> will create the root store if not present.</li>
+	<li>Installation program that modifies the property files of the servers
+	  according to your configuration.</li>
+	<li>Partial draft of the <a href="Doc/">new documentation</a>, the next
+	  release will have a completely new documentation.</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0beta2"></a>Jigsaw 1.0beta2</h2>
+      <b>A public release, made on January the 31th, 1998.</b>
+
+      <p>This is a bug fix release of the previous beta release. The purpose of the
+	"beta track" is to improve the stability of Jigsaw. For further developments,
+	see the 2.0 track.</p>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fixed revalidation mechanism with a <tt>no-cache</tt> directive.</li>
+	<li>The update of a cached resource in case of a revalidation is now
+	  correct.</li>
+	<li>The <tt>Max-Forwards</tt> header is now well handled.</li>
+	<li>The <tt>PUT</tt> and <tt>POST</tt> methods are now working well on
+	  HTTP/1.1 servers.</li>
+	<li>Fixed a bug in the <tt>Via</tt> header of proxied resources.</li>
+	<li>Fixed default adds of HTTP headers that were wrong.</li>
+	<li>debug of the classloader for servlets</li>
+	<li>Bug fix in the jdbm enumerator.</li>
+      </ul>
+
+      <h3>Enhancements</h3>
+      <ul>
+	<li>The indexers can now create "ghost" resources to allow more fancy uses
+	  of Jigsaw, like shadow icon directories.</li>
+	<li>Added the <tt>TRACE</tt> method of HTTP/1.1</li>
+	<li>Added the possibility of templates in the indexers</li>
+	<li>the GrepPutFilter forbid a PUT of a document containing a specified
+	  string. Very useful when you edit your website from one server and you
+	  doesn'y want to allow links to this server.</li>
+	<li>Added a DateThread, if you want to speed up Jigsaw a bit (~10% by
+	  switching loggers).</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0beta1"></a>Jigsaw 1.0beta1</h2>
+      <b>A public release, made on September the 1st, 1997.</b>
+
+      <p>This is just a bug fix release of the latest member beta release.</p>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>Fixed a bug in Content-Length in case of Chunked encoding.</li>
+	<li>Added more feedback when a configuration error occurs while using
+	  <b>JigAdmin</b>.</li>
+	<li>Fixed bug in the CacheFilter</li>
+      </ul>
+
+      <h3>Enhancements</h3>
+      <ul>
+	<li>Added a new Resource, DirectoryLister, acting like when you access to a
+	  directory, useful to make a small index.</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0beta"></a>Jigsaw 1.0beta</h2>
+      <b>A member specific release, made on August the 1st, 1997.</b>
+
+      <h3>Bug Fixes</h3>
+      <ul>
+	<li>FileResource now supports the HTTP/1.1 <tt>If-Range</tt> header, and a
+	  slight bug was fixed in the emitted <tt>Content-Range </tt>header</li>
+	<li>The HTTP client side cache filter has been fixed (jdbmResourceStore
+	  enumration was buggy)</li>
+	<li>The Caught Exception trace in errlog has been removed (<i>The trace was
+	    the bug</i> - tm)</li>
+	<li>Fixed a bug in ICP message parsing (will now correctly handle message of
+	  length exceeding 255 bytes)</li>
+	<li>If it manages a shared cache, the CacheFilter will no longer cache
+	  documents retreive through a request that has an Authorization
+	  header.</li>
+	<li>Fixed a bug in HTTP Date parsing (one of the three date format wasn't
+	  parsed properly)</li>
+	<li>Fixed a bug in ContentLengthInputStream (wrong size after an error on a
+	  read)</li>
+	<li>Fixed a bug in ActiveStream which was the source of empty documents
+	  feeded by the proxy.</li>
+      </ul>
+
+      <h3>Enhancements</h3>
+      <ul>
+	<li>Added a property in the <a
+	    href="User/Reference/w3c.www.protocol.http.icp.ICPFilter.html#w3c.www.protocol.http.icp.disable-cache">ICPFilter</a>
+	  to disable caching of documents retreived through ICP</li>
+	<li>JSDK/1.0 FCS servlet API support</li>
+	<li>Powerful JDBC access through server side include.
+	  <p><br>
+	    This new feature allow you to querty any JDBC compliant database and embed
+	    the result within your HTML page. Check the <a
+	      href="User/api/w3c.jigsaw.ssi.SSIResource.html">SSIResource api</a>.</p>
+	</li>
+	<li>PICS &amp; JDBC.
+	  <p><br>
+	    A new LabelBureau implementation is available. It relies on any JDBC
+	    compliant database as the storage mechanism for PICS labels, which makes
+	    it more scaleable than the previous filesystem based approach.</p>
+	</li>
+	<li>Servlet support has been upgraded to 1.0FCS; Support for automatic
+	  servlet reloading has also been implemented (Jigsaw will detect that the
+	  servlet class files have changed and will reload them automatically).</li>
+      </ul>
+
+      <h3>New Features</h3>
+      <ul>
+	<li>Added a companion server to do the remote configuration.
+	  <p><br>
+	    The protocol used to communicate with the Admin servlet hasn't been
+	    specified yet, and will probably change in the next releases of Jigsaw.
+	    The client part of the API (<a
+	      href="User/api/w3c.jigsaw.admin.RemoteResource.html">w3c.jigsaw.jigadm.RemoteResource</a>)
+	    is unlikely to change though.</p>
+	</li>
+	<li>A new graphical tool is available to do the configuration of Jigsaw.
+	  Currently, this allows you to do everything the form based editor could
+	  do.</li>
+	<li>Support for the <a href="User/api/Package-w3c.www.sap.html">SAP</a>
+	  protocol has been included, as the starting point for multicast
+	  proxy-to-proxy support. SAP is the Session Announcement Protocol (an
+	  Internet draft)</li>
+	<li>The <a
+	    href="User/Reference/w3c.jigsaw.proxy.ProxyDirectory.html">ProxyDirectory</a>
+	  resource now supports ftp tunneling (it won't do caching until someone
+	  tells me how ftp results can be cached)</li>
+	<li>Support for a light multicasted version of ICP now available in the
+	  proxy, turn your hundreds of useless 5Mo caches into a usefull 50Mo
+	  collaborative proxy: <i>the net is the computer</i> ! Check the <a
+	    href="User/Reference/w3c.www.protocol.http.micp.MICPFilter.html">MICPFilter</a>
+	  client side filter.</li>
+	<li>Resource can now be extended through the use of <a
+	    href="User/api/w3c.tools.store.ResourceFrame.html">ResourceFrame</a>;
+	  <p><br>
+	    The notion of HTTP filters has proven usefull enough to be extended for
+	    non HTTP resources. You can now attach <i>frames</i> to resources that
+	    describe users for example (such as the w3c.jigsaw.auth.AuthUser).</p>
+	</li>
+      </ul>
+
+      <h3>Incompatible API changes</h3>
+      <ul>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.forms.FormResource.html">FormResource</a>
+	  constructor now takes a ResourceContext instead of a httpd instance</li>
+	<li>The indexing model haa changed quite a bit.
+	  <p><br>
+	    A new indexing model has been designed: each directory can declare how it
+	    indexes its content through thew use of its own indexer. The indexer API
+	    is defined in w3c.jigsaw.indexer.</p>
+	</li>
+      </ul>
+
+      <h3>Incompatible Configuration Changes</h3>
+      <ul>
+	<li>Filters pickling as attributes
+	  <p><br>
+	    Filters pickling has changed: filters are now just a special resource
+	    attribute, and follow the general pickling format. They used to be
+	    special, and that caused lots of troubles. <br>
+	    <i>Don't redefine the pickle method !!</i></p>
+	</li>
+	<li>Cache directory hierarchy
+	  <p><br>
+	    The cache directory hierarchy has been made multi-directory: cached
+	    entries are stored in a tree of directories instead of within a single
+	    directory (lessen the load on the file system by decreasing the acche
+	    directory size)</p>
+	</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0alpha5"></a>Jigsaw 1.0alpha5</h2>
+      <b>A public release made on February the 13th, 1997.</b>
+
+      <h3>Incompatible changes</h3>
+      <ul>
+	<li>The <a
+	    href="User/api/w3c.tools.store.AttributeHolder.html">AttributeHolder</a>
+	  <a
+	    href="User/api/w3c.tools.store.AttributeHolder.html#unpickle">unpickle</a>
+	  and <a
+	    href="User/api/w3c.tools.store.AttributeHolder.html#unpickleInstance">unpickleInstance</a>
+	  methods, now take a third boolean parameter, that indicates if the
+	  resource is to be initialized after unpickling. <b>Warning</b> if you have
+	  written an 1.0alpha3 resource that redefines this method, you should make
+	  sure to define the new format for this method (since it's the one that
+	  gets called by the unpickling engine)</li>
+	<li>The <a
+	    href="User/api/w3c.www.http.HttpReplyMessage.html">HttpReplyMessage</a> <a
+	    href="User/api/w3c.www.http.HttpReplyMessage.html#setLocation">setLocation</a>
+	  method now takes an URL, to reflect the fact that HTTP/1.1 specification
+	  requires an absolute URL here.</li>
+	<li>The getURL method of <a
+	    href="User/api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</a>
+	  has now been splitted into two diferent methods:
+	  <dl>
+	    <dt>String <a
+		href="User/api/w3c.jigsaw.resources.HTTPResource.html#getURLPath">getURLPath</a>()</dt>
+	    <dd>Returns the path of the URL of the resource (as a String)</dd>
+	    <dt>URL <a
+		href="User/api/w3c.jigsaw.resources.HTTPResource.html#getURL">getURL</a>(request)</dt>
+	    <dd>Retuns the full URL of the resource. With virtual hosting support,
+	      it may happen that a resource has differnt URLs according to the
+	      incomming requests, that's one of the reason for that split.</dd>
+	  </dl>
+	</li>
+	<li><a
+	    href="User/api/w3c.tools.store.AttributeHolderAttribute.html">AttributeHolderAttribute</a>
+	  semantics has slightly changed: it is up to resources using that kind of
+	  attribute to initialize the value (if any) of that attribute, by calling
+	  their <a
+	    href="User/api/w3c.tools.store.AttributeHolder.html#initialize">initialize</a>
+	  method with appropriate default values.</li>
+	<li>Resources can now refuse unloading, through the new <a
+	    href="User/api/w3c.tools.store.Resource.html#acceptUnload">acceptUnload</a>
+	  method. This allows to <i>lock</i> a resource in memory, whatever happens.
+	  This should be use only with great care.</li>
+	<li>The <a
+	    href="User/api/w3c.tools.store.ResourceStoreHolder.html">ResourceStoreHolder</a>
+	  interface has changed in the following ways:
+	  <dl>
+	    <dt>notifyStoreUnload</dt>
+	    <dd>Has been renamed to <a
+		href="User/api/w3c.tools.store.ResourceStoreHolder.html#acceptUnload">acceptStoreUnload</a>,
+	      and returns a boolean that indicates wether the store holder is
+	      willing to get rid of any of its references to the store. If any of
+	      that store holders return <b>false</b> the store will not ne
+	      unloaded.</dd>
+	    <dt><a
+		href="User/api/w3c.tools.store.ResourceStoreHolder.html#notifyStoreShutdown">notifyStoreShutdown</a>
+	      and <a
+		href="User/api/w3c.tools.store.ResourceStoreHolder.html#notifyStoreStabilize">notifyStoreStabilize</a></dt>
+	    <dd>Semantics has been slightly changed: it is nolonger up to the
+	      store holder to perform the job. The first method is the one in
+	      which the holder should get rid of all its references to the store
+	      (by nullifying them), and the second one is just a
+	      notification.</dd>
+	  </dl>
+	</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.ContainerResource.html">ContainerResource</a>
+	  <a
+	    href="User/api/w3c.jigsaw.resources.ContainerResource.html#lookupStore">lookupStore</a>
+	  method now throws an <a
+	    href="User/api/w3c.jigsaw.resources.InvalidResourceException.html">InvalidResourceException</a>
+	  if the resource exists in its store but cannot be restored. In such a
+	  case, the <a
+	    href="User/api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a>
+	  will emit an appropriate error message.</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.daemon.ServerHandler.html">ServerHandler</a>
+	  interface <a
+	    href="User/api/w3c.jigsaw.daemon.ServerHandler.html#initialize">initialize</a>
+	  and <a
+	    href="User/api/w3c.jigsaw.daemon.ServerHandler.html#clone">clone</a>
+	  methods now provide a pointer to the <a
+	    href="User/api/w3c.jigsaw.daemon.ServerHandlerManager.html">ServerHandlerManager</a>
+	  as a first parameter.</li>
+	<li>The resource and resource store APIs have been moved outside of
+	  <b>Jigsaw</b>. After a year of experimentation, this code has proven
+	  usefull outside the scope of the server itself, that's why we decided to
+	  move it to a newly created package <a
+	    href="User/api/Package-w3c.tools.store.html">w3c.tools.store</a>. If you
+	  have written some resources, the only change for you will be to import
+	  that new package in your class files. The precise list of classes that has
+	  moved is:
+	  <ul>
+	    <li>Attribute.java</li>
+	    <li>AttributeHolder.java</li>
+	    <li>AttributeHolderAttribute.java</li>
+	    <li>AttributeRegistry.java</li>
+	    <li>BooleanAttribute.java</li>
+	    <li>ClassAttribute.java</li>
+	    <li>DateAttribute.java</li>
+	    <li>DoubleAttribute.java</li>
+	    <li>FileAttribute.java</li>
+	    <li>FilenameAttribute.java</li>
+	    <li>HolderInitException.java</li>
+	    <li>IllegalAttributeAccess.java</li>
+	    <li>IntegerArrayAttribute.java</li>
+	    <li>IntegerAttribute.java</li>
+	    <li>InvalidResourceAttribute.java</li>
+	    <li>LongAttribute.java</li>
+	    <li>ObjectAttribute.java</li>
+	    <li>PropertiesAttribute.java</li>
+	    <li>Resource.java</li>
+	    <li>ResourceLocker.java</li>
+	    <li>ResourceShadower.java</li>
+	    <li>ResourceStore.java</li>
+	    <li>ResourceStoreHolder.java</li>
+	    <li>ResourceStoreManager.java</li>
+	    <li>SimpleResourceStore.java</li>
+	    <li>StringArrayAttribute.java</li>
+	    <li>StringAttribute.java</li>
+	    <li>UnknownResourceException.java</li>
+	  </ul>
+	</li>
+	<li>The <a
+	    href="User/api/w3c.tools.store.ResourceStoreManager.html">ResourceStoreManager</a>
+	  <a
+	    href="User/api/w3c.tools.store.ResourceStoreManager.html#unpickleProlog">unpickleProlog</a>
+	  method no longer returns a boolean. Instead it throws one of:
+	  <dl>
+	    <dt><a
+		href="User/api/w3c.tools.store.NotAStoreException.html">NotAStoreException</a></dt>
+	    <dd>If the file preambule doesn't match the store cookie.</dd>
+	    <dt><a
+		href="User/api/w3c.tools.store.InvalidStoreClassException.html">InvalidStoreClassException</a></dt>
+	    <dd>If the class willing to load that repository doesn't match the
+	      class that saved it.</dd>
+	    <dt><a
+		href="User/api/w3c.tools.store.InvalidStoreVersionException.html">InvalidStoreVersionException</a></dt>
+	    <dd>If the repository version doesn't match the loading class
+	      version.</dd>
+	  </dl>
+	</li>
+      </ul>
+
+      <h3>Compatible changes</h3>
+      <ul>
+	<li>HTTPResource defines a new <a
+	    href="User/api/w3c.jigsaw.resources.HTTPResource.html#verify">verify</a>
+	  method, that might be called by a resource store salvager to check the
+	  consistency of the resource.For example, file system based resources will
+	  use that method to check that the file or directory they wrap still exist,
+	  and delete themselves if not.</li>
+	<li><a
+	    href="User/api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a>
+	  listing now emits HTML3.2 compliant documents, along with a link to the
+	  container (when possible)</li>
+	<li>The realms catalog no longer uses absolute pathes, it will not however
+	  upgrade all realms catalog to not using absolute path. Relative path are
+	  relative to the server's auth directory (typically
+	  <tt>config/auth</tt>)</li>
+	<li>The <tt>w3c.jigsaw.space</tt> property is no longer settable through the
+	  Admin properties editor. This was an oversight. The only way to set the
+	  <i>space</i> for a server, is through the <tt>-space</tt> commandline
+	  toggle (check the <a href="User/Administration/cmdline.html">command line
+	    page </a>for more details)</li>
+      </ul>
+
+      <h3>New features</h3>
+      <ul>
+	<li>A new <a
+	    href="User/Reference/w3c.jigsaw.contrib.SalvagerResource.html">SalvagerResource</a>&nbsp;
+	  has been written. This resource will walk through the entire resource
+	  space, to check for:
+	  <ul>
+	    <li>Cycles in resource stores (due to <b>Jigsaw</b> bugs)</li>
+	    <li>Unused resource stores (it garbage collects the stores)</li>
+	    <li>Synchronize resources with the file system, by calling the <a
+		href="User/api/w3c.jigsaw.resources.HTTPResource.html#verify">verify</a>
+	      method of all resources.</li>
+	  </ul>
+	</li>
+	<li>A new <a
+	    href="User/api/w3c.tools.store.ResourceWalker.html">ResourceWalker</a>
+	  interface is available, along with a <a
+	    href="User/api/w3c.tools.store.WalkerEngine.html">WalkerEngine</a>. These
+	  two classes provide respectively an interface to handle the walk, and an
+	  <i>engine</i> that will trigger call to implementors of previous interface
+	  while walking through a resource space.</li>
+      </ul>
+
+      <h3>Bug fixes</h3>
+
+      <p>Numerous bug fixes have been omitted from the list, that list only the main
+	ones:</p>
+      <ul>
+	<li>The <a
+	    href="User/api/w3c.tools.store.ResourceStoreManager.html">ResourceStoreManager</a>
+	  had numerous bugs, most of them should now be fixed.</li>
+	<li>The <a
+	    href="User/api/w3c.www.protocol.http.icp.ICPFilter.html">ICPFilter</a>
+	  HTTP client side filter that implements the Internet Cache Protocol should
+	  now be compatible with Squid implementations</li>
+	<li>CVS has been fixed in numerous ways; the PutList resource should now be
+	  usable.</li>
+	<li>The basic class <a
+	    href="User/Reference/w3c.jigsaw.auth.AuthFilter.html">AuthFilter</a> now
+	  performs authentication during lookup, rather then at
+	  <tt>ingoingFilter</tt>'s time.</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0alpha4"></a>Jigsaw 1.0alpha4</h2>
+      <b>A member specific release, made on January the 13th, 1997.</b>
+
+      <h3>Incompatible changes</h3>
+      <ul>
+	<li>Properties are no longer saved in a single file, each <a
+	    href="User/api/w3c.jigsaw.daemon.ServerHandler.html">ServerHandler</a> has
+	  to manage its own property file. The file is designated through the server
+	  <i>identifier</i>. This means that older <tt>httpd.props</tt> file should
+	  be changed by:
+	  <ul>
+	    <li>Renaming them to <tt>http-server.props</tt> (the default server
+	      identifier)</li>
+	    <li>All properties prefix should be removed (ie all <tt>http-server</tt>
+	      prefixes)</li>
+	  </ul>
+	</li>
+	<li>The AttributeHolder pickling format has changed:
+	  <ul>
+	    <li>The FilteredResource pickling method had a bug (it didn't conform to
+	      the general format)</li>
+	    <li>Before being dumped, attribute values are prefixed by theire pickled
+	      length. This allows the unpickleInstance method to skip unknown (ie
+	      deleted) attributes.</li>
+	  </ul>
+	</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.daemon.DaemonProperties.html">DaemonProperty</a>
+	  class is now only used as a property loader. It implements a catalog of
+	  property sets; each <a
+	    href="User/api/w3c.jigsaw.daemon.ServerHandler.html">ServerHandler</a>
+	  instance is responsible for managing its own <a
+	    href="User/api/w3c.util.ObservableProperties.html">ObservableProperties</a>
+	  instance.</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.HTTPResource.html#getURL">getURL</a>
+	  method of User <a
+	    href="User/api/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</a>
+	  instances now return the full path of the resource within any of the
+	  server contexts (it used to return the full URL).</li>
+	<li>The abstract <a
+	    href="User/api/w3c.jigsaw.resources.Attribute.html">Attribute</a> class
+	  now defines a new <a
+	    href="User/api/w3c.jigsaw.resources.Attribute.html#getPickleLength">getPickleLength</a>
+	  abstract method (that has to be defined by sub-classes). This method is
+	  used for the new pickling format of resources, to allow the unpickle
+	  method to skip unknown attribute values.</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.ResourceStore.html">ResourceStore</a>
+	  API has changed (for ResourceStore implementers only). The <a
+	    href="User/api/w3c.jigsaw.resources.ResourceStore.html#getVersion">getVersion</a>
+	  method has been added, and must return the version of the class that
+	  implements the store.
+	  <p><br>
+	    The <a
+	      href="User/api/w3c.jigsaw.resources.ResourceStore.html#initialize">initialize</a>
+	    method has a new opaque <i>token</i> parameter, to be used by the store
+	    when calling back the resource store manager (eg when calling the
+	    markModified method). The <i>token</i> can be thought of as the identity,
+	    for the resource store manager, of the store.</p>
+	</li>
+	<li>The <a
+	    href="User/api/w3c.www.protocol.http.HttpManager.html">HttpManager</a> can
+	  now be instantiated several times within the same process. This allows for
+	  different context for the HTTP client side API. More precisely, the new
+	  method <a
+	    href="User/api/w3c.www.protocol.http.HttpManager.html#getManager(Properties)">getManager(Properties
+	    props)</a> will create a new manager if no other manager has been created
+	  with that exact property set.</li>
+      </ul>
+
+      <h3>Bug fixes</h3>
+      <ul>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.http.CommonLogger.html">CommonLogger</a> now
+	  initializes its buffer size properly from properties.</li>
+	<li>Several fixes in the <a
+	    href="User/api/w3c.www.protocol.http.cache.CacheFilter.html">CacheFilter</a>
+	  (protocol implementation errors)</li>
+	<li>Bug fixes in the server-side <a
+	    href="User/api/w3c.jigsaw.http.Request.html">Request</a> object, wouldn't
+	  allow for non persistent connections.</li>
+	<li>The new <a
+	    href="User/api/w3c.jigsaw.http.socket.SocketClientFactory.html">SocketClientFactory</a>
+	  now properly deletes old clients if needed (old clients would otherwise
+	  tend to be priviledged wr to newer ones).</li>
+      </ul>
+
+      <h3>New features</h3>
+      <ul>
+	<li>Created the <a
+	    href="User/Reference/w3c.jigsaw.contrib.PasswordEditor.html">w3c.jigsaw.contrib.PasswordEditor</a>
+	  resource, that allows web site users to change their own password within a
+	  given realm.</li>
+	<li>Created the <a
+	    href="User/Reference/w3c.jigsaw.contrib.CheckpointResource.html">w3c.jigsaw.contrib.CheckpointResource</a>
+	  that will backup <b>Jigsaw</b> configuration every once in a while.</li>
+	<li>Created the <a
+	    href="User/Reference/w3c.jigsaw.contrib.LogFilter.html">w3c.jigsaw.contrib.LogFilter</a>
+	  filter, that allows for very flexible monitoring of an URL sub-space.</li>
+	<li>Added UNIX specific command line options, to be able to run
+	  <b>Jigsaw</b> on port 80, as any user, under any groups. Support also
+	  provided for chroot'ing <b>Jigsaw</b> under UNIX, check <a
+	    href="User/FAQ.html#chroot">the FAQ entry</a>.</li>
+	<li>The proxy now provides minimal support for ICP, through the <a
+	    href="User/api/w3c.www.protocol.http.proxy.ICPFilter.html">ICPFilter</a>.</li>
+	<li>Sun's servlet API is now supported, servlets can be downloaded from the
+	  net ! Check the <a
+	    href="User/api/w3c.jigsaw.servlet.ServletWrapper.html">ServletWrapper</a>
+	  and <a
+	    href="User/api/w3c.jigsaw.servlet.RemoteServletWrapper.html">RemoteServletWrapper</a>
+	  resources.</li>
+      </ul>
+
+      <h3>Compatible API Changes</h3>
+      <ul>
+	<li>the <a href="User/api/w3c.jigsaw.http.Client.html">Client</a> <a
+	    href="User/api/w3c.jigsaw.http.Client.html#getOutputStream">getOutputStream</a>
+	  method now returns a DataOutputStream.</li>
+	<li>Revamped ClientPool, Client into abstract classes, etc. Check the new <a
+	    href="User/api/w3c.jigsaw.http.Client.html">Client</a> and <a
+	    href="User/api/w3c.jigsaw.http.ClientFactory.html">ClientFactory</a> APIs.
+	  This dos <i>not</i> affect any of the resources, but a set of properties
+	  did change in this process. All properties starting with
+	  <tt>w3c.jigsaw.ClientPool</tt> are now changed, check the <a
+	    href="User/Reference/w3c.jigsaw.http.socket.SocketConnectionProp.html">SocketConnectionProp</a>
+	  resource for more infos.</li>
+	<li>The <a href="User/api/w3c.jigsaw.http.httpd.html">httpd</a> class now
+	  has an a new errlog method, to signal error in a homogeneous way from
+	  resources (it takes a resource and a message as a paragmeter):
+	  <p><br>
+	    <tt>errlog(HTTPResource resource, String msg</tt>)</p>
+	</li>
+	<li>The <a href="User/api/w3c.jigsaw.http.Logger.html#sync">Logger</a>
+	  interface now define a <tt>sync</tt> method for asking the loggers to
+	  flush whatever they have back to disk.</li>
+	<li>The <a href="User/api/w3c.jigsaw.resources.Resource.html">Resource</a>
+	  object defines a new <b>store-entry</b> attribute, to be used by the store
+	  of that resource as a closure (typically caching resource stores have an
+	  entry for each loaded resource to keep track of lockers, etc). The
+	  ResourceStore interface has been changed to reflect this: all methods that
+	  used to take a resource identifier as a parametr can now take the resource
+	  instead, and find up the entry through that new attribute.</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a>
+	  class functionalities has been splitted into two sub-classes:
+	  <dl>
+	    <dt><a
+		href="User/api/w3c.jigsaw.resources.StoreContainer.html">StoreContainer</a></dt>
+	    <dd>Defines a basic resource container, that keeps track of its
+	      children through a resource store. It doesn't know nothing about a
+	      file system</dd>
+	    <dt><a
+		href="User/api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a></dt>
+	    <dd>Now extends the StoreContainer, and knows how to serve files from
+	      a file-system.</dd>
+	  </dl>
+	</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.ContainerResource.html">ContainerResource</a>
+	  for registering children, <a
+	    href="User/api/w3c.jigsaw.resources.ContainerResource.html#registerResource">registerResource</a>,
+	  now take as a parameter an HTTPResource instead of a Resource.</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.HTTPResource.html#perform">HTTPResource</a>
+	  perform method has been splitted into three separate stages, to allow for
+	  more flexible customization of the process of performing a request:
+	  <dl>
+	    <dt><a
+		href="User/api/w3c.jigsaw.resources.HTTPResource.html#filterIn">filterIn</a></dt>
+	    <dd>Applies all the filters on the way in, before the request gets
+	      processed. If this method returns a non-null Reply, it is assumed
+	      that some filter knew how to generate a reply on behalf of the
+	      target resource (eg a RAMCacheFilter)</dd>
+	    <dt><a
+		href="User/api/w3c.jigsaw.resources.HTTPResource.html#dispatch">dispatch</a></dt>
+	    <dd>Dispatches the well-known HTTP methods (ie GET, POST, PUT, etc) to
+	      the appropaite Java methods (ie get, post, put...)</dd>
+	    <dt><a
+		href="User/api/w3c.jigsaw.resources.HTTPResource.html#filterOut">filterOut</a></dt>
+	    <dd>Applies all filters on the way out. If this method returns a
+	      non-null reply, it is assumed to subsume the original reply (as
+	      obtained by calling dispatch).</dd>
+	  </dl>
+	</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0alpha3"></a>Jigsaw 1.0alpha3</h2>
+      <b>A public release, made on October 7th, 1996.</b>
+
+      <p>This release is mainly a bug fix release with regard to the <a
+	  href="#1.0alpha2">1.0alpha2</a> release.</p>
+
+      <h3>Bug fixes</h3>
+
+      <p>Main bug fixes are:</p>
+      <ul>
+	<li>The HTTP client side code has been reworked. This shouldn't affect users
+	  of that package, since it is mainly a rewritting of the internals of the
+	  HttpManager. The main problem was the managing of persistent connections,
+	  which is now much enhanced. The code was also cleaned up in that
+	  process.</li>
+	<li>The cache garbage collector really works now ! The 1.0alpha2 cache
+	  garbage collector was just a proof of concept. The new garbage collector
+	  works by <i>chunking</i> the flow of data being cache through generation
+	  numbers, which allows for a much more precise garbage collections.</li>
+      </ul>
+
+      <h3>New features</h3>
+
+      <p>A small set of enhancements has been made too:</p>
+      <ul>
+	<li>Virtual hosts capabilities have been added, this feature supports only
+	  the <tt>Host</tt> based version of that feature (which doesn't consume IP
+	  addresses). More documentation is available <a
+	    href="User/Reference/w3c.jigsaw.resources.VirtualHostResource.html">here</a>.</li>
+	<li>The <a
+	    href="User/api/w3c.jigsaw.resources.ContainerResource.html">ContainerResource</a>
+	  is now an abstract class, much more suitable for sub-classing then the <a
+	    href="User/api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a>.</li>
+	<li>The <a
+	    href="User/Reference/w3c.jigsaw.proxy.ProxyDirectory.html">ProxyDirectory</a>
+	  now has a <i>disconnected</i> mode, which allows you to connect your
+	  laptop from the net, get any numbers of document, disconnect from the net
+	  to later browse while on a trip. Check it !</li>
+	<li>A new <a
+	    href="User/Reference/w3c.jigsaw.proxy.MirrorDirectory.html">MirrorDirectory</a>&nbsp;
+	  resource has been added, that allows you to <i>mirror</i> any web site.
+	  This resources is a nifty subclass of the newly created <a
+	    href="User/Reference/w3c.jigsaw.proxy.ForwardDirectory.html">ForwardDirectory</a>
+	  resource.</li>
+      </ul>
+
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0alpha2"></a>Jigsaw 1.0alpha2</h2>
+      <b>A member specific release, made on September 7th, 1996.</b>
+
+      <p>This member release of <b>Jigsaw</b>, version <b>1.0a2</b> is a snapshot of
+	what will be <b>Jigsaw 1.0a3</b>, the next public release. It has lots of
+	improvements, and lots of new features that you should check out:</p>
+      <dl>
+	<dt>HTTP/1.1</dt>
+	<dd>The server is now fully HTTP/1.1 compliant, it will still be
+	  compatible with older, HTTP/1.0 clients.</dd>
+	<dt>Caching proxy</dt>
+	<dd>This new release includes a caching proxy module, also fully HTTP/1.1
+	  compliant. The HTTP client side API that is used by this proxy can be
+	  used as a replacement for the default HTTP Java handler. See the FAQ for
+	  more infos.</dd>
+	<dt>New resources</dt>
+	<dd>A set of new resources and filters have been added to the core
+	  distibution:
+	  <dl>
+	    <dt>SSIResource</dt>
+	    <dd>The server side include resource will handle standard server
+	      side include commands. It is easily extensible in Java (make sure
+	      you check our tutorial on how to extend it). This resource is
+	      extremely powerfull and flexible and also impresively efficient,
+	      we urge you to have a look at it !</dd>
+	    <dt>Image maps</dt>
+	    <dd>A new image map resource has been included in the release. This
+	      adds image map support within the server in a very efficient
+	      way.</dd>
+	    <dt>ErrorFilter</dt>
+	    <dd>Allows you to redefine all the error messages leaving the
+	      server, by using internal redirection.</dd>
+	  </dl>
+	</dd>
+	<dt>Enhancements</dt>
+	<dd>A lots of enhancements has been made to <b>Jigsaw</b> since release
+	  <b>1.0a1</b>. Among which:
+	  <dl>
+	    <dt>Performance tuning</dt>
+	    <dd>Although not fully tuned yet, this release deal with some of the
+	      bottlenecks found in older release. Inparticular, the new client
+	      pool class allows <b>Jigsaw</b> to handle gracefully an increased
+	      number of simultaneous connections.</dd>
+	    <dt>Configuration</dt>
+	    <dd>Has been enhanced in several ways. Check the /Admin directory to
+	      see them !</dd>
+	    <dt>CgiResource</dt>
+	    <dd>The new support for CGI scripts is much more easy to configure
+	      and use. It also has imrpoved a lot in terms of robustness. It has
+	      been tested on both UNIX and Windows.</dd>
+	    <dt>PICS support</dt>
+	    <dd>The PICS module of <b>Jigsaw</b> has been updated to reflect the
+	      PICS 1.1 specification.</dd>
+	  </dl>
+	</dd>
+      </dl>
+      <p></p>
+      <hr noshade="noshade" width="50%">
+
+
+      <h2><a name="1.0alpha1"></a>Jigsaw 1.0alpha1</h2>
+      <b>The first member and public release, made on May, 1st 1996 and June</b>
+
+      <p>This was the first available <b>Jigsaw</b> release.</p>
+    </div> <!-- body -->
+
+    <div class="footer">
+      <P>
+      <HR NOSHADE WIDTH="100%">
+      <A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A>
+      <BR>$Id: RelNotes.html,v 1.1 2010/06/15 12:29:45 smhuang Exp $
+      <P class="policyfooter"> <FONT SIZE=-1>
+	  <A HREF="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</A>
+	  &nbsp;&copy;&nbsp; 1997 <A HREF="http://www.w3.org">W3C</A> 
+	  (<A HREF="http://www.lcs.mit.edu">MIT</A>, 
+	  <A HREF="http://www.inria.fr/">INRIA</A>,
+	  <A HREF="http://www.keio.ac.jp/">Keio</A> ), 
+	  All Rights Reserved. W3C 
+	  <A HREF="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	    liability,</A>
+	  <A HREF="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	    trademark</A>,
+	  <A HREF="/Consortium/Legal/copyright-documents.html">document
+	    use </A>and
+	  <A HREF="/Consortium/Legal/copyright-software.html">software
+	    licensing
+	  </A>rules apply. Your interactions with this site are in accordance
+	  with our <A HREF="/Consortium/Legal/privacy-statement.html#Public">
+	    public</A>
+	  and <A HREF="/Consortium/Legal/privacy-statement.html#Members">
+	    Member</A> privacy statements.
+	</FONT>
+    </div>
+  </BODY>
+</HTML>

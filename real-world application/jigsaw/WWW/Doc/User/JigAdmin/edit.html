@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+   "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../../style/doc.css">
+    <title>Resource Editor</title>
+  </head>
+  <body bgcolor="#FFFFFF">
+  <body bgcolor="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+	<h1 class="title">
+	  The Resource Editor<br>
+	  <span class="subtitle">Editing resource and frame properties</span>
+	</h1>
+	<hr NOSHADE WIDTH="70%" align="left">
+	<a href="../../../Overview.html">Jigsaw Home</a> / 
+	<a href="../../Overview.html">Documentation Overview</a> / 
+	<a href="Overview.html">Jigsaw Administration Tool</a>
+    </div>
+    <div class="body">
+    <p>The Resource Editor allows you to edit the resource properties
+      and to add, remove or configure the resource frames.
+
+    <p>This document has the following sections:<p>
+    <ul>
+      <li><a href="#ftree">The Frames Tree</a>
+      <li><a href="#menu">The Resource Menu and the Popup Menu</a>
+      <li><a href="#attrs">The Attributes Editor</a>
+    </ul>
+
+    <p><img src="images/resedit.gif" width="500" height="413" 
+	alt="resource editor">
+      
+    <a name="ftree"></a>
+    <h1>The Frames Tree</h1>
+    <p>
+      <table>
+	<tr>
+	  <td valign="top">
+	    <img src="images/ftree.gif" width="175" height="56"
+	    alt="frame tree">
+	  </td>
+	  <td valign="top">
+	    The Frames Tree works like the <a href="docs_space.html#tree">
+	      Resource Tree</a> except that double clicking on a <img
+	      src="images/folder.gif" width="18" height="13" alt="a folder">
+	  expands orcollapse the node instead of displaying the Resource
+	  Editor. When a resource is selected on the Frames Tree, the 
+	  Resource Editor display its <a href="#attrs">Attributes
+	    Editor</a>.
+	    
+	  </td>
+	</tr>
+    </table>
+
+    <a name="menu"></a>
+    <h1>The Resource Menu and the Popup Menu</h1>
+    <p>
+      <table>
+	<tr>
+	  <td>
+	    <img src="images/framemenu.gif" width="232" height="116" 
+	    alt="frame menu">
+	  </td><td>
+	    <img src="images/fpopup.gif" width="250" height="132"
+	    alt="frame popup">
+	  </td>
+	</tr>
+    </table>
+
+    <p>Those Menus have the followings items:
+
+    <p><img src="images/j_add.gif" align="left" width="25" height="25"
+	alt="add something">
+    <p style="margin-left:20px">
+      Add a frame to the selected resource (or frame). If there is no
+      resource selected, do nothing.
+
+    <p><img src="images/j_delete.gif" align="left" width="25" height="25"
+	alt="delete something">
+    <p style="margin-left:20px">
+      Delete the selected resource/frames. If there is no resources
+      selected, do nothing. If you are not allowed to delete the
+      selected resource, display an error dialog.
+
+    <p><img src="images/j_reference.gif" align="left" width="25" height="25"
+	alt="reference information">
+    <p style="margin-left:20px">
+      Popup a <a href="doc.html">mini HTML browser</a> that
+      point to the <a href="../../Reference/Overview.html">"Resource
+	Reference Documentation"</a> of the selected resource/frame. If
+      there is no selected resource, do nothing. 
+
+    <p><img src="images/j_close.gif" align="left" width="25" height="25"
+	alt="close">
+    <p style="margin-left:20px">
+      Close the Resource Editor.
+
+    <a name="attrs"></a>
+    <h1>The Attributes Editor</h1>
+    <p>
+      <img src="images/attrs.gif" width="419" height="278" alt="attributes">
+    <p>
+      The Attributes Editor allows you to edit the resource/frame
+      properties like "Indexer", "Extensible", "Negotiable"... Each
+      attribute has its own graphical editor.
+
+    <p>
+      <table cellspacing="15">
+	<tr>
+	  <td>
+	    <img src="images/commit.gif" align="left" width="90"
+	      height="27" alt="commit"> 
+	  </td><td>
+	    Commit your changes to the server. If you don't commit
+	      your changes, you will loose them.
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <img src="images/reset.gif" align="left" width="76"
+	      height="28" alt="reset"> 
+	  </td><td>
+	    Reset your changes (if not committed).
+	  </td>
+	  </tr>
+	</table>
+
+    <p>So, now you are able to configure the <b>Jigsaw</b> Resources.
+    </div> <!-- body -->
+    <div class="footer">
+    <p>
+    <hr NOSHADE WIDTH="100%">
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: edit.html,v 1.1 2010/06/15 12:25:48 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+      </div>
+  </body>
+</html>

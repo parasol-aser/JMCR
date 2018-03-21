@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="../style/doc.css">
+    <TITLE>Jigsaw Administration Tools</TITLE>
+<!-- Created with AOLpress/2.0 -->
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <H1 class="title">Jigsaw Administration Tools</H1>
+      <hr NOSHADE width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> /
+      <a href="../Overview.html">Documentation Overview</a>
+    </div>
+    <div class="body">
+      <p>
+    <div class="box">
+      <IMG SRC="/Icons/32x32/caution.gif" ALT="WARN !" BORDER=0
+	HEIGHT=32 WIDTH=32> 
+      There is a new <b>JigAdmin</b>, working only with JDK1.2
+      (swing), it is more beautiful and user friendly. If there is a
+      JDK1.2 available for your platform you should download it and
+      run the new JigAdmin. Here is the new 
+      <a href="JigAdmin/Overview.html">JigAdmin documentation</a>. 
+    </div>
+<p>
+There are, since <B>Jigsaw</B> 1.0beta, two different ways of administrating
+your server. The first one is the oldest one and is a per-server administration
+scheme, using HTML and <A HREF="../../User/Tutorials/configuration.html#global-configuration">form-based
+editors</A>.
+<BR>The new one is a graphical interface which communicate with an Administration
+server, called <B>JigAdmin Server</B>. This server can administer multiple
+Jigsaw servers running on the same machine, provided these servers has
+been launched at the same time (means by the same java VM), we will call
+this graphical interface <B>JigAdmin</B>.
+<BR>Since <B>Jigsaw</B> 2.0alpha, the only way of administrating <B>Jigsaw</B>
+is <B>JigAdmin</B>.
+<P>To use JigAdmin, follow one of these link:
+<UL>
+<LI>
+<A HREF="#running">How to run JigAdmin</A></LI>
+
+<LI>
+<A HREF="#using">How to use JigAdmin</A></LI>
+
+<LI>
+<A HREF="#navigate">How to navigate in the tree browser</A></LI>
+
+<LI>
+<A HREF="#stop-jigsaw">How to stop Jigsaw</A></LI>
+</UL>
+
+<H1>
+<A NAME="Running"></A>Running JigAdmin</H1>
+
+<H2>
+JigAdmin Server</H2>
+This is very easy in fact. The default configuration files provided both
+by the upgrade of an earlier <B>Jigsaw</B> or by the default installation
+are designed to start two server, an instance of <B>Jigsaw</B> and one
+<B>JigAdmin
+Server</B>. The default port of <B>JigAdmin Server</B> is 8009. When you
+start the server with:
+<P><TT>java org.w3c.jigsaw.Main</TT>
+<P>You must see, among the trace,&nbsp; this output:
+<P><TT>JigAdmin[2.0beta2]: serving at http://arachne.inria.fr:8009/</TT>
+<H2>
+JigAdmin Client</H2>
+Now that the administration server is running, you can access it with the
+following command:
+<P><TT>java org.w3c.jigadm.Main [-root root] [url]</TT>
+<P>The default root is your current directory, so if you are in the same
+directory where you started <B>Jigsaw</B>, you don't need the "-root" option.
+<BR>If you are running the administration server on the same machine, using
+the default port 8009, you don't need to provide an URL. The URL is the
+one of the administration server.
+<H1>
+<A NAME="Using"></A>Using JigAdmin</H1>
+
+<H2>
+Authentication</H2>
+To access the administration server, you need to be authenticated for
+obvious reasons.
+<BR><IMG SRC="jigadmauth.gif" VSPACE=10 HEIGHT=199 WIDTH=290 ALIGN=BOTTOM alt="authorization in jigadmin">
+<BR>The realm used to access the server is "admin", the default user is
+"<B>admin</B>" and the default password is also "<B>admin</B>". After the
+first authentification, modify the user ot the password or both to avoid
+unwanted changes to your server!
+<P>Now a new frame should popup and you must see this:
+<P><IMG SRC="jigadm1.gif" ALT="jigadm default screen" HEIGHT=119 WIDTH=130>
+<P>You are now ready to navigate through the server and configure your
+servers!
+<H2>
+The administration zone</H2>
+Expand the first node by clicking on the small icon. You must see something
+like this:
+<P><IMG SRC="jigadm2.gif" ALT="first node expansion" HEIGHT=133 WIDTH=130>
+<P>The "control" resource is used to control the server, the control resource
+of "Root" means that it controls the administration server itself.
+<P>The "http-server" resource is the first server administrated by <B>JigAdmin
+Server</B>. It corresponds to the server with the properties located in
+<TT>http-server.props</TT>.
+<P>The "realms" resource is used to allow access to the authentification
+realms used by the server. The "realms" resource of "Root" allows you to
+edit, modify or add new users to access <B>JigAdmin Server</B>.
+<H2>
+The server zone</H2>
+Expand one of the server node (in the default configuration, you will only
+have one server to edit: http-server). You must now see something like
+this:
+<P><IMG SRC="jigadm3.gif" ALT="after expansion of a server node" HEIGHT=171 WIDTH=141>
+<P>The "control" resource has the same meaning and same role as in the
+administration zone.
+<P>The "indexers" resource is used to add, delete or edit the indexers
+of the server. Read more about <A HREF="indexers.html">indexers</A> to
+understand how to edit them.
+<P>The "properties" resource corresponds to the general properties of <B>Jigsaw</B>.
+It correspond to the old <TT>/Admin/Properties</TT> directory of the form
+based editor.
+<P>The "realms" resource is also the same as in the administration zone.
+<P>The "space" resource correspond to the root resource of your server.
+Under "space" you will find the resources actually served by <B>Jigsaw</B>.
+It is the place to go if you want to add, delete or edit resources, add,
+delete or edit filters and so on.
+<H2>
+<A NAME="navigate"></A>Note on the tree browser</H2>
+
+<H4>
+Navigation helps</H4>
+To expand or collapse a node, you must click on the icon.
+<BR>To edit a resource, you must click on the label, the label will become
+magenta, like this:
+<P><IMG SRC="jigadm4.gif" ALT="selected node" HEIGHT=176 WIDTH=172>
+<P>The menu "Admin-Server" has the following capabilities:
+<UL>
+<LI>
+Open - Go to another <B>JigAdmin Server</B></LI>
+
+<LI>
+Open in new window - same as open, but in a new window</LI>
+
+<LI>
+Close window</LI>
+
+<LI>
+Exit - close all windows and exit</LI>
+</UL>
+
+<H2>
+<A NAME="stop-jigsaw"></A>How to stop Jigsaw</H2>
+First of all, <B><U>DO&nbsp;NOT&nbsp;USE&nbsp;Ctrl-c !</U></B>&nbsp; if
+you don't want to loose your changes<B>.</B><B></B>
+<P>You must stop the http server first, and then the administration server,
+for each server select the control node:
+<P><IMG SRC="control-http.gif" HSPACE=10 VSPACE=10 HEIGHT=117 WIDTH=163 alt="http controls"><IMG SRC="control-admin.gif" HSPACE=10 VSPACE=10 HEIGHT=115 WIDTH=165 alt="admin controls">
+<BR>Then you must see this:
+<BR><IMG SRC="control-button.gif" HSPACE=10 VSPACE=10 HEIGHT=326 WIDTH=298 alt="control button">
+<BR>For each server click on the <TT>Save</TT> button and then on the <TT>Stop</TT>
+button, your configuration in saved and your server stopped.
+   </div> <!-- body -->
+    <div class="footer">
+<P>
+<HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: AdminTools.html,v 1.1 2010/06/15 12:23:03 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+    </div>
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <TITLE>The Postableresource reference manual</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  PostableResource
+</H1>
+<P>
+The PostableResource class is the basic resource class for handling the HTTP
+POST method. Its main purpose is to decode the form parameters.
+<P>
+It defines two boolean attributes that allow to control how this decoding
+should be done. If the <A HREF="#overide">overide</A> attribute is
+<B>true</B>, then the decoder will overide parameter values as they are defined
+(hence, if your form defines two form field with the same name, you will
+only be able to get the value of the last one). The
+<A HREF="#convert-get">convert-get</A> attribute specifies whether you want
+the form decoder to silently convert GET requests to their equivalent POST
+form.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.forms.PostableResource.html">PostableResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The Postableresource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#overide">overide</A>
+  <LI>
+    <A HREF="#convert-get">convert-get</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="overide">overide</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the form content decoder overide the parameters values as they are
+    defined. When this flag is set to <B>true</B>, and if your form uses multiple
+    form fields having the same name, then you will only get the last assignment
+    to the field. If this flag is set to <B>false</B>, then you should check
+    the values returned by the form decoder: if they are instances of
+    <CODE>java.lang.String[]</CODE>, the value has multiple value, otherwise,
+    the simple <CODE>java.lang.String</CODE> value has been returned.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    &nbsp;<A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="convert-get">convert-get</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Whether the resource should silently convert GET requests to their appropriate
+    POST form when needed. When this flag is turned to <B>true</B>, the resource
+    will convert the GET action of forms to their equivalent POST form.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    &nbsp;<A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.forms.PostableResource.html,v 1.1 1996/04/23 19:12:57 abaird
+Exp $</I>
+</BODY></HTML>

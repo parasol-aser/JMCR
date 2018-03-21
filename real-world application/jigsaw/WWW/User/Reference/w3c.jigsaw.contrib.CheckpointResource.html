@@ -1,0 +1,179 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>CheckpointResource Reference Manual</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  CheckpointResource
+</H1>
+<P>
+The CheckpointResource can be installed on any <B>Jigsaw</B> server, to
+periodically make sure that the latest configuration changes have been saved
+persistently back to disk.
+<P>
+This resource will run its own thread, and after each
+<I><A HREF="#interval">interval</A></I> duration, will check that the whole
+server configuration (ie the resource stores) are properly backed up to the
+disk, that logs have been flushed and that latest changes to properties have
+been saved in the appropriate properties file.
+<P>
+It is highly recommended that you install one instance of that resource in
+your server's administration space, since it can prevent bad damages occurring
+&nbsp;to your configuration if the server were to be stopped abruptly.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.contrib.CheckpointResource.html">CheckpointResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The CheckpointResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#interval">interval</A>
+  <LI>
+    <A HREF="#priority">priority</A>
+  <LI>
+    <A HREF="#flushlog">flushlog</A>
+  <LI>
+    <A HREF="#flushprops">flushprops</A>
+  <LI>
+    <A HREF="#flushconfig">flushconfig</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="interval">interval</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The interval between two checkpoints, given as a number of seconds.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>-1</B>, which means that the check pointer
+    will <I>never</I> run.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="priority">priority</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The priority of the thread used to run the check points.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>2</B>, and should not be changed unless you
+    know what you're doing !
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="flushlog">flushlog</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the log be flushed to disk on each check point ?
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B> and should not be set to <B>true</B>
+    except for testing periods (the logger knows better then you when to flush
+    itself back to disk, in particular flushing it too often may degrade the
+    overall performances of <B>Jigsaw</B>).
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="flushprops">flushprops</A></CODE> (<B>warning</B> this attribute
+is not currently implemented)
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the properties be flushed on each check point ?
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="flushconfig">flushconfig</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the configuration (ie resource stores) be flushed on each check point
+    ?
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.contrib.CheckpointResource.html,v 1.1 1997/01/28 08:10:16
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

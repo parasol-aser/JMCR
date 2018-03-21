@@ -1,0 +1,805 @@
+------------------------------------------------------------------------
+r581031 | kmarsden | 2007-10-01 11:27:09 -0700 (Mon, 01 Oct 2007) | 5 lines
+
+DERBY-3085 Fails to handle BLOB fields with a PreparedStatement with size >32750 bytes
+
+port from trunk
+
+
+------------------------------------------------------------------------
+r570752 | kahatlen | 2007-08-29 04:08:54 -0700 (Wed, 29 Aug 2007) | 4 lines
+
+DERBY-3025: NPE when connecting to database with securityMechanism=8
+
+Merged fix from trunk (rev 570663).
+
+------------------------------------------------------------------------
+r557033 | kmarsden | 2007-07-17 12:23:40 -0700 (Tue, 17 Jul 2007) | 5 lines
+
+DERBY-2941 With 10.2, Closing a resultset after retrieving a large > 32665 bytes value with Network Server does not release locks
+
+Verified LargeDataLocksTest with 10.2 client 10.3 server
+
+
+------------------------------------------------------------------------
+r547740 | myrnavl | 2007-06-15 09:57:55 -0700 (Fri, 15 Jun 2007) | 2 lines
+
+Creating 10.3 source branch
+
+------------------------------------------------------------------------
+r545454 | bernt | 2007-06-08 01:22:47 -0700 (Fri, 08 Jun 2007) | 1 line
+
+DERBY-2748 TimeSlice and Socket-Timeout bounds checking wrong
+------------------------------------------------------------------------
+r542925 | rhillegas | 2007-05-30 13:26:17 -0700 (Wed, 30 May 2007) | 1 line
+
+DERBY-2695: Oystein's soft upgrade support for LOB locators.
+------------------------------------------------------------------------
+r534985 | kmarsden | 2007-05-03 13:39:18 -0700 (Thu, 03 May 2007) | 6 lines
+
+DERBY-2381 ParameterMappingTest fails due to ArrayIndexOutOfBoundsException executing a procedure
+
+Formerly, the server would rely on the input parameter type information received from the client to determine the output parameter type. This patch changes the server to look at the parameter metadata to determine the drda type to send.
+It also enables the test ParameterMappingTest for client. 
+
+
+------------------------------------------------------------------------
+r534610 | rhillegas | 2007-05-02 13:45:17 -0700 (Wed, 02 May 2007) | 1 line
+
+DERBY-2506: Committed Narayanan's PreparedCallable_DRDA_v5.diff, adding some BLOB locator support.
+------------------------------------------------------------------------
+r517131 | kahatlen | 2007-03-12 01:40:06 -0700 (Mon, 12 Mar 2007) | 9 lines
+
+DERBY-2220: Uncommitted transactions executed through XAResource will
+hold locks after the application terminates (or crashes during the
+transaction).
+
+Abort the global transaction on a derby server when the network socket
+is closed.
+
+Patch contributed by Julius Stroffek.
+
+------------------------------------------------------------------------
+r515793 | fuzzylogic | 2007-03-07 14:01:37 -0800 (Wed, 07 Mar 2007) | 4 lines
+
+DERBY-2400 (partial): Replace references to Cloudscape with Derby. This commit
+takes care of the rest of the separate source trees, except for engine, build
+and testing.
+
+------------------------------------------------------------------------
+r515563 | kristwaa | 2007-03-07 05:40:14 -0800 (Wed, 07 Mar 2007) | 4 lines
+
+DERBY-2347: Add code to support request and return of locators over DRDA.
+
+Patch contributed by _ystein Gr_vlen.
+
+------------------------------------------------------------------------
+r515102 | kristwaa | 2007-03-06 04:27:05 -0800 (Tue, 06 Mar 2007) | 4 lines
+
+DERBY-2405: Remove @author tags from the source files.
+
+Patch contributed by Saurabh Vyas.
+
+------------------------------------------------------------------------
+r497748 | bernt | 2007-01-19 01:13:10 -0800 (Fri, 19 Jan 2007) | 1 line
+
+DERBY-2166 Implement proper handling of SocketTimeoutException in DRDAConnThread. Submitted by Bernt M. Johnsen
+------------------------------------------------------------------------
+r495543 | kahatlen | 2007-01-12 02:49:44 -0800 (Fri, 12 Jan 2007) | 2 lines
+
+DERBY-2121: Remove JDK 1.3 build dependency in network server
+
+------------------------------------------------------------------------
+r487788 | tmnk | 2006-12-16 03:16:04 -0800 (Sat, 16 Dec 2006) | 1 line
+
+- DERBY-1471 Implement layer B streaming for new methods defined in JDBC4.0 - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r484615 | bernt | 2006-12-08 06:14:39 -0800 (Fri, 08 Dec 2006) | 1 line
+
+DERBY-1856 Added Session.SECACC and Session.CHKSEC to the switch in DRDAConnThread.run()
+------------------------------------------------------------------------
+r478877 | kahatlen | 2006-11-24 05:33:01 -0800 (Fri, 24 Nov 2006) | 5 lines
+
+DERBY-1434: Client can send incorrect database name to server after
+having made multiple connections to different databases.
+
+Patch contributed by Julius Stroffek.
+
+------------------------------------------------------------------------
+r467612 | kahatlen | 2006-10-25 04:52:05 -0700 (Wed, 25 Oct 2006) | 5 lines
+
+DERBY-815: Prevent unneeded object creation and excessive decoding in
+parseSQLDTA_work()
+
+Patch contributed by Dyre Tjeldvoll.
+
+------------------------------------------------------------------------
+r465249 | tmnk | 2006-10-18 06:47:19 -0700 (Wed, 18 Oct 2006) | 1 line
+
+- DERBY-1535 Trial 2 for DERBY-550, improve use of Engine from NetworkServer and reduce memory usage - Replacing call of setByte() to call of setBinaryInputStream(), which was room to improvement in DERBY-1559. - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r446538 | kahatlen | 2006-09-15 00:52:18 -0700 (Fri, 15 Sep 2006) | 13 lines
+
+DERBY-1326 (partial) Network server may abandon sessions when Derby
+system is shutdown and this causes intermittent hangs in the client
+
+Two small cleanups:
+
+  Make NetworkServerControlImpl.startNetworkServer() remove the
+  sessions it closes from sessionTable. Also, synchronize on runQueue
+  to prevent modifications while the queue is traversed.
+
+  Invoke closeSession() and close() in a finally clause in
+  DRDAConnThread.handleException() to ensure proper closing of the
+  session when an unexpected error happens.
+
+------------------------------------------------------------------------
+r442463 | kahatlen | 2006-09-11 22:57:41 -0700 (Mon, 11 Sep 2006) | 9 lines
+
+DERBY-1817: Race condition in network server's thread pool
+
+Clean-up of NetworkServerControlImpl:
+  - moves generation of connection number into addSession()
+  - adds new method removeThread() which can be used instead of
+    getThreadList().remove()
+  - removes methods that are no longer used
+  - makes methods that are only used by NetworkServerControlImpl private
+
+------------------------------------------------------------------------
+r441722 | mikem | 2006-09-08 18:29:42 -0700 (Fri, 08 Sep 2006) | 20 lines
+
+DERBY-1675
+contributed by Sunitha Kambhampati
+
+USRIDPWD support depends on the JCE available in the classpath of the server
+
+This patch(derby1675.diff.txt) does the following
+1. Add code to check if server jvm can support EUSRIDPWD.
+2. Throw an error if the derby.drda.securityMechanism is set to ENCRYPTED_USER_AND_PASSWORD_SECURITY
+and if the server jvm cannot support EUSRIDPWD.
+3. Server sends the client the list of supported security mechanisms as part of ACCSECRD. Now, the server will correctly only send EUSRIDPWD as an option if the running server can support this security mechanism.
+
+Test related changes:
+Changes were made to testProtocol.java and a new method readSecMecAndSECCHKCD is added to TestProto to read the SECMEC and SECCHKCD values. Note, that with ibm142 and ibm15 jvms that support eusridpwd, the SECMEC value 9 (eusridpwd) will be sent as part of the ACCSECRD response. But for the jvms that dont support the eusridpwd, the SECMEC value of 9 wont be sent. The new method readSecMecAndSECCHKCD takes
+care of printing out the SECMEC values that are sent by the server - this results in the need for a new master file for the jvm that support eusridpwd and the jvm that cannot support it. A new master file has been added for ibm14.
+
+Tests for codepath that covers #2 is already present in testSecMec.java. This results in themaster updates for the jvms that do not support eusridpwd for the case where server is started with
+derby..drda.securityMechanism=ENCRYPTED_USER_AND_PASSWORD_SECURITY.
+
+
+
+------------------------------------------------------------------------
+r440062 | andreask | 2006-09-04 06:05:32 -0700 (Mon, 04 Sep 2006) | 1 line
+
+DERBY-1800 testSetBinaryStreamLengthLessOnBlobTooLong fails with Unexpected SQL state. Fix is to flush the BLOB data when there is an SQLException
+------------------------------------------------------------------------
+r438478 | andreask | 2006-08-30 06:06:05 -0700 (Wed, 30 Aug 2006) | 1 line
+
+DERBY-1559 when receiving a single EXTDTA object representing a BLOB, the server do not need to read it into memory before inserting it into the DB. Patch which reduces memory usage from 350 MB to 40 MB in network server vm when inserting a 64MB BLOB
+------------------------------------------------------------------------
+r433655 | tmnk | 2006-08-22 07:57:58 -0700 (Tue, 22 Aug 2006) | 1 line
+
+- Rollback DERBY-1513_DERBY-1535 see DERBY-1610 for detail - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r430056 | rhillegas | 2006-08-09 06:51:30 -0700 (Wed, 09 Aug 2006) | 1 line
+
+DERBY-528: Commit Francois' 528_diff_v5.txt patch, adding username/password substitution to our authentication options.
+------------------------------------------------------------------------
+r429803 | fuzzylogic | 2006-08-08 13:30:30 -0700 (Tue, 08 Aug 2006) | 2 lines
+
+DERBY-1377 (partial): Update license headers on files in drda
+
+------------------------------------------------------------------------
+r424539 | tmnk | 2006-07-22 02:00:08 -0700 (Sat, 22 Jul 2006) | 1 line
+
+- DERBY-1513_1535 Trial 1 for DERBY-550 & Trial 2 for DERBY-550 - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r423976 | rhillegas | 2006-07-20 09:22:18 -0700 (Thu, 20 Jul 2006) | 1 line
+
+DERBY-1029: Commit derby-1029_v05.diff, backing out the BOOLEAN datatype introduced by DERBY-499.
+------------------------------------------------------------------------
+r421887 | kahatlen | 2006-07-14 05:20:01 -0700 (Fri, 14 Jul 2006) | 24 lines
+
+DERBY-1481: Client driver: ResultSet.beforeFirst() gives protocol
+error on scrollable, updatable result sets that are downgraded to
+read-only
+
+When the result set is downgraded from updatable to read-only because
+the query generating the result set cannot produce an updatable result
+set, the result set will be downgraded on the server side, and a
+warning (SQLCARD) indicating the downgrade will be sent to the
+client. Warnings on the server side are not cleared after they are
+sent to the client causing the server to send the same warning several
+times.
+
+Positioning commands like ResultSet.beforeFirst() that do not return
+any data also do not expect warnings to be returned. The protocol
+error was being caused by this downgrade warning that was being sent
+several times, one of them being in a response to a
+ResultSet.beforeFirst() command.
+
+The attached patch (derby-1481.diff) fixed the problem by clearing the
+warnings after they are sent so that the same warning will not be sent
+more than once.
+
+The patch was contributed by Fernanda Pizzorno.
+
+------------------------------------------------------------------------
+r421435 | davidvc | 2006-07-12 15:05:50 -0700 (Wed, 12 Jul 2006) | 5 lines
+
+DERBY-1015: Define interface between network server and engine through 
+Java interfaces.  Contributed by Sunitha Kambhampati.  Passes 
+derbynetclientmats.
+
+
+------------------------------------------------------------------------
+r420863 | andreask | 2006-07-11 07:17:28 -0700 (Tue, 11 Jul 2006) | 1 line
+
+DERBY-1498 avoid tracing of LOB data in DRDAConnThread.readAndSetExtParams(..)
+------------------------------------------------------------------------
+r418691 | kahatlen | 2006-07-02 22:57:33 -0700 (Sun, 02 Jul 2006) | 7 lines
+
+DERBY-1468: Server returns data when it receives a QRYROWSET value of
+zero on an OPNQRY, which doesn't follow DRDA protocol.
+
+The patch disables pre-fetching for LMTBLKPRC when QRYROWSET=0 and
+adds a test case to the protocol test which sends an OPNQRY for a
+scrollable cursor with QRYROWSET=0.
+
+------------------------------------------------------------------------
+r416959 | bpendleton | 2006-06-24 13:54:59 -0700 (Sat, 24 Jun 2006) | 16 lines
+
+DERBY-1454: DRDA Protocol Exception when DSS is exactly 32767 bytes
+
+The server is disconnecting the client connection. Client is sending a CNTQRY,
+the server is receiving it and then server disconnects the client. In doneData
+and writeFDODTA, it looks like if (writer.getDSSLength() >= blksize) ,
+then the splitQRYDTA is called. From testing, it seems like they are hitting
+an edge case, where the writer.getDSSLength() is equal to blksize and this
+DSS is the only dss in the send buffer. 
+
+The patch corrects the two splitQRYDTA calls to use > rather
+than >= to determine if the DSS needs to be split.
+
+The patch also contains a new test case in derbynet/prepStmt.java
+to demonstrate the bug and its fix.
+
+
+------------------------------------------------------------------------
+r416012 | bpendleton | 2006-06-21 08:48:57 -0700 (Wed, 21 Jun 2006) | 12 lines
+
+DERBY-1338: Client tests fail with NoClassDefFound: DRDAProtocolExceptionInfo
+
+Patch contributed by Dag Wanvik (dag.wanvik@sun.com)
+
+Work around a classloader bug involving interrupt handling during class
+loading. If the first request to load the DRDAProtocolExceptionInfo class
+occurs during shutdown, the loading of the class may be aborted when the
+Network Server calls Thread.interrupt() on the DRDAConnThread.  By including
+a static reference to the DRDAProtocolExceptionInfo class here, we ensure
+that it is loaded as soon as the DRDAConnThread class is loaded,
+and therefore we know we won't be trying to load the class during shutdown.
+
+------------------------------------------------------------------------
+r415557 | andreask | 2006-06-20 01:21:55 -0700 (Tue, 20 Jun 2006) | 1 line
+
+DERBY-1374 compatibility test fails with PROTOCOL Data Stream Syntax Error.Patch contributed by Fernanda Pizzorno
+------------------------------------------------------------------------
+r411167 | bernt | 2006-06-02 07:25:48 -0700 (Fri, 02 Jun 2006) | 1 line
+
+DERBY-1313: SUR: Use DRDA's extended diagnostic to send ROW_UPDATED and ROW_DELETED warnings. Submitted by Fernanda Pizzorno
+------------------------------------------------------------------------
+r410570 | tmnk | 2006-05-31 09:07:45 -0700 (Wed, 31 May 2006) | 1 line
+
+- Rollback patches for DERBY-1302. Work for DERBY-1302 was suspended to release of 10.1.3 - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r409797 | tmnk | 2006-05-26 19:20:29 -0700 (Fri, 26 May 2006) | 1 line
+
+- DERBY-1302_2 Indent source files touched in DERBY-326 - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r407547 | tmnk | 2006-05-18 06:34:11 -0700 (Thu, 18 May 2006) | 1 line
+
+- DERBY-1302 Indent source files touched in DERBY-326 - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r405037 | tmnk | 2006-05-08 05:36:39 -0700 (Mon, 08 May 2006) | 1 line
+
+- DERBY-326 Improve streaming of large objects for network server and client - Patch by Tomohito Nakayama (tomonaka@basil.ocn.ne.jp)
+------------------------------------------------------------------------
+r395866 | bernt | 2006-04-21 05:12:36 -0700 (Fri, 21 Apr 2006) | 1 line
+
+DERBY-775 Network client: Add support for scrollable, updatable, insensitive result sets. Submitted by Dag H. Wanvik
+------------------------------------------------------------------------
+r395416 | kmarsden | 2006-04-19 15:40:25 -0700 (Wed, 19 Apr 2006) | 16 lines
+
+DERBY-901
+Remove use of String(byte[]) constructors in network server leading to non-portable behaviour
+
+Contributed by Sunitha Kambhampati
+
+I am attaching the patch ( derby901.p2.diff.txt, derby901.p2.stat.txt) to fix the remaining places that the String(byte[]) constructor is used in Network Server.
+
+remove use of default String(byte[]) constructor in
+-- trace method in DRDAConnThread.readAndSetParams to print out the hex string of the bytes .
+-- use SQLERRMC_TOKEN_DELIMITER in SQLDIAGCI .
+
+some cleanup
+ -- define the SQLERRMC_MESSAGE_DELIMITER in SystemProcedures and use that in DRDAConnThread.
+
+
+
+------------------------------------------------------------------------
+r394859 | kahatlen | 2006-04-17 23:41:04 -0700 (Mon, 17 Apr 2006) | 6 lines
+
+DERBY-822: Client driver: Pre-fetch data on executeQuery()
+
+This patch makes the network server include query data when it replies
+to an OPNQRY command. (Query data is only included when there are no
+LOB columns and the protocol is limited block protocol.)
+
+------------------------------------------------------------------------
+r394205 | kmarsden | 2006-04-14 14:40:56 -0700 (Fri, 14 Apr 2006) | 10 lines
+
+DERBY-901 Remove use of String(byte[]) constructors in network server leading to non-portable behaviour
+
+Contributed by Sunitha Kambhampati 
+patch1 - Remove use of String(byte[]) constructors in network server leading to non-portable behaviour
+
+This fixes
+- SQLERRMC_TOKEN_DELIMITER, SQLERRMC_MESSAGE_DELIMITER and the corresponding usage of it in SystemProcedures to not use the default string constructors that are non portable.
+
+
+
+------------------------------------------------------------------------
+r393239 | rhillegas | 2006-04-11 07:49:30 -0700 (Tue, 11 Apr 2006) | 1 line
+
+Commit patch for DERBY-1178: fix DRDA serialization of SQLExceptions for JDBC4 exception subclasses. Eliminate many jdk16-specific test canons.
+------------------------------------------------------------------------
+r392781 | kmarsden | 2006-04-09 10:05:51 -0700 (Sun, 09 Apr 2006) | 9 lines
+
+DERBY-1196 Network server closes prepared statements prematurely if exception occurs during OPNQRY 
+
+- Takes out close of prepared statement on exception in OPNQRY in DRDAConnThread processCommands
+- Updates the JCC master for derbnet/setTransactionIsolation.  
+  This test was getting Statement already closed errors for valid statements with JCC that are no longer in the master.
+- Enables test for DERBY-1047 in checkDataSource ( Note this case actually passes withtout the fix because of the fix for DERBY-1158)
+
+
+
+------------------------------------------------------------------------
+r392404 | bpendleton | 2006-04-07 14:20:00 -0700 (Fri, 07 Apr 2006) | 9 lines
+
+DERBY-1190: Network Server reports wrong product name when logging connections
+
+Change contributed by John H. Embretsen (John.Embretsen@Sun.com)
+
+When derby.drda.logConnections was set to true, the connection log message
+written to derby.log said "Cloudscape Network Server". This change modifies
+the message so that it says "Apache Derby Network Server".
+
+
+------------------------------------------------------------------------
+r385857 | bpendleton | 2006-03-14 12:11:46 -0700 (Tue, 14 Mar 2006) | 16 lines
+
+DERBY-1080: Connection reset when using security mechanism=EUSRIDPWD results in protocol error
+
+Patch contributed by Sunitha Kambhampati
+
+For eusridpwd case, the client sends the encrypted userid and password
+sectkns as part of SECCHK. The protocol error was happening because we
+only read the 2 sectkns if the database.decryptedUserId ,
+database.decryptedPassword is null, otherwise we think we have already
+read this. Thus on a connection reset,if the decryptedUserId and
+decryptedPassword are not reset, server assumes we have seen more SECTKN's
+and thus we throw error too many codepoints.
+
+Patch adds
+-- code to reset the security mechanism related variables on a connection re-use
+-- regression test to testSecMec.java 
+
+------------------------------------------------------------------------
+r382019 | kmarsden | 2006-03-01 05:55:05 -0800 (Wed, 01 Mar 2006) | 10 lines
+
+DERBY-928 Add ability to network server to accept connections with a certain security mechanism.
+
+Add derby.drda.securityMechanism property to restrict securityMechanisms accepted from client
+
+Detailed description of patch in bug
+https://issues.apache.org/jira/browse/DERBY-928#action_12366294
+
+Contrbuted by Sunitha Kambhampati
+
+
+------------------------------------------------------------------------
+r379257 | djd | 2006-02-20 14:22:02 -0800 (Mon, 20 Feb 2006) | 4 lines
+
+Remove some dead code in DRDAConnThread where a result set or prepared statement
+reference was obtained but never used. There were no side-effects in any of the
+methods called.
+
+------------------------------------------------------------------------
+r379174 | djd | 2006-02-20 09:29:03 -0800 (Mon, 20 Feb 2006) | 4 lines
+
+DERBY-467 Make DRDA implementation classes and their constructors package
+protected instead of public or protected. Code is only required to be accessed
+from this package. 
+
+------------------------------------------------------------------------
+r377367 | bernt | 2006-02-13 04:44:07 -0800 (Mon, 13 Feb 2006) | 4 lines
+
+DERBY-821 Client driver: Implicitly close exhausted result sets on the server.
+Submitted by Knut Anders Hatlen
+
+
+------------------------------------------------------------------------
+r374029 | bernt | 2006-02-01 01:37:45 -0800 (Wed, 01 Feb 2006) | 1 line
+
+DERBY-815 Patch 371897 revrted
+------------------------------------------------------------------------
+r372871 | bernt | 2006-01-27 07:11:55 -0800 (Fri, 27 Jan 2006) | 5 lines
+
+DERBY-491 Protocol exception when Network Server
+ tries to return ~32K of data or greater in a result set for a Java stored
+ procedure.
+Submitted by Bryan Pendleton
+
+------------------------------------------------------------------------
+r371897 | bernt | 2006-01-24 03:56:16 -0800 (Tue, 24 Jan 2006) | 3 lines
+
+DERBY-815 Prevent unneeded object creation and excessive decoding in parseSQLDTA_work()
+Submitted by Dyre Tjeldvoll
+
+------------------------------------------------------------------------
+r370806 | bernt | 2006-01-20 05:34:53 -0800 (Fri, 20 Jan 2006) | 1 line
+
+DERBY-825 writeSQLCAGRP() should use byte[] constants instead of Strings where feasible. submitted by Dyre Tjeldvoll
+------------------------------------------------------------------------
+r368333 | bernt | 2006-01-12 02:09:50 -0800 (Thu, 12 Jan 2006) | 1 line
+
+DERBY-212 Optimize some specific methods in Network Server to improve performance. Submitted by Knut Anders Hatlen
+------------------------------------------------------------------------
+r358560 | bernt | 2005-12-22 04:29:35 -0800 (Thu, 22 Dec 2005) | 1 line
+
+DERBY-774 DRDAConnThread::doneData should use statically allocated SQLException objects. Submitted by Dyre.Tjeldvoll@Sun.COM
+------------------------------------------------------------------------
+r358163 | djd | 2005-12-20 16:53:42 -0800 (Tue, 20 Dec 2005) | 3 lines
+
+DERBY-499 Add BOOLEAN datatype. See jira comments for details.
+Commit of patch bug499_rev4.diff, contributed by Rick Hillegas
+
+------------------------------------------------------------------------
+r356553 | kmarsden | 2005-12-13 09:41:06 -0800 (Tue, 13 Dec 2005) | 21 lines
+
+DERBY-706 Improve testing and increase code coverage for Network Server classes
+
+have attached a second patch 'derby-706_2.diff' which adds some more tests and re-arranges/removes some internal methods. Details of patch are:
+
+* DDMWriter: Removes min method because Math.min is used. Use doesRequestContainData() method.
+* DDMReader: Use readCodePoint() method
+* DRDAConnThread: QRYOPTVAL codepoint is not part of DRDA spec. parseCcsidSBC was giving NPE.
+* CodePointNameTable: Add codepoints to be used in protocol.tests
+* protocol.tests: Added tests to cover methods which were not tested before.
+* Session, DRDAStatement, Database, DRDAProtocolException: Remove some methods which are not needed. The same can be done using other methods.
+* TestProto: Use lookup method.
+* testProtocol: Added "derby.drda.traceAll=true" to derby.properties file to test methods in DssTrace
+* testProperties: Added test for trace off command. Added "derby.drda.traceAll=true" to derby.properties file to test memcheck.
+* runtimeinfo: Rearranged test because the output was not predictable on different jvms/machines.
+
+Ran derbyall with Sun JDK 1.4.2 on WinXP. No failures. 
+
+Contributed by Deepa Remesh
+
+
+
+------------------------------------------------------------------------
+r355689 | kmarsden | 2005-12-09 17:51:26 -0800 (Fri, 09 Dec 2005) | 8 lines
+
+DERBY-614 Execution failed because of a Distributed Protocol Error
+
+Fixes the split logic when data passes the blksize boundary.
+Details of the fix are in spec.html attached to DERBY-614
+
+Contributed by Bryan Pendleton
+
+
+------------------------------------------------------------------------
+r348192 | bernt | 2005-11-22 08:31:22 -0800 (Tue, 22 Nov 2005) | 2 lines
+
+DERBY-517 ResultSet - relative(int rows) behaves different in embedded and client/server mode when the positioning before the first row or after the last row.
+Submitted by Fernanda.Pizzorno@Sun.COM
+------------------------------------------------------------------------
+r344147 | bakksjo | 2005-11-14 07:42:40 -0800 (Mon, 14 Nov 2005) | 6 lines
+
+DERBY-506
+
+Implements Statement.setQueryTimeout in the client driver by
+"piggybacking" an EXCSQLSET command on statement execution.
+
+
+------------------------------------------------------------------------
+r329187 | bakksjo | 2005-10-28 04:51:50 -0700 (Fri, 28 Oct 2005) | 8 lines
+
+DERBY-330
+
+Fixes svn properties for a whole bunch of files.
+
+Thanks to Dyre <dyre.tjeldvoll@sun.com> for contributing the script to
+compute the necessary changes.
+
+
+------------------------------------------------------------------------
+r326718 | kmarsden | 2005-10-19 14:47:26 -0700 (Wed, 19 Oct 2005) | 19 lines
+
+DERBY-498 - Result set holdability defined inside stored procedures is ignored by server/client
+
+The attached patch 'derby-498.diff' changes network server to use statement holdability set within stored procedures. The patch does the following:
+
+1. For callable statements, the execute method in DRDAStatement gets holdability from the statement that produced the resultset.
+2. Added getResultSetHoldability method which takes a resultset and returns holdability.
+3. execute method passes this holdability to addResultSet method, which sets DRDAResultSet.withHoldCursor with this value.
+4. writeOPNQRYRM method in DRDAConnThread is changed to use the holdability of the current DRDAResultSet for setting SQLCSRHLD.
+5. Added tests in lang/holdCursorJava.java. Created a new master file for DerbyNetClient.
+
+Ran derbyall on WinXP Sun jdk1.4.2. No failures. However, in a previous run of derbyall I got failures in few encryption tests. The failures did not seem related to my change. So I ran the encryption suites again and they passed. Then ran derbyall again and all tests passed. 
+
+Also attaching an additional patch "xa_proc_test.diff" for xa tests. It does the following:
+1. Adds procedure test to jdbcapi/xaSimplePositive.sql.
+2. Updates master files.
+
+Contributed by Deepa Remesh dremesh@gmail.com
+
+
+------------------------------------------------------------------------
+r292917 | kmarsden | 2005-09-30 21:30:43 -0700 (Fri, 30 Sep 2005) | 14 lines
+
+DERBY-374
+
+Invalid URL with Derby Client when connecting to Network Server causes protocol exception.
+
+This patch does the following:
+
+1. Network server used to give NPE when InternalDriver returns null connection for certain malformed URLs. With this patch, network server checks for null connections returned by InternalDriver and returns RDBAFLRM and SQLCARD with null SQLException.
+2. The client parses the SQLCARD and if finds null SQLException, it sets connectionNull variable in NetConnection to true.
+3. ClientDriver connect method, which calls the constructor of NetConnection, gets back an object with connectionNull set to true. And it inturn returns null connection.
+4. Added tests to checkDriver.java for more Client URLs. 
+
+Contributed by Deepa Remesh
+
+
+------------------------------------------------------------------------
+r291721 | kmarsden | 2005-09-26 12:39:26 -0700 (Mon, 26 Sep 2005) | 7 lines
+
+DERBY-149
+Fix Server hang when invalid string is bound to datetime columns.
+Changes network server to skip only the current DSS and not all chained DSS's 
+when parsing parameter data in SQLDTA.
+
+
+
+------------------------------------------------------------------------
+r279839 | jboynes | 2005-09-09 11:07:24 -0700 (Fri, 09 Sep 2005) | 1 line
+
+cosmetic; fix javadoc and imports to make idea happy
+------------------------------------------------------------------------
+r226700 | noel | 2005-07-31 16:30:43 -0700 (Sun, 31 Jul 2005) | 1 line
+
+move Derby from Incubator to DB
+------------------------------------------------------------------------
+r189752 | kmarsden | 2005-06-09 05:57:25 -0700 (Thu, 09 Jun 2005) | 7 lines
+
+DERBY-343 Clean up DRDA classes handling of OPNQRY options
+
+Move qryclsimp logic to DRDAResultset.
+Organize imports
+			Contributed by Philip Wilder
+
+
+------------------------------------------------------------------------
+r180107 | kmarsden | 2005-06-05 09:14:33 -0700 (Sun, 05 Jun 2005) | 8 lines
+
+
+Fix for DERBY-285 Network Client should not print non-ascii token separators in message when it cannot connect to the server to retrieve the error message 
+
+This patch changes network server to send the complete message in its own locale instead of just the message arguments and delimiters if the exception is severe enough to terminate the connection. This will eliminate the special characters and provide a more readable message. 
+I also cleaned up the code a bit in this area. I removed the extra logging for the severe exceptions as these will already be logged as part of the normal Derby error logging. 
+
+
+
+------------------------------------------------------------------------
+r179927 | kmarsden | 2005-06-03 20:13:35 -0700 (Fri, 03 Jun 2005) | 6 lines
+
+DERBY-128 Network Server Gives NPE if SQLException has null SQLState
+
+Removed dereferencing of sqlstate which was causing the NPE
+			Contributed by Dyre Tjeldvoll
+
+
+------------------------------------------------------------------------
+r179584 | kmarsden | 2005-06-02 05:26:18 -0700 (Thu, 02 Jun 2005) | 30 lines
+
+DERBY-205 spin off - clean up handling of derby.stream.error properties
+ 
+- Removed the (redundant) reading of these stream name properties from 
+  NetworkServerControlImpl.java: 
+
+            derby.stream.error.file 
+derby.stream.error.method 
+derby.stream.error.field 
+
+- Modified DRDAConnThread.java to get the stream name via 
+  Monitor.getStream().getName (a new method). DRDAConnThread was the 
+  sole client and reason for the redundancy Kathey spotted. 
+- Augmented HeaderPrintWriter interface with a new method, getName. 
+- Augmented BasicHeaderPrintWriter to hold the stream name of the 
+  error log. 
+- Moved hard coded constants for the stream name attributes from 
+  SingleStream.java to the Property interface and documented them there. 
+- Removed the errorLogLocation field and the getErrorLogLocation from 
+  NetworkServerControlImpl.java 
+- Cleaned up some Javadoc for the items I touched. 
+
+I have run derbyall with JDK1.4.2 on Solaris/x86. derbyall runs with 
+errors, but the same errors are present on a clean checkout as well 
+
+There are some additional changes to the sed file for the new 
+errorstream test. Checking in all but the addition to the suite.
+
+			contributed by Dag H. Wanvik
+
+
+------------------------------------------------------------------------
+r179014 | kmarsden | 2005-05-29 22:36:14 -0700 (Sun, 29 May 2005) | 16 lines
+
+This fixes DERBY-255 
+
+Closing a resultset after retriving BLOB or CLOB data > 32K, does not release locks properly. 
+
+Network server/client materializes the LOB on the client and cannot differentiate getBlob from getBytes or getBinaryStream. Previously, network server would always call getBlob/getClob for any lob related call. This change changes network server to use getBytes/getString and not  hold locks for any of the calls. 
+
+The implementation adds a new class EXTDTAInputStream to network server to localize the stream handling for large objects.   This should make it easier to adjust in the future as improvements are made in the large object handling. Because we need a length in order to write a stream, EXTDTAInputStream currently call getBytes or getString to get the length and stream out that object. This is apparently required because we cannot reset the input stream after traversing it to get the length.
+
+
+Future suggestions for changes to network server to handle this in a more complete way would be to:
+
+1) Change DDMWriter.writeScalarStream to  not require a length and optimize EXTDTAObjectInputStream accordingly
+
+2) Add support for lob locators with network server.  The getBlob, getClob calls would use the locators and would hold locks until the end of the transaction.
+
+
+------------------------------------------------------------------------
+r169684 | kmarsden | 2005-05-11 12:40:57 -0700 (Wed, 11 May 2005) | 3 lines
+
+Rename DB2jServerImpl.java to NetworkServer
+			contributed by Dag Wanvik
+
+------------------------------------------------------------------------
+r160439 | kmarsden | 2005-04-07 12:07:59 -0700 (Thu, 07 Apr 2005) | 3 lines
+
+Derby-198 Add USERID only security for Network Server
+
+
+------------------------------------------------------------------------
+r158935 | bandaram | 2005-03-24 11:57:28 -0700 (Thu, 24 Mar 2005) | 4 lines
+
+Derby-157: Catch Illegal values for date, time and timestamp.
+
+Submitted by Army Brown (qozinx@sbcglobal.net)
+
+------------------------------------------------------------------------
+r158260 | kmarsden | 2005-03-19 11:01:27 -0700 (Sat, 19 Mar 2005) | 4 lines
+
+Derby  173 For the concurrency of ResultSet, Network Server should not send the concurrency of Statement.
+
+	contributed by Mamta Satoor
+
+------------------------------------------------------------------------
+r155248 | bandaram | 2005-02-24 13:12:29 -0800 (Thu, 24 Feb 2005) | 4 lines
+
+Update a few masters in preparation for Derby Network Client submission and make IJ and Network server recognize the new name for the driver.
+
+Submitted by Satheesh Bandaram (satheesh@sourcery.org)
+
+------------------------------------------------------------------------
+r126392 | kmarsden | 2005-01-25 09:13:34 -0800 (Tue, 25 Jan 2005) | 52 lines
+
+Fix for multiple EXCSAT's without reset of the connection.
+contributed by kmarsden@sbcglobal.net
+
+There are three kinds of EXCSAT's we might get
+
+1) Initial Exchange attributes.   For this we need to initialize the
+apprequester. Session state is set to ATTEXC (attributes exchanged) then
+the AR must follow up with ACCSEC and SECCHK to get the connection.
+
+2) Send of EXCSAT as ping or manager level adjustment. For this we just
+ignore the EXCSAT objects that are already set.  JCC doesn't use this,
+but it is in DRDA.
+
+3) Send of EXCSAT for connection reset. (see parseEXCSAT2()) This is
+treated just like ping and will be followed up
+by an ACCSEC request if in fact it is a connection reset.
+If we have already exchanged attributes once just
+process any new manager levels and return (case 2 and 3 above)
+ 	
+Before the XA checkin, 1 and 2 worked.  After the XA checkin 1 and 3
+worked and with this patch 1, 2, and 3 all work.
+
+I had to rearrange the code a bit to do this because in DRDAConnThread,
+processCommands() the EXCSAT case just called parseDRDAConnection which
+expected the ACCSEC and SECCHK codepoints in the correct order.
+
+As a solution I
+1) Moved the handling of the ACCSEC and SECCHK codepoints from
+parseDRDAConnection up to  processCommands().
+
+2) Put the security state in the Session object.  The session has
+   4 states.
+
+two existed before:
+INIT 	- initial state
+ATTEXC  - attributes exchanged
+	   (After first EXSAT - ACCSEC required)
+
+now there are two new ones:
+
+SECACC   - security accessed (After successful ACCSEC - need SECCHK)
+CHKSEC   - checked security. After successful SECCHK and connection.
+           no more required security codepoits.
+
+The session.getRequiredSecurityCodepoint() method is used by
+process_commands to determine if the next codepoint must be ACCSEC or
+SECCHK.
+
+Also the patch includes the fix Dan suggested for jdk 131 for
+BrokeredPreparedStatent.getStatement(). But how to call
+Connection.prepareStatement is still an issue.
+
+------------------------------------------------------------------------
+r126257 | fuzzylogic | 2005-01-23 19:24:27 -0800 (Sun, 23 Jan 2005) | 2 lines
+
+Fix javadoc errors in drda, tools, and publishedapi.
+
+------------------------------------------------------------------------
+r123827 | kmarsden | 2004-12-31 13:49:50 -0800 (Fri, 31 Dec 2004) | 4 lines
+
+Initial check in of XA for Network Server.
+Tests will be added when the client driver (IBM Universal JDBC Driver ) becomes avaialable.
+
+
+------------------------------------------------------------------------
+r106935 | kmarsden | 2004-11-29 09:57:53 -0800 (Mon, 29 Nov 2004) | 3 lines
+
+Fix for Derby - 67 .  Network Server on a 64 bit JVM failes with Distributed Protocol Error
+
+
+------------------------------------------------------------------------
+r57533 | djd | 2004-11-12 09:11:33 -0800 (Fri, 12 Nov 2004) | 2 lines
+
+Update file header to ASF copyright and Apache Licence notice - java/drda files
+
+------------------------------------------------------------------------
+r57420 | djd | 2004-11-10 21:04:22 -0800 (Wed, 10 Nov 2004) | 2 lines
+
+Remove IBM's binary copyright in java files under java/drda
+
+------------------------------------------------------------------------
+r56215 | kmarsden | 2004-11-01 00:13:21 -0700 (Mon, 01 Nov 2004) | 3 lines
+
+Fix for derby-5. Instead of clearing buffer, just clear back to appropriate point if query fails. Sumbitting for Army Brown (army@golux.com)
+
+
+------------------------------------------------------------------------
+r55942 | kmarsden | 2004-10-28 21:56:29 -0700 (Thu, 28 Oct 2004) | 3 lines
+
+Derby35 - Fix dss chaining problems for network server.
+Checked in for Army Brown army@golux.com
+
+------------------------------------------------------------------------
+r47119 | djd | 2004-09-23 14:30:27 -0700 (Thu, 23 Sep 2004) | 2 lines
+
+Set eol-style to native for all text files.
+
+------------------------------------------------------------------------
+r37083 | coar | 2004-08-26 07:13:46 -0700 (Thu, 26 Aug 2004) | 1 line
+
+Initial code import
+------------------------------------------------------------------------

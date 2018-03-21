@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="aj/SafeWriterMonitorAspect.aj|aj/CheckThenActMonitorAspect.aj|aj/UnsafeIteratorMonitorAspect.aj" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/lib/asm.jar"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/lib/imunit.jar"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/lib/iagent.jar"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/dist/instrumentor.jar"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

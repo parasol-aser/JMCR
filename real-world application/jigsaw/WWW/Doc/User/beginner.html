@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Jigsaw's guide for beginners</title>
+  <meta name="generator" content="amaya 7.2, see http://www.w3.org/Amaya/" />
+ <link rel="stylesheet" type="text/css" href="../style/doc.css" />
+</head>
+
+
+<body>
+
+<div class="body">
+
+<h1>Understanding the basics...</h1>
+
+<h2>How do I install Jigsaw?</h2>
+
+<p>Get the appropriate package (see <a
+href="../FAQ.html#download">FAQ</a>).<em>Then read
+the README file from the documentation!</em></p>
+
+<p>Follow the installation instructions (i.e. run the installation
+script).</p>
+
+<p>Jigsaw works with a JDK &gt;= 1.2 (since Jigsaw 2.1.0). We recommend the use of a JDK version &gt;= .3 for Jigsaw 2.2.* even if it works with 1.2, otherwise some non-critical functionalities may be available.</p>
+
+<p>Be sure that your
+CLASSPATH is set up correctly.</p>
+
+<h3>Troubleshooting:</h3>
+<ol>
+  <li>If you get an error indicating that a class is not found
+    (<code>java.lang.NoClassDefFoundError</code>), you probably have a wrong
+    CLASSPATH.</li>
+  <li>Windows users: if you get an "out of environment space" error, you
+    should increase the DOS environment space (see Microsoft knowledge
+  base).</li>
+</ol>
+
+<h2>What if I want to compile Jigsaw?</h2>
+
+<p>First, be sure that recompilation is <em>really</em> what you want.</p>
+
+<p>Set the appropriate CLASSPATH to use the classes instead of the jar from
+the package.</p>
+
+<p><code>CLASSPATH = &lt;instdir&gt;/Jigsaw/src/classes/:...</code></p>
+
+<p>instead of</p>
+
+<p><code>CLASSPATH = &lt;instdir&gt;/Jigsaw/classes/jigsaw.jar:...</code></p>
+
+<p>Of course be sure to add all the external jars needed by your version of
+Jigsaw, servlet.jar, sax.jar and xp.jar. Some sources may require additional
+packages like jakarta-oro and jtidy.</p>
+
+<p>Then you can use make in any directory
+under<code>&lt;instdir&gt;/Jigsaw/src/classes</code>. Another way if you want
+to compile everything faster, see this:</p>
+
+<p><code>cd &lt;instdir&gt;/Jigsaw/src/classes &amp;&amp; javac -O `find .
+-name \*.java`</code></p>
+
+<p>(Windows Users will uses \ instead of / in paths).</p>
+
+<h2>Let's start running Jigsaw...</h2>
+
+<p>Just type in the following command:</p>
+
+<p><code>cd &lt;instdir&gt;/Jigsaw/Jigsaw<br />
+java org.w3c.jigsaw.Main -host host -root
+&lt;instdir&gt;/Jigsaw/Jigsaw</code></p>
+
+<p>(Windows Users will uses \ instead of / in paths).</p>
+
+<p>Jigsaw should be running, and will probably have emited a message like:</p>
+
+<p><code>jigsaw Sample/Jigsaw&gt; java org.w3c.jigsaw.Main<br />
+loading properties from:<br />
+/0/w3c/cbournez/Jigsaw/Jigsaw/config/server.props <br />
+*** Warning : JigAdmin[2.2.2]: no logger specified, not logging.<br />
+JigAdmin[2.2.2]: serving at http://ender.inria.fr:8009/ <br />
+Jigsaw[2.2.2]: serving at http://ender.inria.fr:8001/</code></p>
+
+<h2>Where are the server configuration files?</h2>
+
+<p>Be careful. All the configuration is <em>not</em> handled by plain text
+configuration files. There is a slight difference between what is server
+Configuration and what is Administration. Configuration includes definition
+of basic server properties (such as server root, port, keep alive,
+logging,...). All these properties are set in
+<code>Jigsaw/config/http-server.props</code>. Administration, on the other
+side, deals with the way the resources are served. Jigsaw includes an
+Administration server, which has it self properties
+(in<code>Jigsaw/config/admin-server.props</code>). It allows to configure
+ressources served throught <a
+href="./JigAdmin/Overview.html">JigAdmin</a>.
+Most of the usual tasks on the server can be completed through the admin
+server and JigAdmin. Note that JigAdmin also allows to perform the
+admin-server administration tasks as well.</p>
+
+<p style="text-align: center"><img alt="http-server and admin-server"
+src="config-def.png" /></p>
+
+<h2>But what is a resource?</h2>
+
+<p>You can find a designer-friendly description of what a resource is <a
+href="../Programmer/design.html#whatr">here</a>.
+All what you need to know is that a <strong>resource</strong> is an object
+you may want to serve with your Jigsaw server. It can be many kinds of
+objects but it is usually a static file or a dynamically generated content.
+Here is a summarized list of resources:</p>
+<dl>
+  <dt><a
+  href="../Reference/resources.html#Standard resources">Standard
+  resources</a> are basic resources that you expect any server to support
+  (files, directories)</dt>
+  <dt><a
+  href="../Reference/resources.html#Extension resources">Extension
+  resources</a> are mainly dynamic content objects (e.g. servlets, ZIP
+  archives, directory listing).</dt>
+  <dt><a
+  href="../Reference/resources.html#Admin resources">Admin
+  resources</a> are special resources that allow Jigsaw's administration.</dt>
+  <dt><a
+  href="../Reference/resources.html#Property resources">Property
+  resources</a> are wrappers to subsets of Jigsaw properties, that allow to
+  edit these properties.</dt>
+</dl>
+
+<p></p>
+
+<p>According to the type of resource, the server will use an appropriate mean
+to serve it, which is described by a <strong>frame</strong>. You can find
+also a designer-friendly documentation about <a
+href="../Programmer/design.html#whatf">frames</a>.
+However, here is a summarized view of frames existing in Jigsaw:</p>
+<dl>
+  <dt><a
+  href="../Reference/frames.html#Standard frames">Standard
+  frames</a> are HTTP-related frames. They allow the server to serve basic
+  resources but also handle redirection, virtual hosting and content
+  negotiation.</dt>
+  <dt><a
+  href="../Reference/frames.html#Extension frames">Extension
+  frames</a> are mainly designed to serve dynamic content (CGI, servlets,...)
+  but also special resources like CVS or ZIP resources.</dt>
+  <dt><a
+  href="../Reference/frames.html#Filter frames">Filter
+  frames</a> allow you to filter the requests and replies (many different
+  usages, e.g. authentication, log, HTTP errors, cache).</dt>
+  <dt><a
+  href="../Reference/frames.html#Proxy frames">Proxy
+  frames</a> are relative to the proxy features of Jigsaw.</dt>
+  <dt><a
+  href="../Reference/frames.html#Admin frames">Admin
+  frames</a> are related to Jigsaw's administration (see Admin
+  resources).</dt>
+  <dt><a
+  href="../Reference/frames.html#Specific frames">Specific
+  frames</a> can be attached only to specific resources (there is an explicit
+  combination between a resource and a frame, a specific frame won't work
+  with any other resource than the one it is made for).</dt>
+  <dt><a
+  href="../Reference/frames.html#metadata">Metadata
+  frames</a> are used to serve and/or store metadata.</dt>
+</dl>
+
+<p></p>
+
+<h2>Do I really need to attach a frame to each resource I want to serve?</h2>
+
+<p>Of course the answer is <em>no</em>. The server has a default behaviour
+which allows to automagically "configure" the resources with appropriate
+frames. This is done by an <a
+href="../Programmer/design.html#indexer">indexer</a>.
+Of course, you can override or tune this behaviour by changing the default
+indexer. For example, you could choose among the various existing indexers
+(ContentTypeIndexer, SampleResourceIndexer...). Moreover, you can choose
+differents indexers for different subdirectories in your resources
+repository. It does <em>not</em> prevent  from configuring manually resources
+and frames, even in an indexer's scope. An indexer always leave untouched
+manual configurations.</p>
+
+<p>To summarize: the default root for the Jigsaw resource tree is
+<code>Jigsaw/WWW/.</code>(Note that in a freshly installed Jigsaw, it is not
+empty). If you simply add an HTML file in this directory, the default indexer
+will automatically configure a FileResource with an attached HTTPFrame the
+first time you will request this file to the server.</p>
+
+<p></p>
+</div>
+
+</body>
+</html>

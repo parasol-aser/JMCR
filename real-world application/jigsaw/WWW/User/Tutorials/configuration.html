@@ -1,0 +1,487 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Jigsaw configuration tutorial</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home"
+    WIDTH="72" HEIGHT="48" ALT="W3C" BORDER="0"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" ALT="Jigsaw"
+    BORDER="0" WIDTH="212" HEIGHT="49"></A>
+<H1>
+  <B>Jigsaw</B> configuration tutorial
+</H1>
+<P>
+This tutorial will walk through the whole <B>Jigsaw</B> configuration process.
+It only assumes that you have unpacked the distribution, it will then take
+you through the following steps:
+<UL>
+  <LI>
+    <A HREF="#running">Running <B>Jigsaw</B>, along with some trouble shooting,</A>
+  <LI>
+    <A HREF="#global-configuration">Configuring the server, by editing its
+    properties,</A>
+  <LI>
+    <A HREF="#factory-configuration">Configuring the resource factory databases</A>
+  <LI>
+    <A HREF="#editing">Editing existing resources</A>
+  <LI>
+    <A HREF="#authentication">Setting up authentication</A>
+</UL>
+<P>
+It is recommended, however, that before reading this tutorial, you read the
+brief overview of <A HREF="../Introduction/architecture.html"><B>Jigsaw</B>
+architecture</A>.
+<P>
+Note also that a new configuration tool,
+<B><A HREF="../Administration/JigAdm.html">JigAdmin</A></B>, has been provided
+to make the configuration of <B>Jigsaw</B> easier, and more understandable.
+Of course, reading this tutorial is still very useful!
+<H2>
+  <A NAME="running">Running <B>Jigsaw</B></A>
+</H2>
+<P>
+<B>Jigsaw</B> distribution comes with a sample root directory. The very first
+thing to do, is to check that it runs properly in this directory, for this
+purpose, just run the following command (it should work on any platform that
+supports Java):
+<P>
+For version 1.0alpha5 and up:
+<P>
+j<CODE>ava w3c.jigsaw.Main -root <I>root</I> </CODE>
+<P>
+For version 1.0alpha4 and lower:
+<P>
+<CODE>java w3c.jigsaw.http.httpd -host <I>host</I> -port <I>port</I> -root
+<I>root</I></CODE>
+<P>
+You should substitute:
+<UL>
+  <LI>
+    <I>host</I> with the full IP host name of your machine,
+  <LI>
+    <I>port</I> with the port you want the server to listen to (defaults to 8001),
+  <LI>
+    <I>root</I> with the distribution sample root directory (e.g.
+    <CODE>.../Jigsaw/Jigsaw</CODE>)
+</UL>
+<P>
+If everything runs smoothly, then <B>Jigsaw</B> will print the following
+message:
+<PRE>loading properties from: /afs/w3.org/usr/abaird/Jigsaw/config/httpd.props
+Jigsaw[1.0alpha3]: serving at http://www24.w3.org:8888
+</PRE>
+<P>
+Meaning that the server is ready, and listening at the given URL. If things
+do not run as nicely, here is a list of possible hints:
+<UL>
+  <LI>
+    If the command line exits, saying that it can't find the class
+    <CODE>w3c.jigsaw.http.httpd</CODE>, this means that your CLASSPATH environment
+    variable is not set correctly. Be sure to include in this variable the
+    <CODE>.../Jigsaw/classes/jigsaw.zip</CODE> file (were the <CODE>...</CODE>
+    stands for the absolute path of the directory in which you have unpacked
+    the distribution).
+  <LI>
+    If the command line exits, saying that it was unable to restore the root
+    resource, then, check the value of the <CODE>-root</CODE> command line toggle.
+</UL>
+<P>
+We are now assuming that <B>Jigsaw</B> is running in its sample root directory.
+If you want to run <B>Jigsaw</B> in some other place then its sample root
+directory, you just need to copy it to the appropriate location (using a
+recursive copy program, so that you get the sub-directories too).
+<P>
+The sample root directory provides a set of resources (located in the
+<CODE>Admin</CODE> directory) that allows you to configure the server. As
+this directory doesn't come protected by default, you should continue to
+read this tutorial until you have protected it (you can jump directly to
+the <A HREF="#authentication">authentication section</A>, but it is recommended
+that you keep reading until reaching it).
+<H2>
+  <A NAME="global-configuration">Global configuration</A>
+</H2>
+<P>
+Tired of writing all these command line arguments when running <B>Jigsaw</B>
+? In this section, we will explain how to edit the server global configuration,
+which will allow you to save your default settings.
+<P>
+Point your favorite browser to <CODE>/Admin/Properties</CODE>. This page
+has a number of links that points &nbsp; <B>Jigsaw</B> module. At this stage,
+the first thing you want to do, is to save the actual settings: the command
+line flags all end up modifying the properties, so what you see is the correct
+set of properties (since you have provided the appropriate command line flags,
+e.g. <CODE>-host</CODE>, <CODE>-port</CODE>, etc.), but these are not consistent
+with the default property files. Save the properties by clicking the
+<I>Save</I> link. You can now play around, and change your settings as needed.
+<P>
+Note that some settings require a server restart (e.g. changing the server's
+port number). In such cases, you will be notified of the need of a server
+restart through an appropriate message. You <I>need not</I> (and shouldn't)
+save the properties before restarting the server (so that you can check them
+before actually saving them), however, once the server has restarted, and
+if you find these settings convenient, then you should save them by going
+back to the properties editor, and clicking the <I>Save</I> button.
+<P>
+Let's say, for example, that you want to turn the server in <I>trace</I>
+mode. You will first set the server's trace flag to <B>true</B>, then go
+to the <I>connections</I> property sheet, and turn the connection
+<I>trace</I> flag to <B>true</B> too. Don't save the properties yet, but
+restart the server. During its restart the server will first emit a message
+saying that it has shutdown itself, and then emit a second message saying
+that it has initialized itself. The server now runs in trace mode (i.e. it
+will display requests and replies). If you want this change to be persistent
+(i.e. always run the server in trace mode), then go back to the properties
+editor, and <I>Save</I> the properties.
+<P>
+In some cases, after you change some properties, the server won't be able
+to restart (because the new settings are inconsistent). In this case, just
+restart the server manually (through the command line): this will make it
+read its settings from the unchanged properties.
+<H2>
+  <A NAME="factory-configuration">Resources configuration</A>
+</H2>
+<P>
+At this point, <B>Jigsaw</B> should be running, and its global configuration
+should be up to date. You may want to check that everything is fine by visiting
+some of the documents under the <B>Jigsaw</B> space directory (the
+<CODE>WWW</CODE> directory by default). You can read the documentation, for
+example, starting from <CODE>/User/Overview.html</CODE>.
+<P>
+This section will explain how you can <A HREF="#factory-extensions">declare
+new file extensions</A> (the usual <CODE>AddType</CODE> directive of servers),
+and how you can create <A HREF="#factory-templates">directory templates</A>
+.
+<H3>
+  Describing files by extensions
+</H3>
+<P>
+To export any piece of information, <B>Jigsaw</B> wraps it into an
+<A HREF="../Reference/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A>
+object (see <A HREF="../Introduction/indexer.html"><B>Jigsaw</B> resource
+factory documentation</A> for more information on this). This resource factory
+maintains a database to keep track of how files should be wrapped into resources.
+This database, known as the <I>extensions</I> database describe, for each
+extension, an (optional) mapping to some resource class, along with a set
+of default attribute values for the newly created resource that will encapsulate
+the file.
+<P>
+Let's say we want all files having the <CODE>png</CODE> extension, to be
+exported by a
+<A HREF="../Reference/w3c.jigsaw.resources.FileResource.html">FileResource</A>
+instance (the FileResource class is the class that knows how to send back
+files as reply to requests). We also want to state that the
+<CODE>content-type</CODE> attribute value for these file resources should
+be <B>image/x-png</B>. We first point our favorite browser to
+<CODE>/Admin/Extensions</CODE>, this displays the sorted list of registered
+extensions. What we want to do is to add a new extension, so we click on
+the <I>Add extension</I> link. This brings up a new form, asking us for an
+extension name, and an (optional) class. We fill in the name of the extension
+(<CODE>png</CODE>, <I>without</I> the leading dot), and the extension class
+(<CODE>w3c.jigsaw.resources.FileResource</CODE>), and then press the
+<I>Create</I> button. This brings up yet another form, which allows us to
+enter default attribute values for resources that will be created through
+this extension. We want to specify the <CODE>content-type</CODE>, so we fill
+this field with <B>image/x-png</B>, and - just for fun - we may want the
+default icon for theses resources to be <B>image.gif</B>, so we fill in this
+field too. We then press the <I>OK</I> button, which brings us back to the
+list of extensions (in which the new <CODE>png</CODE> extension has been
+inserted).
+<P>
+If you have a <CODE>.png</CODE> file under <B>Jigsaw</B> space directory,
+you can now query it: the resource factory will know how to wrap into a
+FileResource, and will send it back to you properly.
+<P>
+In some cases, you may just want to state that for all files having a particular
+extensions, some specific attribute should default to some specific value.
+A typicall example of this is to state that files having the <CODE>.fr</CODE>
+extension have been written in french. To handle such a case, we just follow
+the above procedure: we follow the <I>Add extension</I> link, and fill in
+the name of the extension (<CODE>fr</CODE> here), however, this time, we
+will leave the class name empty. This means that by itself, the
+<CODE>fr</CODE> extension will not cause a file to be exported, but <I>if</I>
+a file having the <CODE>fr</CODE> extension is to be exported (because, for
+example, it has both the <CODE>fr</CODE> and <CODE>html</CODE> extensions),
+then we are willing to provide some default values for some of its generic
+attributes. We press the <I>Create</I> button to register the extension,
+this brings up a form containing the generic attributes (i.e. attribute tha
+apply to <I>all</I>
+<A HREF="../Reference/w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A>
+instances). We just fill in the <CODE>content-language</CODE> field, stating
+that its value should be <B>fr</B>, then we press the <I>OK</I> button, which
+brings us back to the list of registered extensions (in which <CODE>fr</CODE>
+has been inserted).
+<P>
+You should now be able to register as many extensions as you want. You should
+also check that the default extensions meet your &nbsp;expectations, by carefully
+viewing them. You may also want to remove some of the default extensions,
+or the one we have created above. To delete an extension, go to the page
+displaying the list of registered extensions, mark the ones you want to
+unregister by clicking on the checkbox at their right, and press the
+<I>Delete</I> button.
+<P>
+At this point, you might be surprised that we haven't <I>save</I> any of
+our changes. <B>Jigsaw</B> uses a complex caching scheme, and it decides
+itself when it is best to save changes to disk. However, you should remember
+that because of this, the server should be killed <I>only</I> by getting
+the <CODE>/Admin/Exit</CODE> resource (which will shutdown the server properly,
+saving to disk what needs to be saved at this point). If you really want
+your changes to be saved right now, you can still click on the /Admin/Properties
+<I>checkpoint</I> link, which will ensure all cached data are written back
+to the disk (it's usually a good idea to do that after editing the
+configuration).
+<H3>
+  <A NAME="factory-templates">Directory templates</A>
+</H3>
+<P>
+The <A HREF="#factory-extensions">previous section</A> has explained how
+to map files to resources based on their extensions. This section now explains
+how to map directories to resources.
+<P>
+As for files, mapping directories to resources is done by the
+<A HREF="../Introduction/indexer.html">resource factory</A>, however the
+mapping is done per directories name, rather then per extensions. <I>Directory
+templates</I> are records that describe how directories of a given name should
+be mapped to resource instances. The first rule to be aware of, is that if
+no directory templates is available for a specific directory, the file-system
+directory will be exported through a simple
+<A HREF="../Reference/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>
+instance.
+<P>
+Back to directory templates. Directory templates associate a directory name
+with a resource class along with a set of default attribute values for the
+directory. Directory templates may be of two kinds: they can be
+<I>generic</I> or <I>normal</I> (depending on the value of their
+<CODE>generic</CODE> attribute). Generic directory templates apply to all
+directories having, as part of their path, the directory template name, while
+normal directory templates apply only to directory whose last name is the
+template name. Generic directory templates allows you to use some specific
+directory resource to export a whole hierarchy of information.
+<P>
+To access the directory templates database, point your favorite browser to
+<CODE>/Admin/DirectoryTemplates</CODE>. This will list the currently defined
+directory templates. Let's add a new directory template, for all
+<CODE>CVS</CODE> directories, which we want to export through the
+<A HREF="../Reference/w3c.jigsaw.cvs.CvsDirectoryResource.html">CvsDirectoryResource</A>
+(this resource provides a form-based interface to CVS). To do this, we follow
+the <I>Add directory</I> link, which brings up a form that prompts us for
+a directory name and a directory class. We want this directory template to
+apply to all <CODE>CVS </CODE>directory, so the name is just
+<CODE>CVS</CODE>, and we want these directories to be exported through a
+<CODE>w3c.jigsaw.cvs.CvsDirectoryResource</CODE> instance. We fill in the
+fields, and press the <I>OK</I> button, this brings up a new form, with the
+templates attribute themselves. We don't want this directory template to
+be generic, so we leave these fields alone. The <I>template</I> link brings
+up a form to edit the default attribute values for the resource to be created.
+The fields in this form depends on the class you have given when you created
+the directory template. In the case of the
+<A HREF="../Reference/w3c.jigsaw.cvs.CvsDirectoryResource.html">CvsDirectoryResource</A>,
+none of these attributes need default values, so we just skip them. We are
+all set, now when the resource factory will be queried to wrap a directory
+whose name is <CODE>CVS</CODE>, instead of creating a directory resource,
+it will create a resource that will allow you to control the cvs status of
+the files in the directory, neat isn't it ?
+<P>
+Another typical usage of directory templates, is to use them to provide writable
+areas. The
+<A HREF="../Reference/w3c.jigsaw.resources.PutableDirectory.html">PutableDirectory</A>
+class extends the basic
+<A HREF="../Reference/w3c.jigsaw.resources.PutableDirectory.html">DirectoryResource</A>
+class with the ability to create new resources to handle the HTTP <I>PUT</I>
+method (a bunch of browsers now support this PUT method, you can try for
+example <A HREF="http://www.w3.org/pub/WWW/Amaya/">Amaya</A>, or
+<A HREF="http://www.tools.gnn.com/">GNN</A>). Let's define a directory template
+for some directory named <CODE>Writable</CODE> and all its children directories.
+As before, we click on the <I>Add directory</I> link, the name of our directory
+template is simply <CODE>Writable</CODE> and its associated class is
+<CODE>w3c.jigsaw.resources.PutableDirectory</CODE>. We press the <I>OK</I>
+button, and this time, we state that the template is generic, by setting
+the generic attribute to <B>true</B>. This time we want to edit the
+<I>template</I> so we follow the link. The first thing we may want to do
+is to provide a fancy default icon, so that putable directories can be
+distinguished from the others, lets' use <CODE>burst.gif</CODE>, then if
+using GNN, you might want to turn the <CODE>browsable</CODE> attribute to
+<B>true</B>. This will make the resource handles the GNN specific
+<I>BROWSE</I> method. We press the <I>OK</I> button, and we are done. Don't
+forget to read the authentication section, that will explain how to setup
+<A HREF="#authentication">authentication</A> for these kinds of directories.
+<P>
+At some point, you may want to delete directory templates. In this case,
+go to the <CODE>/Admin/DirectoryTemplates</CODE> location, and mark each
+of the templates you want to delete by clicking on the checkbox to the right
+of their names. Then press the <I>Delete</I> button, you are done.
+<H2>
+  <A NAME="editing">Editing</A>
+</H2>
+<P>
+At this point, you should be able to run <B>Jigsaw</B>, to configure its
+properties and to edit the resource factory configuration databases. In this
+section, we will concentrate on <B>Jigsaw</B>'s ability to edit existing
+resources.
+<P>
+In some circumstances, you may want to customize a single resource of your
+whole information space. This may be because you want it to have a specific
+icon, or because it's a special resource that needs some specific configuration,
+etc.
+<P>
+Just for fun, let's say that although the document
+<CODE>/User/Overview.html</CODE> has the <CODE>html</CODE> extension, we
+want its content type to be advertized as text. To do this, what is needed
+is to edit the <CODE>content-type </CODE>attribute of the appropriate resource
+in order to change it into <B>text/plain<I>.</I></B> <B>Jigsaw</B> comes
+with a generic resource editor (which is itself a resource), that allows
+you to edit any specific resource exported by the server. To edit a resource,
+we just append its path to the <CODE>/Admin/Editor</CODE> resource. So, to
+edit our <CODE>/User/Overview.html</CODE> resource, we just point our browser
+to <CODE>/Admin/Editor/User/Overview.html</CODE>. This brings up a form
+containing the specific attributes of the resource. The one we are interested
+in, here, is its <CODE>content-type</CODE> that we change to
+<B>text/plain</B>. We press the <I>OK</I> button, et voila ! Try loading
+<CODE>/User/Overview.html</CODE>: instead of displaying the HTML document
+itself, your browser should now display the HTML text making the document.
+Enough fun, let's turn the resource <CODE>content-type</CODE> to
+<B>text/html</B>, and check that the resource is back to normal...good !
+<P>
+All resources are editable in the same way, again for fun only, let's say
+we want to add the
+<A HREF="../Reference/w3c.jigsaw.status.ThreadStat.html">ThreadStat</A> resource
+(which display the threads running in the server) into the <CODE>/User</CODE>
+directory resource. To do this, we launch the generic editor on the
+<CODE>/User</CODE> directory, by pointing our browser to
+<CODE>/Admin/Editor/User</CODE> location. This brings up a form with one
+field per directory resource attribute. This time, what we want to do is
+to add a resource, so we go straight down the page, and follow the <I>Add
+resource</I> link. We are prompted for a resource name, and a resource class.
+The name of the resource is the name under which it will be retreived from
+its directory, let's use <CODE>threads</CODE>. The full class name of the
+ThreadStat resource is <CODE>w3c.jigsaw.status.ThhreadStat</CODE>. We fill
+in the two fields, and press the <I>Create</I> button. Then we follow the
+<I>Existing resources</I> link. This shows up a sorted list of all the resources
+contained by the <CODE>/User</CODE> directory resource, among which is the
+<CODE>threads</CODE> resource. Follow <I>threads </I>link, this pops up an
+editor to edit the ThreadStat resource attributes. You may want to change
+the refresh rate, by changing the value of the <CODE>refresh</CODE> attribute
+(which gives the refresh period in seconds). Press the <I>OK</I> button.
+Now point your browser to <CODE>/User/threads</CODE>, and you will see the
+threads that the server is running.
+<P>
+Now that we got all this fun, its time to do some clean-up, let's remove
+the <CODE>threads</CODE> resource from the <CODE>/User</CODE> directory resource.
+Point your browser to the <CODE>/Admin/Editor/User</CODE> location. Mark
+the <CODE>threads</CODE> resource by clicking on the checkbox right to its
+name, &nbsp;select the <CODE>Remove</CODE> command and press the <I>OK</I>
+button. By the way, the <CODE>Reindex</CODE> button here, will reindex the
+marked resources (this is usefull if you change your resource factory
+configuration), and the <CODE>Update</CODE> button will update any of the
+resource attributes that is computed.
+<H2>
+  <A NAME="authentication">Authentication</A><B></B>
+</H2>
+<P>
+At this point, you nearly knows everything about <B>Jigsaw</B>. This section
+will provide you wit ha basic explanation of filters, and how to use them
+to setup authentication.
+<P>
+Resource filters are attached to specific resources in order to filter accesses
+to them. These filters are called once at lookup time, and once at reply
+time. On the way in (lookup time), they allow you to manipulate the request
+before the target resource handles it, and on the way out, they allow you
+to manipulate the target's reply before it is emited back to the browser.
+<P>
+Although <B>Jigsaw</B> provides a <A HREF="../Reference/filters.html">number
+of filters</A>, we will focus here on the authentication filter, that
+authenticate requests before thy are handled by their appropriate target
+resources. The
+<A HREF="../Reference/w3c.jigsaw.auth.GenericAuthFilter.html">GenericAuthFilter</A>
+is currently the only available authentication filter.
+<P>
+To illustrate its usage, we will go through the steps required to protect
+the <CODE>/Admin</CODE> directory. The first thing you want to do, is to
+define an authentication <I>realm</I>. An authentication realm is a database
+that will contain the description of a set of users, along with their passwords
+and/or IP adresses. Let's first define an <CODE>admin</CODE> authentication
+realm, describing all the users allowed to access the <CODE>/Admin</CODE>
+resources.For this we point our favorite browser to
+<CODE>/Admin/Realms</CODE>. This display the set of authentication realms
+the server knows about (this will be empty at this time). Let's create our
+realm: we click on the <I>Add realm</I> link, which brings up a form prompting
+us for the realm name (the server wide identifier for the realm), and the
+realm <I>repository</I>. Let's fill in the realm name with
+<CODE>admin</CODE>. The realm repository is the name of the file that the
+server will use to store the users database for the realm, it's good practice
+to put these files under the <CODE>config/auth</CODE> directory of
+<B>Jigsaw</B>. So we fill in the repository field with
+<CODE>.../config/auth/admin.db</CODE> (were <CODE>...</CODE> is to be substituted
+by the absolute path of the root directory of the server). Once both fields
+are filled in, we press the <I>Create</I> button to create the realm. This
+brings up a form containing the list of users defined in the realm (which
+is, of course, initially empty). We follow the <I>AddUser</I> link, which
+prompts us for a user name. Let's say that <CODE>admin</CODE> is the user
+we want to describe. We fill in the name, and press the <I>Create</I> button,
+this again brings up new form, prompting us for a bunch of information about
+the <CODE>admin</CODE> user. The email address is currently unused (but it
+might be used in the future for email notification), you can iethre fill
+it of leave it empty. You can type in any comments in the comments field
+which is used only for informational purposes. The ipaddress field allows
+you to state from which machine the user is allowed to connect. This field
+is not mandatory: if left blank, only the password will be used for
+authentication (be warned that the password authentication scheme used by
+HTTP is very weak, for protecting such a critic space as the
+<CODE>Admin</CODE> space, you should always specify both a password and some
+IP addresses). If you decide to fill in the ipaddress field, you can enter
+multiple addresses for the same user (one per line). In my case, I fill it
+with my office IP address and my home IP address, so I enter the following
+two lines of text:
+<PRE>18.52.0.144
+18.23.1.195
+</PRE>
+<P>
+You can also use <I>*</I> in the ip address field, meaning that any user
+connecting from the given set of IP addresses is to be authentified as the
+<CODE>admin</CODE> user. We then enter some password, and any optional groups
+we want the user to belong to (groups are a way of tagging a set of users
+belonging to the same realm, we will see some sample usage of groups below).
+<P>
+Once all the fields are filled-in, we press the <I>OK</I> button: the
+<CODE>admin</CODE> user is now registered as part of the <CODE>admin</CODE>
+realm. You can define as much users as you want, by following these same
+instructions.
+<P>
+Once you are satisfied with your realm, it is time to actually protect the
+<CODE>/Admin</CODE> directory. For this purpose we launch the generic resource
+editor on the <CODE>/Admin</CODE> resource by pointing our browser to
+<CODE>/Admin/Editor/Admin</CODE> location. What we want to do is add the
+authentication filter as one of the filters for the <CODE>/Admin</CODE> resource:
+we click on the <I>Add filter</I> link, and enter the following filter class:
+<CODE>w3c.jigsaw.auth.GenericAuthFilter</CODE>. We press the <I>OK</I> button
+to register the filter, this add two new links to the editor: let's follow
+the <I>filter-0</I> link. This pops up a form-based editor to edit the filter's
+attributes. The first identifier field need not be filled in (you can change
+it to <I>auth</I> in order to have more relevants link names), you can just
+skip it. The method field allow you to describe what methods are to be protected.
+As the <CODE>/Admin</CODE> is such a critic resource, we want to protect
+it against any method, which is the default when the field is left blank
+(otherwise, we would specify one method per line). The realm name field must
+be filled in: it should give the identifier of the realm we want to use for
+authenticating the <CODE>/Admin</CODE> space. We use here the realm that
+we have created above: <CODE>admin</CODE>. The users field allows you to
+restrict access further to only a set of users in the realm, and the group
+field allows you to restrict access to a set of groups of the realm. In both
+cases you should enter one user name (or group name) per line. If left blank,
+all users within the realm will be allowed in (which is what we want since
+we have defined a specific realm to describe the users that are allowed to
+configure the server). We can now press on the <I>OK</I> button: the
+<CODE>/Admin</CODE> directory is now protected. To check this, just point
+your browser to <CODE>/Admin</CODE>, this should now prompt you for a user
+name, and a password.
+<P>
+You are now all set: <B>Jigsaw</B> is configured, enjoy !
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: configuration.html,v 1.1 2010/06/15 12:28:36 smhuang Exp $</I>
+<P>
+</BODY></HTML>

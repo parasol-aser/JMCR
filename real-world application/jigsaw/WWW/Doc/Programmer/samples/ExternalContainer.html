@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>ExternalContainer.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// ExternalContainer.java
+// $Id: ExternalContainer.html,v 1.1 2010/06/15 12:20:06 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="type">resources</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.*;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.*;
+
+<span class="comment">/**
+ * A Container which manage an external store, outside the space.
+ */</span>
+<span class="reference">public</span> <span class="type">abstract</span> <span class="keyword">class</span> <span class="function-name">ExternalContainer</span> <span class="keyword">extends</span> <span class="type">ContainerResource</span> {
+
+  <span class="comment">/**
+   * Our transientFlag, is true that container must not be saved.
+   */</span> 
+  <span class="preprocessor">protected</span> <span class="type">boolean</span> <span class="variable-name">transientFlag</span> = <span class="keyword">false</span>;
+
+  <span class="comment">/**
+   * Our external repository.
+   */</span>
+  <span class="preprocessor">protected</span> <span class="type">File</span>    <span class="variable-name">repository</span>    = <span class="keyword">null</span>;
+
+  <span class="reference">public</span>  <span class="type">ResourceReference</span> <span class="function-name">createDefaultResource</span>(<span class="type">String</span> <span class="variable-name">name</span>) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span>("<span class="string">not extensible</span>");
+  }
+
+  <span class="comment">/**
+   * Mark this resource as having been modified.
+   */</span>
+  <span class="reference">public</span> <span class="type">void</span> <span class="function-name">markModified</span>() {
+    <span class="keyword">if</span> (transientFlag) {
+      setValue(ATTR_LAST_MODIFIED, <span class="keyword">new</span> <span class="type">Long</span>(System.currentTimeMillis()));
+    } <span class="keyword">else</span> {
+      <span class="reference">super</span>.markModified();
+    }
+  }
+
+  <span class="comment">/**
+   * acquire children and notify space if we will be saved.
+   */</span>
+  <span class="preprocessor">protected</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">acquireChildren</span>() {
+    <span class="keyword">if</span> (!acquired) {
+      <span class="type">ResourceSpace</span> <span class="variable-name">space</span> = getSpace();
+      <span class="keyword">if</span> (repository != <span class="keyword">null</span>) {
+	space.acquireChildren( getChildrenSpaceEntry() , 
+			       repository, 
+			       transientFlag );
+      } <span class="keyword">else</span> {
+	<span class="comment">// if we have been saved one time yet.
+</span>	space.acquireChildren( getChildrenSpaceEntry() );
+      }
+      acquired = <span class="keyword">true</span>;
+    }
+  }
+
+  <span class="comment">/**
+   * Delete this Resource instance , and remove it from its store.
+   * This method will erase definitely this resource, for ever, by removing
+   * it from its resource store (when doable).
+   */</span>
+
+  <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">delete</span>() 
+    <span class="keyword">throws</span> <span class="type">MultipleLockException</span>
+  {
+    <span class="keyword">if</span> (transientFlag) {
+      <span class="comment">// transient, so don't try to delete myself.
+</span>      <span class="type">ResourceSpace</span> <span class="variable-name">space</span> = getSpace();
+      <span class="keyword">if</span> (space != <span class="keyword">null</span>) {
+	acquireChildren();
+	<span class="comment">// check for lock on children
+</span>	<span class="type">Enumeration</span>       <span class="variable-name">e</span>        = enumerateResourceIdentifiers();
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span>       = <span class="keyword">null</span>;
+	<span class="type">Resource</span>          <span class="variable-name">resource</span> = <span class="keyword">null</span>;
+	<span class="keyword">while</span> (e.hasMoreElements()) {
+	  rr = lookup((<span class="type">String</span>) e.nextElement());
+	  <span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+	    <span class="keyword">try</span> {
+	      <span class="type">synchronized</span> (rr) {
+		resource = rr.lock();
+		resource.delete();
+	      }	  
+	    } <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+	      <span class="comment">// nothing, remove invalid resource.
+</span>	    } <span class="keyword">finally</span> {
+	      rr.unlock();
+	    }
+	  }
+	}
+	space.deleteChildren(getChildrenSpaceEntry());
+      }
+    } <span class="keyword">else</span> {
+      <span class="reference">super</span>.delete();
+    }
+  }
+
+
+  <span class="comment">/**
+   * Get The repository for this external container.
+   * Warning: called in the constructor!
+   * </span><span class="keyword">@param </span><span class="variable-name">context</span><span class="comment"> The container context.
+   * </span><span class="keyword">@return </span><span class="comment">A File instance
+   */</span>
+  <span class="type">abstract</span> <span class="reference">public</span> <span class="type">File</span> <span class="function-name">getRepository</span>(<span class="type">ResourceContext</span> <span class="variable-name">context</span>);
+
+
+  <span class="reference">public</span> <span class="type">void</span> <span class="function-name">initialize</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+    <span class="reference">super</span>.initialize(values);
+    <span class="keyword">if</span> (repository == <span class="keyword">null</span>)
+      repository = getRepository(getContext());
+  }
+
+  <span class="comment">/**
+   * </span><span class="keyword">@param </span><span class="variable-name">id</span><span class="comment"> The identifier.
+   * </span><span class="keyword">@param </span><span class="variable-name">context</span><span class="comment"> The default context.
+   * </span><span class="keyword">@param </span><span class="variable-name">transientFlag</span><span class="comment"> The transient flag.
+   */</span>
+
+  <span class="reference">public</span> <span class="function-name">ExternalContainer</span> (<span class="type">String</span> <span class="variable-name">id</span>, 
+			    <span class="type">ResourceContext</span> <span class="variable-name">context</span>,
+			    <span class="type">boolean</span> <span class="variable-name">transientFlag</span>) 
+  {
+    <span class="type">Hashtable</span> <span class="variable-name">h</span> = <span class="keyword">new</span> <span class="type">Hashtable</span>(3);
+    h.put("<span class="string">identifier</span>", id);
+    h.put("<span class="string">context</span>", context);
+    initialize(h);
+    <span class="reference">this</span>.acquired      = <span class="keyword">false</span>; 
+    <span class="reference">this</span>.transientFlag = transientFlag;
+    <span class="keyword">if</span> (transientFlag)
+      context.setResourceReference( <span class="keyword">new</span> <span class="type">DummyResourceReference</span>(<span class="reference">this</span>));
+  }
+
+  <span class="reference">public</span> <span class="function-name">ExternalContainer</span> () {
+    <span class="reference">super</span>();
+    <span class="reference">this</span>.acquired      = <span class="keyword">false</span>;
+    <span class="reference">this</span>.transientFlag = <span class="keyword">false</span>;
+    <span class="reference">this</span>.repository    = <span class="keyword">null</span>;
+  }
+}
+
+    </pre>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+  "http://www.w3.org/TR/1999/REC-html401-19991224/frameset.dtd">
+<HTML>
+<HEAD>
+  <!-- Created by NaviPress/1.2 -->
+  <TITLE>Jigsaw User's Guide</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<FRAMESET COLS="30%,70%" >
+  <FRAME SRC="fr-toc.html" SCROLLING=yes>
+  <FRAME SRC="fr-Overview.html" NAME="jigsaw-help">
+<NOFRAMES>
+
+<H1>
+  <A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home" ALT="w3c" WIDTH="72"
+      HEIGHT="48" BORDER="0"></A>
+  <A HREF="../" TARGET="_top_"><IMG SRC="/icons/jigsaw.gif" WIDTH="212"
+      HEIGHT="49" ALT="Jigsaw" BORDER="0"></A>
+</H1>
+<H1>
+  Jigsaw user's guide
+</H1>
+<H2>
+  Design
+</H2>
+<P>
+The <STRONG>Jigsaw</STRONG> server is entirely written in Java. Because of
+this, it offers the following features:
+<DL>
+  <DT>
+    Portable
+  <DD>
+    <STRONG>Jigsaw</STRONG> will run on all platforms that support Java, with
+    <EM>no</EM> changes ! This is for real, it has been tested at least on Windows
+    95 and Windows NT.
+  <DT>
+    Extensible
+  <DD>
+    <STRONG>Jigsaw</STRONG> is made of a core and a set of extension modules.
+    You can add your own modules, <EM>dynamically</EM>, to the server. Moreover,
+    because the Java runtime comes with both threads and garbage collection,
+    your job as an extension writter is largely simplified.
+  <DT>
+    Object Oriented
+  <DD>
+    The full code of the server is object-oriented, but the interesting thing
+    is that resources <EM>are objects</EM>. By opposition to most of the existing
+    servers, that consider a resource as being either a <B>cgi script</B> or
+    a <B>file</B>, <STRONG>Jigsaw</STRONG> allows <EM>any</EM> object to become
+    accessible through HTTP.
+</DL>
+<H2>
+  Table of content
+</H2>
+<P>
+<B>Jigsaw</B> user's guide is made of the following material:
+<DL>
+  <DT>
+    <B><A HREF="Introduction/Overview.html">Presentation</A></B>
+  <DD>
+    A quick overview at the <B>Jigsaw</B> architecture. This is a good starting
+    point if you want to either use or extend <B>Jigsaw</B>. It will explains
+    you the basic design.
+  <DT>
+    <A HREF="Administration/Overview.html"><B>Jigsaw</B> administration guide</A>
+  <DD>
+    The thing you want to read if you are planning to use <B>Jigsaw</B> as your
+    HTTP server. This will explain you how to configure <B>Jigsaw</B>.
+  <DT>
+    <A HREF="Tutorials/Overview.html"><B>Jigsaw</B> tutorials</A>
+  <DD>
+    Three tutorials, that explain you how to run and configure <B>Jigsaw</B>,
+    how to extend by by writing new resources, and how to extend it by writing
+    new filters.
+  <DT>
+    <A HREF="Reference/Overview.html"><B>Jigsaw</B> reference manual</A>
+  <DD>
+    The reference documentation for all <B>Jigsaw</B> objects. This includes
+    reference documentation for the set of Java properties used by the server,
+    the set of pre-defined resources and the set of pre-defined filters.
+  <DT>
+    <A HREF="api/packages.html"><B>Jigsaw</B> application programming interface</A>
+  <DD>
+    The thing you want to read if you plan to extend <B>Jigsaw</B> with new
+    functionalities. This includes writing new resource objects (a kind of CGI
+    in the server), changing the default logger, etc.
+</DL>
+<P>
+They should be read in this order: it is recommeneded to be able to configure
+<B>Jigsaw</B> before trying to extend it !
+<P>
+  <HR>
+<P>
+<A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: Overview.html,v 1.1 2010/06/15 12:28:14 smhuang Exp $
+<P>
+</NOFRAMES></FRAMESET></HTML>

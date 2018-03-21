@@ -1,0 +1,538 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Jigsaw performance evaluation</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="../../../" TARGET="_top_"><IMG BORDER="0" SRC="/icons/WWW/w3c_home"
+    ALT="W3C" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" WIDTH="212"
+    HEIGHT="49" ALT="Jigsaw" BORDER="0"></A>
+<P>
+  <HR>
+<P>
+<IMG SRC="/icons/32x32/caution.gif" ALT="WARN !" BORDER="0" WIDTH="32"
+    HEIGHT="32"> This page has not be updated since the 1.0alpha3 release, we
+do plan to do so real soon, stay tuned. To get some ideas as to how
+<B>Jigsaw</B> compares to a C based HTTP server, you may want to check the
+<A HREF="http://www.w3.org/Protocols/HTTP/Performance/Pipeline.html">HTTP
+Performance Paper</A> (which, even though not exactly on the same subject,
+provides a fair idea of relative performances).
+<P>
+  <HR>
+<H1>
+  Performance Evaluation
+</H1>
+<P>
+This document describes the current performance achieved by <B>Jigsaw</B>,
+and compare them to other servers. This paper is not intended to prove that
+<B>Jigsaw</B> is the fastest server (which it is not), it just tries to point
+out that writing a server in Java is a reasonable thing to do.
+<P>
+The second section of this document will describe the current bottlenecks,
+and hilight some of the possible work arounds (which will hopefully be included
+in the next <B>Jigsaw</B> release).
+<H2>
+  Numbers
+</H2>
+<H3>
+  Caveat
+</H3>
+<P>
+Benchmarking HTTPD servers is definitely a difficult task. They are at least
+two difficulties here:
+<UL>
+  <LI>
+    The configuration of the server to benchmark,
+  <LI>
+    The test-suite used to run the benchmark.
+</UL>
+<P>
+The benchmark will usually depend on things such as your hardware and your
+system, but also, the load of the machine you are using for the benches,
+the kind of filesystem the server runs in (is it NFS, AFS, does it uses some
+automounter ?), and a number of other parameters that are difficult to measure.
+The numbers we will give in this section have all been obtained under the
+same global configuration. This is a SunSparcstation 5, 64Mb of RAM, running
+solaris2.5, all files are served through a read/write AFS volume. I am probably
+lacking a number of interesting parameters in the latter description, that's
+why I will focus on relative numbers (i.e. how <B>Jigsaw</B> performs relatively
+to other servers), rather then absolute numbers. You shouldn't even try to
+scale these numbers in any ways: some servers speedup won't be linear with
+the power of the machine it runs on (e.g. if server foo is 2 times faster
+then server bar on a sparc station 5, the relative performance of foo and
+bar on a sparc 20 may not be the same).
+<P>
+How are these numbers collected ? The number we will present are <I>by no
+mean</I> related to what a typical server will experience in some real life
+conditions. For example, in our benchmarks, the client and the server programs
+are always run on the same machine. This probably affect the request rate,
+however, it still gives us a good indication of the CPU consumption of the
+server, which is what we are really interested in. To collect these numbers,
+we have used the ptester program which is a simple C hitter provided with
+the <A HREF="http://www.signum.se/phttpd/">phttpd server</A>.
+<H3>
+  The benchmarks
+</H3>
+<P>
+For each of the servers we measure, we run the following four benchmarks:
+<DL>
+  <DT>
+    Single document retreival
+  <DD>
+    This first bench gets the same document in sequence, and prints out the number
+    of requests achieved for a given duration of time. For those of you familiar
+    with ptester, the command line is as follows:<BR>
+    <VAR><CODE>ptester -t60 &lt;document&gt;</CODE></VAR><BR>
+    We run this bench in two variants: first with a 4kb file(1.a) and 40kb file
+    (1.b)
+  <DT>
+    Multiple document retreival
+  <DD>
+    The second bench puts a little more load on the server, by requesting three
+    documents in parallel. The three documents are respectively of 4kb, 10kb
+    and 40kb. For those of you familiar with ptester, the command line is as
+    follows:<BR>
+    <CODE>ptester -t60 -rN &lt;doc1&gt; &lt;doc2&gt;
+    &lt;doc3&gt;</CODE><BR>
+    We run this benchmark in two variants: first with N=2 (2.a) 2 simultaneous
+    hitters for each document, for a total of 6 simultaneous request flows and
+    with N=10 (2.b) for a total of 30 simultaneous connections.
+  <DT>
+    Keep-alive enabled bench
+  <DD>
+    This last bench will only benefit to those servers that implement the HTTP
+    keep-alive feature. Each connection will be used to run multiple requests.
+    For those of you familiar with ptester, the command line is as follows:<BR>
+    ptester -t60 -kN &lt;document&gt;<BR>
+    The bench is only run for a single document of 4k, and for a <I>k</I> value
+    of 5, it is test 3.
+  <DT>
+    Long live bench
+  <DD>
+    This is to measure (or get some idea at least) the impact &nbsp;of the Java
+    garbage collector on <B>Jigsaw</B>. It's a replay of test 2 for a duration
+    of ten minutes, which give us our final benches 4.a and 4.b
+</DL>
+<H3>
+  Results
+</H3>
+<P>
+While running the benchmark, <B>Jigsaw</B> is configured to generate the
+appropriate (CommonLog) log files; no ident protocol is run.
+<P>
+We have obtained the following results:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <CAPTION ALIGN="Bottom">
+    Benchmark results in requests per second
+  </CAPTION>
+  <TR>
+    <TD></TD>
+    <TD>version</TD>
+    <TD>1.a</TD>
+    <TD>1.b</TD>
+    <TD>2.a</TD>
+    <TD>2.b</TD>
+    <TD>3</TD>
+    <TD>4.a</TD>
+    <TD>4.b</TD>
+  </TR>
+  <TR>
+    <TD><A HREF="http://www.w3.org/Daemon/">CERN-server</A></TD>
+    <TD>3.0</TD>
+    <TD>11</TD>
+    <TD>10</TD>
+    <TD>11</TD>
+    <TD>11</TD>
+    <TD>NA</TD>
+    <TD>11</TD>
+    <TD>10</TD>
+  </TR>
+  <TR>
+    <TD><A HREF="http://www.apache.org/">Apache</A></TD>
+    <TD>1.0.2</TD>
+    <TD>35</TD>
+    <TD>24</TD>
+    <TD>30</TD>
+    <TD>30</TD>
+    <TD>NA</TD>
+    <TD>33</TD>
+    <TD>30</TD>
+  </TR>
+  <TR>
+    <TD><A HREF="http://www.apache.org/">Apache</A></TD>
+    <TD>1.1.1</TD>
+    <TD>42</TD>
+    <TD>30</TD>
+    <TD>35</TD>
+    <TD>33</TD>
+    <TD>85</TD>
+    <TD>34</TD>
+    <TD>31</TD>
+  </TR>
+  <TR>
+    <TD><A HREF="http://www.signum.se/phttpd/">phttpd</A></TD>
+    <TD>0.99.70.1</TD>
+    <TD>46</TD>
+    <TD>37</TD>
+    <TD>39</TD>
+    <TD>38</TD>
+    <TD>4</TD>
+    <TD>39</TD>
+    <TD>37</TD>
+  </TR>
+  <TR>
+    <TD><B><A HREF="../../">Jigsaw</A></B></TD>
+    <TD>1.0alpha1</TD>
+    <TD>22</TD>
+    <TD>18</TD>
+    <TD>19</TD>
+    <TD>9</TD>
+    <TD>26</TD>
+    <TD>19(*)</TD>
+    <TD>8(*)</TD>
+  </TR>
+  <TR>
+    <TD><B><A HREF="../../">Jigsaw</A></B></TD>
+    <TD>1.0alpha3</TD>
+    <TD>22</TD>
+    <TD>18</TD>
+    <TD>19</TD>
+    <TD>18</TD>
+    <TD>26</TD>
+    <TD>19(*)</TD>
+    <TD>18(*)</TD>
+  </TR>
+</TABLE>
+<P>
+Due to some problems with the Java garbage collector, benches marked with
+a * have been run with 8 Mb of memory allocated to the Java interpreter rather
+than the default 1Mb, we'll come back to this.
+<P>
+Cells marked NA (not available) don't make sense for the given server (they
+don't support kepp-alive).
+<H2>
+  Lessons
+</H2>
+<P>
+A number of lessons can be deduced from the above performance numbers.
+Some&nbsp;of them are related to the current <B>Jigsaw</B> implementation,
+others are related to the current Java implementation.
+<P>
+All these lessons should be taken as hypothesis, only some experiments will
+tell the truth abouth these numbers.
+<H3>
+  <B>Jigsaw</B> implementation problems
+</H3>
+<P>
+Don't forget that <B>Jigsaw</B> current implementation is flaged as being
+<I>alpha</I>. This means a number of things, among which the fact that
+<B>Jigsaw</B> code has not yet been profiled and optimized. <B>Jigsaw</B>
+design should provide the basis of a fearly efficient httpd implementation.
+In particular, features such as authentication, logging, etc. which are not
+measured by the above benches should prove fearly efficient (the main reason
+for this assertion lies in the clever caching scheme <B>Jigsaw</B> uses for
+resource meta-informations).
+<P>
+However, what are the above numbers telling us ? First of all, benches 1.a
+and 1.b shows that <B>Jigsaw</B> throughput (the number of bytes/second it
+can emit) is not that bad. We did some experiments with a <I>native
+shuffler</I> to try to infer the cost of the actual file transmissions across
+the wire. This would run as follow: the Java part of the server would compute
+a reply, but would delegate the actual sending of the bytes to an efficient
+C multi-threaded process by using a Java native interface to the UNIX
+<CODE>sendmsg</CODE> system call. Although this gave us much better numbers
+on solaris 2.3, the results on solaris 2.5 were quite disapointing (the speed-up
+would totally disapear). The good news, however, is that the Java threaded
+IO performances are not that bad, and are probably not at this time the
+bottleneck. We do still, however, expect a significant boost in these number
+when the Java runtime will be able to use solaris native threads (although,
+at this stage, this should be taken as an intuition only).
+<H3>
+  As of 1.0alpha1
+</H3>
+<P>
+The real lesson from these numbers comes from the benches 2.a and 2.b.
+<B>Jigsaw</B> performance seems to be very sensitive to the number of
+<I>simultaneous</I> connections. After some quick investigation, our guess
+is that the main problem with the implementation is that it contains too
+many central resources, and that mutliple threads are mostly blocked trying
+to acquire them. At this point, we have detetected at least three of these:
+<DL>
+  <DT>
+    The <A HREF="../api/w3c.jigsaw.http.ClientPool.html">client pool</A>
+  <DD>
+    This object is the central part of the server: it dispatches incomming
+    connections to <I>client</I> objects which will then handle them. The current
+    implementation of the client pool has some nice features (for example, it
+    keeps a pool of threads, ready to run on behalf of any new incomming
+    connections). However it's current implementation locks the whole object
+    during the selection process of the client (which is poorly implemented right
+    now). This means that even if the server threads accept(2) connections as
+    fast as they arrive, it will block to acquire the lock on the client pool
+    before being able to dispatch the connection.
+  <DT>
+    The <A HREF="../api/w3c.tools.timers.EventManager.html">event manager</A>
+  <DD>
+    Before starting to read any incomming requests, client objects set a timer
+    in order to avoid maintaining idle connections for too long. Once the request
+    has been read and parsed, they then arm a second timer to control the duration
+    of the request processing. All these timers are set through a single event
+    manager, which is locked during both timers setting and timers cancelation.
+    To be more practical, if 10 simultaneous connections are made to the server,
+    then ten client objects will try to lock the event manager at the same time,
+    competing to acquire the appropriate lock.
+  <DT>
+    The <A HREF="../api/w3c.jigsaw.http.CommonLogger.html">logger</A>
+  <DD>
+    The logger is the central object in the server that logs all requests. As
+    for the above resources, deficiency in its current implementation (this logger,
+    for example, doesn't bufferize output) makes it a bottleneck.
+</DL>
+<P>
+Note that generally these bottlenecks exist only because the underlying
+implementation of the objects are not yet optimized (at this time, I don't
+think of them as being a design problem). To get an idea of how well
+<B>Jigsaw</B> would perform if these bottleneck were eliminated, I have put
+up together a version of <B>Jigsaw</B> that :
+<UL>
+  <LI>
+    Will no do any logging (that's easy, just undefine the <CODE>w3c.jigsaw.logger
+    property</CODE>)
+  <LI>
+    Will not register timeouts to the event manager (this makes sense since I
+    control the client side programs)
+</UL>
+<P>
+For the client pool, nothing simple can be done at this time. However, just
+with the two other optimizations, we already get &nbsp;28 requests/second
+for bench 2.a and 22 requests/second for test 2.b. The really interesting
+thing is to notice how the gap between these two numbers disappear (which
+means we really had cotention problems).
+<P>
+This is for the <B>Jigsaw</B> implementation. We hope that by the next release
+all these contention problems will be solved (the three above are on the
+top of the TODO list). However, as we mentioned in the preamble of this section,
+there is another set of problems related to the current Java implementation.
+<H3>
+  Jigsaw 1.0alpha3
+  <IMG BORDER="0" SRC="/icons/WWW/new_red" WIDTH="32" HEIGHT="14">
+</H3>
+<P>
+Most of the 1.0alpha1 bottlenecks have been reduced, here is a brief overview
+of what has happened to the three previous ones:
+<DL>
+  <DT>
+    The <A HREF="../api/w3c.jigsaw.http.ClientPool.html">client pool</A>
+  <DD>
+    Has been entirely rewritten. The new client pool tries to be pretty smart
+    by running in one of <I>four</I> modes:
+    <UL>
+      <LI>
+	The first mode is the light load mode. Under that mode, <B>Jigsaw</B> keeps
+	connection alive as much as longer as possible (with <I>no</I> timeout values,
+	or whatever).
+      <LI>
+	The second mode is normal load mode. When entering that mode, <B>Jigsaw</B>
+	closes one idle persistent connection before actually accepting a new one.
+	This ensures that <B>Jigsaw</B> doesn't run out of socket descriptors.
+      <LI>
+	The third mode is the high load mode. In that mode, <B>Jigsaw</B> inverses
+	thread priority: it lowers the accepting thread priority lower to the normal
+	client threads priority, so that client threads can perform there tasks faster
+	then connections are accepted.
+      <LI>
+	Finally, the last mode, called the <I>dead</I> mode is when <B>Jigsaw</B>
+	starts refusing connections.
+    </UL>
+  <DT>
+    The <A HREF="../api/w3c.tools.timers.EventManager.html">event manager</A>
+  <DD>
+    The event manager jobs has been reduced to keep track of requests that take
+    to long to request. Getting rid of the keep alive timeout has basically reduced
+    by half the load on the event manager.
+  <DT>
+    The <A HREF="../api/w3c.jigsaw.http.CommonLogger.html">logger</A>
+  <DD>
+    The logger now uses a n optional buffer, that speeds up the critical section
+    were it emits log entries.
+</DL>
+<P>
+It should also be noted that <B>Jigsaw</B> HTTP API has been totally redesign,
+and is much more efficient the the one included in 1.0alpha1.
+<P>
+The result of these changes is mainly seen through the much better handling
+of simultaneous connections that <B>Jigsaw</B> now provides.
+<H3>
+  Java implementation problems
+</H3>
+<P>
+Although Java comes from an old (well, at least three years old) project,
+its current implementation is still pretty new. They are a number of problems
+with this implementation that need serious work to be fixed.
+<P>
+First of all, let's start with the byte-code interpretation, since this is
+what people are the most scared with. As our numbers show, <B>Jigsaw</B>
+out-performs the CERN server by far, on nearly all benches (except for benches
+4.a and 4.b, which we will come to later). The CERN server is written in
+C. So at least, this proves that the interpretation overhead of Java can
+be dealt with by a <I>better design</I>. I would guess that even when JIT
+compilers come out that are able to speed up Java code by 10 times, compiling
+<B>Jigsaw</B> with them won't make it ten times faster, just because byte-code
+interpretation may not be the overhead in <B>Jigsaw</B>.
+<P>
+The most serious problems with the current JDK is that it doesn't come with
+the appropriate tools for profiling and detecting the hot-sopt in the server's
+code. The three bottlenecks that we have exhibited in the previous section
+were found by simply printing the thread statuses at various point in time
+under heavy load. Getting the right tools should help a lot optimizing
+<B>Jigsaw</B> implementation.
+<P>
+Another problem with the current Java implementation is the thread-safe
+libraries. If you use the StringBuffer class, for example, you will slow
+down your application because most of its methods are synchronized, while
+at some point, you know your thread is the only one dealing with some instances
+of this class. The StringBuffer class is the first concern here, since you
+usually want to write code such as:
+<PRE>String x = ... ;
+String y = ... ;
+String xy = x + y ;
+</PRE>
+<P>
+What really happens in the third line here, is that you implicitly allocate
+a StringBuffer instance, initially filled up with the content of string
+<CODE>x</CODE>, and then you append to it the content of string
+<CODE>y</CODE>. Then you get the StringBuffer as a String to get back the
+result that you assign to <CODE>xy</CODE>. Note only have you allocated a
+StringBuffer object, but you had to allocate a monitor for it (locking the
+global monitor cache for some time), and then call a synchronized method
+in order to do the concatenation. Depending on the conditions in which the
+above code is running you can work-around it by implementing your own
+concatenation operations in your object (this is what <B>Jigsaw</B> MIME
+parser does, for example).
+<P>
+Now, we still haven't exlpain the purpose and the result of benches 4.a and
+4.b. These are meant to see how the Java garbage collector react when its
+hosting application is under heavy load. [WARNING: following explanations
+are not bullet-proof, also they have good roots.]. The general garbage collection
+process of Java can be divided in a two step process:
+<OL>
+  <LI>
+    The garbage collector runs, and detect all the objects that are currently
+    garbage (i.e not reachable from any of the global roots). These objects are
+    marked as such, but not yet collected.
+  <LI>
+    The finalizer runs through all the previously marked objects and
+    <I>finalize</I> them by invoking their <CODE>finalize</CODE> method.
+</OL>
+<P>
+Until an object has been finalized, its memory cannot be reused. Both stages
+one and two can run either asynchronously (i.e. when the system is idle)
+or synchronously (i.e. because they are required to run in order for the
+process to continue its job). The problem we are experiencing in benches
+4.a and 4.b is the following: as the server is never idle during the bench,
+the asynchronous version of the two stages is never able to run, so &nbsp;the
+server relies entirely on the synchronous version of them. What really happens
+here is best depicted by running the server with the <I>verbosegc</I> option
+turned on:
+<PRE>www24:Jigsaw$ java -verbosegc w3c.jigsaw.http.httpd 
+loading properties from: /afs/w3.org/usr/abaird/Jigsaw/config/httpd.props
+*** Warning : no logger specified, not logging.
+[httpd]: listening at:http://www24.w3.org:9999
+&lt;GC(async): freed 972 objects, 29712 bytes in 34 msec, 95% free&gt;
+&lt;GC(async): freed 2 objects, 16 bytes in 29 msec, 95% free&gt;
+&lt;GC: freed 3877 objects, 288960 bytes in 26 msec, 34% free&gt;
+&lt;GC: freed 736 objects, 285608 bytes in 23 msec, 54% free&gt;
+&lt;GC: freed 933 objects, 76040 bytes in 65 msec, 38% free&gt;
+&lt;GC: freed 1926 objects, 150320 bytes in 27 msec, 24% free&gt;
+&lt;GC: synchronously running 408 finalizers&gt;
+&lt;GC: freed 0 objects, 0 bytes in 64 msec, 24% free&gt;
+&lt;GC: expanded object space by 8192 to 847048 bytes, 25% free&gt;
+...[more traces omited]
+</PRE>
+<P>
+What happens here is that the asynchornous GC never gets a chance to run
+(as expected). The synchronous GC tells us about its good work, however free
+memory ratio never improves: the finalization process doesn't run. As for
+the GC we don't expect the asynchronous version of it to run, but the synchronous
+finalizer falsly indicate that it has finazlied some objects (while in fact,
+the synchronous finalizer was probably unable to finalize them, because the
+asynchronous finalizer was lying around).
+<P>
+For real fun, here are two other traces collected under <I>exactly</I> the
+same circumstances:
+<PRE>www24:Jigsaw$ java -verbosegc w3c.jigsaw.http.httpd 
+loading properties from: /afs/w3.org/usr/abaird/Jigsaw/config/httpd.props
+*** Warning : no logger specified, not logging.
+[httpd]: listening at:http://www24.w3.org:9999
+&lt;GC(async): freed 972 objects, 29712 bytes in 34 msec, 95% free&gt;
+&lt;GC(async): freed 2 objects, 16 bytes in 27 msec, 95% free&gt;
+&lt;GC(async): freed 1424 objects, 92224 bytes in 61 msec, 86% free&gt;
+&lt;GC(async): freed 179 objects, 2368 bytes in 35 msec, 86% free&gt;
+&lt;GC(async): freed 520 objects, 41088 bytes in 33 msec, 86% free&gt;
+&lt;GC(async): freed 72 objects, 960 bytes in 38 msec, 86% free&gt;
+&lt;GC(async): freed 325 objects, 25680 bytes in 40 msec, 86% free&gt;
+&lt;GC(async): freed 45 objects, 600 bytes in 31 msec, 86% free&gt;
+&lt;GC(async): freed 1430 objects, 112992 bytes in 37 msec, 86% free&gt;
+&lt;GC(async): freed 198 objects, 2640 bytes in 31 msec, 86% free&gt;
+&lt;GC(async): freed 1950 objects, 154080 bytes in 37 msec, 86% free&gt;
+&lt;GC(async): freed 270 objects, 3600 bytes in 32 msec, 86% free&gt;
+</PRE>
+<P>
+This run is pretty ideal. For some reasons, the asynchronous GC manages to
+run, and the memory is taken care of nicely (<B>Jigsaw</B> achieved 30
+requests/second during this test).
+<P>
+The last configuration I have encountered is the following:
+<PRE>www24:Jigsaw$ java -verbosegc w3c.jigsaw.http.httpd 
+loading properties from: /afs/w3.org/usr/abaird/Jigsaw/config/httpd.props
+*** Warning : no logger specified, not logging.
+[httpd]: listening at:http://www24.w3.org:9999
+&lt;GC(async): freed 972 objects, 29712 bytes in 35 msec, 95% free&gt;
+&lt;GC(async): freed 2 objects, 16 bytes in 27 msec, 95% free&gt;
+&lt;GC: freed 9208 objects, 707008 bytes in 33 msec, 84% free&gt;
+&lt;GC: freed 7233 objects, 571648 bytes in 34 msec, 82% free&gt;
+&lt;GC: freed 5834 objects, 460704 bytes in 34 msec, 81% free&gt;
+&lt;GC: freed 4550 objects, 359520 bytes in 34 msec, 80% free&gt;
+&lt;GC: freed 4485 objects, 354384 bytes in 36 msec, 79% free&gt;
+&lt;GC: freed 4420 objects, 349248 bytes in 41 msec, 78% free&gt;
+&lt;GC: freed 4355 objects, 344112 bytes in 40 msec, 77% free&gt;
+&lt;GC: freed 4355 objects, 344112 bytes in 42 msec, 76% free&gt;
+&lt;GC: freed 4355 objects, 344112 bytes in 44 msec, 75% free&gt;
+&lt;GC: freed 4290 objects, 338976 bytes in 45 msec, 74% free&gt;
+&lt;GC: freed 4160 objects, 328704 bytes in 46 msec, 73% free&gt;
+&lt;GC: freed 7222 objects, 309792 bytes in 41 msec, 79% free&gt;
+&lt;GC: freed 6319 objects, 297248 bytes in 31 msec, 83% free&gt;
+&lt;GC: freed 8631 objects, 647424 bytes in 32 msec, 84% free&gt;
+&lt;GC(async): freed 2557 objects, 129320 bytes in 42 msec, 86% free&gt;
+&lt;GC(async): freed 212 objects, 2848 bytes in 32 msec, 86% free&gt;
+</PRE>
+<P>
+The memory keeps getting down, slowly. If the test continues for a while,
+the interpreter will fall back in the first situation presented above (i.e.
+trashing). However, whenever the test is stopped (as in the last two lines
+above) the asynchronous GC normally runs and get back all the memory.
+<H2>
+  Conclusion
+</H2>
+<P>
+What can you expect - with regard to performances - in the next <B>Jigsaw</B>
+release ? As said above, the <B>Jigsaw</B> implementation should improve,
+and provide better performances.
+<P>
+However, some real speed-up can be expected by better Java implementations
+in the next six monthes. By this time, the GC will hopefully be debugged,
+and on solaris at least, we can expect the native solaris threads to replace
+the Green thread package that is currently being used.
+<P>
+Send suggestions, comments, criticisms, corrections to
+<A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A>
+<P>
+  <HR>
+<BR>
+<A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A>.<BR>
+$Id: performance.html,v 1.1 2010/06/15 12:20:09 smhuang Exp $
+</BODY></HTML>

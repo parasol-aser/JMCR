@@ -1,0 +1,20 @@
+<html>
+<head><base target="jigsaw-admin"><title>Admin Toolbar</title>
+<!-- Changed by: Benoit Mahe, 18-Feb-1998 -->
+<style type="text/css">
+BODY {
+  background: white;
+}
+</style>
+</head>
+<body>
+<table width="100%">
+<tr align="center">	
+<td><a href="Checkpointer"><img src="/icons/burst" border="0"><br>autosave</a></td>
+<td><a href="Statistics"><img src="/icons/burst" border="0"><br>stats</a></td>
+<td><a href="Threads"><img src="/icons/burst" border="0"><br>threads</a></td>
+<td><a href="GcStats"><img src="/icons/burst" border="0"><br>Gc</a></td>
+<td><a href="Password"><img src="/icons/burst" border="0"><br>Password</a></td>
+</table>
+</body>
+</html>

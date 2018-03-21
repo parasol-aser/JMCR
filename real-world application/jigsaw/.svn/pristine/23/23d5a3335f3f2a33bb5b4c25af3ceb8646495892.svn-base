@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+   "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>The ProxyDispatcherFilter administration guide.</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<p><a href="../../../../WWW" target="_top_"><img
+src="../../../Icons/WWW/w3c_home" alt="W3C" border="0" height="48"
+width="72"></a>&nbsp;<a href="../../../Jigsaw" target="_top_"><img
+src="../../../Icons/jigsaw" alt="Jigsaw" border="0" height="49"
+width="212"></a>
+&nbsp;
+&nbsp;&nbsp;
+<hr noshade size="1">
+
+<h1>ProxyDispatcher</h1>
+
+The ProxyDispatcher is a filter that allows some rule to be applied to some
+given request before the HTTP client side API emits out a request. The set of
+rules can be extended in <b>Java</b>, check <a href="#rules">below</a> for the
+currently defined rules.
+
+<p><b>Warning</b>: When configuring that filter along with <b>Jigsaw</b>'s
+proxy module, you will need to manually edit <b>Jigsaw</b>'s property file
+(usually found at <tt>config/http-server.props</tt>, otherwise, you know what
+we are talking about).</p>
+
+<h3><a name="rules"></a>ProxyDispatcher Rules</h3>
+
+The basic syntax for the ProxyDispatcher <i>rule file</i> is captured by the
+following BNF:
+<pre>rule-file := (record)*
+record&nbsp;&nbsp;&nbsp; := comment | rule
+comment&nbsp;&nbsp; := '#' &lt;any chars up to EOL>
+rule&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; := rule-lhs SPACES rule-rhs
+rule-lhs&nbsp; := token | default
+default&nbsp;&nbsp; := 'default'
+rule-rhs&nbsp; := forbid | direct | proxy | authorization&nbsp;| proxyauth
+forbid&nbsp;&nbsp;&nbsp; := 'forbid'
+direct&nbsp;&nbsp;&nbsp; := 'direct'
+proxy&nbsp;&nbsp;&nbsp;&nbsp; := 'proxy' SPACES url
+authorization := 'authorization' SPACES user SPACES password
+proxyauth := 'proxyauth' SPACES user SPACES password SPACES url
+user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; := token
+password&nbsp; := token
+EOL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; := '\r' | '\r\n' | 'n'
+SPACES&nbsp;&nbsp;&nbsp; := (' '|'\t')+</pre>
+
+A sample ProxyDispatcher rule file looks like:
+<pre># Sample ProxyDispatcher rule file
+# --------------------------------
+
+# Make all access to US through us.proxy.com
+edu proxy http://us.proxy.com:8080/
+org proxy http://us.proxy.com:8080/
+
+# Accesses to french site are direct (no proxy)
+fr&nbsp; direct
+
+# Accesses to 18.59.*.* network are direct
+18.59 direct
+
+# Accesses to the protected site gets decorated with auth infos:
+www.protected.com authorization joe-user joe-password
+
+# Forbid accesses to some sites
+
+www.evilsite.com forbid
+
+# Access this site through myproxy.com with proxy authentication
+www.somesite.org proxyauth joe-user joe-password http://myproxy.com:8008/
+
+# force all other request to go through world.proxy.org
+DEFAULT proxy http://world.proxy.org:8080/</pre>
+
+The rule matching algorithm matches the host name part of urls, or the numeric
+part, if the address is numeric, no name resolution. The matching algorithm
+tries to find the best match, starting with the most significant part of the
+URL (in www.foo.com, com is the most significant part, in 18.23.0.22, 18 is
+the most significant part) and then walking toward the best match, hence host
+names are implicitly "terminated" by * if you will.&nbsp; In the above
+example, any access to <tt>www.foo.fr/x/y</tt> would be handled by:
+<ol>
+<li>
+Reverting the host name components: <tt>fr foo www</tt>
+</li>
+<li>
+Looking for a match on fr (found)
+</li>
+<li>
+Looking for a match on <tt>fr </tt>foo (not found)
+</li>
+</ol>
+
+In that case the rule found at step 2 is the most specific, and gets applied.
+
+<p>This examples is self explanatory, and illustrates all the rules currently
+handled by the filter. When used in conjunction with the <a
+href="org.w3c.www.protocol.http.icp.ICPFilter.html">ICP filter</a>, you can
+get a very powerful caching hierarchy.</p>
+
+<p>Note also that the underlying implementation of the rule matching algorithm
+allows a large number of rules which can lead to a big static routing
+table.</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<h2>Properties</h2>
+
+The ProxyDispatcher defines the following properties:
+<ul>
+<li>
+<a
+href="#w3c.www.protocol.http.proxy.rules">org.w3c.www.protocol.http.proxy.rules</a>
+</li>
+<li>
+<a
+href="#w3c.www.protocol.http.proxy.debug">org.w3c.www.protocol.http.proxy.debug</a>
+</li>
+</ul>
+<hr noshade size="1">
+
+
+<a
+name="w3c.www.protocol.http.proxy.rules"></a><tt>org.w3c.www.protocol.http.proxy.rules</tt>
+<dl>
+<dt><i>semantics</i></dt>
+<dd>
+The location of the rules for the ProxyDispatcher filter. The <i>rule file</i>
+expresses a rule to be applied when fetching a document, see the <a
+href="#rules">rule syntax</a> for more informations.
+</dd>
+<dt><i>type</i></dt>
+<dd>
+This property can be either a full URL or a filename.
+</dd>
+<dt><i>default value</i></dt>
+<dd>
+This property has no default value, and <b>must</b> be set for the filter to
+be activated.
+</dd>
+</dl>
+<hr noshade size="1">
+
+
+<a
+name="w3c.www.protocol.http.proxy.debug"></a><tt>org.w3c.www.protocol.http.proxy.debug</tt>
+<dl>
+<dt><i>semantics</i></dt>
+<dd>
+Should the filter emit debugging traces ? When set to <b>true</b> this will
+make the filter tells which rule it applies on which fetched URL.
+</dd>
+<dt><i>type</i></dt>
+<dd>
+A boolean property
+</dd>
+<dt><i>default value</i></dt>
+<dd>
+This property defaults to <b>false</b>.
+</dd>
+</dl>
+<hr noshade size="1">
+
+
+<p><i><a href="mailto:ylafon@w3.org">ylafon</a></i> <br>
+<i>$Id: w3c.www.protocol.http.proxy.ProxyDispatcher.html,v 1.4 1997/09/22
+09:02:23 ylafon Exp $</i></p>
+</body>
+</html>

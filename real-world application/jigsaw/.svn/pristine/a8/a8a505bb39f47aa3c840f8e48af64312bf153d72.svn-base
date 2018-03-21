@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+  <TITLE>The CacheProp reference manual</TITLE>
+  <LINK HREF="jigsaw@w3.org" REL="made">
+</HEAD>
+<BODY>
+<P>
+<A HREF="../../.." TARGET="_top_"><IMG SRC="../../../Icons//WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48">
+</A><A HREF="../../" TARGET="_top_">
+<IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw"BORDER="0"></A>
+  <hr noshade size="1">
+<A HREF="resources.html">All resources</A> <A HREF="frames.html">All frames
+</A> 
+  <hr noshade size="1">
+<H1>
+  CacheProp
+</H1>
+<P>
+This resource class provides editable access to the cache configuration.
+It's use is to allow easy customization of Jigsaw when used as a proxy or
+as a mirror. 
+<P>
+  <hr noshade size="1">
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/proxy/CacheProp.html">CacheProp</A>
+class inerits from the following classes:
+<UL>
+  <LI>
+    <A HREF="org.w3c.tools.resources.Resource.html">Resource</A>
+  <LI>
+    <A HREF="org.w3c.jigsaw.config.PropertySet.html">PropertySet</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<H2>
+  Attributes description
+</H2>
+<P>
+The CacheProp defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.cache.size">org.w3c.www.protocol.http.cache.size</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.cache.debug">org.w3c.www.protocol.http.cache.debug</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.cache.shared">org.w3c.www.protocol.http.cache.shared</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.cache.connected">org.w3c.www.protocol.http.cache.connected</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.cache.garbageCollectionEnabled">org.w3c.www.protocol.http.cache.garbageCollectionEnabled</A>
+  <LI>
+    <A HREF="#org.w3c.www.protocol.http.cache.fileSizeRatio">org.w3c.www.protocol.http.cache.fileSizeRatio</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.cache.size">org.w3c.www.protocol.http.cache.size</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The size of the cache, given as the number of bytes that the cache is allowed
+    to use on the disk. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>5000000</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.cache.debug">org.w3c.www.protocol.http.cache.debug</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Turn the cache filter debug mode on or off. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.cache.shared">org.w3c.www.protocol.http.cache.shared</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Is this cache shared among multiple users ? 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.cache.connected">org.w3c.www.protocol.http.cache.connected</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Tell the cache wether it is allowed to use the net to answer to any request.
+    This has the same effect as if all requests served by the cache had the
+    only-if-cache cache control directive set. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.cache.garbageCollectionEnabled">org.w3c.www.protocol.http.cache.garbageCollectionEnabled</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Enables or disables the garbage collector of the cache. This is most usefull
+    when you are planning to use the proxy in disconnected mode: turn <B>off</B>
+    this flag while filling in the cache, then disconnect it by using the
+    <A HREF="#org.w3c.www.protocol.http.cache.connected">org.w3c.www.protocol.http.cache.connected</A>
+    property.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.www.protocol.http.cache.fileSizeRatio">org.w3c.www.protocol.http.cache.fileSizeRatio</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Indicates the ratio - relative to the cache size - of the number of bytes
+    a single entry in the cache is allowed to occupy. For example, if set to
+    <B>0</B>.1 and the <A HREF="#org.w3c.www.protocol.http.cache.size">cache
+    size</A> is set to <B>5000000</B>, then any document whose length is greater
+    then <B>500000</B> will not be cached. This ratio is given as a floating
+    point value between <B>0</B> and <B>1</B>. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/DoubleAttribute.html">DoubleAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>0.1</B>.
+</DL>
+<P>
+<P>
+  <hr noshade size="1">
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: org.w3c.jigsaw.proxy.CacheProp.html,v 1.2 1998/03/27 08:20:43 bmahe
+Exp $</I>
+</BODY></HTML>

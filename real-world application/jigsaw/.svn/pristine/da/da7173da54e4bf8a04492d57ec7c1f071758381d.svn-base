@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>Salvager's Resource refernce manual</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  SalvagerResource
+</H1>
+<P>
+This resource is used to check the consistency of the entire resource space.
+It also tries to fix problems encountered. It works by walking through the
+entire resource space (by running within a very low priority thread). During
+this walk, the salvager can encounter several problems:
+<UL>
+  <LI>
+    Cycles within the resource space; these are usually due to old (or unknown)
+    implementation bugs
+  <LI>
+    Unloadable resources, either because their class no longer exists, or because
+    the server's class path is not set properly
+</UL>
+<P>
+The salvager should be run until both categories of problems are totally
+solved; once all the above problems are fixed, you should run the Salvager
+once again to perform a <I>verification</I> of the resource space. This time,
+each resource is checked to see if it is still consistent for it to exist,
+and deleted if needed. This allows, for example, to make sure that files
+that have been indexed but which no longer exists are removed from the resource
+space.
+<P>
+Under any circumstances, it is highly recommended that you backup your
+configuration (by archiving <B>Jigsaw</B> configuration directory) before
+you run the salvager.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.contrib.SalvagerResource.html">SalvagerResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The SalvagerResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#logname">logname</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="logname">parent</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the file to use as the log for reporting the salvager's result.
+    It is recommended that you use a name that will trigger the file to be exported
+    (eg by using a <CODE>.txt extension).</CODE>
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.FilenameAttribute.html">FilenameAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value; when unset log infos will be sent to
+    the Java VM standard output.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.contrib.SalvagerResource.html,v 1.1 1997/01/28 08:09:30
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

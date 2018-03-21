@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Please title this LabelBureau reference guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+<IMG SRC="/icons/WWW/w3c_home.gif" ALT="W3C" BORDER="0" WIDTH="72"
+    HEIGHT="48"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  LabelBureauResource
+</H1>
+<P>
+The LabelBureauResource implements a full-blown
+<A HREF="../../../PICS/Overview.html">PICS label bureau</A>. In PICS terminology,
+a label bureau is a network service that delivers labels rating internet
+documents.
+<P>
+The Label bureau configuration depends on the implementation of the label
+database you use. The only supported database, as of today, uses the file
+system to store labels (see the <A HREF="../Administration/pics.html">PICS
+administration guide</A> for more informations).
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.pics.LabelBureauResource.html">LabelBureauResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.forms.PostableResource.html">PostableResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The LabelBureauResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#bureau">bureau</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="bureau">bureau</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The identifier of the database that the bureau should query to answer requests.
+    If you use the simple file-based version of the database, you should provide
+    here the top-level directory of the bureau's database.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    &nbsp;<A HREF="../api/w3c.jigsaw.resources.FileAttribute.html">FileAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.pics.LabelBureauResource.html,v 1.1 1996/04/29 23:36:20 abaird
+Exp $</I>
+</BODY></HTML>

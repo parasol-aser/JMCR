@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>ContainerResource.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// ContainerResource.java
+// $Id: ContainerResource.html,v 1.1 2010/06/15 12:20:03 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="type">resources</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="reference">event</span>.*;
+
+<span class="comment">/**
+ * This resource manage children resources.
+ */</span>
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">ContainerResource</span> <span class="keyword">extends</span> <span class="type">AbstractContainer</span> {
+
+    <span class="comment">/**
+     * Attribute index - The index of the resource key.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_KEY</span> = -1;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span>   = <span class="keyword">null</span> ;
+	<span class="type">Class</span>     <span class="variable-name">cls</span> = <span class="keyword">null</span> ;
+	<span class="comment">// Get a pointer to our own class:
+</span>	<span class="keyword">try</span> {
+	    cls  = Class.forName("<span class="string">org.w3c.tools.resources.ContainerResource</span>") ;
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace() ;
+	    System.exit(1) ;
+	}
+	<span class="comment">// The identifier attribute:
+</span>	a = <span class="keyword">new</span> <span class="type">IntegerAttribute</span>("<span class="string">key</span>",
+				 <span class="keyword">null</span>,
+				 Attribute.COMPUTED);
+	ATTR_KEY = AttributeRegistry.registerAttribute(cls, a);
+    }
+
+    <span class="reference">public</span> <span class="type">Object</span> <span class="function-name">getClone</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+	values[ATTR_KEY] = <span class="keyword">null</span>;
+	<span class="keyword">return</span> <span class="reference">super</span>.getClone(values);
+    }
+
+    <span class="comment">/**
+     * Get the container Key. This key must be unique and unchanged
+     * during the container life.
+     * </span><span class="keyword">@return </span><span class="comment">a String instance.
+     */</span>
+    <span class="reference">public</span> <span class="type">Integer</span> <span class="function-name">getKey</span>() {
+	<span class="type">Integer</span> <span class="variable-name">key</span> = (<span class="type">Integer</span>) getValue(ATTR_KEY, <span class="keyword">null</span>);
+	<span class="keyword">if</span> (key == <span class="keyword">null</span>) {
+	    key = <span class="keyword">new</span> <span class="type">Integer</span>(getIdentifier().hashCode() ^ 
+			      (<span class="keyword">new</span> <span class="type">Date</span>().hashCode()));
+	    setValue(ATTR_KEY, key);
+	}
+	<span class="keyword">return</span> key;
+    }
+
+    <span class="preprocessor">protected</span> <span class="type">SpaceEntry</span> <span class="function-name">getSpaceEntry</span>() {
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = getParent();
+	<span class="keyword">if</span> (rr == <span class="keyword">null</span>) <span class="comment">//I'm root or external!!
+</span>	    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">SpaceEntryImpl</span>(<span class="reference">this</span>);
+	<span class="keyword">try</span> {
+	    <span class="comment">//FIXME sure that is a containerResource?
+</span>	    <span class="type">ContainerResource</span> <span class="variable-name">cont</span> = (<span class="type">ContainerResource</span>) rr.lock();
+	    <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">SpaceEntryImpl</span>(cont);
+	} <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+	    System.out.println(ex.getMessage());
+	    ex.printStackTrace();
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	} <span class="keyword">finally</span> {
+	    rr.unlock();
+	}
+    }
+
+    <span class="comment">/**
+     * Get the SpaceEntry of our children resources.
+     * </span><span class="keyword">@return </span><span class="comment">A SpaceEntry instance.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">SpaceEntry</span> <span class="function-name">getChildrenSpaceEntry</span>() {
+	<span class="keyword">return</span> <span class="keyword">new</span> <span class="type">SpaceEntryImpl</span>( <span class="reference">this</span> );
+    }
+
+    <span class="comment">/**
+     * This handles the &lt;code&gt;RESOURCE_MODIFIED&lt;/code&gt; kind of events.
+     * </span><span class="keyword">@param </span><span class="variable-name">evt</span><span class="comment"> The StructureChangeEvent.
+     */</span>
+  
+    <span class="comment">//FIXME EVENT, we don't know if this resource is valid.
+</span>    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">resourceModified</span>(<span class="type">StructureChangedEvent</span> <span class="variable-name">evt</span>) {
+	<span class="reference">super</span>.resourceModified(evt);
+    }
+
+    <span class="comment">/**
+     * A new resource has been created in some space.
+     * This handles the &lt;code&gt;RESOURCE_CREATED&lt;/code&gt; kind of events.
+     * </span><span class="keyword">@param </span><span class="variable-name">evt</span><span class="comment"> The event describing the change.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">resourceCreated</span>(<span class="type">StructureChangedEvent</span> <span class="variable-name">evt</span>) {
+	<span class="reference">super</span>.resourceCreated(evt);
+    }
+  
+    <span class="comment">/**
+     * A resource is about to be removed
+     * This handles the &lt;code&gt;RESOURCE_REMOVED&lt;/code&gt; kind of events.
+     * </span><span class="keyword">@param </span><span class="variable-name">evt</span><span class="comment"> The event describing the change.
+     */</span>
+  
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">resourceRemoved</span>(<span class="type">StructureChangedEvent</span> <span class="variable-name">evt</span>) {
+	<span class="reference">super</span>.resourceRemoved(evt);
+    }
+
+    <span class="comment">/**
+     * Update default child attributes.
+     * A parent can often pass default attribute values to its children,
+     * such as a pointer to itself (the &lt;em&gt;parent&lt;/em&gt; attribute).
+     * &lt;p&gt;This is the method to overide when you want your container
+     * to provide these kinds of attributes. By default this method will set
+     * the following attributes:
+     * &lt;dl&gt;&lt;dt&gt;name&lt;dd&gt;The name of the child (it's identifier) - 
+     * String instance.
+     * &lt;dt&gt;parent&lt;dd&gt;The parent of the child (ie ourself here) - 
+     * a ContainerResource instance.
+     * &lt;dt&gt;url&lt;dd&gt;If a &lt;em&gt;identifier&lt;/em&gt; attribute is defined, that
+     * attribute is set to the full URL path of the children.
+     * &lt;/dl&gt;
+     */</span>
+  
+    <span class="preprocessor">protected</span> <span class="type">ResourceContext</span> <span class="function-name">updateDefaultChildAttributes</span>(<span class="type">Hashtable</span> <span class="variable-name">attrs</span>) {
+	<span class="type">ResourceContext</span> <span class="variable-name">context</span> = <span class="reference">super</span>.updateDefaultChildAttributes(attrs);
+	<span class="keyword">if</span> (context == <span class="keyword">null</span>) {
+	    context = <span class="keyword">new</span> <span class="type">ResourceContext</span>(getContext());
+	    attrs.put("<span class="string">context</span>", context) ;
+	}
+	<span class="type">String</span> <span class="variable-name">name</span> = (<span class="type">String</span>) attrs.get("<span class="string">identifier</span>");
+	<span class="keyword">if</span> ( name != <span class="keyword">null</span> )
+	    attrs.put("<span class="string">url</span>", getURLPath()+name);
+	<span class="keyword">return</span> context;
+    }
+
+    <span class="comment">/**
+     * Enumerate children resource identifiers.
+     * </span><span class="keyword">@param </span><span class="variable-name">all</span><span class="comment"> Should all resources be enumerated ? Resources are often
+     * created on demand only, this flag allows the caller to tell the 
+     * container about wether it is interested only in already created
+     * resources, or in all resources (even the one that have not yet been
+     * created).
+     * </span><span class="keyword">@return </span><span class="comment">An String enumeration, one element per child.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">Enumeration</span> <span class="function-name">enumerateResourceIdentifiers</span>(<span class="type">boolean</span> <span class="variable-name">all</span>) {
+	<span class="type">ResourceSpace</span> <span class="variable-name">space</span> = getSpace();
+	acquireChildren();
+	<span class="keyword">return</span> space.enumerateResourceIdentifiers( getChildrenSpaceEntry() );
+    }
+
+    <span class="comment">/**
+     * Create a default child resource in that container.
+     * This method is called by the editor to add a default resource
+     * in the container under the given name. The meaning of &lt;em&gt;default&lt;/em&gt;
+     * is left up to the container here.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The identifier for the new resource.
+     */</span>
+    <span class="reference">public</span>  <span class="type">ResourceReference</span> <span class="function-name">createDefaultResource</span>(<span class="type">String</span> <span class="variable-name">name</span>) {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+    <span class="comment">/**
+     * Lookup a children in the container.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The name of the children to lookup.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">lookup</span>(<span class="type">String</span> <span class="variable-name">name</span>) {
+	acquireChildren();
+	<span class="type">SpaceEntry</span> <span class="variable-name">sp</span> = getChildrenSpaceEntry();
+	<span class="type">ResourceSpace</span> <span class="variable-name">space</span> = getSpace();
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = space.lookupResource(sp, name);
+	<span class="keyword">if</span> (rr != <span class="keyword">null</span>) 
+	    <span class="keyword">return</span> rr;
+	<span class="type">Hashtable</span> <span class="variable-name">defs</span> = <span class="keyword">new</span> <span class="type">Hashtable</span>(5) ;
+	defs.put("<span class="string">identifier</span>", name);
+	<span class="type">ResourceContext</span> <span class="variable-name">context</span> = updateDefaultChildAttributes(defs);
+
+	rr = space.loadResource(sp, name, defs);
+	<span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+	    context.setResourceReference(rr);
+	    <span class="keyword">try</span> {
+		<span class="type">Resource</span> <span class="variable-name">resource</span> = rr.lock();
+		<span class="keyword">if</span> (resource <span class="keyword">instanceof</span> <span class="type">FramedResource</span>) {
+		    <span class="type">FramedResource</span> <span class="variable-name">fres</span> = (<span class="type">FramedResource</span>) resource;
+		    fres.addStructureChangedListener(<span class="reference">this</span>);
+		    <span class="comment">// send event
+</span>		}
+	    } <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+		<span class="comment">// nothing here
+</span>	    } <span class="keyword">finally</span> {
+		rr.unlock();
+	    }
+	}
+	<span class="keyword">return</span> rr;
+    }
+
+    <span class="comment">/**
+     * Lookup the next component of this lookup state in here.
+     * </span><span class="keyword">@param </span><span class="variable-name">ls</span><span class="comment"> The current lookup state.
+     * </span><span class="keyword">@param </span><span class="variable-name">lr</span><span class="comment"> The lookup result under construction.
+     * </span><span class="keyword">@exception </span><span class="type">ProtocolException</span><span class="comment"> If an error occurs.
+     * </span><span class="keyword">@return </span><span class="comment">A boolean, &lt;strong&gt;true&lt;/strong&gt; if lookup has completed, 
+     * &lt;strong&gt;false&lt;/strong&gt; if it should be continued by the caller.
+     */</span>
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">lookup</span>(<span class="type">LookupState</span> <span class="variable-name">ls</span>, <span class="type">LookupResult</span> <span class="variable-name">lr</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="comment">// Give a chance to our super-class to run its own lookup scheme:
+</span>	<span class="keyword">if</span> ( <span class="reference">super</span>.lookup(ls, lr) )
+	    <span class="keyword">return</span> <span class="keyword">true</span>;
+	<span class="comment">// Perform our own lookup on the next component:
+</span>	<span class="type">String</span> <span class="variable-name">name</span> = ls.getNextComponent() ;
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = <span class="keyword">null</span>;
+	rr = lookup(name);
+	<span class="keyword">if</span> (rr == <span class="keyword">null</span>) {
+	    lr.setTarget(<span class="keyword">null</span>);
+	    <span class="keyword">return</span> <span class="keyword">false</span>;
+	}
+	<span class="keyword">try</span> {
+	    lr.setTarget(rr);
+	    <span class="type">FramedResource</span> <span class="variable-name">resource</span> = (<span class="type">FramedResource</span>) rr.lock();
+	    <span class="keyword">return</span> (resource != <span class="keyword">null</span> ) ? resource.lookup(ls, lr) : <span class="keyword">false</span>;
+	} <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+	    <span class="keyword">return</span> <span class="keyword">false</span>;
+	} <span class="keyword">finally</span> {
+	    rr.unlock();
+	}
+    }
+  
+    <span class="comment">/**
+     * Remove a child resource from that container.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The name of the child to remove.
+     * </span><span class="keyword">@exception </span><span class="type">MultipleLockException</span><span class="comment"> If somone else has locked the 
+     * resource.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">delete</span>(<span class="type">String</span> <span class="variable-name">name</span>) 
+	<span class="keyword">throws</span> <span class="type">MultipleLockException</span>
+    {
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = <span class="keyword">null</span>;
+	rr = lookup(name);
+
+	<span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+	    <span class="keyword">try</span> {
+		<span class="type">synchronized</span> (rr) {
+		    <span class="type">Resource</span> <span class="variable-name">resource</span> = rr.lock();
+		    <span class="keyword">if</span> (resource <span class="keyword">instanceof</span> <span class="type">FramedResource</span>)
+			((<span class="type">FramedResource</span>)resource).
+			    removeStructureChangedListener(<span class="reference">this</span>);
+		    resource.delete();
+		}
+	    } <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+		<span class="comment">// FIXME ??
+</span>	    } <span class="keyword">finally</span> {
+		rr.unlock();
+	    }
+	}
+    }
+
+
+
+    <span class="comment">/**
+     * Delete that container and its children if children is true
+     * </span><span class="keyword">@exception </span><span class="type">MultipleLockException</span><span class="comment"> If somone else has locked one 
+     * of the resource child.
+     */</span>
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">replace</span>(<span class="type">DirectoryResource</span> <span class="variable-name">newdir</span>) 
+	<span class="keyword">throws</span> <span class="type">MultipleLockException</span>
+    {
+	<span class="type">Enumeration</span>       <span class="variable-name">e</span>        = enumerateResourceIdentifiers();
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span>       = <span class="keyword">null</span>;
+	<span class="type">Resource</span>          <span class="variable-name">resource</span> = <span class="keyword">null</span>;
+	<span class="keyword">while</span> (e.hasMoreElements()) {
+	    rr = lookup((<span class="type">String</span>) e.nextElement());
+	    <span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+		<span class="keyword">try</span> {
+		    resource = rr.lock();
+		    <span class="type">ResourceContext</span> <span class="variable-name">ctxt</span> = <span class="keyword">new</span> <span class="type">ResourceContext</span>(
+			newdir.getContext());
+		    resource.setContext(ctxt, <span class="keyword">true</span>);
+		    <span class="keyword">if</span> (resource <span class="keyword">instanceof</span> <span class="type">FramedResource</span>) {
+			((<span class="type">FramedResource</span>)resource).
+			    removeStructureChangedListener(<span class="reference">this</span>);
+			((<span class="type">FramedResource</span>)resource).
+			    addStructureChangedListener(newdir);
+		    }
+		} <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+		    <span class="comment">// do nothing , continue
+</span>		} <span class="keyword">finally</span> {
+		    rr.unlock();
+		}
+	    }
+	}
+	<span class="reference">super</span>.delete();
+    }
+
+    <span class="comment">/**
+     * Delete that resource container.
+     * </span><span class="keyword">@exception </span><span class="type">MultipleLockException</span><span class="comment"> If somone else has locked the 
+     * resource.
+     */</span>
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">delete</span>() 
+	<span class="keyword">throws</span> <span class="type">MultipleLockException</span>
+    {
+	disableEvent();
+	<span class="type">ResourceSpace</span> <span class="variable-name">space</span> = getSpace();
+	<span class="comment">//delete our children
+</span>	acquireChildren();
+	<span class="comment">// check for lock on children
+</span>	<span class="type">Enumeration</span>       <span class="variable-name">e</span>        = enumerateResourceIdentifiers();
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span>       = <span class="keyword">null</span>;
+	<span class="type">Resource</span>          <span class="variable-name">resource</span> = <span class="keyword">null</span>;
+
+	<span class="keyword">while</span> (e.hasMoreElements())
+	    delete((<span class="type">String</span>)e.nextElement());
+
+	<span class="type">SpaceEntry</span> <span class="variable-name">sentry</span> = getChildrenSpaceEntry();
+	<span class="comment">//delete myself
+</span>	<span class="reference">super</span>.delete();
+	space.deleteChildren(sentry);
+    }
+
+    <span class="comment">/**
+     * This resource is being unloaded.
+     * The resource is being unloaded from memory, perform any additional
+     * cleanup required.
+     */</span>
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">notifyUnload</span>() {
+	<span class="reference">super</span>.notifyUnload();
+	<span class="comment">// anything else?
+</span>    }
+
+    <span class="preprocessor">protected</span> <span class="type">boolean</span> <span class="variable-name">acquired</span> = <span class="keyword">false</span>;
+
+    <span class="comment">/**
+     * Acquire our children. Must be called before all child manipulation.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">acquireChildren</span>() {
+	<span class="keyword">if</span> (!acquired) {
+	    <span class="type">ResourceSpace</span> <span class="variable-name">space</span> = getSpace();
+	    space.acquireChildren( getChildrenSpaceEntry() );
+	    acquired = <span class="keyword">true</span>;
+	}
+    }
+
+    <span class="comment">/**
+     * Add an initialized resource into this store container instance.
+     * </span><span class="keyword">@param </span><span class="variable-name">resource</span><span class="comment"> The resource to be added to the store.
+     */</span>
+  
+    <span class="preprocessor">protected</span> <span class="type">synchronized</span> <span class="type">ResourceReference</span> <span class="function-name">addResource</span>(<span class="type">Resource</span> <span class="variable-name">resource</span>, 
+							 <span class="type">Hashtable</span> <span class="variable-name">defs</span>) {
+	acquireChildren();
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = getSpace().addResource(getChildrenSpaceEntry() ,
+						      resource, 
+						      defs);
+	resource.getContext().setResourceReference(rr);
+	<span class="keyword">if</span> (resource <span class="keyword">instanceof</span> <span class="type">FramedResource</span>) {
+	    <span class="type">FramedResource</span> <span class="variable-name">fres</span> = (<span class="type">FramedResource</span>) resource;
+	    fres.addStructureChangedListener(<span class="reference">this</span>);
+	}
+	markModified() ;
+	postStructureChangedEvent(rr, Events.RESOURCE_CREATED);
+	<span class="keyword">return</span> rr;
+    }
+
+    <span class="comment">/**
+     * Initialize and register the given resource within that container.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The identifier for the resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">resource</span><span class="comment"> An unitialized resource instance.
+     * </span><span class="keyword">@param </span><span class="variable-name">defs</span><span class="comment"> A default set of init attribute values (may be
+     * &lt;strong&gt;null&lt;/strong&gt;).
+     * </span><span class="keyword">@exception </span><span class="type">InvalidResourceException</span><span class="comment"> If an error occurs during
+     * the registration.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">registerResource</span>(<span class="type">String</span> <span class="variable-name">name</span>,
+				 <span class="type">Resource</span> <span class="variable-name">resource</span>,
+				 <span class="type">Hashtable</span> <span class="variable-name">defs</span>)
+	<span class="keyword">throws</span> <span class="type">InvalidResourceException</span>
+    {
+	acquireChildren();
+	<span class="comment">// Create a default set of attributes:
+</span>	<span class="keyword">if</span> ( defs == <span class="keyword">null</span> )
+	    defs = <span class="keyword">new</span> <span class="type">Hashtable</span>(11) ;
+	defs.put("<span class="string">identifier</span>", name);
+	<span class="type">ResourceContext</span> <span class="variable-name">context</span> =  updateDefaultChildAttributes(defs);
+	<span class="keyword">if</span> (context != <span class="keyword">null</span>) {
+	    resource.initialize(defs);
+	    <span class="type">ResourceReference</span> <span class="variable-name">rr</span>;
+	    rr = getSpace().addResource(getChildrenSpaceEntry(),
+					resource, 
+					defs);
+	    context.setResourceReference(rr);
+	    <span class="keyword">if</span> (resource <span class="keyword">instanceof</span> <span class="type">FramedResource</span>) {
+		<span class="type">FramedResource</span> <span class="variable-name">fres</span> = (<span class="type">FramedResource</span>) resource;
+		fres.addStructureChangedListener(<span class="reference">this</span>);
+		<span class="comment">// send event
+</span>	    }
+	    markModified();
+	    postStructureChangedEvent(rr, Events.RESOURCE_CREATED);
+	} <span class="keyword">else</span> {
+	    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">InvalidResourceException</span>(getIdentifier(),
+					       name,
+					       "<span class="string">unable to get context</span>");
+	}
+    }
+
+    <span class="comment">/**
+     * Initialize ourself.
+     * As we are a container resource that really contains something, we make
+     * sure our URL ends properly with a slash.
+     * </span><span class="keyword">@param </span><span class="variable-name">values</span><span class="comment"> Our default attribute values.
+     */</span>
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">initialize</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+	<span class="reference">super</span>.initialize(values);
+	disableEvent();
+	<span class="comment">// If my URL doesn't end with a slah, correct it:
+</span>	<span class="type">String</span> <span class="variable-name">url</span> = getURLPath() ;
+	<span class="keyword">if</span> ((url != <span class="keyword">null</span>) && ! url.endsWith("<span class="string">/</span>") )
+	    setValue(ATTR_URL, url+"<span class="string">/</span>") ;
+	acquired = <span class="keyword">false</span>;
+	enableEvent();
+    }
+}
+
+
+
+    </pre>
+  </body>
+</html>

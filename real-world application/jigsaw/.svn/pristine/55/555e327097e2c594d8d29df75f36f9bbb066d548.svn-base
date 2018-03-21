@@ -1,0 +1,217 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>ICPFilter reference manual</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"
+    SRC="/icons/WWW/w3c_home"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG ALT="Jigsaw" BORDER="0" WIDTH="212" HEIGHT="49" SRC="/icons/jigsaw">
+</A> 
+  <HR>
+<H1>
+  ICP Filter
+</H1>
+<P>
+The ICP client side filter add support for the
+<A HREF="http://www.nlanr.net/Cache/ICP/">Internet Cache Protocol</A> to
+the <B>Jigsaw</B> HTTP client side implementation. This support can be used
+both by browsers (such as HotJava, <A HREF="../FAQ.html#client-hotjava">check
+the FAQ</A>), or by proxies (the typical case).
+<P>
+In brief, ICP allows several proxies to cooperate by exchanging informations
+about what they currently have in their local cache. <B>Jigsaw</B>'s ICP
+implementation should be compatible with other ICP capable proxies (such
+as <A HREF="http://squid.nlanr.net/Squid/">Squid</A>), even though it doesn't
+make use of all the features of the underlying protocol (in fact, it implements
+what can be implemented while still remaining compliant with the HTTP/1.1
+protocol specification).
+<P>
+<B>Warning</B>: <B>Jigsaw</B> doesn't come with the appropriate support for
+editing the ICP filter properties from the <CODE>/Admin/Properties</CODE>
+resource; this means that you will have to manually edit your <B>Jigsaw
+</B>configuration file in order to set the properties relevant to that filter.
+This file is usually named <CODE>config/http-server.props</CODE> if not,
+you probably know already what we are talking about.
+<H3>
+  <A NAME="rule-file">ICP Configuration File</A>
+</H3>
+<P>
+This filter uses a <A HREF="#w3c.www.protocol.http.icp.config">configuration
+file</A>, to know about the proxies it cooperates with. The syntax for this
+rule file is defined by the following BNF:
+<PRE>rule-file := *(rules)
+rules     := (comment|host-description)
+comment   := '#' &lt;chars up EOL&gt;
+host-description := host SPACES port spaces url EOL
+host      := &lt;valid Internet host name&gt;
+port      := &lt;valid UDP port number&gt;
+url       := &lt;URL locating the proxy to use for that host/port&gt;
+SPACES    := *(' '|'\t')
+EOL       := '\r' | '\r\n' | '\n'
+</PRE>
+<P>
+A sample ICP configuration file looks like:
+<PRE># Sample ICP configuration file
+# -----------------------------
+# First neighbour:
+icp.host1.com 10345 http://icp.host1.com:8080/
+# Second neighbour:
+icp.host2.com 10345 http://icp.host2.com:8080/
+</PRE>
+<P>
+After parsing such a configuration file, the ICP filter, will register both
+hosts as <I>neighbours</I>. When a request comes in for some document, the
+filter sends a UDP packet to both hosts (it knows about their namee, and
+the port they are listening on through the first two fields of the configuration
+file). It then waits for some positive answer, if such an answer arrives,
+it finally looks it up (matching the UDP sender address with one of the above
+declared hosts), and use the appropriate URL as a proxy address.
+<P>
+To setup a nice cache hierarchy, one can use a conjunction of the
+<A HREF="w3c.www.protocol.http.ProxyDispatcher.html">ProxyDispatcher</A>
+filter, the
+<A HREF="w3c.www.protocol.http.cache.CacheFilter.html">CacheFilter</A> and
+the ICP filter. The starting point for setting up such a config, is to set
+the <A HREF="w3c.www.protocol.http.HttpManager.html">HttpManager</A>
+<A HREF="w3c.www.protocol.http.HttpManager.html#w3c.www.protocol.http.filters">filters</A>
+property to:
+<PRE>w3c.www.protocol.http.filters=w3c.www.protocol.http.proxy.ProxyDispatcher \
+     |w3c.www.protocol.http.cache.CacheFilter \
+     |w3c.www.protocol.http.icp.ICPFilter
+</PRE>
+<P>
+(the \ character indicates that the line is splitted for best reading, they
+should not appear in the property value - which should be written as a single
+line). Note that in this setting the order in which you declare the filters
+is indeed important.
+<P>
+  <HR>
+<H2>
+  Properties
+</H2>
+<P>
+The <A HREF="../api/w3c.www.protocol.http.icp.ICPFilter.html">ICPFilter</A>
+defines the following properties:
+<UL>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.icp.debug">w3c.www.protocol.http.icp.debug</A>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.icp.config">w3c.www.protocol.http.icp.config</A>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.icp.port">w3c.www.protocol.http.icp.port</A>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.icp.timeout">w3c.www.protocol.http.icp.timeout</A>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.icp.disable-cache">w3c.www.protocol.http.icp.disable-cache</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.www.protocol.http.icp.debug">w3c.www.protocol.http.icp.debug</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When set to <B>true</B>, this property will make the ICP filter emit some
+    (hopefully) interesting traces.
+  <DT>
+    <I>type</I>
+  <DD>
+    A boolean property.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.www.protocol.http.icp.config">w3c.www.protocol.http.icp.config</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the <I><A HREF="#rule-file">rule file</A></I> for ICP
+  <DT>
+    <I>type</I>
+  <DD>
+    A File property (it's value should provide a path to an existing file)
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property has no default value, and <B>must</B> be set for the ICP filter
+    to be activated.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.www.protocol.http.icp.port">w3c.www.protocol.http.icp.port</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The UDP port number that filter should use to communicate with cooperating
+    proxies. This port number is the one the filter will be listening at for
+    requests from other (cooperating proxies).
+  <DT>
+    <I>type</I>
+  <DD>
+    An integer property (it's value should be a valid UDP port number)
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property has no default value and <B>must</B> be set for the ICP filter
+    to be activated.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.www.protocol.http.icp.timeout">w3c.www.protocol.http.icp.timeout</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The number of milliseconds the filter should wait for replies from cooperating
+    proxies, before estimating that none of them is available to answer its query.
+  <DT>
+    <I>type</I>
+  <DD>
+    An integer property (it's value should be a valid number of milliseconds)
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>500</B> ms.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.www.protocol.http.icp.disable-cache">w3c.www.protocol.http.icp.disable-cache</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Disable the caching of documents retreived through a neighbour proxy. If
+    you're making a set of <I>local</I> proxies cooperate, this flag will ensure
+    that no two close proxy will cache the same page.
+  <DT>
+    <I>type</I>
+  <DD>
+    A boolean property.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>true</B>
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.www.protocol.http.icp.ICPFilter.html,v 1.1 1997/02/11 19:46:53
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

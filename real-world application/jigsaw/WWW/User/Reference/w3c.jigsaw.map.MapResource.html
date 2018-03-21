@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The MapResource reference guide</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  MapFileResource
+</H1>
+<P>
+This resource handles image map requests. It wraps a file that contains the
+description of the map, in either the
+<A HREF="http://www.w3.org/pub/WWW/Daemon/User/CGI/HTImageDoc.html#config">W3C
+(CERN) format</A> or the
+<A HREF="http://hoohoo.ncsa.uiuc.edu/docs/tutorials/imagemapping.html#First">NCSA
+format</A> .
+<P>
+In addition to the standard keywords, this resource always accepts the extra
+keyword "<CODE>nosearch</CODE>", which specifies a URL to redirect to in
+case the request doesn't contain a coordinate pair as a query. The format
+of this keyword, in either of the two formats, is "<CODE>nosearch
+<EM>&lt;URL&gt;</EM></CODE>". The motivation of this option is to support
+text-only browsers.
+<P>
+A good way to use it is to associate the extension "map" to this resource
+in the extensions database. Once that is done, if a client requests, say,
+"<TT>http://.../menu.map?2,3</TT>", the MapFileResource will try to match
+the coordinates in the query (in this case, (2,3)) against each of the regions
+defined in the map, and redirect the client to the appropriate URL.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.map.MapResource.html">MapResource</A> class
+inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The MapFileResource defines the following attribute:
+<UL>
+  <LI>
+    <A HREF="#useNCSA">useNCSA</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="useNCSA">useNCSA</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    If this attribute is set to <B>true</B>, map specification files will be
+    interpreted in the
+    <A HREF="http://hoohoo.ncsa.uiuc.edu/docs/tutorials/imagemapping.html#First">NCSA
+    format</A>. Otherwise, they will be interpreted in the
+    <A HREF="http://www.w3.org/pub/WWW/Daemon/User/CGI/HTImageDoc.html#config">W3C
+    (CERN) format</A>.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<A HREF="mailto:anto@w3.org"><I>Antonio Ram&iacute;rez</I></A><I><BR>
+$Id: w3c.jigsaw.map.MapFileResource.html,v 1.1 1996/06/21 23:35:06 anto Exp
+$</I>
+</BODY></HTML>

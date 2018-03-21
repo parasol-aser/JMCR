@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>Jigsaw 2.0 Internal design</title>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css">
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B"
+alink="#FF0000">
+
+<div class="icons-w3c">
+<a href="../../../"><img src="/Icons/w3c_home" border="0" alt="W3C logo"
+height="48" width="72">
+</a></div>
+
+<div class="icons-jigsaw">
+<a href="../../"><img src="/Icons/jigsaw" border="0" alt="Jigsaw" height="49"
+width="212">
+</a></div>
+
+<div class="title">
+<h1 class="title">Jigsaw<br>
+<span class="subtitle">Internal design of Jigsaw 2.0</span></h1>
+<hr noshade="noshade" width="70%" align="left">
+
+<a href="../../Overview.html">Jigsaw Home</a> / <a
+href="../Overview.html">Documentation Overview</a></div>
+
+<div class="body">
+<p>In <b>Jigsaw</b> each served URI is bound to an object generating content. This object is mapped to a <a
+href="../Reference/org.w3c.tools.resources.FramedResource.html">FramedResource</a>
+(<a
+href="../Reference/org.w3c.tools.resources.FileResource.html">FileResource</a>,
+<a
+href="../Reference/org.w3c.tools.resources.DirectoryResource.html">DirectoryResource</a>...)
+which in turn is associated with a <a
+href="../Reference/org.w3c.tools.resources.ProtocolFrame.html">ProtocolFrame</a>
+(usually the <a
+href="../Reference/org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</a> or any
+subclass) instance, which in turn is created manually (with JigAdmin <a
+href="../User/AdminTools.html">1.0</a> or <a
+href="../User/JigAdmin/Overview.html">2.0</a>) or automatically by an <a
+href="../User/indexers.html">indexer</a>.</p>
+
+<p>This document has the following sections:</p>
+
+<p></p>
+<ul>
+  <li><a href="#whatr">What is a Resource?</a></li>
+  <li><a href="#whatf">What is a Frame?</a></li>
+  <li><a href="#whatfi">What is a Filter?</a></li>
+  <li><a href="#indexer">What is an Indexer?</a></li>
+  <li><a href="#resource">The new Resource</a></li>
+  <li><a href="#manager">The new ResourceStoreManager</a></li>
+  <li><a href="#lookup-algo">The lookup and perform algorithm</a></li>
+</ul>
+
+<h1><a name="whatr"></a>What is a Resource?</h1>
+The Resources are the objects exported by <b>Jigsaw</b> to the outside world. Resources can generate raw data stream, like text files or image files, or they can be active objects, generating data stream on the fly, depending on different contexts, like servlets, cgi scripts, filtered resources.
+
+<p>Inside <b>Jigsaw</b>, a resource is a full Java object, containing only information that the raw Resource (a file, a directory...) can provide (eg, for a file, the size, last modification date...)</p>
+
+<p>To be available on the server, a resource <b>MUST</b> be associated with a ProtocolFrame implementing the protocol available on that particular server. An instance of Jigsaw (ie: the java process) can support multiple servers, each server having the possibility of implementing different protocols and may or may not share the same set of resources.
+
+<p>The list of all <a href="../Reference/resources.html">Resources</a> is
+available.</p>
+
+<h1><a name="whatf"></a>What is a Frame?</h1>
+Since Jigsaw-2.0, the Resources are very basic and contains only the intrinsic
+knowledge of this resource. For file, you have the size, last modification
+date... The 2.0 Resources have protocol frames. Those frames are handling the
+different protocols used to fetch this particular resource.
+
+<p>A Frame is a full Java Object, containing all the information needed to
+serve this Resource using a specific Protocol (eg, HTTPFrame for
+<b>HTTP</b>).</p>
+
+<p>The list of all <a href="../Reference/frames.html">Frames</a> is
+available.</p>
+
+<center>
+<img src="resframe.gif" alt="Resources and frames" height="300" width="498">
+</center>
+
+<h1><a name="whatfi"></a>What is a Filter?</h1>
+The filters alters the resources, by requesting authentification for example.
+The filters are attached to the resource. In the 2.0 version the filters are
+atteched to the protocol frame of the resource rather than to the resource
+itself because many filtering scheme depends on the protocol used, the
+authentification in HTTP is very specific to HTTP  and can't be used in other
+protocols. The filters are called before and after serving the resource. You
+may have filters that are called only before the resource is served, like an
+authentification filter, or after, like a "find and replace" filter.
+
+<p>A Filter is a full Java Object, associated to a Frame, that can modify the
+Request and/or the Reply. For example the Authentication is handled by a
+special filter, the <a
+href="../Reference/org.w3c.jigsaw.auth.GenericAuthFilter.html">GenericAuthFilter</a>
+(Note, as this filter is protocol dependant, it is placed on the protocol
+frame).</p>
+
+<p>The list of all <a
+href="../Reference/frames.html#Filter+frames">Filters</a> is available.</p>
+
+<h1><a name="indexer"></a>What is an Indexer ?</h1>
+There are two ways of configuring the resources, by adding directly a specific
+resource at a specific place, or by letting the indexers create the resource
+in the server hierarchy. Of course the manual tune can be used along with the
+indexers. That is the most common way to configure <b>Jigsaw</b>. <a
+name="indexers"></a>
+
+<p>An indexers, placed on a Container, will be in charge of creating its sons
+resources. It will create Resource of a special kind depending, for example,
+on the extension of the filename ("html" for an html page, "png" for a PNG
+image file....). Or place a specific indexer for cgi on a directory named
+"cgi-bin". In Jigsaw-2.0, the indexer is not only in charge of creating the
+resource, it has also to put the right protocol frames (and other frames if
+necessary) on the created resource.</p>
+
+<p>An indexer have two main part:</p>
+<ol>
+  <li>The Directories.</li>
+  <li>The Extensions.</li>
+</ol>
+In the Directories, you have to specify how to index directories with a
+specific name. The default name is "*default*", in the default indexer the
+resource created is a DirectoryResource. In the 2.0 version, it creates a
+DirectoryResource with a default HTTPFrame.
+
+<p>In the extensions, you have to specify how to index files or leaf
+Resources. The default extension are mapped to FileResource, html, gif, png,
+txt... In the 2.0 version, an HTTPFrame is added to the Resource.</p>
+
+<p>A tutorial about the <a href="../User/indexers.html">setup of indexers
+</a>is available, it helps understanding how it works.</p>
+
+<h1><a name="resource"></a>The new Resource</h1>
+In the previous version of <b>Jigsaw</b> (1.0), the inheritance tree of
+Resources was:
+
+<center>
+<img src="olddesign.gif" alt="Sketches of the old design">
+</center>
+
+<p>All the basic Resources, such as FileResource and DirectoryResource, were
+heavily linked to HTTP as all the resources served were extensions protocols
+that are not HTTP-related, we propose this new version of the Resource:</p>
+
+<center>
+<img src="resource.gif" alt="basic resource with frames">
+</center>
+
+<p>Where (1) and (2) are ResourceFrames. A Resource is now a very basic thing,
+containing only information that the raw Resource can provide (e.g., for a
+file, the size, last modification date, creation date if available, etc.),
+then, attached to that Resource, we find the ResourceFrames that extend
+Resource (they are handled the same way) and contain information about the
+Resource they are attached to.</p>
+
+<p>To serve a resource using a protocol -- for instance, HTTP -- the Resource
+will have a protocol ResourceFrame, HTTPFrame, that contains all the
+information needed to serve this Resource using HTTP. This frame is like the
+old version of HTTPResource, but it contains more information than the
+previous version.</p>
+
+<p>The filters are now divided in two categories: the filters on the Resource
+and the filters on the protocol Frames. The usual filtering scheme used in the
+previous version of <b>Jigsaw</b> is still valid. The main difference is that
+filters are no longer attached to the Resource itself but to its protocol
+frame. ResourceFrames can also have frames.</p>
+
+<p>Other kind of frames can be attached, like RDF frame for metadata, PICS
+frame to rate this resource, etc...</p>
+
+<p>The new inheritance tree is:</p>
+
+<center>
+<img src="design.gif" border="0" usemap="#map" alt="new design (inheritance)
+sketches">
+</center>
+<map name="map">
+  <area shape="rect" coords="202,26,316,61" href="samples/Resource.html"
+  alt="basic resource">
+  <area shape="rect" coords="169,80,346,116"
+  href="samples/FramedResource.html" alt="framed resource">
+  <area shape="rect" coords="486,140,660,175"
+  href="samples/ResourceFrame.html" alt="resource frame">
+  <area shape="rect" coords="15,140,221,176"
+  href="samples/AbstractContainer.html" alt="abstract container">
+  <area shape="rect" coords="261,140,431,176" href="samples/FileResource.html"
+  alt="file resource">
+  <area shape="rect" coords="85,205,291,241"
+  href="samples/ContainerResource.html" alt="container resource">
+  <area shape="rect" coords="520,260,671,296"
+  href="samples/ProtocolFrame.html" alt="protocol frame">
+  <area shape="rect" coords="19,265,226,301"
+  href="samples/ExternalContainer.html" alt="external container">
+  <area shape="rect" coords="325,320,511,357"
+  href="samples/ResourceFilter.html" alt="resource filter">
+  <area shape="rect" coords="84,325,289,362"
+  href="samples/DirectoryResource.html" alt="directory resource">
+  <area shape="rect" coords="535,360,661,396" href="samples/HTTPFrame.html"
+  alt="http frame">
+</map>
+
+<p></p>
+
+<p>more complex, but more flexible than the previous version.</p>
+
+<h1><a name="manager"></a>The new ResourceStoreManager</h1>
+In order to share all the Resources amongst different servers efficiently, we
+created a new central ResourceStoreManager. In the previous version the
+Resources were handled by other Resources. For example, the FileResource was
+handled by its DirectoryResource. This induced a number of bugs and was not
+very well-adapted to the new way of sharing Resources. There is now only one
+manager for the server handler so that each server will talk to this sole
+manager.
+
+<center>
+<img src="rsm.gif" alt="resource manager drawing">
+</center>
+
+<p>This RSM contains a hashtable associating a key (unique indentifier of a
+ResourceContainer) and a StoreEntry. The StoreEntry contains the store of the
+resource sons and a hashtable associating the identifier of the sons of the
+resource and the ResourceReference of those resources.</p>
+
+<p>The ResourceReference is used like this:</p>
+<pre>  ResourceReference rr;
+  ....
+  try {
+     Resource res = rr.lock();
+     ....
+  } catch (InvalidResourceException ex) {
+    /* InvalidResource means that the resource has been deleted */
+     ....
+  } finally {
+    rr.unlock();
+  }
+  ...</pre>
+If the resource has been garbage-collected, the rr.lock() will load it again,
+and during the lock, it is guaranteed that the resource won't be deleted,
+unloaded or modified by someone else. This allows safe concurrent modification
+access to this resource.
+
+<p>Now the container is no longer responsible for the management of its son;
+it only has a key to the StoreEntry, which contains its sons. To get its own
+store, the resource has to ask its parent for the StoreEntry that contains
+it.</p>
+
+<h1><a name="lookup-algo"></a>The lookup and perform algorithm</h1>
+This part describe the lookup and the perform algorithm used by <b>Jigsaw</b>.
+
+<p>The following picture show a <b>Jigsaw</b> resources tree (relative to the
+URL <tt>/archives/index.html</tt>), where <tt>root</tt> and <tt>archives</tt>
+are <a href="samples/DirectoryResource.html">DirectoryResource</a>
+(<tt>root</tt> is the root resource) and <tt>index.html</tt> is a <a
+href="samples/FileResource.html">FileResource</a>. <tt>F1</tt>, <tt>F2</tt>
+and <tt>F3</tt> are filters (<a
+href="samples/ResourceFilter.html">ResourceFilter</a> subclass instance).</p>
+
+<center>
+<img src="perform.gif" hspace="10" vspace="10" height="354" width="445"
+alt="graphical description of request handling">
+</center>
+
+<p>In the following description, <b>Jigsaw</b> receive an HTTP GET request for
+<tt>/archives/index.html</tt>. To handle the incomming request, <b>Jigsaw</b>
+will go through the following steps:</p>
+<ol>
+  <li><a href="#lookup">Lookup for /archives/index.html</a></li>
+  <li><a href="#ingoing">Call the ingoingFilter method of filters</a></li>
+  <li><a href="#perform">Perform the request</a></li>
+  <li><a href="#outgoing">Call the outgoingFilter method of filters</a></li>
+  <li><a href="#reply">Emit the reply</a></li>
+</ol>
+<a name="lookup"></a><b>1</b>) Lookup for <tt>/archives/index.html</tt>. The
+<a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/LookupState.html">LookupState</a>
+(ls) keeps the state info, and the <a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/LookupResult.html">LookupResult</a>
+(lr) is the result of the lookup algorithm.
+
+<div class="box">
+<pre><tt>root</tt> <b>lookup</b>(ls,lr)
+    -> <tt>HTTPFrame1</tt> <b>lookup</b>(ls,lr)
+        -> <tt>F1</tt> <b>lookup</b>(ls,lr)
+        -> <tt>HTTPFrame1</tt> <b>lookupDirectory</b>(ls,lr)
+    -> <tt>archives</tt> <b>lookup</b>(ls,lr)
+        -> <tt>HTTPFrame2</tt> <b>lookup</b>(ls,lr)
+            -> <tt>F2</tt> <b>lookup</b>(ls,lr)
+            -> <tt>HTTPFrame2</tt> <b>lookupDirectory</b>(ls,lr)
+        -> <tt>index.html</tt> <b>lookup</b>(ls,lr)
+            -> <tt>HTTPFrame3</tt> <b>lookup</b>(ls,lr)
+                -> <tt>F3</tt> <b>lookup</b>(ls,lr)
+                -> <tt>HTTPFrame3</tt> <b>lookupFile</b>(ls,lr) => index.html</pre>
+</div>
+
+<center>
+<img src="algo-lookup.gif" hspace="10" vspace="10" height="406" width="513"
+alt="the lookup algorithm">
+</center>
+
+<p><a name="ingoing"></a><b>2</b>) Call the ingoingFilter method of filters.
+<a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Request.html">Request</a>
+is the incomming request.</p>
+
+<div class="box">
+<pre><tt>F1</tt> <b>ingoingFilter</b>(Request)
+<tt>F2</tt> <b>ingoingFilter</b>(Request)
+<tt>F3 </tt><b>ingoingFilter</b>(Request)</pre>
+</div>
+Note that if any filter answer with a non-null Reply, the process is stopped
+and the Reply is sent back to the client directly (like in the
+GenericAuthFilter)
+
+<p><a name="perform"></a><b>3</b>) Perform the request (GET) on the resource
+found at lookup time.</p>
+
+<div class="box">
+<pre><tt>index.html</tt> <b>perform</b>(Request)
+    -> <tt>HTTPFrame3</tt> <b>perform</b>(Request)
+        -> <tt>HTTPFrame3</tt> <b>get</b>(Request)
+            -> <tt>HTTPFrame3</tt> <b>getFileResource</b>(Request) => Reply</pre>
+</div>
+<a name="outgoing"></a><b>4</b>) Call the outgoingFilter method of filters.
+Request is the incomming request, <a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Reply.html">Reply</a>
+is the reply created by <tt>HTTPFrame3</tt>.
+
+<div class="box">
+<pre><tt>F3</tt> <b>outgoingFilter</b>(Request, Reply)
+<tt>F2</tt> <b>outgoingFilter</b>(Request, Reply)
+<tt>F1</tt> <b>outgoingFilter</b>(Request, Reply)</pre>
+</div>
+
+<center>
+<img src="algo-perform.gif" hspace="10" vspace="10" height="370" width="566"
+alt="the perform algorithm, with filters and such">
+</center>
+
+<p><a name="reply"></a><b>5</b>) Emit the reply created by
+<tt>HTTPFrame3</tt>.</p>
+</div>
+<!-- body -->
+
+<div class="footer">
+<p></p>
+<hr noshade="noshade" width="100%">
+
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a> <br>
+<span class="mini">$Id: design.html,v 1.28 1999/07/30 13:42:40 bmahe Exp
+$ </span>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> © 1999 <a
+href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>, <a
+href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">liability, </a><a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html">document use </a>and <a
+href="/Consortium/Legal/copyright-software.html">software licensing </a>rules
+apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public">public </a>and <a
+href="/Consortium/Legal/privacy-statement.html#Members">Member </a>privacy
+statements.</font></p>
+</div>
+</body>
+</html>

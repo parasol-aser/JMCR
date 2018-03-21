@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">body { margin: 20pt; color: black; background: white; font-family: helvetica;} </style>
+  <title>The LoggingProp reference manual</title>
+  <link href="jigsaw@w3.org" rel="made">
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+
+<body>
+<p><a href="../../.." target="_top_"><img
+src="../../../Icons//WWW/w3c_home.gif" alt="W3C" border="0" width="72"
+height="48"> </a><a href="../../" target="_top_"> <img
+src="../../../Icons//jigsaw" alt="Jigsaw" border="0"></a></p>
+<hr noshade size="1">
+
+<a href="resources.html">All resources</a> <a href="frames.html">All frames
+</a>
+<hr noshade size="1">
+
+
+<h1>LoggingProp</h1>
+
+<p>This resource class provides access to <b>Jigsaw</b> logging properties. It
+allows you to change the logging properties of <b>Jigsaw</b>.</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<h2>Inherits</h2>
+
+<p>The <a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/LoggingProp.html">LoggingProp</a>
+class inerits from the following classes:</p>
+<ul>
+  <li><a href="org.w3c.tools.resources.Resource.html">Resource</a></li>
+  <li><a href="org.w3c.jigsaw.config.PropertySet.html">PropertySet</a></li>
+</ul>
+
+<p></p>
+<hr noshade size="1">
+
+
+<h2>Attributes description</h2>
+
+<p>The LoggingProp defines the following attributes:</p>
+<ul>
+  <li><a href="#org.w3c.jigsaw.logger">org.w3c.jigsaw.logger</a></li>
+  <li><a
+    href="#org.w3c.jigsaw.logger.errlogname">org.w3c.jigsaw.logger.errlogname</a></li>
+  <li><a
+    href="#org.w3c.jigsaw.logger.logname">org.w3c.jigsaw.logger.logname</a></li>
+  <li><a
+    href="#org.w3c.jigsaw.logger.tracelogname">org.w3c.jigsaw.logger.tracelogname</a></li>
+  <li><a
+    href="#org.w3c.jigsaw.logger.logdirname">org.w3c.jigsaw.logger.logdirname</a></li>
+  <li><a
+    href="#org.w3c.jigsaw.logger.rotateLevel">org.w3c.jigsaw.logger.rotateLevel</a></li>
+  <li><a
+    href="#org.w3c.jigsaw.logger.bufferSize">org.w3c.jigsaw.logger.bufferSize</a></li>
+</ul>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a name="org.w3c.jigsaw.logger">org.w3c.jigsaw.logger</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>This property gives the name of the logger class to use. The logger
+      class can be any class that implements the <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Logger.html">logger
+      interface</a>. Right now, the only implemented logger is the <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/CommonLogger.html">CommonLogger</a>.
+      If undefined, <b>Jigsaw</b> will not log any requests, and emit a
+      warning at startup time.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/ClassAttribute.html">ClassAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a
+name="org.w3c.jigsaw.logger.errlogname">org.w3c.jigsaw.logger.errlogname</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>This property should give the name of the error log file. The error
+      log file is used when some abnormal situation is encoutered inside the
+      server. Abnormal, here, means a situation that the server can't cope
+      with (i.e., implementation bugs), rather than just HTTP errors (which
+      are logged in the above log file). This file is also used by the server
+      to trace important configuration actions.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FileAttribute.html">FileAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <i>&lt;<a
+      href="org.w3c.jigsaw.http.GeneralProp.html#org.w3c.jigsaw.root">w3c.jigsaw.root</a>></i>/logs/errlog</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a
+name="org.w3c.jigsaw.logger.logname">org.w3c.jigsaw.logger.logname</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>This property should give the name of the log file to which the
+      logging record will be emited. Note that this property is a property of
+      the CommonLogger (and any of its subclasses), rather than a property of
+      the logging system as a whole.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FileAttribute.html">FileAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <i>&lt;<a
+      href="org.w3c.jigsaw.http.GeneralProp.html#org.w3c.jigsaw.root">w3c.jigsaw.root</a>></i>/logs/log</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a
+name="org.w3c.jigsaw.logger.tracelogname">org.w3c.jigsaw.logger.tracelogname</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>This property should provide the name of the trace log. The trace log
+      is used to output debugging information when the server is turned into
+      debug mode. To turn the server into debug mode, two properties have to
+      be turned to true (depending on what part of the server you want to
+      debug):
+      <ul>
+        <li><i><a
+          href="org.w3c.jigsaw.http.GeneralProp.html#org.w3c.jigsaw.trace">org.w3c.jigsaw.trace</a></i>
+          Make the core server emit traces.</li>
+        <li><i><a
+          href="org.w3c.jigsaw.http.ConnectionProp.html#org.w3c.jigsaw.client.debug">org.w3c.jigsaw.client.debug</a></i>
+          Make every clients emit traces.</li>
+      </ul>
+    </dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FileAttribute.html">FileAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <i>&lt;<a
+      href="org.w3c.jigsaw.http.GeneralProp.html#org.w3c.jigsaw.root">w3c.jigsaw.root</a>></i>/logs/tracelog.</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><code><a
+name="org.w3c.jigsaw.logger.logdirname">org.w3c.jigsaw.logger.logdirname</a></code></p>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>This property gives the name of name of the directory where to put the
+      log files.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FileAttribute.html">FileAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>null</b>. Default inferred value is
+      vv<code>&lt;instdir>/Jigsaw/logs/</code></dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><code><a
+name="org.w3c.jigsaw.logger.rotateLevel">org.w3c.jigsaw.rotateLevel</a></code></p>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>This property gives the level of log rotation used in the logger. 
+      <ul>
+        <li>0 - log name is defined by
+          <code>org.w3c.jigsaw.logger.logname</code>, no rotation done</li>
+        <li>1 - log name is as above with _yyyy added, rotation done every
+          year on January 1st 00:00.</li>
+        <li>2 - log name as 0 with _yyyy_mm added, rotation done every month
+          on the 1st at midnight.</li>
+        <li>3 - log name as 0 with _yyy_mm_dd added, rotation done every day
+          at 00:00.</li>
+        <li>If set to 0, the name of the logfile will be the one defined by
+        </li>
+      </ul>
+    </dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>0</b>.</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a
+name="org.w3c.jigsaw.logger.bufferSize">org.w3c.jigsaw.logger.bufferSize</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>The size of the log buffer to use. This property defines the size of
+      the buffer used before flushing the output log. It is highly recommended
+      to keep this value at least as high as it is. You may still, however,
+      set it to 0 in order to prevent any buffering of log writing.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>8192</b>.</dd>
+</dl>
+
+<p></p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><i><a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+$Id: org.w3c.jigsaw.http.LoggingProp.html,v 1.2 1998/03/27 08:19:56 bmahe Exp
+$</i></p>
+</body>
+</html>

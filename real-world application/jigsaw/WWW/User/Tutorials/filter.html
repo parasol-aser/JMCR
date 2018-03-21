@@ -1,0 +1,239 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>ResourceFilter tutorial</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG BORDER="0" SRC="/icons/WWW/w3c_home.gif"
+    ALT="" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" WIDTH="212"
+    HEIGHT="49" ALT="Jigsaw" BORDER="0"></A>
+<H1>
+  Jigsaw resource's filter tutorial
+</H1>
+<P>
+This tutorial assumes that your are familiar with
+<A HREF="../Introduction/architecture.html"><B>Jigsaw</B> architecture</A>,
+and that you have read both the
+<A HREF="configuration.html">configuration</A> and the
+<A HREF="resource.html">resource</A> tutorials. It will explain you the last
+major concept of <B>Jigsaw</B> you should be aware of: resource filters.
+<P>
+As was said in the architectural overview of <B>Jigsaw</B>, each HTTP request
+ends up performed by some target resource instance. For the sake of simplicity,
+we didn't mentioned at that time, that most resource classes provided with
+the <B>Jigsaw</B> server inherits from the
+<A HREF="../api/w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+class. All instances of this class are able to manage a set of filters: these
+filters, which are to be instances of sub-classes of
+<A HREF="../api/w3c.jigsaw.resources.ResourceFilter.html">ResourceFilter</A>,
+are called-back twice during request processing:
+<UL>
+  <LI>
+    During lookup: before the actual target of the request has been selected.
+    The
+    <CODE><A HREF="../api/w3c.jigsaw.resources.ResourceFilter.html#ingoingFilter">ingoingFilter</A></CODE>
+    method of the filter gets called with the request as a parameter.
+  <LI>
+    After the request has been processed by the target resource. The
+    <CODE>outgoingFilter</CODE> of the filter gets called with the request and
+    the reply as parameters.
+</UL>
+<P>
+A resource filter is itself a resource: this means, in particular, that it
+is described - like all other resources - by a Java class, and a set of
+attributes. It also means that it can be pickled/unpickled, etc.
+<P>
+The remaining of this tutorial will walk through the code of the
+<A HREF="../api/w3c.jigsaw.filters.CounterFilter.html">CounterFilter</A>.
+This filter just counts the number of hits to its target resource. Before
+going any further, you should again make sure you have understand the
+<A HREF="resource.html">resource tutorial</A>. This tutorial has two sections:
+<A HREF="#counter-filter">the first one </A>will describe our filter's code,
+and the <A HREF="#installing">second one</A> will explain how to attach it
+to a target resource.
+<H2>
+  <A NAME="counter-filter">The CounterFilter class</A>
+</H2>
+<P>
+Its my hope that you will be amazed by how easy this filter is to code. As
+for writing new resource classes, the first thing we need to is to define
+the set of attributes that our filter will handle. In the case of a simple
+counter filter, the only attribute we need is simply the counter itself.
+Assuming we want our class to be in the <CODE>w3c.jigsaw.filters</CODE> package,
+we start by writing the following piece of code:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE><B>package <A HREF="../api/Package-w3c.jigsaw.filters.html">w3c.jigsaw.filters</A>;</B>
+
+<B>import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;</B>
+<B>import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources</A>.*;</B>
+
+<B>public class CounterFilter extends <A HREF="../api/w3c.jigsaw.resources.ResourceFilter.html">ResourceFilter</A> {</B>
+<B>    /**</B>
+<B>     * Attribute index - The counter attribute.</B>
+<B>     */</B>
+<B>    protected static int ATTR_COUNTER = -1 ;</B>
+
+<B>    static {</B>
+<B>        <A HREF="../api/w3c.tools.store.Attribute.html">Attribute</A> a   = null ;</B>
+<B>        Class     cls = null ;</B>
+<B>        </B>
+<B>        try {</B>
+<B>            cls = Class.forName("w3c.jigsaw.filters.CounterFilter") ;</B>
+<B>        } catch (Exception ex) {</B>
+<B>            ex.printStackTrace() ;</B>
+<B>            System.exit(1) ;</B>
+<B>        }</B>
+<B>        // Declare the counter attribute</B>
+<B>        a = new <A HREF="../api/w3c.tools.store..IntegerAttribute.html">IntegerAttribute</A>("counter"</B>
+<B>                                 , new Integer(0)</B>
+<B>                                 , Attribute.EDITABLE) ;</B>
+<B>        ATTR_COUNTER = <A HREF="../api/w3c.jigsaw.resources.AttributeRegistry.html">AttributeRegistry</A>.registerAttribute(cls, a) ;</B>
+<B>    }</B>
+<B>}</B>
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+This code does the following: it starts by declaring our resource filter
+class, and specify (through the <CODE>static</CODE> statement) its counter
+attribute, which is an editable integer attribute, whose default value is
+<B>0</B>. We register this attribute to the AttributeRegistry, and get back
+the <I>token</I> for accessing the attribute. If some of this seems unfamiliar,
+then refer to the <A HREF="resource.html">resource tutorial</A>.
+<P>
+We can now implement the <CODE>ingoingFilter</CODE> method of our filter,
+which is as simple as you might expect:
+<P>
+<TABLE BORDER CELLPADDING="2">
+  <TR>
+    <TD><PRE>package <A HREF="../api/Package-w3c.jigsaw.filters.html">w3c.jigsaw.filters</A>;
+
+import <A HREF="../api/Package-w3c.jigsaw.http.html">w3c.jigsaw.http</A>.*;
+import <A HREF="../api/Package-w3c.jigsaw.resources.html">w3c.jigsaw.resources</A>.*;
+
+public class CounterFilter extends <A HREF="../api/w3c.jigsaw.resources.ResourceFilter.html">ResourceFilter</A> {
+    /**
+     * Attribute index - The counter attribute.
+     */
+    protected static int ATTR_COUNTER = -1 ;
+
+    static {
+        <A HREF="../api/w3c.jigsaw.resources.Attribute.html">Attribute</A> a   = null ;
+        Class     cls = null ;
+        
+        try {
+            cls = Class.forName("w3c.jigsaw.filters.CounterFilter") ;
+        } catch (Exception ex) {
+            ex.printStackTrace() ;
+            System.exit(1) ;
+        }
+        // Declare the counter attribute
+        a = new <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>("counter"
+                                 , new Integer(0)
+                                 , Attribute.EDITABLE) ;
+        ATTR_COUNTER = <A HREF="../api/w3c.jigsaw.resources.AttributeRegistry.html">AttributeRegistry</A>.registerAttribute(cls, a) ;
+    }
+
+<B>    /**</B>
+<B>     * We count all accesses, even the one that failed.</B>
+<B>     * @param request The request being processed.</B>
+<B>     */</B>
+
+<B>    public synchronized int ingoingFilter(<A HREF="../api/w3c.jigsaw.http.Request.html">Request</A> request) {</B>
+<B>        int i = getInt (ATTR_COUNTER, 0) ;</B>
+<B>        setInt(ATTR_COUNTER, i+1) ;</B>
+<B>        return <A HREF="../api/w3c.jigsaw.resources.ResourceFilter.html#DontCallOutgoing">DontCallOutgoing</A> ;</B>
+<B>    }</B>
+
+
+}
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P>
+<I>That's all !</I> However, this needs a bit more explanations. First of
+all, you might be surprised that we didn't provide an implementation for
+the <CODE>outgoingFilter</CODE> method. There is two reasons for this: the
+first one is that our super-class provide an empty
+<CODE>outgoingFilter</CODE> method, this solves the compiler problem. The
+second one is that as you might have noticed, our <CODE>ingoingFilter</CODE>
+returns a special integer,
+<A HREF="../api/w3c.jigsaw.resources.ResourceFilter.html#DontCallOutgoing">DontCallOutgoing</A>.
+This integers tells the target filtered resource that the filter has performed
+all its tasks in the <CODE>ingoingFilter</CODE> method, so there is no need
+to call its <CODE>outgoingFilter</CODE> method.
+<P>
+Note that the counter value will be made persistent across servers invocation
+by the <B>Jigsaw</B> runtime. To be clear, this means that you can shutdown
+the server, and restart it: the count will keep up to date. Now, enough coding,
+let's play with our filter, the next section explains how to attach an instance
+of the filter to some target resource.
+<H2>
+  <A NAME="installing">Installing the filter</A>
+</H2>
+<P>
+First, let's decide on some resource we want to count access to. For the
+sake of simplicity, let's say we want to count the number of accesses to
+the <CODE>/User</CODE> directory resource. As you might have guess, the first
+thing we want to do is to point our favorite browser to
+<CODE>/Admin/Editor/User</CODE>. This, as expected, brings up the form to
+edit the <CODE>/User</CODE> directory resource. We follow the
+<I>AddFilter</I> link at the bottom of the page, which prompts us for the
+filter's class. We fill this with
+<CODE>w3c.jigsaw.filters.CounterFilter</CODE>, and press the <I>OK</I> button.
+The <CODE>/User</CODE> directory resource editor now has two more link (at
+the bottom of the page), we follow the <I>w3c.jigsaw.filter.CounterFilter</I>
+one, to customize our filter attributes. The count is <B>0</B>, and we don't
+care about the filter's name.
+<P>
+Now, we can access <CODE>/User</CODE> (point your browser to
+<CODE>/User</CODE>). Reload the filter's editor...the value is still
+<B>0</B>, however, internally the value is now <B>1</B>. To check this, restart
+the server (by using the <CODE>/Admin/PropertiesEditor</CODE> <I>restart</I>
+button). NOTE: form some reason, the editor of a resource doesn't update
+the attribute value it displays when they change behind the scene, this is
+why you still see the count has being <B>0</B>. This should be fixed really
+soon.
+<H2>
+  Further reading
+</H2>
+<P>
+If you want to understand better the concept of filters, then you can look
+at the available filters, here is a path (by increasing complexity):
+<UL>
+  <LI>
+    Start by reading the code of the
+    <A HREF="../api/w3c.jigsaw.filters.DebugFilter.html">DebugFilter</A>. This
+    one has an <CODE>outgoingFilter</CODE> method, and doesn't represent a
+    significant step in complexity.
+  <LI>
+    You can then try to read the code of the
+    <A HREF="../api/w3c.jigsaw.filters.AccessLimitFilter.html">AccessLimitFilter</A>.
+    It doesn't use more features then the one above, but the synchronized methods
+    it relies on are significantly more complex then the previous to examples.
+  <LI>
+    Now, if you are courageous enough, you can go to the
+    <A HREF="../api/w3c.jigsaw.auth.GenericAuthFilter.html">GenericAuthFilter</A>.
+    Once you have understand this one, then you can carry on with the following
+    lists of possible filters (left as an exercise to the reader)
+  <LI>
+    Try to write a filter that will log the referer field of the requests (this
+    can be pretty easy if done in the naive way, and can become much complex
+    if you want to use a something more efficient).
+</UL>
+<P>
+Enjoy !
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: filter.html,v 1.1 2010/06/15 12:28:35 smhuang Exp $</I>
+<P>
+</BODY></HTML>

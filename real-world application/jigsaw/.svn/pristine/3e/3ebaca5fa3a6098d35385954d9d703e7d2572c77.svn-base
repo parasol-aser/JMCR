@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+   <TITLE>CacheFilter Reference Manual</TITLE>
+<!-- Created by GNNpress/1.2 -->
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<A HREF="/" TARGET="_top_"><IMG SRC="/Icons/WWW/w3c_home.gif" ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72></A>&nbsp;<A HREF="../../../Jigsaw" TARGET="_top_"><IMG SRC="../../../Icons/jigsaw" ALT="Jigsaw" BORDER=0 ></A><A HREF="../../../Jigsaw" TARGET="_top_">&nbsp;</A>
+<hr noshade size="1">
+<H1>
+Cache Filter</H1>
+The Cache Filter provides client side caching support for the HTTP protocol.
+The cache is as much as possible HTTP/1.1 compliant and can be used either
+by standalone browsers,or by a proxy (the typical case when you use <B>Jigsaw</B>).
+
+<P>When this filter is used throughout <B>Jigsaw</B> proxy, it is best
+(ie read <I>recommended</I>) to use the appropriate resources to configure
+it (instead of setting manually the properties). In that case, the <A HREF="org.w3c.jigsaw.proxy.CacheProp.html">CacheProp</A>
+resource.
+
+<P>
+<hr noshade size="1">
+<H2>
+Properties</H2>
+The <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/www/protocol/http/cache/CacheFilter.html">CacheFilter</A>
+defines the following properties:
+<UL>
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.size">org.w3c.www.protocol.http.cache.size</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.debug">org.w3c.www.protocol.http.cache.debug</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.shared">org.w3c.www.protocol.http.cache.shared</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.directory">org.w3c.www.protocol.http.cache.directory</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.connected">org.w3c.www.protocol.http.cache.connected</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.garbageCollectionEnabled">org.w3c.www.protocol.http.cache.garbageCollectionEnabled</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cache.fileSizeRatio">org.w3c.www.protocol.http.cache.fileSizeRatio</A></LI>
+</UL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.size"></A><TT>org.w3c.www.protocol.http.cache.size</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+The size of the cache, expressed in bytes.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+An integer property</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>5000000</B> bytes, ie 5Mb</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.debug"></A><TT>org.w3c.www.protocol.http.cache.debug</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+Will make the CacheFIlter emit some (hopefully) usefull traces.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+A boolean property</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>false</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.shared"></A><TT>org.w3c.www.protocol.http.cache.shared</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+Is this cached shared among several users ? Some of HTTP/1.1 caching semantics
+depends on wether the cache is shared or not, this flag will change the
+caching policy accordingly.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+A boolean property.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>false</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.directory"></A><TT>org.w3c.www.protocol.http.cache.directory</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+The directory that the cache should use to store cached content. If not
+provided the directory defaults to the <TT>.web_cache</TT> under the current
+user's home directory. Note that when used through <B>Jigsaw</B> the cache
+directory will automatically be set to <TT>config/cache</TT> where <TT>config</TT>
+is the main <B>Jigsaw</B> configuration repository.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+A File property (should provide the path of a directory in the file system)</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+See above.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.connected"></A><TT>org.w3c.www.protocol.http.cache.connected</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+Should the cache consider itself connected to the Internet ? The cache
+filter can be used in <I>disconnected</I> mode, in which case it will only
+look for document in the cache, and if not found, will emit the appropriate
+HTTP/1.1 error reply.
+
+<BR>You may experience funny results when disconnecting the cache from
+the Internet, most of them are the results of content providers not providing
+the appropriate informations (and some time, even intentionnaly).
+<DT>
+<I>type</I></DT>
+
+<DD>
+A boolean property</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>true</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.garbageCollectionEnabled"></A><TT>org.w3c.www.protocol.http.cache.garbageCollectionEnabled</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+Should the cache try to run its garbage collector ? This flag is intended
+to be used when the user's is planning to disconnect the cache. By setting
+the flag to <B>false</B>, he/she can safely browse the web and everything
+he/she visits will enter the cache (for latter consumption) and stay there.
+
+<BR>An interesting project, of course, would be to write a robot to fill
+the cache automatically (stay tuned, or write it !)
+<DT>
+<I>type</I></DT>
+
+<DD>
+A boolean property</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>true</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cache.fileSizeRatio"></A><TT>org.w3c.www.protocol.http.cache.fileSizeRatio</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+The ratio to the total cache size that a single entry in the cache is allowed
+to occupy.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+A double property (a ratio between <B>0</B> and <B>1</B> indicating how
+much of the total cache space a single cached entry is able to occupy).</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>0.1</B> (which means that if you are using
+the default <A HREF="#w3c.www.protocol.http.cache.size">cache size</A>
+of 5Mb, only file smaller than 500Kb are candidate to enter the cache)</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A></I>
+<BR>$Id: w3c.www.protocol.http.cache.CacheFilter.html,v 1.2 1997/07/31
+08:25:42 ylafon Exp $
+</BODY>
+</HTML>

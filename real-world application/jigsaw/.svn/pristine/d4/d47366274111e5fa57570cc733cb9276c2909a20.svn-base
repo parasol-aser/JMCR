@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+  <TITLE>The SocketConnectionProp reference manual</TITLE>
+  <LINK HREF="jigsaw@w3.org" REL="made">
+</HEAD>
+<BODY>
+<P>
+<A HREF="../../.." TARGET="_top_"><IMG SRC="../../../Icons//WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48">
+</A><A HREF="../../" TARGET="_top_">
+<IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw"BORDER="0"></A>
+  <hr noshade size="1">
+<A HREF="resources.html">All resources</A> <A HREF="frames.html">All frames
+</A> 
+  <hr noshade size="1">
+<H1>
+  SocketConnectionProp
+</H1>
+<P>
+This resource provides editable access to connection properties specific
+to the raw socket access to <B>Jigsaw</B>. As for the other property sheets,
+the resource just provides a nice way of describing a set of resources, and
+the way they should be edited, so each attribute below, really corresponds
+to a property defined in the property file of <B>Jigsaw</B>. 
+<P>
+Tunning these resources can be a very difficult exercise. It is recommended
+that you try very hard to understand these properties before playing with
+them. 
+<P>
+  <hr noshade size="1">
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/socket/SocketConnectionProp.html">SocketConnectionProp</A>
+class inerits from the following classes:
+<UL>
+  <LI>
+    <A HREF="org.w3c.tools.resources.Resource.html">Resource</A>
+  <LI>
+    <A HREF="org.w3c.jigsaw.config.PropertySet.html">PropertySet</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<H2>
+  Attributes description
+</H2>
+<P>
+The SocketConnectionProp defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.minFree">org.w3c.jigsaw.http.socket.SocketClientFactory.minFree</A>
+  <LI>
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.maxFree">org.w3c.jigsaw.http.socket.SocketClientFactory.maxFree</A>
+  <LI>
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.maxIdle">org.w3c.jigsaw.http.socket.SocketClientFactory.maxIdle</A>
+  <LI>
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.maxClients">org.w3c.jigsaw.http.socket.SocketClientFactory.maxClients</A>
+  <LI>
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.idleTimeout">org.w3c.jigsaw.http.socket.SocketClientFactory.idleTimeout</A>
+  <LI>
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.maxThreads">org.w3c.jigsaw.http.socket.SocketClientFactory.maxThreads</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.jigsaw.http.socket.SocketClientFactory.minFree">org.w3c.jigsaw.http.socket.SocketClientFactory.minFree</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The number of free (not working) clients the server has to have in order
+    to consider itself under very light load. When the server is running under
+    that load, the server will keep connection opens as long as possible (with
+    no time out). 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>5</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.jigsaw.http.socket.SocketClientFactory.maxFree">org.w3c.jigsaw.http.socket.SocketClientFactory.maxFree</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The number of free (not working) clients the server has to have in order
+    to go from the normal load state back into the light load state. The difference
+    between that number and
+    <A HREF="#org.w3c.jigsaw.http.socket.SocketClientFactory.minFree">minFree</A>
+    avoids having the server yo-yoing from the light load state to the normal
+    load state. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>10</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.jigsaw.http.socket.SocketClientFactory.maxIdle">org.w3c.jigsaw.http.socket.SocketClientFactory.maxIdle</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The maximum number of idle client. An idle client thread is a thread waiting
+    for the next request on a persistent connection. When the maxIdle number
+    of idle client threads is reached, the server turns itself either into high
+    load (if it still has free clients), or dead load otherwise. Under normal
+    load, the client pool will make sure to shutdown at least one persistent
+    connection before accepting a new one. Under high load the server will start
+    adjusting thread prorities (it will lower the accepting thread's priority
+    under the normal client's thread priority, to give more CPU to client threads).
+    On dead load, the server will reject incomming connections. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>20</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.jigsaw.http.socket.SocketClientFactory.maxClients">org.w3c.jigsaw.http.socket.SocketClientFactory.maxClients</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The maximum simultaneous number of client connections the server will ever
+    accept. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>32</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.jigsaw.http.socket.SocketClientFactory.idleTimeout">org.w3c.jigsaw.http.socket.SocketClientFactory.idleTimeout</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The timeout that will indicate that a thread is no longer usefull. A minmum
+    number of threads will always remain alive, even though this timeout value
+    is provided. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>10000</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="org.w3c.jigsaw.http.socket.SocketClientFactory.maxThreads">org.w3c.jigsaw.http.socket.SocketClientFactory.maxThreads</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The maximum number of allowed threads, whatever happens. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>40</B>.
+</DL>
+<P>
+<P>
+  <hr noshade size="1">
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: org.w3c.jigsaw.http.socket.SocketConnectionProp.html,v 1.2 1998/03/27
+08:20:18 bmahe Exp $</I>
+</BODY></HTML>

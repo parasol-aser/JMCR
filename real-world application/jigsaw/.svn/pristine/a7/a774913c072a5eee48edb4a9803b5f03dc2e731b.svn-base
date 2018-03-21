@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+  <!-- Changed by: Benoit Mahe, 25-Jun-1997 -->
+  <META NAME="GENERATOR" CONTENT="Mozilla/3.01Gold (X11; I; SunOS 5.5 sun4u) [Netscape]">
+  <TITLE>All Resources</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<P>
+<!-- Created by GNNpress/1.2 --><!-- Changed by: Anselm Baird-Smith,  4-Feb-1997
+--><A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" ALT="Jigsaw"
+    BORDER=0 ></A><A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"> </A>
+<PRE><A HREF="filters.html">All Filters</A>
+</PRE>
+<P>
+  <HR>
+<H1>
+  <B>Jigsaw </B>resources index
+</H1>
+<P>
+This index briefly describes what resources are currently available in the
+<B>Jigsaw</B> release. See the <A HREF="../Introduction/indexer.html">indexer
+documentation</A> to understand how these resources are created by default.
+<P>
+To be more readable, the list of available resources has been split into
+three groups:
+<DL>
+  <DT>
+    <A HREF="#root">Root resources</A>
+  <DD>
+    Resources suitable to be used as the root of your server, as defined by the
+    <A HREF="w3c.jigsaw.http.GeneralProp.html#w3c.jigsaw.root.name">w3c.jigsaw.root.name</A>
+    general property.
+  <DT>
+    <A HREF="#standard">Standard resources</A>
+  <DD>
+    Resources that you expect any server to support.
+  <DT>
+    <A HREF="#extension">Extension resources</A>
+  <DD>
+    Basic resources, or resources that implement extra protocols.
+  <DT>
+    <A HREF="#admin">Admin resources</A>
+  <DD>
+    Resources that allow you to administer <B>Jigsaw</B>.
+  <DT>
+    <A HREF="#property">Property resources</A>
+  <DD>
+    Resources that wraps a sub-set of <B>Jigsaw</B> properties in order to make
+    themn editable.
+</DL>
+<P>
+  <HR>
+<H2>
+  <A NAME="root"></A>Root resources
+</H2>
+<DL>
+  <DT>
+    <A HREF="w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>
+  <DD>
+    The directory resource handles file system directories.
+  <DT>
+    <A HREF="w3c.jigsaw.proxy.ProxyDirectory.html">ProxyDirectory</A>
+  <DD>
+    A resource that will turn <B>Jigsaw</B> into a fully HTTP/1.1 compliant proxy.
+  <DT>
+    <A HREF="w3c.jigsaw.proxy.MirrorDirectory.html">MirrorDirectory</A>
+  <DD>
+    A resource to mirror other web sites.
+  <DT>
+    <A HREF="w3c.jigsaw.resources.VirtualHostResource.html">VirtualHostResource</A>
+  <DD>
+    A top level resource that will handle virtual hosts <I>without</I> consuming
+    IP addresses !
+</DL>
+<P>
+  <HR>
+<H2>
+  <A NAME="standard"></A>Standard resources
+</H2>
+<DL>
+  <DT>
+    <A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A>
+  <DD>
+    The FileResource handles files within a DirectoryResource.
+  <DT>
+    <A HREF="w3c.jigsaw.resources.NegotiatedResource.html">NegotiatedResource</A>
+  <DD>
+    A resource that will handle negotiation among a given set of variant resources.
+  <DT>
+    <A HREF="w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A>
+  <DD>
+    The basic class for all HTTP accessible resources.
+  <DT>
+    <A HREF="w3c.jigsaw.resources.PutableDirectory.html">PutableDirectory</A>
+  <DD>
+    A directory that supports the PUT method for creating new child resources.
+  <DT>
+    <A HREF="w3c.jigsaw.resources.PassDirectory.html">PassDirectory</A>
+  <DD>
+    A directory resource that emulates the CERN-server PASS rule.
+  <DT>
+    <A HREF="w3c.jigsaw.forms.CgiResource.html">CgiResource</A>
+  <DD>
+    A resource that allows you to run CGI/1.1 compliant scripts. This is of course
+    not the recommended way of extending <B>Jigsaw</B>.
+  <DT>
+    <A HREF="w3c.jigsaw.ssi.SSIResource.html">SSIResource</A>
+  <DD>
+    A resource that will serve file and&nbsp;run any server side include command.
+  <DT>
+    <A HREF="w3c.jigsaw.map.MapResource.html">MapResource</A>
+  <DD>
+    A resource that handles both CERN-server style and NCSA style image maps.
+</DL>
+<P>
+  <HR>
+<H2>
+  <A NAME="extension"></A>Extension resources
+</H2>
+<DL>
+  <DT>
+    <A HREF="w3c.jigsaw.cvs.AutoLookupDirectory.html">AutoLookupDirectory</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    A resource that can fetch or update files directly from CVS.
+  <DT>
+    <A HREF="w3c.jigsaw.cvs.CvsDirectoryResource.html">CvsDirectoryResource</A>
+  <DD>
+    A resource that gives you CVS access to the server's files through CVS.
+  <DT>
+    <A HREF="w3c.jigsaw.forms.PostableResource.html">PostableResource</A>
+  <DD>
+    The basic class for handling the HTTP POST method.
+  <DT>
+    <A HREF="w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+  <DD>
+    The basic class for resources that support filters.
+  <DT>
+    <A HREF="w3c.jigsaw.pics.LabelBureauResource.html">LabelBureauResource</A>
+  <DD>
+    A PICS label bureau resource: will serve document labels according to the
+    <A HREF="../../../PICS/Overview.html">PICS specifications</A>.
+  <DT>
+    <A HREF="w3c.jigsaw.pics.DataBaseBureauResource.html">DataBaseBureauResource</A>
+    <DL>
+      <DT>
+	A PICS label bureau resource: will serve document labels according to the
+	<A HREF="../../../PICS/Overview.html">PICS specifications</A>.
+      <DT>
+	This implementation use a real database to store labels.
+    </DL>
+  <DT>
+    <A HREF="w3c.jigsaw.servlet.ServletDirectory.html">ServletDirectory</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    A <I>context</I> and container for servlets. All servlets should be made
+    children of a ServletDirectory instance.
+  <DT>
+    <A HREF="w3c.jigsaw.servlet.ServletWrapper.html">ServletWrapper</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    Implementation of Sun's servlet API, for local classes
+  <DT>
+    <A HREF="w3c.jigsaw.servlet.RemoteServletWrapper.html">RemoteServletWrapper</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    Implementation of Sun's servlet API, will remotely fetch the servlet classes,
+    using HTTP.
+</DL>
+<P>
+  <HR>
+<H2>
+  <A NAME="admin"></A>Admin resources
+</H2>
+<DL>
+  <DT>
+    <A HREF="w3c.jigsaw.indexer.ExtensionsEditor.html">ExtensionsEditor</A>
+  <DD>
+    A resource that allows you to edit the resource indexer extension database.
+  <DT>
+    <A HREF="w3c.jigsaw.status.ThreadStat.html">ThreadStat</A>
+  <DD>
+    A resource that will display the status of the threads running in the server
+    process, and that will refresh it at a given interval of time.
+  <DT>
+    <A HREF="w3c.jigsaw.status.Statistics.html">Statistics</A>
+  <DD>
+    A resource that displays internal server statistics (such as number of hits,
+    etc).
+  <DT>
+    <A HREF="w3c.jigsaw.contrib.PasswordEditor.html">PasswordEditor</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    A resource that allow web site users to change their own password.
+  <DT>
+    <A HREF="w3c.jigsaw.contrib.SalvagerResource.html">SalvagerResource</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    A resource that will walk through your entire resource space, checking for
+    the validity and reachability of all installed resources.
+  <DT>
+    <A HREF="w3c.jigsaw.contrib.CheckpointResource.html">CheckpointResource</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    A resource that will periodically make sure that <B>Jigsaw</B> configuration
+    has been saved back to disk.
+</DL>
+<P>
+  <HR>
+<H2>
+  <A NAME="property"></A>Property resources
+</H2>
+<DL>
+  <DT>
+    <A HREF="w3c.jigsaw.http.UnixProp.html">UnixProp</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    UNIX specific properties editor. Allows you to chroot <B>Jigsaw</B> and run
+    it on port 80.
+  <DT>
+    <A HREF="w3c.jigsaw.http.socket.SocketConnectionProp.html">SocketConnectionProp</A>
+    <IMG SRC="/icons/WWW/new_red" HEIGHT=13 WIDTH=32>
+  <DD>
+    Connection properties specific to the raw socket client and client factory.
+  <DT>
+    <A HREF="w3c.jigsaw.http.LoggingProp.html">LoggingProp</A>
+  <DD>
+    Gives editable access to <B>Jigsaw</B> logging properties.
+  <DT>
+    <A HREF="w3c.jigsaw.http.GeneralProp.html">GeneralProp</A>
+  <DD>
+    Gives editable access to <B>Jigsaw</B> general properties.
+  <DT>
+    <A HREF="w3c.jigsaw.proxy.ProxyProp.html">ProxyProp</A>
+  <DD>
+    Gives editable access to <B>Jigsaw</B> client-side specific properties to
+    customize it when used by the proxy. This will only appear when you use the
+    <A HREF="w3c.jigsaw.proxy.ProxyDirectory.html">ProxyDirectory</A> resource.
+  <DT>
+    <A HREF="w3c.jigsaw.proxy.CacheProp.html">CacheProp</A>
+  <DD>
+    Gives editable access to <B>Jigsaw</B> client-side cache, when the proxy
+    resource is used.
+</DL>
+<H1>
+    <HR>
+</H1>
+<P>
+<I><A HREF="mailto:jigsaw@w3c.org">Anselm Baird-Smith<BR>
+</A></I>$Id: resources.html,v 1.1 2010/06/15 12:22:27 smhuang Exp $
+</BODY></HTML>

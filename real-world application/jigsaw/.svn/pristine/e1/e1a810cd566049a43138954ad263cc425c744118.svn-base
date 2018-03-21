@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>VirtualHostresource reference manual</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  VirtualHostResource
+</H1>
+<P>
+This resource will allow you to do <I>multihoming</I>. This technic is a
+way to host multiple logical web servers on the same physical process.
+<B>Jigsaw</B> supports <I>only</I> <CODE>Host</CODE> header based virtual
+hosting, which does <I>not</I> consume IP addresses.
+<P>
+As for other resources that are suposed to be the
+<A HREF="w3c.jigsaw.http.GeneralProp.html#w3c.jigsaw.root.name">root resource
+</A>of your server, you should be very cautious when using that kind of resource.
+In particular make sure the <A HREF="#followup">followup</A> attribute is
+set to a resource that will export the Admin directory.
+<P>
+Each child of the <I>VirualHostResource</I> must be named under the host
+name it will serve. If you have a machine A with names
+<CODE>name.foo.com</CODE> and <CODE>alias.foo.com</CODE>, and if the server
+is running on port <CODE>8001</CODE>, then requests prefixed by
+<CODE>http://name.foo.com:8001/</CODE> will be dispatched to the child resource
+of the virtual host resource named <CODE>name.foo.com:8001</CODE> and requests
+prefixed by <CODE>http://alias.foo.com:8001</CODE> to child resource
+<CODE>alias.foo.com:8001</CODE>.
+<P>
+<B>Warning</B>: Unless you understand what you&nbsp;are doing, children of
+that resources should only be either
+<A HREF="w3c.jigsaw.proxy.MirrorDirectory.html">MirrorDirectory</A> or
+<A HREF="w3c.jigsaw.resources.PassDirectory.html">PassDirectory</A> instances.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.resources.VirtualHostResource.html">VirtualHostResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    ContainerResource (aka abstract class)
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The VirtualHostResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#followup">followup</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="followup">followup</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The deafult resource for handling unknown hosts. This attribute should provide
+    the name of a resource existing within the root resource store of the server.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default, It <B>should</B> be set to an existing resource
+    within the root resource store (if you don't understand that, set it to
+    <I>root</I>).
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.resources.VirtualHostResource.html,v 1.1 1996/09/25 14:23:15
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

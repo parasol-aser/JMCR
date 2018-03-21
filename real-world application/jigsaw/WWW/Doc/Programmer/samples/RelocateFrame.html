@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>RelocateFrame.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// RelocateFrame.java
+// $Id: RelocateFrame.html,v 1.1 2010/06/15 12:20:08 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">frames</span>;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.*;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.* ;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">net</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">www</span>.<span class="reference">http</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="type">ProtocolException</span>;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="type">NotAProtocolException</span>;
+
+<span class="comment">/**
+ * Emit a HTTP redirect.
+ */</span>
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">RelocateFrame</span> <span class="keyword">extends</span> <span class="type">HTTPFrame</span> {
+
+    <span class="comment">/**
+     * Name of the state to hold the PATH_INFO in the request.
+     */</span>
+    <span class="reference">public</span> <span class="type">final</span> <span class="type">static</span> 
+	<span class="type">String</span> <span class="variable-name">PATH_INFO</span> = 
+	"<span class="doc-string">org.w3c.jigsaw.resources.RelocateResource.PathInfo</span>";
+
+    <span class="comment">/**
+     * Attribute index - The relocation location.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_LOCATION</span> = -1 ;
+    <span class="comment">/**
+     * Attribute index - Should we also handle extra path infos ?
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_HANDLE_PATHINFO</span> = -1;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span> = <span class="keyword">null</span> ;
+	<span class="type">Class</span>     <span class="variable-name">c</span> = <span class="keyword">null</span> ;
+
+	<span class="keyword">try</span> {
+	    c = Class.forName("<span class="string">org.w3c.jigsaw.frames.RelocateFrame</span>");
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace() ;
+	    System.exit(1) ;
+	}
+	<span class="comment">// The location attribute
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">location</span>"
+				, <span class="keyword">null</span>
+				, Attribute.EDITABLE|Attribute.MANDATORY) ;
+	ATTR_LOCATION = AttributeRegistry.registerAttribute(c, a) ;
+	<span class="comment">// The handle path info attribute
+</span>	a = <span class="keyword">new</span> <span class="type">BooleanAttribute</span>("<span class="string">handle-pathinfo</span>"
+				 , <span class="reference">Boolean</span>.<span class="type">TRUE</span>
+				 , Attribute.EDITABLE);
+	ATTR_HANDLE_PATHINFO = AttributeRegistry.registerAttribute(c, a);
+    }
+
+    <span class="comment">/**
+     * Get the location for the relocation
+     */</span>
+
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getLocation</span>() {
+	<span class="keyword">return</span> (<span class="type">String</span>) getValue(ATTR_LOCATION, <span class="keyword">null</span>) ;
+    }
+
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">checkHandlePathInfo</span>() {
+	<span class="keyword">return</span> getBoolean(ATTR_HANDLE_PATHINFO, <span class="keyword">true</span>);
+    }
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">registerResource</span>(<span class="type">FramedResource</span> <span class="variable-name">resource</span>) {
+	<span class="reference">super</span>.registerOtherResource(resource);
+    }
+
+    <span class="preprocessor">protected</span> <span class="type">boolean</span> <span class="function-name">lookupOther</span>(<span class="type">LookupState</span> <span class="variable-name">ls</span>, <span class="type">LookupResult</span> <span class="variable-name">lr</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="comment">// Perform our super-class lookup strategy:
+</span>	<span class="keyword">if</span> ( <span class="reference">super</span>.lookupOther(ls, lr) ) {
+	    <span class="keyword">return</span> <span class="keyword">true</span>;
+	} <span class="keyword">else</span> <span class="keyword">if</span> ( ! checkHandlePathInfo() ) {
+	    <span class="keyword">return</span> <span class="keyword">false</span>;
+	}
+	<span class="comment">// Compute PATH INFO, store it as a piece of state in the request:
+</span>	<span class="type">StringBuffer</span> <span class="variable-name">pathinfo</span> = <span class="keyword">new</span> <span class="type">StringBuffer</span>();
+	<span class="keyword">while</span> ( ls.hasMoreComponents() ) {
+	    pathinfo.append('<span class="string">/</span>');
+	    pathinfo.append(ls.getNextComponent());
+	}
+	<span class="keyword">if</span> (ls.hasRequest() ) {
+	    <span class="type">Request</span> <span class="variable-name">request</span> = (<span class="type">Request</span>) ls.getRequest();
+	    request.setState(PATH_INFO, pathinfo.toString());
+	}
+	lr.setTarget(resource.getResourceReference());
+	<span class="keyword">return</span> <span class="keyword">true</span>;
+    }
+
+    <span class="comment">/**
+     * Emit a redirect.
+     * All GET requests are redirected toward the target location.
+     * </span><span class="keyword">@param </span><span class="variable-name">client</span><span class="comment"> The client issuing the request.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request to handle.
+     * </span><span class="keyword">@exception </span><span class="type">ProtocolException</span><span class="comment"> If the request couldn't be handled.
+     */</span>
+
+    <span class="preprocessor">protected</span> <span class="type">Reply</span> <span class="function-name">getOtherResource</span> (<span class="type">Request</span> <span class="variable-name">request</span>)
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="type">String</span> <span class="variable-name">location</span> = getLocation() ;
+	<span class="keyword">if</span> ( location == <span class="keyword">null</span> ) {
+	    <span class="type">Reply</span> <span class="variable-name">error</span> = request.makeReply(HTTP.INTERNAL_SERVER_ERROR) ;
+	    error.setContent("<span class="string">The target RelocateResource doesn't define the</span>"
+			     + "<span class="string"> relocation location. The server is </span>"
+			     + "<span class="string"> misconfigured.</span>") ;
+	    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">HTTPException</span>(error) ;
+	} <span class="keyword">else</span> {
+	    <span class="type">Reply</span>  <span class="variable-name">reply</span>    = request.makeReply(HTTP.MOVED_TEMPORARILY) ;
+	    <span class="type">URL</span>    <span class="variable-name">loc</span>      = <span class="keyword">null</span>;
+	    <span class="keyword">try</span> {
+		loc = <span class="keyword">new</span> <span class="type">URL</span>(getURL(request), location);
+		<span class="keyword">if</span> (checkHandlePathInfo()) {
+		    <span class="type">String</span> <span class="variable-name">pathinfo</span> = (<span class="type">String</span>) request.getState(PATH_INFO);
+		    <span class="comment">// Given the way pathinfo is computed, it starts with a /
+</span>		    <span class="keyword">try</span> {
+			<span class="keyword">if</span> (pathinfo != <span class="keyword">null</span>)
+			    loc = <span class="keyword">new</span> <span class="type">URL</span>(loc.toExternalForm()+pathinfo);
+			<span class="keyword">else</span> 
+			    resource.getServer().errlog(resource, 
+					"<span class="string">This resource handle Pathinfo </span>"+
+					"<span class="string">but the request has no </span>"+
+					"<span class="string">PATH_INFO state.</span>");
+		    } <span class="keyword">catch</span> (<span class="type">MalformedURLException</span> <span class="variable-name">ex</span>) {
+			resource.getServer().errlog(resource, 
+					"<span class="string">This resource handle Pathinfo </span>"+
+					"<span class="string">but the request has an invalid </span>"+
+					"<span class="string">PATH_INFO state.</span>");
+		    }
+		}
+	    } <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+		ex.printStackTrace();
+	    }
+	    reply.setLocation(loc);
+	    <span class="keyword">return</span> reply ;
+	}
+    }
+
+}
+
+    </pre>
+  </body>
+</html>

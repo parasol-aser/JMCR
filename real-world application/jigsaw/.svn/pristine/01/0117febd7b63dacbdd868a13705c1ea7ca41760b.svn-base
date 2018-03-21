@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+   "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="../../style/doc.css">
+    <STYLE TYPE="text/css">
+      DIV.box {
+        margin: 2.0%; 
+        margin-top: 1.0%;
+        padding: 1.0%; 
+        border: thin solid silver; 
+        width: 100.0%; 
+      }
+
+      DIV.boxnat {
+        background-color: #CCCCCC;
+        margin: 2.0%; 
+        margin-top: 1.0%;
+        padding: 1.0%; 
+        border: thin solid silver; 
+        width: 100.0%; 
+      }
+    </STYLE>
+  <TITLE>Page Compilation</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B"
+    ALINK="#FF0000">
+   <div class="icons-w3c">
+      <a href="../../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+    <div class="title">
+      <h1 class="title">
+	Page Compilation in Jigsaw.
+      </h1>
+      <hr NOSHADE width="70%" align="left">
+      <a href="../../../Overview.html">Jigsaw Home</a> /
+      <a href="../../Overview.html">Documentation Overview</a> /
+      <a href="Overview.html">Page Compilation Overview</a>
+    </div>
+    <div class="body">
+<p>
+<UL>
+  <LI>
+    <A HREF="#writing">Writing your first page</A>
+  <LI>
+    <A HREF="#post">Handling the POST method</A>
+  <LI>
+    <A HREF="#debug">Debugging</A>
+</UL>
+<H1>
+  <A NAME="writing"></A>Writing your first page
+</H1>
+<P>
+Please notice that what is discussed below is not part of any
+<A HREF="http://www.w3.org/">W3C</A> specification! It is server-side only.
+<P>
+First, choose a place to put your page, for example
+<TT>&lt;instdir&gt;/Jigsaw/Jigsaw/WWW/MyPage.jhtml</TT>.
+<P>
+Then put the following in MyPage.jhtml.
+<DIV CLASS="box">
+  <PRE>&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;My Page&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My Page&lt;/h1&gt;
+
+    <B>&lt;java&gt;</B>
+      int age = 42;
+    <B>&lt;/java&gt;</B>
+<B></B>
+    &lt;h2&gt;A Print&lt;/h2&gt;
+    <B>&lt;java&gt;</B> 
+      out.println ("age : "+age);
+    <B>&lt;/java&gt;</B>
+    
+    &lt;h2&gt;Another Print&lt;/h2&gt;
+    age : <B>&lt;java type=print&gt;</B>age<B>&lt;/java&gt;</B>
+    
+    &lt;h2&gt;A Test&lt;/h2&gt;
+    <B>&lt;java&gt;</B>
+      if (age &gt; 100) {
+      out.println("more than 100");
+      } else {
+      out.println("less than 100");
+      }
+    <B>&lt;/java&gt;</B>
+    
+    &lt;h2&gt;Another Test&lt;/h2&gt;
+    <B>&lt;java&gt;</B> if (age &gt; 100) {<B>&lt;/java&gt;</B>
+    more than 100
+    <B>&lt;java&gt;</B> } else { <B>&lt;/java&gt;</B>
+    less than 100
+    <B>&lt;java&gt;</B> } <B>&lt;/java&gt;</B>
+    
+    &lt;h2&gt;A Loop&lt;/h2&gt;
+    <B>&lt;java&gt;</B>
+      for (int i = 0; i &lt; 80; i++) {
+      out.println("*");
+      }
+    <B>&lt;/java&gt;</B>
+    
+    &lt;h2&gt;Another Loop&lt;/h2&gt;
+    <B>&lt;java&gt;</B>for (int i = 0; i &lt; 80; i++) {<B>&lt;/java&gt;</B>
+    *
+    <B>&lt;java&gt;</B>}<B>&lt;/java&gt;</B>
+    
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+</DIV>
+<P>
+The first time you will access this page, the PageCompileFrame will generate
+a Frame. By default the frame generated extends
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/GeneratedFrame.html">GeneratedFrame</A>,
+but it can be a subclass of GeneratedFrame, see the documentation for
+<TT><A HREF="reference.html">&lt;java type=extends&gt;</A></TT>. The source
+code of this frame will looks like:<p>
+<DIV CLASS="box">
+  <PRE>
+
+public class MyPage extends org.w3c.jigsaw.pagecompile.GeneratedFrame  {
+
+    protected void get(<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Request.html">org.w3c.jigsaw.http.Request</A> request, 
+                       <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Reply.html">org.w3c.jigsaw.http.Reply</A> reply, 
+                       <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/PageCompileOutputStream.html">org.w3c.jigsaw.pagecompile.PageCompileOutputStream</A> out)
+        throws java.io.IOException
+    {
+        org.w3c.jigsaw.pagecompile.PageCompileFile _file = 
+            new org.w3c.jigsaw.pagecompile.PageCompileFile("/0/w3c/bmahe/Jigsaw/Jigsaw2/WWW/MyPage.jhtml");
+        _file.writeBytes(0,79,out);
+
+        int age = 42;
+
+        _file.writeBytes(118,144,out);
+        out.println ("age : "+age);
+
+        _file.writeBytes(198,240,out);
+        out.println(String.valueOf(age));
+
+        _file.writeBytes(268,297,out);
+
+        if (age &gt; 100) {
+            out.println("more than 100");
+        } else {
+            out.println("less than 100");
+        }
+
+        _file.writeBytes(434,469,out);
+
+        if (age &gt; 100) {
+            _file.writeBytes(500,522,out);
+        } else {
+            _file.writeBytes(546,568,out);
+        }   
+
+        _file.writeBytes(585,614,out);
+
+        for (int i = 0; i &lt; 80; i++) {
+            out.println("*");
+        }
+
+        _file.writeBytes(702,737,out);
+
+        for (int i = 0; i &lt; 80; i++) {       
+            _file.writeBytes(781,791,out);
+        }   
+
+        _file.writeBytes(806,830,out);
+    }
+}
+</PRE>
+</DIV>
+<P>
+And the page displayed on your browser will looks like:
+<DIV CLASS="boxnat">
+  <H1>
+    My Page
+  </H1>
+  <H1>
+    A Print
+  </H1>
+  <P>
+  age : 42
+  <H1>
+    Another Print
+  </H1>
+  <P>
+  age : 42
+  <H1>
+    A Test
+  </H1>
+  <P>
+  less than 100
+  <H1>
+    Another Test
+  </H1>
+  <P>
+  less than 100
+  <H1>
+    A Loop
+  </H1>
+  <P>
+  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * * * * * *
+  <H1>
+    Another Loop
+  </H1>
+  <P>
+  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * * * * * *
+</DIV>
+<H1>
+  <A NAME="post"></A>Handling the POST method
+</H1>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/GeneratedFrame.html">GeneratedFrame</A>
+inherits from
+<A HREF="../../Reference/org.w3c.jigsaw.frames.PostableFrame.html">PostableFrame</A>,
+so it's really easy to handle the <TT>POST</TT> method with Page Compilation.
+The following example get the user name from the client and display it. Actually,
+you just need to override the
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/GeneratedFrame.html#post(org.w3c.jigsaw.http.Request, org.w3c.jigsaw.forms.URLDecoder, org.w3c.jigsaw.pagecompile.PageCompileOutputStream)">post</A>
+method of GeneratedFrame. If you want <TT>GET</TT> requests with query string
+to be converted in <TT>POST</TT> requests, override the method getConvertGetFlag
+like in the example.
+<DIV CLASS="box">
+  <PRE>&lt;html&gt;
+  <B>&lt;java type=import&gt;</B>
+    import java.io.IOException;
+
+    import org.w3c.jigsaw.http.*;
+    import org.w3c.jigsaw.pagecompile.*;
+    import org.w3c.jigsaw.forms.URLDecoder;
+  <B>&lt;/java&gt;</B>
+  <B>&lt;java type=class&gt;</B>
+    protected String NAME_P = "name";
+    
+    //Get the 'convert GET to POST' flag.
+    public boolean getConvertGetFlag() {
+        return true;
+    }
+
+    //handle the post method:
+    public void post (<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Request.html">Request</A> request,
+                      <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Reply.html">Reply</A> reply,
+                      <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/forms/URLDecoder.html">URLDecoder</A> data,
+                      <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/PageCompileOutputStream.html">PageCompileOutputStream</A> out)
+        throws IOException 
+    {
+        String name = data.getValue(NAME_P);
+        out.println("&lt;h1&gt;Your Name:&lt;/h1&gt;");
+        out.println(name);
+    }
+  <B>&lt;/java&gt;</B>
+  &lt;head&gt;
+    &lt;title&gt;Post test&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Post test&lt;/h1&gt;
+    Enter your name:
+    &lt;form method="POST"&gt;
+      &lt;input type="text" name="<B>&lt;java type=print&gt;</B>NAME_P<B>&lt;/java&gt;</B>"&gt;
+      &lt;input type="submit"&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+</DIV>
+<P>
+So, the generated java file will looks like:
+<DIV CLASS="box">
+  <PRE>package pagecompile;
+
+import java.io.IOException;
+
+import org.w3c.jigsaw.pagecompile.*;
+import org.w3c.jigsaw.http.*;
+import org.w3c.jigsaw.forms.URLDecoder;
+
+public class post extends org.w3c.jigsaw.pagecompile.GeneratedFrame  {
+
+
+    protected String NAME_P = "name";
+    
+    //Get the 'convert GET to POST' flag.
+    public boolean getConvertGetFlag() {
+        return true;
+    }
+
+    //handle the post method:
+    public void post (<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Request.html">Request</A> request,
+                      <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Reply.html">Reply</A> reply,
+                      <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/forms/URLDecoder.html">URLDecoder</A> data,
+                      <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/PageCompileOutputStream.html">PageCompileOutputStream</A> out)
+        throws IOException 
+    {
+        String name = data.getValue(NAME_P);
+        out.println("&lt;h1&gt;Your Name:&lt;/h1&gt;");
+        out.println(name);
+    }
+
+
+    protected void get(<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Request.html">org.w3c.jigsaw.http.Request</A> request, 
+                       <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/http/Reply.html">org.w3c.jigsaw.http.Reply</A> reply, 
+                       <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/PageCompileOutputStream.html">org.w3c.jigsaw.pagecompile.PageCompileOutputStream</A> out)
+        throws java.io.IOException
+    {
+        org.w3c.jigsaw.pagecompile.PageCompileFile _file = 
+            new org.w3c.jigsaw.pagecompile.PageCompileFile("/0/w3c/bmahe/Jigsaw/Jigsaw2/WWW/pagecompile/post.jhtml");
+        _file.writeBytes(0,6,out);
+        _file.writeBytes(73,73,out);
+        _file.writeBytes(507,634,out);
+        out.print(String.valueOf(NAME_P));
+        _file.writeBytes(665,715,out);
+    }
+}
+</PRE>
+</DIV>
+<P>
+And the page displayed on your browser will looks like:
+<P>
+<IMG SRC="post.gif" HSPACE=10 VSPACE=10 BORDER=1 HEIGHT=146 WIDTH=304 alt="page">
+<P>
+After a click on "Submit Query":
+<P>
+<IMG SRC="posted.gif" HSPACE=10 VSPACE=10 BORDER=1 HEIGHT=120 WIDTH=249 alt="submit">
+<P>
+NOTE: If you don't override the <TT>post</TT> method, the generated frame
+will return a "<TT>Method POST not allowed</TT>" reply on every <TT>POST</TT>
+request.
+<H1>
+  <A NAME="debug"></A>Debugging
+</H1>
+<P>
+The generated java file could be incorrect, for example the following examples
+emit a <B>compilation error</B> (missing '}').
+<DIV CLASS="box">
+  <PRE>&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Compilation Error&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Compilation error&lt;/h1&gt;
+
+    &lt;h2&gt;A Loop&lt;/h2&gt;
+    <B>&lt;java&gt;</B>
+      for (int i = 0; i &lt; 80; i++) {
+      out.println("*");
+    <B>&lt;/java&gt;</B>
+    
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+</DIV>
+<P>
+Then Jigsaw will send the following reply to your browser when you will try
+to access your page.
+<DIV CLASS="boxnat">
+  <PRE>/0/w3c/bmahe/Jigsaw/Jigsaw2/compiledPages/CompileError.java:16: '}' expected.
+}
+ ^
+1 error
+</PRE>
+</DIV>
+<P>
+Your generated page could also produce some <B>runtime errors</B>, for example
+the following page will produce a ArrayIndexOutOfBoundsException:
+<DIV CLASS="box">
+  <PRE>&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Runtime Error&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Runtime error&lt;/h1&gt;
+
+    <B>&lt;java&gt;</B>
+      int tab[] = {1,2,3,4,5};
+    <B>&lt;/java&gt;</B>
+<B></B>
+    &lt;h2&gt;A Loop&lt;/h2&gt;
+    <B>&lt;java&gt;</B>
+      for (int i = 0; i &lt; 6; i++) {
+        out.print(tab[i]);
+      }
+    <B>&lt;/java&gt;</B>
+    
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+</DIV>
+<P>
+And the reply sent will be:
+<DIV CLASS="boxnat">
+  <PRE>The generated frame at
+
+http://ender.w3.org/RuntimeError.jhtml
+
+reported this exception : 
+
+5
+
+Stack trace : 
+
+java.lang.ArrayIndexOutOfBoundsException: 5
+        at RuntimeError.get(RuntimeError.java:16)
+        at org.w3c.jigsaw.pagecompile.GeneratedFrame.get(GeneratedFrame.java:34)
+        at org.w3c.jigsaw.frames.HTTPFrame.perform(HTTPFrame.java:1281)
+        at org.w3c.tools.resources.FramedResource.performFrames(FramedResource.java:581)
+        at org.w3c.jigsaw.frames.HTTPFrame.performFrames(HTTPFrame.java:1256)
+        at org.w3c.tools.resources.FramedResource.perform(FramedResource.java:599)
+        at org.w3c.tools.resources.ResourceFrame.perform(ResourceFrame.java:108)
+        at org.w3c.jigsaw.frames.HTTPFrame.perform(HTTPFrame.java:1269)
+        at org.w3c.jigsaw.pagecompile.PageCompileFrame.perform(PageCompileFrame.java:662)
+        at org.w3c.jigsaw.http.httpd.perform(httpd.java:1538)
+        at org.w3c.jigsaw.http.Client.processRequest(Client.java:384)
+        at org.w3c.jigsaw.http.Client.startConnection(Client.java:459)
+        at org.w3c.jigsaw.http.socket.SocketClient.run(SocketClient.java:114)
+        at org.w3c.util.CachedThread.run(ThreadCache.java:86)
+</PRE>
+</DIV>
+<P>
+Reading the generated java file will help you to find where the error is
+in the original HTML/Java file. This file is located in the
+<A HREF="configuration.html#properties">Compiled Pages Directory</A> (on
+any subdirectory). The generated java file could be in a package, for example
+if the URL of your HTML/Java file is <TT>/pagecompile/test/Page.jhtml </TT>the
+package is <TT>pagecompile.test</TT> and the class name is <TT>Page</TT>.
+So the generated java file is <TT>&lt;Compiled Pages
+Directory&gt;/pagecompile/test/Page.java</TT> .
+    </div> <!-- body -->
+    <div class="footer">
+<P>
+  <HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: writing.html,v 1.1 2010/06/15 12:20:00 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+    </div>
+</BODY></HTML>

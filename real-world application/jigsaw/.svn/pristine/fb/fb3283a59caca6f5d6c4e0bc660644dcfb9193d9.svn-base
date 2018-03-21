@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jigxml version="1.0" xmlns="http://jigsaw.w3.org/JigXML/JigXML1.0">
+ <resource class='org.w3c.tools.resources.store.NewStoreEntry'>
+  <attribute name='repository' flag='4' class='org.w3c.tools.resources.StringAttribute'>root.xml</attribute>
+  <attribute name='key' flag='4' class='org.w3c.tools.resources.IntegerAttribute'>3506402</attribute>
+ </resource>
+ <resource class='org.w3c.tools.resources.store.NewStoreEntry'>
+  <attribute name='repository' flag='4' class='org.w3c.tools.resources.StringAttribute'>0/st-0</attribute>
+  <attribute name='key' flag='4' class='org.w3c.tools.resources.IntegerAttribute'>577542982</attribute>
+ </resource>
+</jigxml>

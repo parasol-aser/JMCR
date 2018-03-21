@@ -1,0 +1,182 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <TITLE>The CgiResource reference guide</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  CgiResource
+</H1>
+<P>
+This resource class runs CGI scripts, conforming to the
+<A HREF="http://www.ast.cam.ac.uk/~drtr/cgi-spec.html">CGI/1.1
+specification</A>. You can use it as an extension template, to get automatic
+indexing of your CGI scripts, based on their extension.
+<P>
+It also has a special <A HREF="#interpreter">interpreter</A> attribute that
+makes running scripts on Windows easy to configure, and somwhow more efficient
+then you could expect.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.forms.CgiResource.html">CgiResource</A> class
+inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The CgiResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#command">command</A>
+  <LI>
+    <A HREF="#interpreter">interpreter</A>
+  <LI>
+    <A HREF="#noheader">noheader</A>
+  <LI>
+    <A HREF="#generates-form">generates-form</A>
+  <LI>
+    <A HREF="#cgi-debug">cgi-debug</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="command">command</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The command to launch in order to run the CGI script. This should provide
+    the full pat hto the executable script. Each entry of the (String) array
+    gives is passed as an extra argument to the script, the first one being (by
+    convention) the full script's path.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.StringArrayAttribute.html">StringArrayAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to the full file name of the resource.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="interpreter">interpreter</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Some operating systems don't support the nice UNIX feature <CODE>!#</CODE>
+    that allows<CODE> </CODE>UNIX to launch the appropriate interpreter for the
+    appropriate script. This attribute allows the CgiResource to be configured
+    to use a certain interpreter to interpret the script pointed to by the
+    <A HREF="#command">command</A> attribute.<BR>
+    By using this attribute in the predefined extensions, you can state that
+    on Windows boxes, all <CODE>.pl</CODE> files are to be exported by the
+    CgiResource, with default interpreter <CODE>/Perl/bin/perl.exe</CODE>. This
+    will allow you to automatically index cgi scripts.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="noheader">noheader</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Will the script emits its one headers, or should <B>Jigsaw</B> emit them.
+    Classical CGI scripts will usually not emit any headers, so it is up to their
+    hosting server to emit them. However, in some situation (server push, for
+    example), the&nbsp;script might prefer to emit its own set of headers. <BR>
+    When this flag is set to <B>true</B> it is up to the script to emit the headers,
+    otherwise, the server will do it.&nbsp;
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="generates-form">generates-form</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the script be used to generate the form to be filled-in ? This resource
+    allows you to put your form in a file (since it inherits from the
+    <A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A>), instead
+    of having to launch the script to generate it. For compatibilty, this flags
+    is turned to <B>false</B> by default, although, the second alternative (having
+    the form in a separate file) will probably be much (much) more efficient.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<A NAME="cgi-debug">cgi-debug</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Turns debug on for that script. This nifty feature allow you to debug your
+    script, by emitting a document containing the script output, instead of letting
+    the script generates the document. The returned document will be of content
+    type <STRONG>text/plain</STRONG>.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.forms.CgiResource.html,v 1.1 1996/04/29 23:36:22 abaird Exp
+$</I>
+</BODY></HTML>
