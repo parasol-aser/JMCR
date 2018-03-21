@@ -1,0 +1,43 @@
+package driver;
+
+public class JigsawDriver2 
+{
+	public static void main(final String[] args)
+	{
+		long time_start = System.currentTimeMillis();
+		final String[] arg =args;
+		try{
+		Thread t1 = new Thread()
+		{
+			public void run()
+			{
+				org.w3c.jigsaw.Main.main(new String[0]);
+			}
+		};
+		Thread t2 = new Thread()
+		{
+			public void run()
+			{
+				JigsawHarnessPretex.main(args);
+			}
+		};
+		
+		t1.start();
+		
+		
+		
+		
+		t2.start();
+		//Thread.sleep(60000);
+		
+		t1.join();
+		t2.join();
+		System.out.println(System.currentTimeMillis()-time_start);
+
+		System.exit(0);
+	}catch(Exception e)
+	{
+		
+	}
+	}
+}

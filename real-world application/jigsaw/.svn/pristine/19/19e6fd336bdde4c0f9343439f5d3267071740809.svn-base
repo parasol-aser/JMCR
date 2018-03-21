@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css">
+  <title>Jigsaw installation procedure</title>
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+
+<body>
+
+<div class="icons-w3c">
+<a href="../../../"><img src="/Icons/w3c_home" border="0" alt="W3C logo"
+height="48" width="72"></a></div>
+
+<div class="icons-jigsaw">
+<a href="../../"><img src="/Icons/jigsaw" border="0" alt="Jigsaw" height="49"
+width="212"></a></div>
+
+<div class="title">
+<h1 class="title">Jigsaw<br>
+<span class="subtitle">Installation Procedure</span></h1>
+<hr noshade="noshade" width="70%" align="left">
+<a href="../../Overview.html">Jigsaw Home</a> / <a
+href="../Overview.html">Documentation Overview</a></div>
+
+<div class="body">
+<h1>Prerequisite:</h1>
+
+<p>Before reading further make sure:</p>
+<ul>
+  <li>That you have downloaded the latest <b>Jigsaw</b> distribution (2.0.5,
+    or 2.1.1 for the experimental version)</li>
+  <li>That you have downloaded any implementation of <b>Java</b> for your
+    platform (JDK1.1.x or JDK1.2, for Jigsaw 2.1.0 and up, jdk1.2 is
+    mandatory. Jdk1.2 is also needed to use the <a href="JigAdmin/">fancy
+    administration</a> interface)</li>
+  <li>If you're using the zip distribution, make sure it's at least version
+    6.x</li>
+</ul>
+
+<p>This document describes how to install <b>Jigsaw</b>. As an example, we are
+assuming that you are running either on Windows (be it 95 or NT) or on UNIX,
+even though <b>Jigsaw</b> will (should ?) run on <i>any</i> platform that
+supports <b>Java</b>.</p>
+
+<p>The installation process involves the following steps:</p>
+<ul>
+  <li><a href="#unpack">Unpack the distribution file</a></li>
+  <li><a href="#env">Set up some environment variables</a></li>
+  <li><a href="#install">Build the right property files</a></li>
+  <li><a href="#run">Run <b>Jigsaw</b></a></li>
+</ul>
+
+<h1><a name="unpack"></a>Unpacking the distribution file</h1>
+
+<p>Pick a place to unpack the distribution: we'll call this directory the
+<i>installation directory</i> (abreviated as <i>INSTDIR</i>). This can be any
+directory, you just have to change your current working directory to it:</p>
+
+<div class="box">
+<pre>UNIX : cd <i>INSTDIR</i>
+<i></i>
+Windows : cd <i>INSTDIR</i></pre>
+</div>
+
+<p>Now unpack the file:</p>
+
+<div class="box">
+<pre>UNIX : cat jigsaw.tar.gz | gzip -d | tar xomvf -
+
+Windows : unzip jigsaw.zip</pre>
+</div>
+
+<p>This will create a number of directories under the <b>Jigsaw</b>
+directory:</p>
+<dl>
+  <dt><tt>Jigsaw/src</tt></dt>
+    <dd>Contains <b>Jigsaw</b> sources.</dd>
+  <dt><tt>Jigsaw/classes</tt></dt>
+    <dd>Contains the pre-compiled classes.</dd>
+  <dt><tt>Jigsaw/lib</tt></dt>
+    <dd>Contains some native code support for solaris.</dd>
+  <dt><tt>Jigsaw/Jigsaw</tt></dt>
+    <dd>Is a sample root directory to run the server in. This directory in
+      turns contain the following sub-directories:
+      <dl>
+        <dt><tt>Jigsaw/Jigsaw/config</tt></dt>
+          <dd>Is the configuration directory for the server</dd>
+        <dt><tt>Jigsaw/Jigsaw/configadm</tt></dt>
+          <dd>Is the configuration directory for the administration
+          server.</dd>
+        <dt><tt>Jigsaw/Jigsaw/logs</tt></dt>
+          <dd>Is the normal directory for log files</dd>
+        <dt><tt>Jigsaw/Jigsaw/bin</tt></dt>
+          <dd>Contains some shell scripts to help you start
+          <b>Jigsaw</b>.</dd>
+        <dt><tt>Jigsaw/Jigsaw/cache</tt></dt>
+          <dd>The directory to use for caching when using <b>Jigsaw</b> as a
+            caching proxy.</dd>
+        <dt><tt>Jigsaw/Jigsaw/WWW</tt></dt>
+          <dd>Is your exported file space</dd>
+      </dl>
+    </dd>
+</dl>
+
+<p>You are now ready for the next section, which explains how to setup your
+environment.</p>
+
+<h1><a name="env"></a>Setting up your environment</h1>
+
+<p>As <b>Jigsaw</b> is just a set of Java classes, you need to specify to the
+Java interpreter the place where <b>Jigsaw</b> classes are stored. This is
+usually done by setting some CLASSPATH environment variable. This is simply
+done by the following command for <strong>2.1.0 </strong>and up:</p>
+
+<div class="box">
+<pre> UNIX
+            # This depends on the shell you are using, we're assuming <tt>/bin/sh</tt>
+            CLASSPATH=<i>INSTDIR</i>/Jigsaw/classes/jigsaw.jar:<i>INSTDIR</i>/Jigsaw/classes/sax.jar:<i>INSTDIR</i>/Jigsaw/classes/xp.jar:.
+            export CLASSPATH
+
+
+ Windows
+            set CLASSPATH=<i>INSTDIR</i>\Jigsaw\classes\jigsaw.jar;<i>INSTDIR</i>\Jigsaw\classes\sax.jar;<i>INSTDIR</i>\Jigsaw\classes\xp.jar;.</pre>
+</div>
+
+<p>And this one for version up to <strong>2.0.x</strong>:</p>
+
+<div class="box">
+<pre> UNIX
+            # This depends on the shell you are using, we're assuming <tt>/bin/sh</tt>
+            CLASSPATH=<i>INSTDIR</i>/Jigsaw/classes/jigsaw.zip:INSTDIR/Jigsaw/classes/servlet.jar.
+            export CLASSPATH
+
+
+ Windows
+            set CLASSPATH=<i>INSTDIR</i>\Jigsaw\classes\jigsaw.zip;INSTDIR\Jigsaw\classes\servletjar.</pre>
+</div>
+
+<p>Don't forget to change <i>INSTDIR</i> with the absolute path of the place
+you have unpacked the distribution. You should now be ready to run
+<b>Jigsaw</b>.</p>
+
+<p><b>Warning</b>: on some Windows Java implementation, prefixing the
+CLASSPATH with the disk drive letter may cause some confusion. If java
+complains about not being able to find some class, you may want to remove the
+disk drive letter from the CLASSPATH. Note also that if you are adding this
+line in a batch file, you must escape the '\' the line will be: <tt>set
+CLASSPATH=<i>INSTDIR</i>\\Jigsaw\\classes\\jigsaw.zip</tt></p>
+
+<h1><a name="install"></a>Build the right property files</h1>
+
+<p>Be careful to have the right CLASSPATH (see above):</p>
+
+<div class="box">
+<pre> UNIX 
+         cd <i>INSTDIR</i>/Jigsaw/Jigsaw
+         java Install
+
+
+ Windows  
+         cd <i>INSTDIR</i>\Jigsaw\Jigsaw
+         java Install</pre>
+</div>
+
+<h1><a name="run"></a>Running <b>Jigsaw</b></h1>
+
+<p>You are now all set to run <b>Jigsaw</b>. Just type in the following
+command:</p>
+
+<div class="box">
+<pre> UNIX  
+         cd <i>INSTDIR</i>/Jigsaw/Jigsaw
+         java org.w3c.jigsaw.Main -host<i> host</i> -root <i>INSTDIR</i>/Jigsaw/Jigsaw
+
+Windows  
+         cd <i>INSTDIR</i>\Jigsaw\Jigsaw
+         java org.w3c.jigsaw.Main -host <i>host</i> -root <i>INSTDIR\</i>Jigsaw\Jigsaw</pre>
+</div>
+
+<p>Don't forget to susbstitute to <i>INSTDIR</i> the absolute path of the
+location where you have unpacked the distribution file, and to <i>host</i> the
+full IP hostname of the machine running <b>Jigsaw</b>.</p>
+
+<p><b>Jigsaw</b> should be running, and will probably have emited a message
+like:</p>
+
+<div class="box">
+<pre>jigsaw Sample/Jigsaw> java org.w3c.jigsaw.Main
+loading properties from: /auto/tarantula/u/tarantula/0/w3c/ylafon/Sample/Jigsaw/config/server.props
+Jigsaw[2.0beta1]: serving at http://jigsaw.inria.fr:8007/
+*** Warning : no logger specified, not logging.
+JigAdmin[2.0beta1]: serving at http://jigsaw.inria.fr:8009/</pre>
+</div>
+</div>
+<!-- body -->
+
+<div class="footer">
+<p></p>
+<hr noshade="noshade">
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+<span class="mini"> $Id: installation.html,v 1.31 2000/03/10 16:42:30 bmahe
+Exp $ </span>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> © 1999 <a
+href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>, <a
+href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability, </a> <a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html"> document use </a> and <a
+href="/Consortium/Legal/copyright-software.html"> software licensing </a>
+rules apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public"> public </a> and <a
+href="/Consortium/Legal/privacy-statement.html#Members"> Member </a> privacy
+statements.</font></p>
+</div>
+</body>
+</html>

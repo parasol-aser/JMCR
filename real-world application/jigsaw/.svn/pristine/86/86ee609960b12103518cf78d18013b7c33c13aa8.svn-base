@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+  <TITLE>The AuthFilter reference manual</TITLE>
+  <LINK HREF="jigsaw@w3.org" REL="made">
+</HEAD>
+<BODY>
+<P>
+<A HREF="../../.." TARGET="_top_"><IMG SRC="../../../Icons//WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48">
+</A><A HREF="../../" TARGET="_top_">
+<IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw"BORDER="0"></A>
+  <hr noshade size="1">
+<A HREF="resources.html">All resources</A> <A HREF="frames.html">All frames
+</A> 
+  <hr noshade size="1">
+<H1>
+  AuthFilter
+</H1>
+<P>
+A filter that implements authentication. Currently this filter handles only
+Basic Authentication, as defined by the HTTP/1.1 specification. 
+<P>
+  <hr noshade size="1">
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/auth/AuthFilter.html">AuthFilter</A>
+class inerits from the following classes:
+<UL>
+  <LI>
+    <A HREF="org.w3c.tools.resources.Resource.html">Resource</A>
+  <LI>
+    <A HREF="org.w3c.tools.resources.FramedResource.html">FramedResource</A>
+  <LI>
+    <A HREF="org.w3c.tools.resources.ResourceFrame.html">ResourceFrame</A>
+  <LI>
+    <A HREF="org.w3c.tools.resources.ResourceFilter.html">ResourceFilter</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<H2>
+  Attributes description
+</H2>
+<P>
+The AuthFilter defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#methods">methods</A>
+  <LI>
+    <A HREF="#realm">realm</A>
+  <LI>
+    <A HREF="#shared-cachability">shared-cachability</A>
+  <LI>
+    <A HREF="#private-cachability">private-cachability</A>
+  <LI>
+    <A HREF="#public-cachability">public-cachability</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="methods">methods</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The set of methods to protect against. When undefined, the filter will protected
+    all HTTP method, otherwise it will just protect against the given set of
+    methods. Each method is given by its name (in upper case). 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>null</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="realm">realm</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The realm (a.k.a. database) to use to obtain user information. Jigsaw manages
+    a catalog of realms, allowing you to define as many of them as needed. This
+    attribute is a realm identifier, i.e it is the symbolic name under which
+    the realm catalog knows about it. When undefined, the filter will not run
+    any authentication code. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>null</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="shared-cachability">shared-cachability</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When this flag is set to true, the authentication filter will decorate replies
+    on the way back, marking the reply as being cachable by proxies only if the
+    proxy is willing to revalidate it. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="private-cachability">private-cachability</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When this flag is set to true, it overrides all other settings, and mark
+    the reply on its way back as being cachable by any cache (a private or shared
+    cache) prvided that cache revalidates it on each access. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="public-cachability">public-cachability</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    When set to true, the filter will mark all outgoing replies it catches as
+    being cachable, witouht even requiring revalidation. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+<P>
+  <hr noshade size="1">
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: org.w3c.jigsaw.auth.AuthFilter.html,v 1.3 1998/03/27 08:14:58 bmahe
+Exp $</I>
+</BODY></HTML>

@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+   <TITLE>Template for administration documentation of resources</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<!-- Created by GNNpress --><!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 --><A HREF="/" TARGET="_top_"><IMG SRC="/Icons/WWW/w3c_home.gif" ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72></A>&nbsp;<A HREF="../../../Jigsaw" TARGET="_top_"><IMG SRC="../../../Icons/jigsaw" ALT="Jigsaw" BORDER=0 ></A>
+<hr noshade size="1"><A HREF="resources.html">All Resources</A> <A HREF="frames.html">All
+frames</A>
+<hr noshade size="1">
+<H1>
+HttpManager</H1>
+The HttpManager is the class that handles HTTP requests, and gets back
+HTTP replies. It a highly configurable engine, both by extending it in
+Java, and by a rich set of supported properties.
+
+<P>
+<hr noshade size="1">
+<H2>
+Properties</H2>
+The HttpManager uses the following properties (when defined):
+<UL>
+<LI>
+<A HREF="#w3c.www.protocol.http.filters">org.w3c.www.protocol.http.filters</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cacheControl.maxStale">org.w3c.www.protocol.http.cacheControl.maxStale</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cacheControl.minFresh">org.w3c.www.protocol.http.cacheControl.minFresh</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.cacheControl.onlyIfCached">org.w3c.www.protocol.http.cacheControl.onlyIfCached</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.userAgent">org.w3c.www.protocol.http.userAgent</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.accept">org.w3c.www.protocol.http.accept</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.acceptLanguage">org.w3c.www.protocol.http.acceptLanguage</A></LI>
+
+<LI>
+<A HREF="#w3c.www.protocol.http.acceptEncoding">org.w3c.www.protocol.http.acceptEncoding</A></LI>
+
+<LI>
+<A HREF="#proxySet">proxySet</A></LI>
+
+<LI>
+<A HREF="#proxyHost">proxyHost</A></LI>
+
+<LI>
+<A HREF="#proxyPort">proxyPort</A></LI>
+</UL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.filters"></A><TT>org.w3c.www.protocol.http.filters</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+List the filters to apply globally to all requests. The <B>Jigsaw</B> HTTP
+client API comes with the notion of filters. Filters can be registered
+either globally (as is the case when you use this property), or locally
+(when using the Java API). <I>Local </I>filters are filters that are applied
+only to a given sub-domain of URLs. To understand the difference between
+global and local filters, consider the case of authentication.
+
+<BR>Authentication is handled by a global filter, that will intercept any
+reply requiring credential information. When such a reply is intercepted,
+the global AuthFilter&nbsp; prompts the user for a user name and password.
+It then retries the request and if it succeed, it installs a local filter
+on the sub-domain of protected URLs.
+<BR>The currently available filters are:
+<DL>
+<DT>
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/www/protocol/http/DebugFilter.html">org.w3c.www.protocol.http.DebugFilter</A></DT>
+
+<DD>
+Will print all outgoing requests to the standard output, along with all
+incoming replies. Very useful for debugging, as the name says.</DD>
+
+<DT>
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/www/protocol/http/cookies/CookieFilter.html">org.w3c.www.protocol.http.cookies.CookieFilter</A></DT>
+
+<DD>
+The cookie filter. This filter manage cookies, search and send cookies
+relative to each url requested.</DD>
+
+<DT>
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/www/protocol/http/cache/CacheFilter.html">org.w3c.www.protocol.http.cache.CacheFilter</A></DT>
+
+<DD>
+A full caching module for HTTP. This filter will maintain a cache of least
+recently accessed resources, and will use it to serve requests when possible,
+thus avoiding network access.</DD>
+
+<DT>
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/www/protocol/http/auth/AuthFilter.html">org.w3c.www.protocol.http.auth.AuthFilter</A></DT>
+
+<DD>
+The authentication filter. Handles only Basic authentication for the time
+being, but will soon be improved to handle Digest authentication too.</DD>
+</DL>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value. A typical setting of that property
+looks like:
+
+<BR><TT>org.w3c.www.protocol.http.filters=org.w3c.www.protocol.http.DebugFilter|org.w3c.www.protocol.http.auth.AuthFilter|org.w3c.www.protocol.http.cache.CacheFilter</TT></DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cacheControl.maxStale"></A><TT>org.w3c.www.protocol.http.cacheControl.maxStale</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property controls cache usage. It allows the HTTP client side API
+to advertise the maximum staleness of cached documents it is willing to
+accept. This property should be set to a number of seconds, any cache (either
+local, or proxy) will be able to return stale responses when this property
+is set to a value greater than <B><TT>0</TT></B>.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cacheControl.minFresh"></A><TT>org.w3c.www.protocol.http.cacheControl.minFresh</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property controls cache usage. It indicates to the HTTP client side
+API to advertise a minimum freshness value for cached documents. This property
+should be set to a number of seconds. Any cache (either local or remote)
+will be allowed to use cache entries, only if the document will remain
+fresh for the given number of seconds.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.cacheControl.onlyIfCached"></A><TT>org.w3c.www.protocol.http.cacheControl.onlyIfCached</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property control cache usage. It indicates to the HTTP client side
+API to returns <I>only</I> documents if they are available in the cache.
+This is very useful if you are planning to do some browsing in <I>disconnected</I>
+mode. Note: a nifty thing to do would be to write a robot to fill in the
+cache, and then turn your browser or proxy into disconnected mode by setting
+this property (be sure we will have an HTTP robot available in Java real
+soon ;-)
+
+<BR>This property is boolean: setting the property to any value will enable
+the feature.
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.userAgent"></A><TT>org.w3c.www.protocol.http.userAgent</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property indicates the <TT>User-Agent</TT> header that the HTTP client
+API should advertise.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>Jigsaw/1.0a5</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.accept"></A><TT>org.w3c.www.protocol.http.accept</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property indicates the media types the client is willing to deal with.
+Its value is mapped directly to the <TT>Accept</TT> HTTP header.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property defaults to <B>*/*</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.acceptLanguage"></A><TT>org.w3c.www.protocol.http.acceptLanguage</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property indicates what languages the client is willing to receive.
+Its value is mapped directly to the <TT>Accept-Language</TT> HTTP header.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="w3c.www.protocol.http.acceptEncoding"></A><TT>org.w3c.www.protocol.http.acceptEncoding</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+This property indicates what encodings the client is willing to deal with.
+Its value is mapped directly to the <TT>Accept-Encoding</TT> HTTP header.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="proxySet"></A><TT>proxySet</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+Should the client API set itself in proxy mode. When you set this property,
+you turn the whole client API to use a proxy. See the <TT><A HREF="#proxyHost">proxyHost</A></TT>
+and <TT><A HREF="#proxyPort">proxyPort</A></TT> properties.
+
+<BR>This is a boolean property, setting it to any value will enable the
+feature.
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="proxyHost"></A><TT>proxyHost</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+The host name of the machine running the proxy to connect to for handling
+the HTTP protocol.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property chas no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><A NAME="proxyPort"></A><TT>proxyPort</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+The port number of the HTTP proxy to connect to for handling the HTTP protocol.</DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This property has no default value.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A></I>
+<BR>$Id: w3c.www.protocol.http.HttpManager.html,v 1.1 1996/09/07 23:45:12
+abaird Exp $
+</BODY>
+</HTML>

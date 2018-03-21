@@ -1,0 +1,124 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The FileResource administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  FileResource
+</H1>
+<P>
+The basic resource to serve files. This resource allows you to export files,
+and can be configured to handle the HTTP PUT method.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.resources.FileResource.html">FileResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The FileResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#filename">filename</A>
+  <LI>
+    <A HREF="#putable">putable</A>
+  <LI>
+    <A HREF="#filestamp">filestamp</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="filename">filename</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The optional name of the file to be served by the file resource. By default,
+    the file resource will serve the file's having the resource's name. You can
+    define this attribute in order to change the URL to file mapping. E.g. you
+    can serve the file <CODE>foo.html </CODE>through the name
+    <CODE>oof.html</CODE>, by setting the <CODE>foo.html</CODE> filename attribute
+    to <CODE>off.html</CODE>.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.FilenameAttribute.html">FilenameAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute is undefined by default.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="putable">putable</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the file resource support <B>PUT</B> requets ? When this flag is
+    <B>true</B>, the file resource object will handle appropriately the HTTP
+    <B>PUT</B> method, by overriding the resource's file with the new content.
+    The old content will be saved using the emacs convention (the <B>~</B> files).
+    Care should be taken when turning this feature on: you probably want to use
+    some <A HREF="filters.html">authentication filter</A> to ensure that only
+    authors are allowed to change resources.
+  <DT>
+    <I>type</I>
+  <DD>
+    The attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="filestamp">filestamp</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The time at which the file resource checked that it was in sync with the
+    underlying file.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed, not editable
+    <A HREF="../api/w3c.jigsaw.resources.DateAttribute.html">DateAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribite defaults to <B>-1</B> (which means its undefined).
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.resources.FileResource.html,v 1.2 1996/04/11 20:56:44 abaird
+Exp $</I>
+</BODY></HTML>

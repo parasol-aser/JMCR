@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>DirectoryResource.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// DirectoryResource.java
+// $Id: DirectoryResource.html,v 1.1 2010/06/15 12:20:05 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="type">resources</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.*;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="reference">indexer</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="reference">event</span>.*;
+
+<span class="comment">/**
+ * A simple, and reasonably efficient directory resource.
+ */</span>
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">DirectoryResource</span> <span class="keyword">extends</span> <span class="type">ContainerResource</span> {
+    <span class="comment">/**
+     * Attribute index - The index for our directory attribute.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_DIRECTORY</span> = -1 ;
+    <span class="comment">/**
+     * Attribute index - The last time we physically visited the directory.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_DIRSTAMP</span> = -1 ;
+    <span class="comment">/**
+     * Attribute index - The indexer to use for that directory, if any.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_INDEXER</span> = -1;
+    <span class="comment">/**
+     * Attribute index - The index of wether we are extensible.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_EXTENSIBLE</span> = -1 ;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span>   = <span class="keyword">null</span> ;
+	<span class="type">Class</span>     <span class="variable-name">cls</span> = <span class="keyword">null</span> ;
+	<span class="comment">// Get a pointer to our class.
+</span>	<span class="keyword">try</span> {
+	    cls = Class.forName("<span class="string">org.w3c.tools.resources.DirectoryResource</span>") ;
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace() ;
+	    System.exit(1) ;
+	}
+	<span class="comment">// The directory attribute.
+</span>	a = <span class="keyword">new</span> <span class="type">FileAttribute</span>("<span class="string">directory</span>"
+			      , <span class="keyword">null</span>
+			      , Attribute.COMPUTED|Attribute.DONTSAVE);
+	ATTR_DIRECTORY = AttributeRegistry.registerAttribute(cls, a) ;
+	<span class="comment">// The last time we visited the directory
+</span>	a = <span class="keyword">new</span> <span class="type">DateAttribute</span>("<span class="string">dirstamp</span>"
+			      , <span class="keyword">null</span>
+			      , Attribute.COMPUTED) ;
+	ATTR_DIRSTAMP = AttributeRegistry.registerAttribute(cls, a) ;
+	<span class="comment">// Our indexer name (optional).
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">indexer</span>"
+				, <span class="keyword">null</span>
+				, Attribute.EDITABLE) ;
+	ATTR_INDEXER = AttributeRegistry.registerAttribute(cls, a) ;
+	<span class="comment">// Are we extensible (can we create resources on the fly):
+</span>	a = <span class="keyword">new</span> <span class="type">BooleanAttribute</span>("<span class="string">extensible</span>"
+				 , <span class="reference">Boolean</span>.<span class="type">TRUE</span>
+				 , Attribute.EDITABLE) ;
+	ATTR_EXTENSIBLE = AttributeRegistry.registerAttribute(cls, a) ;
+    }
+
+    <span class="comment">/**
+     * Get the indexer out of the given context.
+     * </span><span class="keyword">@return </span><span class="comment">A ResourceIndexer instance, guaranteeed not to be &lt;strong&gt;
+     * null&lt;/strong&gt;.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">ResourceReference</span> <span class="function-name">getIndexer</span>(<span class="type">ResourceContext</span> <span class="variable-name">c</span>) {
+	<span class="type">IndexerModule</span>   <span class="variable-name">m</span> = (<span class="type">IndexerModule</span>) c.getModule(IndexerModule.NAME);
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = m.getIndexer(c);
+	<span class="keyword">return</span> rr;
+    }
+  
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">setValue</span>(<span class="type">int</span> <span class="variable-name">idx</span>, <span class="type">Object</span> <span class="variable-name">value</span>) {
+	<span class="reference">super</span>.setValue(idx, value);
+	<span class="keyword">if</span> ( idx == ATTR_INDEXER ) {
+	    <span class="type">String</span> <span class="variable-name">indexer</span> = getString(ATTR_INDEXER, <span class="keyword">null</span>);	    
+	    <span class="keyword">if</span> ( indexer != <span class="keyword">null</span> ) {
+		<span class="type">ResourceContext</span> <span class="variable-name">c</span> = <span class="keyword">null</span>;
+		<span class="type">IndexerModule</span>   <span class="variable-name">m</span> = <span class="keyword">null</span>;
+		c = getContext();
+		m = (<span class="type">IndexerModule</span>) c.getModule(IndexerModule.NAME);
+		m.registerIndexer(c, indexer);
+	    }
+	}
+    }
+  
+    <span class="comment">/**
+     * Get the physical directory exported by this resource.
+     * </span><span class="keyword">@return </span><span class="comment">A non-null File object giving the directory of this resource.
+     */</span>
+  
+    <span class="reference">public</span> <span class="type">File</span> <span class="function-name">getDirectory</span>() {
+	<span class="keyword">return</span> (<span class="type">File</span>) getValue(ATTR_DIRECTORY, <span class="keyword">null</span>) ;
+    }
+
+    <span class="comment">/**
+     * Get the absolute time at which we examined the physicall directory.
+     * </span><span class="keyword">@return </span><span class="comment">The date (as a long number of ms since Java epoch), or
+     * &lt;strong&gt;-1&lt;/strong&gt; if we never examined it before.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">long</span> <span class="function-name">getDirStamp</span>() {
+	<span class="keyword">return</span> getLong(ATTR_DIRSTAMP, -1) ;
+    }
+
+    <span class="comment">/**
+     * Get the extensible flag value.
+     * A DirectoryResource is extensible, if it is allowed to create new
+     * resources out of the file system knowledge on the fly.
+     * &lt;p&gt;Setting this flag might slow down the server. It unfortunatelly
+     * defaults to &lt;strong&gt;true&lt;/strong&gt; until I have a decent admin
+     * program.
+     * </span><span class="keyword">@return </span><span class="comment">A boolean &lt;strong&gt;true&lt;/strong&gt; if the directory is
+     *    extensible.
+     */</span>
+  
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">getExtensibleFlag</span>() {
+	<span class="keyword">return</span> getBoolean(ATTR_EXTENSIBLE, <span class="keyword">true</span>) ;
+    }
+
+    <span class="comment">/**
+     * A resource is about to be removed
+     * This handles the &lt;code&gt;RESOURCE_REMOVED&lt;/code&gt; kind of events.
+     * </span><span class="keyword">@param </span><span class="variable-name">evt</span><span class="comment"> The event describing the change.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">resourceRemoved</span>(<span class="type">StructureChangedEvent</span> <span class="variable-name">evt</span>) {
+	<span class="reference">super</span>.resourceRemoved(evt);
+	markModified();
+    }
+
+
+    <span class="comment">/**
+     * Create a DirectoryResource and the physical directory too.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> the name of the resource.
+     * </span><span class="keyword">@return </span><span class="comment">A ResourceReference instance.
+     */</span>
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">createDirectoryResource</span>(<span class="type">String</span> <span class="variable-name">name</span>) {
+	<span class="comment">// Create an empty file:
+</span>	<span class="type">File</span>    <span class="variable-name">file</span>          = <span class="keyword">new</span> <span class="type">File</span>(getDirectory(), name) ;
+	<span class="type">boolean</span> <span class="variable-name">created</span>       = <span class="keyword">false</span> ;
+	<span class="type">boolean</span> <span class="variable-name">exists_before</span> = <span class="keyword">false</span> ;
+
+	<span class="keyword">try</span> {
+	    <span class="keyword">if</span> (file.exists()) {
+		<span class="keyword">if</span> (! file.isDirectory())
+		    created = <span class="keyword">false</span>;
+		<span class="keyword">else</span>
+		    exists_before = <span class="keyword">true</span>;
+	    } <span class="keyword">else</span> {
+		file.mkdir();
+		created = <span class="keyword">true</span>;
+	    }
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    created = <span class="keyword">false</span>;
+	}
+    
+	<span class="keyword">if</span> (! created)
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = createDefaultResource(name);
+	<span class="keyword">if</span> (rr == <span class="keyword">null</span>) {
+	    <span class="keyword">if</span> (!exists_before)
+		file.delete();
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	}
+
+	<span class="keyword">try</span> {
+	    <span class="type">Resource</span> <span class="variable-name">r</span> = rr.lock();
+	    <span class="keyword">if</span> (! (r <span class="keyword">instanceof</span> <span class="type">DirectoryResource</span>)) {
+		<span class="keyword">try</span> {
+		    r.delete();
+		} <span class="keyword">catch</span> (<span class="type">MultipleLockException</span> <span class="variable-name">ex</span>) {
+		    <span class="comment">//OUCH!
+</span>		    <span class="comment">//manual delete
+</span>		}
+		<span class="keyword">if</span> (!exists_before)
+		    file.delete();
+		<span class="keyword">return</span> <span class="keyword">null</span>;
+	    }
+	} <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+	    <span class="keyword">if</span> (!exists_before)
+		file.delete();
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	} <span class="keyword">finally</span> {
+	    rr.unlock();
+	}
+	<span class="keyword">return</span> rr;
+    }
+
+    <span class="comment">/**
+     * Create a Resource and the physical file too.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> the name of the resource.
+     * </span><span class="keyword">@return </span><span class="comment">A ResourceReference instance.
+     */</span>
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">createResource</span>(<span class="type">String</span> <span class="variable-name">name</span>) {
+	<span class="keyword">return</span> createResource(name, <span class="keyword">null</span>);
+    }
+
+    <span class="comment">/**
+     * Create a Resource and the physical file too.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> the name of the resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">req</span><span class="comment"> the protocol request.
+     * </span><span class="keyword">@return </span><span class="comment">A ResourceReference instance.
+     */</span>
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">createResource</span>(<span class="type">String</span> <span class="variable-name">name</span>, 
+					    <span class="type">RequestInterface</span> <span class="variable-name">req</span>) 
+    {
+	<span class="comment">// Create an empty file:
+</span>	<span class="type">File</span>    <span class="variable-name">file</span>    = <span class="keyword">new</span> <span class="type">File</span>(getDirectory(), name) ;
+	<span class="type">boolean</span> <span class="variable-name">created</span> = <span class="keyword">false</span> ;
+
+	<span class="keyword">if</span> ( ! file.exists() ) {
+	    <span class="keyword">try</span> {
+		(<span class="keyword">new</span> <span class="type">RandomAccessFile</span>(file, "<span class="string">rw</span>")).close() ;
+		created = <span class="keyword">true</span> ;
+	    } <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+		created = <span class="keyword">false</span> ;
+	    }
+	}
+	<span class="keyword">if</span> (! created) 
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = createDefaultResource(name, req);
+	<span class="keyword">if</span> (rr == <span class="keyword">null</span>)
+	    file.delete();
+	<span class="keyword">return</span> rr;
+    }
+
+    <span class="comment">/**
+     * Index a Resource. Call the indexer.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The name of the resource to index.
+     * </span><span class="keyword">@param </span><span class="variable-name">defs</span><span class="comment"> The defaults attributes.
+     * </span><span class="keyword">@return </span><span class="comment">A resource instance.
+     * </span><span class="keyword">@see </span><span class="function-name">org.w3c.tools.resources.indexer.SampleResourceIndexer</span><span class="comment">
+     */</span>
+    <span class="string">private</span> <span class="type">Resource</span> <span class="function-name">index</span>(<span class="type">String</span> <span class="variable-name">name</span>, <span class="type">Hashtable</span> <span class="variable-name">defs</span>) {
+	<span class="keyword">return</span> index(name, defs, <span class="keyword">null</span>);
+    }
+
+    <span class="comment">/**
+     * Index a Resource. Call the indexer.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The name of the resource to index.
+     * </span><span class="keyword">@param </span><span class="variable-name">defs</span><span class="comment"> The defaults attributes.
+     * </span><span class="keyword">@param </span><span class="variable-name">req</span><span class="comment"> The protocol request.
+     * </span><span class="keyword">@return </span><span class="comment">A resource instance.
+     * </span><span class="keyword">@see </span><span class="function-name">org.w3c.tools.resources.indexer.SampleResourceIndexer</span><span class="comment">
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">Resource</span> <span class="function-name">index</span>(<span class="type">String</span> <span class="variable-name">name</span>, 
+			     <span class="type">Hashtable</span> <span class="variable-name">defs</span>, 
+			     <span class="type">RequestInterface</span> <span class="variable-name">req</span>) 
+    {
+	<span class="comment">// Prepare a set of default parameters for the resource:
+</span>	defs.put("<span class="string">identifier</span>", name);
+	updateDefaultChildAttributes(defs);
+	<span class="type">ResourceContext</span> <span class="variable-name">context</span> = getContext();
+	<span class="comment">// Try to get the indexer to create the resource:
+</span>	<span class="type">Resource</span>    <span class="variable-name">resource</span> = <span class="keyword">null</span>;
+	<span class="type">ResourceReference</span> <span class="variable-name">rr_indexer</span>  = <span class="keyword">null</span>;
+	<span class="type">ResourceReference</span> <span class="variable-name">rr_lastidx</span>  = <span class="keyword">null</span>;
+	<span class="keyword">while</span> ( context != <span class="keyword">null</span> ) {
+	    <span class="comment">// Lookup for next indexer in hierarchy:
+</span>	    <span class="keyword">do</span> {
+		rr_indexer = getIndexer(context);
+		context = context.getParent();
+	    } <span class="keyword">while</span> ((rr_indexer == rr_lastidx) && (context != <span class="keyword">null</span>));
+	    <span class="comment">// Is this a usefull indexer ?
+</span>	    <span class="keyword">if</span> ((rr_lastidx = rr_indexer) != <span class="keyword">null</span> ) {
+		<span class="keyword">try</span> {
+		    <span class="type">ResourceIndexer</span> <span class="variable-name">indexer</span> = 
+			(<span class="type">ResourceIndexer</span>)rr_indexer.lock();
+		    resource = indexer.createResource(<span class="reference">this</span>,
+						      req,
+						      getDirectory(),
+						      name,
+						      defs) ;
+		    <span class="keyword">if</span> ( resource != <span class="keyword">null</span> ) 
+			<span class="keyword">break</span>;
+		} <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+		    resource = <span class="keyword">null</span>;
+		} <span class="keyword">finally</span> {
+		    rr_indexer.unlock();
+		}
+	    }
+	}
+	<span class="keyword">return</span> resource;
+    }
+
+
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">ResourceReference</span> <span class="function-name">createDefaultResource</span>(<span class="type">String</span> <span class="variable-name">name</span>) {
+	<span class="keyword">return</span> createDefaultResource(name, <span class="keyword">null</span>);
+    }
+    <span class="comment">/**
+     * Try creating a default resource having the given name.
+     * This method will make its best effort to create a default resource
+     * having this name in the directory. If a file with this name exists,
+     * it will check the pre-defined admin extensions and look for a match.
+     * If a directory with this name exists, and admin allows to do so, it
+     * will create a sub-directory resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The name of the resource to try to create.
+     * </span><span class="keyword">@param </span><span class="variable-name">req</span><span class="comment"> The incomming request
+     * </span><span class="keyword">@return </span><span class="comment">A Resource instance, if possible, &lt;strong&gt;null&lt;/strong&gt;
+     *    otherwise.
+     */</span>
+  
+    <span class="preprocessor">protected</span> <span class="type">synchronized</span> 
+	<span class="type">ResourceReference</span> <span class="function-name">createDefaultResource</span>(<span class="type">String</span> <span class="variable-name">name</span>,
+						<span class="type">RequestInterface</span> <span class="variable-name">req</span>) 
+    {
+	<span class="comment">// Don't automagically create resources of name '..' or '.'
+</span>	<span class="keyword">if</span> (name.equals("<span class="string">..</span>") || name.equals("<span class="string">.</span>"))
+	    <span class="keyword">return</span> <span class="keyword">null</span> ;
+
+	<span class="type">Hashtable</span> <span class="variable-name">defs</span> = <span class="keyword">new</span> <span class="type">Hashtable</span>(10) ;
+	<span class="type">Resource</span> <span class="variable-name">resource</span> = index(name, defs, req);
+	<span class="comment">// Did we finally create a resource ?
+</span>	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = <span class="keyword">null</span>;
+	<span class="keyword">if</span> ( resource != <span class="keyword">null</span> ) {
+	    <span class="comment">// Register this child in our store:
+</span>	    rr = addResource(resource, defs) ;
+	    markModified() ;
+	}
+	<span class="keyword">return</span> rr ;
+    }
+
+    <span class="comment">/**
+     * Initialize and register a new resource into this directory.
+     * </span><span class="keyword">@param </span><span class="variable-name">resource</span><span class="comment"> The uninitialized resource to be added.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">ResourceContext</span> <span class="function-name">updateDefaultChildAttributes</span>(<span class="type">Hashtable</span> <span class="variable-name">attrs</span>) {
+	<span class="type">ResourceContext</span> <span class="variable-name">context</span> = <span class="keyword">null</span>;
+	context = <span class="reference">super</span>.updateDefaultChildAttributes(attrs);
+	<span class="type">String</span> <span class="variable-name">name</span> = (<span class="type">String</span>) attrs.get("<span class="string">identifier</span>");
+	<span class="keyword">if</span> (( name != <span class="keyword">null</span> ) && (getDirectory() !=  <span class="keyword">null</span>)) {
+	    attrs.put("<span class="string">directory</span>", <span class="keyword">new</span> <span class="type">File</span>(getDirectory(), name));
+	    <span class="keyword">return</span> context;
+	} <span class="keyword">else</span> {
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	}
+    }
+
+    <span class="comment">/**
+     * Reindex recursivly all the resources from this DirectoryResource.
+     */</span>
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">reindex</span>() {
+	<span class="keyword">if</span> (getExtensibleFlag()) {
+	    <span class="type">Enumeration</span>       <span class="variable-name">e</span>    = enumerateAllResourceIdentifiers();
+	    <span class="type">String</span>            <span class="variable-name">name</span> = <span class="keyword">null</span>;
+	    <span class="type">ResourceReference</span> <span class="variable-name">rr</span>   = <span class="keyword">null</span>;
+	    <span class="type">Resource</span>          <span class="variable-name">r</span>    = <span class="keyword">null</span>;
+	    <span class="keyword">while</span> (e.hasMoreElements()) {
+		name = (<span class="type">String</span>) e.nextElement();
+		rr = lookup(name);
+		<span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+		    <span class="keyword">try</span> {
+			r = rr.lock();
+			<span class="comment">// forbid cycles
+</span>			<span class="keyword">if</span> (r == <span class="reference">this</span>)
+			    <span class="keyword">continue</span>;
+			<span class="keyword">if</span> (r <span class="keyword">instanceof</span> <span class="type">DirectoryResource</span>) {
+			    <span class="comment">//launch reindex
+</span>			    <span class="type">DirectoryResource</span> <span class="variable-name">dir</span> = (<span class="type">DirectoryResource</span>) r;
+			    <span class="comment">//reindex directory itself
+</span>			    <span class="comment">//the new diretory must have the same context
+</span>			    <span class="type">Hashtable</span> <span class="variable-name">defs</span> = <span class="keyword">new</span> <span class="type">Hashtable</span>(10);
+			    defs.put("<span class="string">context</span>", dir.getContext());
+			    <span class="comment">//indexing ...
+</span>			    <span class="type">Resource</span> <span class="variable-name">newdir</span> = index(name, defs);
+			    <span class="comment">// do we want it to keep its indexer?
+</span>			    <span class="keyword">if</span> (newdir == <span class="keyword">null</span>) {
+				dir.reindex();
+			    } <span class="keyword">else</span> {
+				<span class="keyword">if</span> (! (newdir <span class="keyword">instanceof</span> <span class="type">DirectoryResource</span>)) {
+				    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span>(
+					       "<span class="string">Reindex Error : </span>"+
+					       name+"<span class="string"> can't be reindexed. </span>"+
+					       "<span class="string">The reindexed resource is </span>"+
+					       "<span class="string">no more a DirectoryResource.</span>");
+				}
+				<span class="type">DirectoryResource</span> <span class="variable-name">reindexed</span> = 
+				    (<span class="type">DirectoryResource</span>) newdir;
+				<span class="type">String</span> <span class="variable-name">indexer</span> = 
+				    reindexed.getString(ATTR_INDEXER, "");
+				<span class="keyword">if</span> (indexer.equals("")) {
+				    dir.reindex();
+				    indexer = 
+					dir.getString(ATTR_INDEXER, <span class="keyword">null</span>);
+				    reindexed.setValue(ATTR_INDEXER, indexer);
+				} <span class="keyword">else</span> {
+				    dir.setValue(ATTR_INDEXER, indexer);
+				    dir.reindex();
+				}
+				<span class="comment">//move children to the reindexed directory
+</span>				reindexed.setValue(ATTR_KEY, dir.getKey());
+				dir.setValue(ATTR_IDENTIFIER, 
+					     name+"<span class="string">-bakindex</span>");
+				addResource(reindexed, defs);
+				<span class="comment">// Now replace the old DirectoryResource 
+</span>				<span class="comment">// by the new one
+</span>				<span class="keyword">try</span> {
+				    dir.replace(reindexed);
+				} <span class="keyword">catch</span> (<span class="type">MultipleLockException</span> <span class="variable-name">ex</span>) {
+				    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span>(
+							   "<span class="string">Reindex Error : </span>"+
+							   ex.getMessage());
+				}
+			    }
+			} <span class="keyword">else</span> <span class="keyword">if</span> (! (r <span class="keyword">instanceof</span> <span class="type">AbstractContainer</span>)) {
+			    <span class="comment">//leaf
+</span>			    <span class="type">Hashtable</span> <span class="variable-name">resdefs</span> = <span class="keyword">new</span> <span class="type">Hashtable</span>(10);
+			    <span class="type">Resource</span> <span class="variable-name">resource</span> = index(name, resdefs);
+			    <span class="keyword">if</span> (resource != <span class="keyword">null</span>) {
+				<span class="keyword">try</span> {
+				    r.delete();
+				} <span class="keyword">catch</span> (<span class="type">MultipleLockException</span> <span class="variable-name">ex</span>) {
+				    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">RuntimeException</span>(
+							    "<span class="string">Reindex Error : </span>"+
+							    ex.getMessage());
+				}
+				addResource(resource, resdefs);
+			    }
+			}
+		    } <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+			System.out.println(ex.getMessage());
+		    } <span class="keyword">finally</span> {
+			rr.unlock();
+		    }
+		}
+	    }
+	    markModified();
+	}
+    }
+
+    <span class="comment">/**
+     * Enumerate all available children resource identifiers. 
+     * This method &lt;em&gt;requires&lt;/em&gt; that we create all our pending resources.
+     * </span><span class="keyword">@return </span><span class="comment">An enumeration of all our resources.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">synchronized</span> <span class="type">Enumeration</span> <span class="function-name">enumerateAllResourceIdentifiers</span>() {
+	<span class="type">File</span> <span class="variable-name">directory</span> = getDirectory() ;
+	<span class="keyword">if</span> ( directory != <span class="keyword">null</span> ) {
+	    <span class="type">synchronized</span>(<span class="reference">this</span>) {
+		<span class="type">String</span> <span class="variable-name">lst</span>[] = directory.list() ;
+		<span class="keyword">if</span> ( lst != <span class="keyword">null</span> ) {
+		    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable-name">i</span> = 0 ; i < lst.length ; i++) {
+			<span class="keyword">if</span> (lst[i].equals("<span class="string">.</span>") || lst[i].equals("<span class="string">..</span>"))
+			    <span class="keyword">continue</span> ;
+			<span class="keyword">if</span> (lookup(lst[i]) == <span class="keyword">null</span>)
+			    createDefaultResource(lst[i]) ;
+		    }
+		}
+	    }
+	}
+	<span class="keyword">return</span> <span class="reference">super</span>.enumerateResourceIdentifiers(<span class="keyword">true</span>); 
+    }
+
+    <span class="comment">/**
+     * Enumerate all available children resource identifiers. 
+     * This method &lt;em&gt;requires&lt;/em&gt; that we create all our pending resources
+     * if we are in the extensible mode...too bad !
+     * </span><span class="keyword">@return </span><span class="comment">An enumeration of all our resources.
+     */</span>
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">Enumeration</span> <span class="function-name">enumerateResourceIdentifiers</span>(<span class="type">boolean</span> <span class="variable-name">all</span>) {
+	<span class="comment">// If extensible, update if needed:
+</span>	<span class="keyword">if</span> (all && getExtensibleFlag() ) {
+	    <span class="type">File</span> <span class="variable-name">directory</span> = getDirectory() ;
+	    <span class="keyword">if</span> ( directory != <span class="keyword">null</span> ) {
+		<span class="type">synchronized</span>(<span class="reference">this</span>) {
+		    <span class="type">long</span> <span class="variable-name">dirstamp</span>  = directory.lastModified() ;
+		    <span class="keyword">if</span> ( dirstamp > getDirStamp() ) {
+			<span class="type">String</span> <span class="variable-name">lst</span>[] = directory.list() ;
+			<span class="keyword">if</span> ( lst != <span class="keyword">null</span> ) {
+			    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable-name">i</span> = 0 ; i < lst.length ; i++) {
+				<span class="keyword">if</span> (lst[i].equals("<span class="string">.</span>") || lst[i].equals("<span class="string">..</span>"))
+				    <span class="keyword">continue</span> ;
+				<span class="keyword">if</span> (lookup(lst[i]) == <span class="keyword">null</span>)
+				    createDefaultResource(lst[i]) ;
+			    }
+			}
+			setLong(ATTR_DIRSTAMP, dirstamp) ;
+		    }
+		}
+	    }
+	}
+	<span class="keyword">return</span> <span class="reference">super</span>.enumerateResourceIdentifiers(all);
+    }
+
+    <span class="comment">/**
+     * Lookup the resource having the given name in this directory.
+     * </span><span class="keyword">@param </span><span class="variable-name">name</span><span class="comment"> The name of the resource.
+     * </span><span class="keyword">@return </span><span class="comment">A resource instance, or &lt;strong&gt;null&lt;/strong&gt;.
+     */</span>
+    <span class="reference">public</span> <span class="type">ResourceReference</span> <span class="function-name">lookup</span>(<span class="type">String</span> <span class="variable-name">name</span>) 
+    {
+	<span class="type">ResourceReference</span> <span class="variable-name">rr</span> = <span class="keyword">null</span>;
+	<span class="comment">// Try our store:
+</span>	rr = <span class="reference">super</span>.lookup(name);
+	<span class="keyword">if</span> (rr != <span class="keyword">null</span>)
+	    <span class="keyword">return</span> rr;
+	<span class="comment">// If allowed, than try a default fallback:
+</span>	<span class="keyword">return</span> getExtensibleFlag() ? createDefaultResource(name) : <span class="keyword">null</span> ;
+    }
+
+    <span class="comment">/**
+     * Delete this directory resource, for ever.
+     * This method will delete the directory resource, and its associated 
+     * store, &lt;strong&gt;along&lt;/strong&gt; with any of the sub-resources it contains.
+     * Deleting the root directory of your server might take sometime...
+     * &lt;p&gt;Once the resource is deleted, it isx1 removed from its inital store
+     * and will not be unpickleable any more.
+     */</span>
+  
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">void</span> <span class="function-name">delete</span>() 
+	<span class="keyword">throws</span> <span class="type">MultipleLockException</span>
+    {
+	disableEvent();
+	<span class="comment">// Remove all the defined resources in this directory
+</span>	<span class="comment">// Set the extensible flag to false, otherwise, the directory grows
+</span>	<span class="comment">// as we shrink it :-)
+</span>	setBoolean(ATTR_EXTENSIBLE, <span class="keyword">false</span>);
+	<span class="reference">super</span>.delete();
+    }
+
+    <span class="comment">/**
+     * Was return false (don't khow why)
+     */</span>
+    <span class="reference">public</span> <span class="type">synchronized</span> <span class="type">boolean</span> <span class="function-name">verify</span>() {
+	<span class="keyword">return</span> getDirectory().exists();
+    }
+
+    <span class="comment">/**
+     * Initialize this directory resource with the given set of attributes.
+     * </span><span class="keyword">@param </span><span class="variable-name">values</span><span class="comment"> The attribute values.
+     */</span>
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">initialize</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+	<span class="reference">super</span>.initialize(values) ;
+	disableEvent();
+	<span class="comment">// Get our parent resource and compute our directory:
+</span>	<span class="type">File</span> <span class="variable-name">dir</span> = <span class="keyword">null</span> ;
+	<span class="keyword">if</span> ( ! definesAttribute(ATTR_DIRECTORY) ) {
+	    <span class="comment">// Get our parent:
+</span>	    <span class="type">ResourceReference</span> <span class="variable-name">rr</span> = getParent();
+	    <span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+		<span class="keyword">try</span> {
+		    <span class="type">Resource</span> <span class="variable-name">parent</span> = rr.lock();
+		    <span class="keyword">if</span> (parent.definesAttribute("<span class="string">directory</span>")) {
+			<span class="type">File</span> <span class="variable-name">pdir</span> = (<span class="type">File</span>) parent.getValue("<span class="string">directory</span>", <span class="keyword">null</span>);
+			<span class="keyword">if</span> ( pdir != <span class="keyword">null</span> ) {
+			    <span class="comment">// Compute and set our directory attribute:
+</span>			    dir = <span class="keyword">new</span> <span class="type">File</span>(pdir, getIdentifier()) ;
+			    setValue(ATTR_DIRECTORY, dir) ;
+			}
+		    }
+		} <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+	  
+		} <span class="keyword">finally</span> {
+		    rr.unlock();
+		}
+	    }
+	} <span class="keyword">else</span> {
+	    dir = getDirectory();
+	}
+	<span class="comment">// Register our specific indexer, if any:
+</span>	<span class="type">ResourceContext</span> <span class="variable-name">c</span> = getContext();
+	<span class="type">String</span> <span class="variable-name">indexer</span> = getString(ATTR_INDEXER, <span class="keyword">null</span>);
+
+	<span class="keyword">if</span> (( indexer != <span class="keyword">null</span> ) && (!indexer.equals(""))) {
+	    <span class="type">IndexerModule</span>   <span class="variable-name">m</span> = (<span class="type">IndexerModule</span>)c.getModule(IndexerModule.NAME);
+	    m.registerIndexer(c, indexer);
+	}
+	enableEvent();
+    }
+
+}
+
+    </pre>
+  </body>
+</html>

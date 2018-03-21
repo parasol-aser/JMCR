@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The ExtensionsEditor administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  ExtensionsEditor
+</H1>
+<P>
+The extensions editor is a form-based editor that allows you to edit the
+resource indexer's extensions database. This database is used to determine
+what resource should be used to export a file. Each extension is described
+by its name (e.g. <B>html</B> or <B>htm</B>, etc.), and the (optional) class
+of the resource to be instanciated to export a file having this extension.
+A typical example is to declare that files having the&nbsp;<B>html</B> extension
+should be wrapped into a
+<A HREF="w3c.jigsaw.resources.FileResource.html">w3c.jigsaw.resources.FileResource</A>
+instance, having the default content-type <B>text/html</B>.
+<P>
+When no class is provided, the extension declaration can still be used to
+provide default attribute values. For example, you may want to state that
+files having the <B>gz</B> extension, have been encoded using <B>gzip</B>.
+To do so, just add a new extension, without providing a class, and set the
+default value for <CODE>content-encoding</CODE> to <B>x-gzip</B>.
+<P>
+See also the <A HREF="../Introduction/indexer.html">resource indexer
+documentation </A>to learn more about how <B>Jigsaw</B> creates the resource
+instances, and when it does it.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.indexer.ExtensionsEditor.html">ExtensionsEditor</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    FormResource (aka abstract class)
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The ExtensionsEditor resource doesn't define any attribute.
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.indexer.ExtensionsEditor.html,v 1.1 1996/04/13 02:23:09 abaird
+Exp $</I>
+<P>
+</BODY></HTML>

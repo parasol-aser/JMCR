@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+   "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="../style/doc.css">
+   <TITLE>Jigsaw Configuration</TITLE>
+<!-- Created with AOLpress/2.0 -->
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <h1 class="title">
+	Jigsaw<br>
+	<span class="subtitle">Configuration</span>
+      </h1>
+      <hr NOSHADE width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> /
+      <a href="../Overview.html">Documentation Overview</a>
+    </div>
+    <div class="body">
+<p>From the 1.0alpha5 release of <B>Jigsaw</B>, the best way to configure
+the server is to use the graphical application named <B>JigAdmin</B>. The
+form-based configuration is still here but is no longer maintained.
+<p>This document has the following sections:
+    <p>
+    <ul>
+      <li><a href="#start">How to start JigAdmin</a>
+      <li><a href="#security">Security considerations</a>
+      <li><a href="#resources">Resources & Frames</a>
+      <li><a href="#indexers">Indexers</a>
+      <li><a href="#filters">Filters</a>
+      <li><a href="#deletion">Deletion and reindexation</a>
+    </ul>
+<p>
+<a name="start"></a>
+<H1>
+How to start JigAdmin</H1>
+For a quickstart, you should read this <A HREF="AdminTools.html">little
+Howto</A>. The main command top start JigAdmin is:
+<PRE>&nbsp;&nbsp;&nbsp; java org.w3c.jigadm.Main -root INSTDIR/Jigsaw/Jigsaw</PRE>
+(change the '/' in '\' for Windows boxes)
+<a name="security"></a>
+<H1>
+Security considerations</H1>
+By default, Jigsaw comes with predefined usernames/password (admin/admin)
+for the administration server, and no protection on the Admin directory
+of the http server. If you care a little about your site, you must do the
+following:
+    <OL>
+      <LI>
+	Change the <A HREF="AdminTools.html#using">password</A> of the 
+	administration server.</LI>
+      <LI>Put an authentification filter on the Admin directory of each
+	server managed by the admin server.
+	<UL>
+	  <LI>Create an admin realm, if not already present.
+	    <UL>
+	      <LI>Click on the "realm" leaf</LI>
+	      <LI>Add a realm</LI>
+	      <LI>Open the "realm" node</LI>
+	      <LI>Click on the realm node you just created</LI>
+	      <LI>Add one user and change its password
+		(by default, there is no password)</LI>
+	    </UL>
+	  </LI>
+	  <LI>Open the "space" node of the server</LI>
+	  <LI>Click on the "Admin" directory</LI>
+	  <LI>Click on the "Add an AuthFilter" icon</LI>
+	  <LI>Set the realm of the filter to the realm you created</LI>
+	</UL>
+      <LI>Save everything
+	<UL>
+	  <LI>Click on each "control" node</LI>
+	  <LI>Click on the save button</LI>
+	</UL>
+      </LI>
+    </OL>
+If you really care about security, you can add IP filters to the AuthFilters
+set, you can do it in the attributes of the user entries in the administration
+realms.
+
+<P>On Unix, the best way is to run Jigsaw as root in a chrooted environment.
+Read the <A HREF="../FAQ.html#chroot">FAQ entry</A> on chroot.
+<a name="resources"></a>
+<H1>
+Resources &amp; Frames</H1>
+The Resources are the object exported by <B>Jigsaw</B> to the outside world.
+It can be the raw object, like text files or image files, or objects created
+on the fly, like servlets, cgi scripts, filtered resources. In <B>Jigsaw-1.0</B>,
+the resource was in charge of handling the HTTP requests, so the Resource
+has all the knowledge needed by HTTP. Since Jigsaw-2.0, the Resources are
+very basic and contains only the intrinsic knowledge of this resource.
+For file, you have the size, last modification date... The 2.0 Resources
+have protocol frames. Those frames are handling the different protocols
+used to fetch this particular resource.
+
+<P>There are two ways of configuring the resources, by adding directly
+a specific resource at a specific place, or by letting the indexers create
+the resource in the server hierarchy. Of course the manual tune can be
+used along with the indexers. That is the most common way to configure
+<B>Jigsaw</B>.
+<a name="indexers"></a>
+<H1>
+Indexers</H1>
+An indexers, placed on a Container, will be in charge of creating its sons
+resources. It will create Resource of a special kind depending, for example,
+on the extension of the filename ("html" for an html page, "png" for a
+PNG image file....). Or place a specific indexer for cgi on a directory
+named "cgi-bin". In Jigsaw-2.0, the indexer is not only in charge of creating
+the resource, it has also to put the right protocol frames (and other frames
+if necessary) on the created resource.
+
+<P>An indexer have two main part:
+<OL>
+<LI>
+The Directories.</LI>
+
+<LI>
+The Extensions.</LI>
+</OL>
+In the Directories, you have to specify how to index directories with a
+specific name. The default name is "*default*", in the default indexer
+the resource created is a DirectoryResource. In the 2.0 version, it creates
+a DirectoryResource with a default HTTPFrame.
+
+<P>In the extensions, you have to specify how to index files or leaf Resources.
+The default extension are mapped to FileResource, html, gif, png, txt...
+In the 2.0 version, an HTTPFrame is added to the Resource.
+
+<P>A tutorial about the <A HREF="indexers.html">setup of indexers </A>is
+available, it helps understanding how it works.
+<a name="filters"></a>
+<H1>
+Filters</H1>
+The filters alters the resources, by requesting authentification for example.
+The filters are attached to the resource. In the 2.0 version the filters
+are atteched to the protocol frame of the resource rather than to the resource
+itself because many filtering scheme depends on the protocol used, the
+authentification in HTTP is very specific to HTTP&nbsp; and can't be used
+in other protocols. The filters are called before and after serving the
+resource. You may have filters that are called only before the resource
+is served, like an authentification filter, or after, like a "find and
+replace" filter.
+<a name="deletion"></a>
+<H1>
+Deletion and reindexation</H1>
+In the 1.0 versions of Jigsaw, the reindexation was not present, the only
+way to force it was to delete the resource. Of course, if there was a specific
+configuration (e.g, "hand-modified" Resources), it was lost. The 2.0 version
+solves this problem.
+
+<P>In the 2.0 version of JigAdmin, you will find, close to the "Delete
+Resource" button, a "Reindex Children" button. By doing this, it will verufy/create/delete
+all its children resources. It will save your special configurations and
+update and propagate the other changes.
+    </div> <!-- body -->
+    <div class="footer">
+<P>
+<HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: configuration.html,v 1.1 2010/06/15 12:22:59 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+    </div>
+</BODY>
+</HTML>

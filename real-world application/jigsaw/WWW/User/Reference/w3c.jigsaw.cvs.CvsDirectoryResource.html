@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The DirectoryResource administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  CvsDirectoryResource
+</H1>
+<P>
+The CvsDirectoryResource allows you to control the CVS status of the files
+under some directory (which itself, should be under CVS control). This resource
+allows you to add, remove, update and commit files. It also provides you
+with the log and the diff with the latest version of any file.
+<P>
+The best way to use it, is through a directory template, that maps any
+<CODE>CVS</CODE> directory to this resource (see the
+<A HREF="../Introduction/indexer.html">resource factory documentation</A>
+for more informations).
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.cvs.CvsDirectoryResource.html">CvsDirectoryResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.forms.PostableResource.html">PostableResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Properties
+</H2>
+<P>
+The CvsDirectoryResource uses the following properties (when defined):
+<UL>
+  <LI>
+    <A HREF="#w3c.cvs.path">w3c.cvs.path</A>
+  <LI>
+    <A HREF="#w3c.cvs.root">w3c.cvs.root</A>
+  <LI>
+    <A HREF="#w3c.cvs.wrapper">w3c.cvs.wrapper</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.cvs.path">w3c.cvs.path</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This property should provide the <I>absolute</I> path of the <CODE>cvs</CODE>
+    program.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>/usr/local/bin/cvs</B>
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.cvs.root">w3c.cvs.root</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This property should give the absolute path of the CVS repository.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>/usr/w3.org/pub/WWW</B>
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.cvs.wrapper">w3c.cvs.wrapper</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This property should provide the <I>absolute</I> path of the <CODE>cvs</CODE>
+    wrapper program. In order to run cvs in the appropriate directory, the
+    CvsDirectoryResource runs <CODE>cvs</CODE> through&nbsp;a shell script. This
+    shell script is provided with <B>Jigsaw</B> distribution (in the
+    <CODE>w3c.cvs</CODE> package).
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to
+    <B>/afs/w3.org/usr/abaird/Jigsaw/bin/cvs_wrapper</B>
+</DL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The CvsDirectoryResource defines no attributes.
+<P>
+  <HR>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.cvs.CvsDirectoryResource.html,v 1.1 1996/04/16 22:58:37 abaird
+Exp $</I>
+<P>
+</BODY></HTML>

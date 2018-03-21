@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+   "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<HTML>
+<HEAD>
+    <link rel="stylesheet" type="text/css" href="../style/doc.css">
+    <TITLE>Authentication</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B"
+    ALINK="#FF0000">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+<H1 class="title">
+      Authentication in Jigsaw
+</H1>
+<hr NOSHADE width="70%" align="left">
+    <a href="../../Overview.html">Jigsaw Home</a> /
+    <a href="../Overview.html">Documentation Overview</a> /
+      <a href="Tutorials.html">Tutorials</a>
+    </div>
+    <div class="body">
+<p>
+Setting up authentication requires you to run through the following stages:
+
+<P><B>1)</B> Open a JigAdmin window (see <A HREF="AdminTools.html">JigAdmin
+documentation</A>)
+
+<P><B>2)</B> Create an authentication realm, if required. You can of course
+reuse authentication realms to protect different areas of the server. Select
+the "<TT>realms</TT>" pane, type the name
+of your new realm (ie "<TT>w3c</TT>") in the "<TT>Realm name</TT>" field
+and type on <TT>Enter</TT>.
+<p>
+      <IMG SRC="images/auth1.gif" VSPACE=20 HEIGHT=401 WIDTH=666 
+	alt="add realm">
+
+<B>3)</B> Add some user for the new realm. Select the new realm "<TT>w3c</TT>", type the user name (ie "<TT>tim</TT>") in
+the appropiate field and click on the "<TT>Add User</TT>" button or
+      type <TT>Enter</TT>.
+<p>
+      <IMG SRC="images/auth2.gif" VSPACE=20 HEIGHT=401 WIDTH=666 
+	alt="user">
+<p><B>4)</B> Setup the user attributes. The user attributes are describe in
+the AuthUser <A HREF="../Reference/org.w3c.jigsaw.auth.AuthUser.html">reference
+page</A>. Don't forget to commit your changes.
+
+<p><B>5) </B>Setup an authentication filter on the appropriate frame. The
+target of the filter can be either a directory resource (in which case
+the filter will protect all the area defined by the sub-resources of this
+directory resource), or any other resource (hence allowing you to protect
+a single resource). Actually, the filter must be attached to the frame
+of the resource to filter. In this example we will setup a filter on a
+DirectoryResource.
+<OL>
+<LI>
+Select the resource you want to filter</LI>
+
+<LI>
+Click on the "<TT>Edit Resource</TT>" in the popup menu (right click).
+
+<LI>
+Expand the resource node (in the resource editor tree)
+
+<LI>
+Select the frame of this resource (should be HTTPFrame)
+
+<LI>
+Select "<TT>Add Frame</TT>" in the popup menu (right click)
+
+<LI>
+Select "<TT>org.w3c.jigsaw.auth.GenericAuthFilter</TT>" as the filter class</LI>
+
+<LI>
+Click on the "Ok" button.</LI>
+</OL>
+
+    <IMG SRC="images/auth3.gif" VSPACE=20 HEIGHT=401 WIDTH=666
+      alt="parameters"> 
+<p><B>6)</B> Setup the authentication filter parameters. The GenericAuthFilter
+attributes are described in the <A HREF="../Reference/org.w3c.jigsaw.auth.GenericAuthFilter.html">reference
+page</A>. Type "<TT>w3c</TT>" in the "<TT>realm</TT>" field and "<TT>tim</TT>"
+in the "<TT>users</TT>" field. Don't forget to commit your changes.
+<p>
+      <IMG SRC="images/auth4.gif" VSPACE=20 HEIGHT=393 WIDTH=455
+	alt="users"> 
+      <IMG SRC="images/auth6.gif" VSPACE=20 HEIGHT=445 WIDTH=455
+	alt="users"> 
+<p>
+That's it, your resource has now a restricted access!
+    </div> <!-- body -->
+    <div class="footer">
+<p>
+<HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: authentication.html,v 1.1 2010/06/15 12:22:55 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+    </div>
+</BODY>
+</HTML>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>The SSIResource reference guide.</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.01Gold (X11; I; SunOS 5.5 sun4u) [Netscape]">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+
+<P><!-- Created by GNNpress --><!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 --><A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif" ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER=0 ></A><A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+
+<HR></A><A HREF="resources.html">All Resources</A> <A HREF="filters.html">All
+filters </A>
+<HR></P>
+
+<H1>SSIResource </H1>
+
+<P>The SSI resource implements server-side parsing of HTML documents. Inside
+an SSIResource-indexed file, any comment of the form <TT>&lt;!--#commandName
+param1=val1 param2=val2 ... paramn=valn --&gt; </TT>will be interpreted
+as a command. Commands are looked up in an instance of the class supplied
+in the <A HREF="#registryClass">registryClass</A> attribute. This class
+must be a subclass of the abstract class <A HREF="../api/w3c.jigsaw.ssi.CommandRegistry.html">w3c.jigsaw.ssi.CommandRegistry</A>.
+Commands are implementations of the <A HREF="../api/w3c.jigsaw.ssi.Command.html">Command</A>
+interface or the <A HREF="../api/w3c.jigsaw.ssi.ControlCommand.html">w3c.jigsaw.ssi.ControlCommand
+</A>interface. </P>
+
+<P>If no command registry is specified, the resource will default to <A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry.html">w3c.jigsaw.ssi.DefaultCommandRegistry</A>,
+which incorporates the most commonly used commands (including a set of
+commands analogous to the directives used by the NCSA server SSI module.)
+</P>
+
+<P>The replies from each of the commands (&quot;partial replies&quot;)
+are merged into a global reply. A <TT>Content-Length</TT> header will be
+emitted, provided that each of the commands emits one. </P>
+
+<P><A NAME="very-global-variables"></A><!-- -->The following variables
+are always defined initially, independent of the command registry used:
+</P>
+
+<UL>
+<LI><TT>Boolean secure</TT>: the value of the <TT><A HREF="#secure">secure</A></TT>
+attribute at the time of the request. </LI>
+
+<LI><TT>Integer maxDepth</TT>: the value of the <TT><A HREF="#maxDepth">maxDepth</A></TT>
+attribute at the time of the request. </LI>
+
+<LI><TT>Integer depth</TT>: the current include nesting depth. </LI>
+
+<LI><TT>CommandRegistry registry</TT>: the current command registry. </LI>
+</UL>
+
+<P>Please note that both the CommandRegistry base class and the Command
+interface are likely to change in future releases. </P>
+
+<H3>Known Bugs / Limitations </H3>
+
+<UL>
+<LI>In EchoCommand, GMT dates are not formatted using the datefmt config
+variable (instead, they're always formatted in &quot;Java format&quot;).
+</LI>
+
+<LI>Validation using entity tags is not supported (yet). </LI>
+
+<LI>There is no support of a customized failure message in DefaultCommandRegistry.
+</LI>
+
+<LI>Commands have no option of determining their own persistency format.
+This could give better performance for some commands. </LI>
+
+<LI>Not all the headers from partial replies are merged. (It doesn't really
+make sense for some). </LI>
+</UL>
+
+<P>
+<HR></P>
+
+<H2>Inherits </H2>
+
+<P>The <A HREF="../api/w3c.jigsaw.ssi.SSIResource.html">SSIResource</A>
+class inherits from the following classes: </P>
+
+<UL>
+<LI><A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A> </LI>
+</UL>
+
+<P>
+<HR></P>
+
+<H2>Attributes description </H2>
+
+<P>The DirectoryResource defines the following attributes: </P>
+
+<UL>
+<LI><A HREF="#registryClass">registryClass</A> </LI>
+
+<LI><A HREF="#maxDepth">maxDepth</A> </LI>
+
+<LI><A HREF="#secure">secure</A> </LI>
+</UL>
+
+<P>
+<HR><A NAME="registryClass"></A><TT>registryClass</TT> </P>
+
+<DL>
+<DT><I>semantics</I> </DT>
+
+<DD>The class that the command registry is to be an instance of. It must
+be a subclass of <A HREF="../api/w3c.jigsaw.ssi.CommandRegistry.html">w3c.jigsaw.ssi.CommandRegistry</A>.
+</DD>
+
+<DT><I>type</I> </DT>
+
+<DD>This attribute is an editable <A HREF="../api/w3c.jigsaw.resources.ClassAttribute.html">ClassAttribute</A>.
+</DD>
+
+<DT><I>default value</I> </DT>
+
+<DD>This attribute defaults to <A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry.html">w3c.jigsaw.ssi.DefaultCommandRegistry</A>.
+</DD>
+</DL>
+
+<P>
+<HR><A NAME="maxDepth"></A>maxDepth </P>
+
+<DL>
+<DT><I>semantics</I> </DT>
+
+<DD>The maximum depth of recursive document inclusion. Every time a document
+is included, a counter is increased. If this count gets to be equal to
+maxDepth, any further inclusion commands will be ignored. (Note that whether
+or not a command qualifies as an &quot;inclusion command&quot; is completely
+dependent on the command registry being used).<BR>
+If set to <B>0</B>, no recursion limit will be enforced. </DD>
+
+<DT><I>type</I> </DT>
+
+<DD>This attribute is an editable <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>.
+</DD>
+
+<DT><I>default value</I> </DT>
+
+<DD>This attribute defaults to <B>10</B>. </DD>
+</DL>
+
+<P>
+<HR><A NAME="secure"></A>secure </P>
+
+<DL>
+<DT><I>semantics</I> </DT>
+
+<DD>If <B>true</B>, only <I>secure</I> commands will be permitted. The
+definition of &quot;secure&quot; is fully dependent on the command registry
+used. In the case of the <A HREF="../api/w3c.jigsaw.ssi.DefaultCommandRegistry.html">DefaultCommandRegistry</A>,
+all commands except for <TT>exec</TT> are considered secure. </DD>
+
+<DT><I>type</I> </DT>
+
+<DD>This attribute is an editable <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+</DD>
+
+<DT><I>default value</I> </DT>
+
+<DD>This attribute defaults to <B>true</B>. </DD>
+</DL>
+
+<P>
+<HR><I><A HREF="mailto:anto@w3.org">Antonio Ram&iacute;rez<BR>
+</A>$Id: w3c.jigsaw.ssi.SSIResource.html,v 1.7 1996/09/25 14:23:16 abaird
+Exp $</I> </P>
+
+<P></bodytext></P>
+
+</BODY>
+</HTML>

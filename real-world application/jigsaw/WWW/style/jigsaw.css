@@ -1,0 +1,285 @@
+body             { background-color: white;
+                   font-family: Helvetica;
+                   margin-left: 20pt;
+                   margin-right: 20pt;
+                   width: auto; }
+
+body.smallmargin { background-color: white;
+                   font-family: Helvetica;
+                   margin-left: 5pt;
+                   margin-right: 5pt;
+                   width: auto; }
+
+P               { font-family: Helvetica;
+                  text-align: justify; }
+
+DL              { font-family: Helvetica;
+                  margin-left: 2%;
+                  margin-right: 2% }
+
+DD              { font-family: Helvetica; }
+
+DT              { font-family: Helvetica; }
+
+PRE             { font-family: Times; }
+
+h1              { font-family: monospace;
+                  font-size: large; }
+
+h2             { font-family: geneva, arial, monospace;
+                 font-size: large;
+                 color: #888888;
+                 margin-top: 10pt; }
+
+h3              { font-family: monospace;
+                  font-size: large;
+                  color: black;
+                  margin-top: 20pt; }
+
+h4              { font-family: Helvetica; }
+
+ul              { font-family: Helvetica; }
+
+adress          { font-family: Helvetica;
+                  font-size: 8pt; }
+
+td              { font-family: Helvetica; }
+
+p.policyfooter  { font-family: Helvetica; }
+
+h1.title        { font-family: Helvetica;
+                  margin-left: 50pt;
+                  font-size: 24pt; }
+
+h1.bigtitle     { margin: 20pt;
+                  font-family: Helvetica;
+                  font-size: 24pt;
+                  color: teal;
+                  text-align: center; }
+
+.subtitle       { margin-top: -10pt;
+                  font-size: 12pt; }
+
+.mini           { font-family: Helvetica;
+                  font-size: 8pt;
+                  color: #888888; }
+
+a.local:link    { font-family: Helvetica;
+                  text-decoration: none;
+                  color: teal;
+                  font-size: small; }
+
+a.local:visited { font-family: Helvetica;
+                  text-decoration: none;
+                  color: teal;
+                  font-size: small; }
+
+a.local:active  { font-family: Helvetica;
+                  text-decoration: none;
+                  color: teal;
+                  font-size: small; }
+
+a.ext:link      { font-family: Helvetica;
+                  text-decoration: none;
+                  color: teal;
+                  font-size: small; }
+
+a.ext:visited   { font-family: Helvetica;
+                  text-decoration: none;
+                  color: teal;
+                  font-size: small; }
+
+a.ext:active    { font-family: Helvetica;
+                  text-decoration: none;
+                  color: teal;
+                  font-size: small; }
+
+DIV.box         { font-family: Helvetica;
+                  color: #477979;
+                  margin: 2.0%; 
+                  margin-top: 1.0%;
+                  padding: 1.0%; 
+                  border: thin solid silver; 
+                  width: 100.0%; }
+
+DIV.boxintro    { margin-left: 5%;
+                  margin-right: 5%;
+                  margin-top: 2%;
+                  margin-bottom: 2%;
+                  text-align: justify;
+                  border: thin solid;
+                  padding: 2%;
+                  background-color:  #F0F0E0; }
+
+DIV.body        { margin-left: 5pt;
+                  margin-right: 20pt;
+                  margin-top: 2%;
+                  margin-bottom: 2%;
+                  text-align: justify;
+                  border: thin solid;
+                  padding: 2%;
+                  background-color: #F0F0E0;
+                  float: left; }
+
+DIV.multibody   { margin-left: 0;
+                  margin-right: 0;
+                  margin-top: 0;
+                  margin-bottom: 5pt;
+                  text-align: justify;
+                  padding: 0;
+                  float: left; }
+      
+DIV.foot        { margin-left: 20pt; 
+                  margin-right: 20pt; }
+
+p.pintro        { text-indent: 20pt;
+                  margin-left: 30pt;
+                  margin-right: 30pt;
+                  text-align: justify; }
+
+.teal           { color: teal; }
+
+.red            { text-decoration: underline;
+                  color: red; 
+                  font-size: large; }
+      
+.dt             { font-weight: bold;
+                  margin-bottom: 5pt;
+                  margin-top: 5pt; }
+
+.indent         { margin-left: 20pt;
+                  font-family: Helvetica; }
+
+.jigsaw         { font-weight: bold;
+                  font-family: Helvetica; }
+
+.right          { margin: 0; 
+                  padding: 0; 
+                  float: left; }
+
+.left           { text-align: left; 
+                  margin: 0; 
+                  padding: 0; 
+                  padding-top: 20pt;
+                  width: 10%; 
+                  float: left; }
+
+.link           { font-family: Times;
+                  font-size: small;
+                  text-align: left;
+                  margin-top: 18pt;
+                  line-height: 15pt; }
+
+.linktitle      { color: #666699;
+                  font-family: helvetica;
+                  font-weight: bold; }
+
+P.space-line    { clear: both; 
+                  font-size: 0.1em; 
+                  margin: 0; 
+                  padding: 0; 
+                  text-align: left;
+                  width: auto; }
+
+DL.press        { font-family: Helvetica;
+                  margin-left: 2%;
+                  margin-right: 2% }
+
+DD.press        { font-family: Times; }
+
+DT.press        { font-family: Times; }
+
+DL.proj         { font-family: Helvetica;
+                  margin-left: 2%;
+                  margin-right: 2% }
+
+DD.proj         { font-family: Times; } 
+
+DT.proj         { font-family: Times; }
+
+.proj           { font-family: Helvetica, Arial;
+                  font-weight: bold }
+
+a.press:link    { font-family: Times;
+                  text-decoration: none;
+                  color: blue;
+                  font-size: 16pt; }
+
+a.press:visited { font-family: Times;
+                  text-decoration: none;
+                  color: blue;
+                  font-size: 16pt; }
+
+a.press:active { font-family: Times;
+                 text-decoration: none;
+                 color: blue;
+                 font-size: 16pt; }
+
+a.plink:link    { font-family: Helvetica;
+                  text-decoration: none;
+                  color: white;
+                  font-size: small; }
+
+a.plink:visited { font-family: Helvetica;
+                  text-decoration: none;
+                  color: white;
+                  font-size: small; }
+
+a.plink:active  { font-family: Helvetica;
+                  text-decoration: none;
+                  color: white;
+                  font-size: small; }
+
+
+a.comp:link    { font-family: Helvetica, Arial;
+                 text-decoration: none;
+                 font-weight: bold; 
+                 color: black }
+
+a.comp:visited { font-family: Helvetica, Arial;
+                 text-decoration: none;
+                 font-weight: bold; 
+                 color: black }
+
+a.comp:active { font-family: Helvetica, Arial;
+                 text-decoration: none;
+                 font-weight: bold; 
+                 color: black }
+
+h1.press       { margin: 20pt;
+                 font-family: Helvetica;
+                 font-size: 24pt;
+                 color: teal;
+                 text-align: center; }
+
+h2.press       { margin-top: 0pt;
+                 color: black; 
+                 font-size: large; 
+                 font-family: monospace; }
+
+DIV.press      { margin-left: 20pt;
+                 margin-right: 20pt;
+                 margin-top: 2%;
+                 margin-bottom: 2%;
+                 text-align: justify;
+                 background-color: #F0F0E0;
+                 border: thin solid;
+                 padding: 2%; }
+
+DIV.jproj      { margin-left: 20pt;
+                 margin-right: 20pt;
+                 margin-top: 2%;
+                 margin-bottom: 2%;
+                 text-align: justify;
+                 padding: 2%; }
+
+
+p.intro-press  { text-indent: 20pt;
+                 margin-left: 20pt;
+                 margin-right: 30pt;
+                 text-align: justify; }
+
+.press-citation { font-family: Times;
+                  font-style: italic;
+                  margin-top: 2pt;
+                  text-align: justify; }

@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The GenericAuthFilter administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  DebugFilter
+</H1>
+<P>
+The debug filter is usefull for debugging specific resources of the server.
+It will print out the incomming request before the target resource process
+it, and print out the reply the target resource has generated.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.filters.DebugFilter.html">DebugFilter</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.ResourceFilter.html">ResourceFilter</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The DebugFilter defines the following attribute:
+<UL>
+  <LI>
+    <A HREF="#onoff">onoff</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="onoff">onoff</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Turn debugging on or off. The filter will only emit traces when this flag
+    is set ot <B>true</B>.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editale
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.filters.DebugFilter.html,v 1.1 1996/04/23 19:12:35 abaird
+Exp $</I>
+<P>
+</BODY></HTML>

@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Jigsaw introduction</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG BORDER="0" SRC="/icons/WWW/w3c_home.gif"
+    ALT="w3c" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" WIDTH="212"
+    HEIGHT="49" ALT="Jigsaw" BORDER="0"></A>
+<H1>
+  Jigsaw Introduction
+</H1>
+<P>
+This chapter of <B>Jigsaw</B> documentation is a quick overview of its
+architecture. It is recommended that you read these documents before proceeding
+any further.
+<UL>
+  <LI>
+    <A HREF="architecture.html"><B>Jigsaw</B> architecture</A> is a brief overview
+    of the server's internal. It is meant to include only what is needed to run
+    and configure the server.
+  <LI>
+    The <A HREF="indexer.html">resource factory</A> is a central piece of
+    <B>Jigsaw</B> whose role is to build resource objects out of existing files
+    or directories. This document provides a brief insight of how this mapping
+    is done.
+  <LI>
+    The <A HREF="installation.html">installation page</A> will explain you how
+    to install and run <B>Jigsaw</B>.
+</UL>
+<P>
+Also available are two self-contained documents about:
+<UL>
+  <LI>
+    The current <B>Jigsaw</B> design <A HREF="wp.html">rationale</A>.
+  <LI>
+    <B>Jigsaw</B> <A HREF="performance.html">performance evaluation</A>.
+</UL>
+<P>
+  <HR>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: Overview.html,v 1.1 2010/06/15 12:20:10 smhuang Exp $</I>
+<P>
+</BODY></HTML>

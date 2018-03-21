@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>RemoteServletWrapper reference manual</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  RemoteServletWrapper
+</H1>
+<P>
+This resource class provides support for downloading servlets from the net.
+It acts as a servlet wrapper for these downloaded servlets.
+<P>
+<B>Warning</B>: Currently <B>Jigsaw</B> provides no security manager, which
+means that there is no restriction on the APIs provided to the servlet. Remote
+loading of servlets can damage both your Jigsaw setting, but more importantly
+your computer !
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The RemoteServletWrapper class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.servlet.RemoteServletWrapper.html">ServletWrapper</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.servlet.RemoteServletResource.html">RemoteServletWrapper</A>
+defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#servlet-base">servlet-base</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="servlet-base">servlet-base</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This attribute should provide the base URL of the server for the servlet
+    classes. Along with the
+    <A HREF="w3c.jigsaw.servlet.ServletWrapper.html#servlet-class">servlet-class
+    </A>attribute (inherited from the ServletWrapper resource), this information
+    will allow <B>Jigsaw</B> to download from the net, the code of that servlet.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a mandatory
+    <A HREF="../api/w3c.jigsaw.resources.StringtAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.servlet.RemoteServletWrapper.html,v 1.1 1997/01/09 16:30:43
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

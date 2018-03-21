@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="org/w3c/jigsaw/http/AsyncConcurrency.aj" kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="classes/jakarta-oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="classes/sax.jar"/>
+	<classpathentry kind="lib" path="classes/servlet.jar"/>
+	<classpathentry kind="lib" path="classes/Tidy.jar"/>
+	<classpathentry kind="lib" path="classes/xerces.jar"/>
+	<classpathentry kind="lib" path="classes/xp.jar"/>
+	<classpathentry kind="lib" path="classes/tools.jar"/>
+	<classpathentry kind="lib" path="/java-tracer-agent/bin" sourcepath="/java-tracer-agent/src"/>
+	<classpathentry kind="lib" path="/java-tracer-agent/lib"/>
+	<classpathentry kind="lib" path="/java-tracer-agent/src"/>
+	<classpathentry kind="lib" path="/Users/arunxls/Code/Projects/RVPredict/aser/trunk/java-tracer-agent/lib/asm.jar"/>
+	<classpathentry kind="lib" path="/Users/arunxls/Code/Projects/RVPredict/aser/trunk/java-tracer-agent/lib/h2-rvpredict.jar"/>
+	<classpathentry kind="lib" path="/Users/arunxls/Code/Projects/RVPredict/aser/trunk/java-tracer-agent/lib/iagent.jar"/>
+	<classpathentry kind="lib" path="/Users/arunxls/Code/Projects/RVPredict/aser/trunk/java-tracer-agent/lib/jcommander-1.36.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

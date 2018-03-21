@@ -1,0 +1,9 @@
+w3c.jigsaw.pics.DataBase.dbname=services
+w3c.jigsaw.pics.DataBase.dburl=jdbc:msql://www43.inria.fr:4333/services
+w3c.jigsaw.pics.DataBase.jdbcdriver=COM.imaginary.sql.msql.MsqlDriver
+w3c.jigsaw.pics.DataBase.username=bmahe
+w3c.jigsaw.pics.DataBase.passwd=
+w3c.jigsaw.pics.DataBase.servicefield=service
+w3c.jigsaw.pics.DataBase.urlfield=url
+w3c.jigsaw.pics.DataBase.labelfield=label
+w3c.jigsaw.pics.DataBase.genericfield=gen

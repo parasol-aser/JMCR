@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; SunOS 5.6 sun4u) [Netscape]">
+   <TITLE>The PageCompileProp reference manual</TITLE>
+<LINK HREF="jigsaw@w3.org" REL="made">
+<link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+</HEAD>
+<BODY>
+<A HREF="../../../../WWW" TARGET="_top_"><IMG SRC="../../../Icons//WWW/w3c_home.gif" ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72></A><A HREF="../../../../WWW" TARGET="_top_">&nbsp;<A HREF="../../" TARGET="_top_"><IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw" BORDER=0 ></A>
+<hr noshade size="1"></A><A HREF="resources.html">All resources</A> <A HREF="frames.html">All
+frames&nbsp;</A>
+<hr noshade size="1">
+<H1>
+PageCompileProp</H1>
+Gives editable access to Jigsaw Page Compilation properties, when <A HREF="org.w3c.jigsaw.pagecompile.PageCompileFrame.html">PageCompileFrame</A>
+is used somewhere.
+
+<P>
+<hr noshade size="1">
+<H2>
+Inherits</H2>
+The <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/pagecompile/PageCompileProp.html">PageCompileProp</A>
+class inerits from the following classes:
+<UL>
+<LI>
+<A HREF="org.w3c.tools.resources.Resource.html">Resource</A></LI>
+
+<LI>
+<A HREF="org.w3c.jigsaw.config.PropertySet.html">PropertySet</A></LI>
+</UL>
+
+<hr noshade size="1">
+<H2>
+Attributes description</H2>
+The PageCompileProp defines the following attributes:
+<UL>
+<LI>
+<A HREF="#org.w3c.jigsaw.pagecompile.dir">org.w3c.jigsaw.pagecompile.dir</A></LI>
+
+<LI>
+<A HREF="#org.w3c.jigsaw.pagecompile.compiler">org.w3c.jigsaw.pagecompile.compiler</A></LI>
+</UL>
+
+<hr noshade size="1"><A NAME="org.w3c.jigsaw.pagecompile.dir"></A><TT>org.w3c.jigsaw.pagecompile.dir</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+&nbsp;Specify the directory for storing generated class file.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+&nbsp;This attribute is an editable <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/FileAttribute.html">FileAttribute</A></DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This attribute defaults to <B>&lt;instdir>/Jigsaw/Jigsaw/compiledPages/</B>
+.</DD>
+</DL>
+
+<hr noshade size="1"><A NAME="org.w3c.jigsaw.pagecompile.compiler"></A><TT>org.w3c.jigsaw.pagecompile.compiler</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+&nbsp;Specify the compiler used to compile generated frames.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+&nbsp;This attribute is an editable <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringAttribute.html">StringAttribute</A></DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This attribute defaults to <B>org.w3c.jigsaw.pagecompile.JDKCompiler</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A></I>
+<BR><I>$Id: org.w3c.jigsaw.pagecompile.PageCompileProp.html,v 1.1 1998/09/04
+09:49:03 bmahe Exp $</I>
+</BODY>
+</HTML>

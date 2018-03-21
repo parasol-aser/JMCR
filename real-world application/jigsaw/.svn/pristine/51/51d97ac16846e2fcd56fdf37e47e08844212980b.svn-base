@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Specifications, table of content</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<H3>
+  Specifications
+</H3>
+<P>
+  <HR>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">The big picture</A>
+</H4>
+<P>
+  <HR>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">ServerHandlerManager</A>
+</H4>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">ServerHandler</A>
+</H4>
+<P>
+  <HR>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">httpd</A>
+</H4>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">HTTPObject</A>
+</H4>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">HTTPFilter</A>
+</H4>
+<P>
+  <HR>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">AttributeHolders</A>
+</H4>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">Resources</A>
+</H4>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">ResourceStore</A>
+</H4>
+<H4>
+  <A HREF="constructing.html" TARGET="jigsaw-help">HTTPResource</A>
+</H4>
+<P>
+  <HR>
+<P>
+<A HREF="../fr-toc.html"><IMG SRC="/icons/WWW/up.gif" ALT="UP" BORDER="0"></A>
+</BODY></HTML>

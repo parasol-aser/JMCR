@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The GenericAuthFilter administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  AccessLimitFilter
+</H1>
+<P>
+The AccessLimitFilter allows you to control and limit the number of simultaneous
+requests run by the same resource. The <A HREF="#limit">limit</A> attribute
+indicates the maximum number of simultaneous requests that the target resource
+is willing to accept. The <A HREF="#timeout">timeout</A> attribute can be
+used to specify how long a request should wait before being elected to be
+run by the resource. When this timeout expires, the filter sends back a reply
+to the browser with an appropriate error message.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.filters.AccessLimitFilter.html">AccessLimitFilter</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.ResourceFilter.html">ResourceFilter</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The DebugFilter defines the following attribute:
+<UL>
+  <LI>
+    <A HREF="#limit">limit</A>
+  <LI>
+    <A HREF="#timeout">timeout</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="limit">limit</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Maximum number of simultaneous requests to the target resource.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>1</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="timeout">timeout</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    How long should requests be blocked before an error message is sent back
+    to the requesting client. The given duration should be expressed as a number
+    of milliseconds.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editale
+    <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>60000</B> (one minute).
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.filters.AccessLimitFilter.html,v 1.1 1996/04/23 19:13:21
+abaird Exp $</I>
+<P>
+</BODY></HTML>

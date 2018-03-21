@@ -1,0 +1,103 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>UNIX properties reference manual</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+<IMG SRC="/icons/WWW/w3c_home.gif" ALT="W3C" BORDER="0" WIDTH="72"
+    HEIGHT="48"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  UnixProp
+</H1>
+<P>
+This resource provides editable access to UNIX specific properties. As for
+the other property sheets, the resource just provides a nice way of describing
+a set of resources, and the way they should be edited, so each attribute
+below, really corresponds to a property defined in the property file of
+<B>Jigsaw</B>.
+<P>
+<B>Warning</B>: because failure to set any of the below properties can result
+in severe security problems, <B>Jigsaw</B> will abort whenever one of them
+is set, but the appropriate system call has failed. Check <B>Jigsaw</B>'s
+error log for more informations about fixing any troubles.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.http.UnixProp.html">UnixProp</A> class inherits
+from the following classes:
+<UL>
+  <LI>
+    PropertySet (aka abstract class)
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The UnixProp defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#w3c.jigsaw.http.unix.user">w3c.jigsaw.unix.user</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.http.unix.group">w3c.jigsaw.unix.group</A>
+</UL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.http.unix.user">w3c.jigsaw.http.unix.user</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the user that the server should run as.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.http.unix.group">w3c.jigsaw.http.unix.group</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the group that the server should run as.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable
+    <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.http.ConnectionProp.html,v 1.1 1996/09/11 21:21:02 abaird
+Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

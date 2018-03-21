@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<HTML>
+<HEAD>
+    <link rel="stylesheet" type="text/css" href="../style/doc.css">
+   <TITLE>Authentication in Jigsaw.</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B"
+    ALINK="#FF0000">
+  <body bgcolor="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+	<H1 class="title">
+	  Authentication in Jigsaw.
+	</H1>
+	<hr NOSHADE width="70%" align="left">
+	<a href="../../Overview.html">Jigsaw Home</a> /
+	<a href="../Overview.html">Documentation Overview</a>
+      </div>
+      <div class="body">
+<p>
+This section will provide you with a basic explanation of authentication
+in <B>Jigsaw</B>.
+
+<P>Filters are attached to specific frames in order to filter accesses
+to their resource. These filters are called once at lookup time, and once
+at reply time. On the way in (lookup time), they allow you to manipulate
+the request before the target resource handles it, and on the way out,
+they allow you to manipulate the target's reply before it is emitted back
+to the browser.
+
+<P>Although Jigsaw provides a number of <A HREF="../Reference/frames.html#Filter frames">filters</A>,
+we will focus here on the authentication filter, that authenticate requests
+before they are handled by their appropriate target resources. The <A HREF="../Reference/org.w3c.jigsaw.auth.GenericAuthFilter.html">GenericAuthFilter</A>
+is currently the only available authentication filter.
+
+<P>The GenericAuthFilter needs an authentication realm. An authentication
+realm is a database that will contain the description of a set of <A HREF="../Reference/org.w3c.jigsaw.auth.AuthUser.html">users</A>,
+along with their passwords and/or IP adresses.
+
+<P>Each user defines a set of attributes, email, comments, ipadress, password.
+The email address is currently unused (but it might be used in the future
+for email notification). The comments field is used only for informational
+purposes. The ipaddress field allows you to state from which machine the
+user is allowed to connect. This field is not mandatory: if left blank,
+only the password will be used for authentication (be warned that the password
+authentication scheme used by HTTP is very weak, you should always specify
+both a password and some IP addresses). If you decide to fill in the ipaddress
+field, you can enter multiple addresses for the same user (one per line).&nbsp;
+You can use * in the ip address field, meaning that any user connecting
+from the given set of IP addresses is to be authentified as the realm user.
+
+<P>Now you should read the <A HREF="authentication.html">tutorial</A> to
+setup authentication.
+    </div> <!-- body -->
+    <div class="footer">
+<p>
+<HR noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: AuthInJigsaw.html,v 1.1 2010/06/15 12:23:04 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+      </div>
+</BODY>
+</HTML>

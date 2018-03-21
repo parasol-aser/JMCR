@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+   <TITLE>The TEFilter reference manual</TITLE>
+<LINK HREF="jigsaw@w3.org" REL="made">
+<link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+</HEAD>
+<BODY>
+<A HREF="../../../../WWW" TARGET="_top_"></A><IMG SRC="../../../Icons//WWW/w3c_home.gif" ALT="W3C" BORDER=0 HEIGHT=48 WIDTH=72><A HREF="../../../../WWW" TARGET="_top_"></A>&nbsp;<A HREF="../../" TARGET="_top_"></A><IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw" BORDER=0 >
+<hr noshade size="1"><A HREF="resources.html">All resources</A> <A HREF="frames.html">All
+frames&nbsp;</A>
+<hr noshade size="1">
+<H1>
+TEFilter</H1>
+This filter will compress the content of replies using GZIP. Compression
+is done <I>on the fly</I>. This assumes that you're really on a slow link,
+where you have lots of CPU, but not much bandwidth.
+<BR>A nifty usage for that filter, is to plug it on top of a <A HREF="org.w3c.jigsaw.proxy.ProxyFrame.html">org.w3c.jigsaw.proxy.ProxyFrame</A>,
+in which case it will compress the data when it flies out of the proxy.
+
+<P>
+<hr noshade size="1">
+<H2>
+Inherits</H2>
+The <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/filters/TEFilter.html">TEFilter</A>
+class inerits from the following classes:
+<UL>
+<LI>
+<A HREF="org.w3c.tools.resources.Resource.html">Resource</A></LI>
+
+<LI>
+<A HREF="org.w3c.tools.resources.FramedResource.html">FramedResource</A></LI>
+
+<LI>
+<A HREF="org.w3c.tools.resources.ResourceFrame.html">ResourceFrame</A></LI>
+
+<LI>
+<A HREF="org.w3c.tools.resources.ResourceFilter.html">ResourceFilter</A></LI>
+</UL>
+
+<hr noshade size="1">
+<H2>
+Attributes description</H2>
+The TEFilter defines the following attributes:
+<UL>
+<LI>
+<A HREF="#mime-types">mime-types</A></LI>
+</UL>
+
+<hr noshade size="1"><A NAME="mime-types"></A><TT>mime-types</TT>
+<DL>
+<DT>
+<I>semantics</I></DT>
+
+<DD>
+&nbsp;The set of MIME types we are allowed to compress.</DD>
+
+<DT>
+<I>type</I></DT>
+
+<DD>
+&nbsp;This attribute is an editable <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</A></DD>
+
+<DT>
+<I>default value</I></DT>
+
+<DD>
+This attribute defaults to <B>null</B>.</DD>
+</DL>
+
+<hr noshade size="1">
+
+<P><I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A></I>
+<BR><I>$Id: org.w3c.jigsaw.filters.TEFilter.html,v 1.1 1998/07/28 13:04:28
+benoit Exp $</I>
+</BODY>
+</HTML>

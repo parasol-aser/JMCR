@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>ResourceFilter.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// ResourceFilter.java
+// $Id: ResourceFilter.html,v 1.1 2010/06/15 12:20:03 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="type">resources</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.*;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.*;
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">ResourceFilter</span> <span class="keyword">extends</span> <span class="type">ResourceFrame</span> 
+    <span class="keyword">implements</span> <span class="type">FilterInterface</span> {
+
+    <span class="comment">/**
+     * Get our target resource.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">Resource</span> <span class="function-name">getTargetResource</span>() {
+	<span class="type">Resource</span> <span class="variable-name">target</span> = (<span class="type">Resource</span>) getResource();
+	<span class="keyword">while</span> (target <span class="keyword">instanceof</span> <span class="type">ResourceFrame</span>) {
+	    target = ((<span class="type">ResourceFrame</span>)target).getResource();
+	}
+	<span class="keyword">return</span> target;
+    }
+    
+    <span class="comment">/**
+     * Lookup time filtering.
+     * This method is called while Jigsaw performs resource lookup. Each time
+     * a lookup end up on the target resource of that filter, this method
+     * will be called.
+     * </span><span class="keyword">@param </span><span class="variable-name">ls</span><span class="comment"> The current lookup state.
+     * </span><span class="keyword">@param </span><span class="variable-name">lr</span><span class="comment"> The current lookup result.
+     * </span><span class="keyword">@return </span><span class="comment">A boolean, &lt;strong&gt;true&lt;/strong&gt; if this filter has performed
+     * the whole lookup, and side-effect the lookup result appropriatelly,
+     * &lt;strong&gt;false&lt;/strong&gt; otherwise.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">lookup</span>(<span class="type">LookupState</span> <span class="variable-name">ls</span>, <span class="type">LookupResult</span> <span class="variable-name">lr</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    
+    <span class="comment">/**
+     * Simplified ingoingFilter API.
+     * This is a default, simplified API to the ingoing filter method.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request to filter.
+     * </span><span class="keyword">@return </span><span class="comment">A Reply instance, or &lt;strong&gt;null&lt;/strong&gt; if processing
+     * should continue normally.
+     * </span><span class="keyword">@exception </span><span class="type">HTTPException</span><span class="comment"> If processing should be interrupted, because
+     * an abnormal situation occured.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+    
+    <span class="comment">/**
+     * The ingoingFilter method.
+     * This is the method that really gets called by Jigsaw core. By default
+     * it will invoke the simpler &lt;code&gt;ingoingFilter&lt;/code&gt; method,
+     * taking only the request has a parameter.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request that is about to be handled.
+     * </span><span class="keyword">@param </span><span class="variable-name">filters</span><span class="comment"> The whole filter list to be applied to the resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">i</span><span class="comment"> A pointer into the above array, indicating which filters
+     * have already been triggered (the one whose index are lower than 
+     * &lt;strong&gt;i&lt;/strong&gt;), and what filters have to be triggered (the one
+     * whose index are greater or equal to &lt;strong&gt;i+1&lt;/strong&gt;).
+     * </span><span class="keyword">@return </span><span class="comment">A Reply instance, if the filter did know how to answer
+     * the request without further processing, &lt;strong&gt;null&lt;/strong&gt;
+     * otherwise.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>,
+					<span class="type">FilterInterface</span> <span class="variable-name">filters</span>[], 
+					<span class="type">int</span> <span class="variable-name">i</span>)
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="keyword">return</span> ingoingFilter(request);
+    }
+    
+
+    <span class="comment">/**
+     * Simplified API to the outgoing filter metho.
+     * This is a simplified API to the ougoing filter method, you can either
+     * overide this method, or the more powerfull one.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The original request.
+     * </span><span class="keyword">@param </span><span class="variable-name">reply</span><span class="comment"> It's original reply.
+     * </span><span class="keyword">@return </span><span class="comment">A Reply instance, or &lt;strong&gt;null&lt;/strong&gt; if processing
+     * should continue normally.
+     * </span><span class="keyword">@exception </span><span class="type">HTTPException</span><span class="comment"> If processing should be interrupted, because
+     * an abnormal situation occured.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>,
+					 <span class="type">ReplyInterface</span> <span class="variable-name">reply</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+    
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">exceptionFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>,
+					  <span class="type">ProtocolException</span> <span class="variable-name">ex</span>,
+					  <span class="type">FilterInterface</span> <span class="variable-name">filters</span>[],
+					  <span class="type">int</span> <span class="variable-name">i</span>) {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+    
+    <span class="comment">/**
+     * The outgoingFilter method.
+     * This method is the one that gets called by Jigsaw core. By default it
+     * will call the simpler &lt;code&gt;outgoingFilter&lt;/code&gt; method that takes
+     * only the request and the reply as parameters.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request that has been processed.
+     * </span><span class="keyword">@param </span><span class="variable-name">reply</span><span class="comment"> The original reply as emitted by the resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">filters</span><span class="comment"> The whole filter that applies to the resource.
+     * </span><span class="keyword">@param </span><span class="variable-name">i</span><span class="comment"> The current index of filters. The &lt;em&gt;i&lt;/em&gt; filter is ourself,
+     * filters with lower indexes have already been applied, and filters with
+     * greater indexes are still to be applied.
+     * </span><span class="keyword">@return </span><span class="comment">A Reply instance, if that filter know how to complete the
+     * request processing, or &lt;strong&gt;null&lt;/strong&gt; if reminaing filters
+     * are to be called by Jigsaw engine.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>,
+					 <span class="type">ReplyInterface</span> <span class="variable-name">reply</span>,
+					 <span class="type">FilterInterface</span> <span class="variable-name">filters</span>[],
+					 <span class="type">int</span> <span class="variable-name">fidx</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="type">ReplyInterface</span> <span class="variable-name">fr</span> = outgoingFilter(request, reply);
+	<span class="keyword">return</span> (fr != reply) ? fr : <span class="keyword">null</span>;
+    }
+
+    <span class="reference">public</span> <span class="type">OutputStream</span> <span class="function-name">outputFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>,
+				     <span class="type">ReplyInterface</span> <span class="variable-name">reply</span>,
+				     <span class="type">OutputStream</span> <span class="variable-name">output</span>) {
+	<span class="keyword">return</span> output;
+    }
+}
+
+    </pre>
+  </body>
+</html>

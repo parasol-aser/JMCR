@@ -1,0 +1,7 @@
+w3c.jigsaw.pics.DataBase.dbname=bureaux
+w3c.jigsaw.pics.DataBase.dburl=jdbc:msql://www43.inria.fr:4333/bureaux
+w3c.jigsaw.pics.DataBase.jdbcdriver=COM.imaginary.sql.msql.MsqlDriver
+w3c.jigsaw.pics.DataBase.username=bmahe
+w3c.jigsaw.pics.DataBase.passwd=
+w3c.jigsaw.pics.DataBase.servicefield=service
+w3c.jigsaw.pics.DataBase.bureaufield=bureau

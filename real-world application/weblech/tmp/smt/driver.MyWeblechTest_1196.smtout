@@ -1,0 +1,271 @@
+sat
+(model 
+  (define-fun x127 () Int
+    4)
+  (define-fun x138 () Int
+    15)
+  (define-fun x132 () Int
+    9)
+  (define-fun x107 () Int
+    (- 3))
+  (define-fun x133 () Int
+    10)
+  (define-fun x125 () Int
+    2)
+  (define-fun x128 () Int
+    5)
+  (define-fun x129 () Int
+    6)
+  (define-fun x126 () Int
+    3)
+  (define-fun x136 () Int
+    13)
+  (define-fun x137 () Int
+    14)
+  (define-fun x135 () Int
+    12)
+  (define-fun x108 () Int
+    (- 2))
+  (define-fun x109 () Int
+    (- 1))
+  (define-fun x134 () Int
+    11)
+  (define-fun x130 () Int
+    7)
+  (define-fun x131 () Int
+    8)
+  (define-fun x111 () Int
+    1)
+  (define-fun x106 () Int
+    (- 4))
+  (define-fun x105 () Int
+    (- 5))
+  (define-fun x104 () Int
+    (- 6))
+  (define-fun x103 () Int
+    (- 7))
+  (define-fun x102 () Int
+    (- 8))
+  (define-fun x101 () Int
+    (- 9))
+  (define-fun x100 () Int
+    (- 10))
+  (define-fun x99 () Int
+    (- 11))
+  (define-fun x98 () Int
+    (- 12))
+  (define-fun x97 () Int
+    (- 13))
+  (define-fun x96 () Int
+    (- 14))
+  (define-fun x95 () Int
+    (- 15))
+  (define-fun x94 () Int
+    (- 16))
+  (define-fun x93 () Int
+    (- 17))
+  (define-fun x92 () Int
+    (- 18))
+  (define-fun x91 () Int
+    (- 19))
+  (define-fun x90 () Int
+    (- 20))
+  (define-fun x89 () Int
+    (- 21))
+  (define-fun x88 () Int
+    (- 22))
+  (define-fun x87 () Int
+    (- 23))
+  (define-fun x86 () Int
+    (- 24))
+  (define-fun x85 () Int
+    (- 25))
+  (define-fun x84 () Int
+    (- 26))
+  (define-fun x83 () Int
+    (- 27))
+  (define-fun x82 () Int
+    (- 28))
+  (define-fun x81 () Int
+    (- 29))
+  (define-fun x80 () Int
+    (- 30))
+  (define-fun x79 () Int
+    (- 31))
+  (define-fun x78 () Int
+    (- 32))
+  (define-fun x77 () Int
+    (- 33))
+  (define-fun x76 () Int
+    (- 34))
+  (define-fun x75 () Int
+    (- 35))
+  (define-fun x74 () Int
+    (- 36))
+  (define-fun x73 () Int
+    (- 37))
+  (define-fun x72 () Int
+    (- 38))
+  (define-fun x71 () Int
+    (- 39))
+  (define-fun x70 () Int
+    (- 40))
+  (define-fun x69 () Int
+    (- 41))
+  (define-fun x68 () Int
+    (- 42))
+  (define-fun x67 () Int
+    (- 43))
+  (define-fun x66 () Int
+    (- 44))
+  (define-fun x65 () Int
+    (- 45))
+  (define-fun x64 () Int
+    (- 46))
+  (define-fun x63 () Int
+    (- 47))
+  (define-fun x62 () Int
+    (- 48))
+  (define-fun x61 () Int
+    (- 49))
+  (define-fun x60 () Int
+    (- 50))
+  (define-fun x59 () Int
+    (- 51))
+  (define-fun x58 () Int
+    (- 52))
+  (define-fun x57 () Int
+    (- 53))
+  (define-fun x56 () Int
+    (- 54))
+  (define-fun x55 () Int
+    (- 55))
+  (define-fun x54 () Int
+    (- 56))
+  (define-fun x53 () Int
+    (- 57))
+  (define-fun x52 () Int
+    (- 58))
+  (define-fun x51 () Int
+    (- 59))
+  (define-fun x50 () Int
+    (- 60))
+  (define-fun x49 () Int
+    (- 61))
+  (define-fun x48 () Int
+    (- 62))
+  (define-fun x47 () Int
+    (- 63))
+  (define-fun x46 () Int
+    (- 64))
+  (define-fun x45 () Int
+    (- 65))
+  (define-fun x44 () Int
+    (- 66))
+  (define-fun x43 () Int
+    (- 67))
+  (define-fun x42 () Int
+    (- 68))
+  (define-fun x41 () Int
+    (- 69))
+  (define-fun x40 () Int
+    (- 70))
+  (define-fun x39 () Int
+    (- 71))
+  (define-fun x38 () Int
+    (- 72))
+  (define-fun x37 () Int
+    (- 73))
+  (define-fun x36 () Int
+    (- 74))
+  (define-fun x35 () Int
+    (- 75))
+  (define-fun x34 () Int
+    (- 76))
+  (define-fun x33 () Int
+    (- 77))
+  (define-fun x32 () Int
+    (- 78))
+  (define-fun x31 () Int
+    (- 79))
+  (define-fun x30 () Int
+    (- 80))
+  (define-fun x29 () Int
+    (- 81))
+  (define-fun x28 () Int
+    (- 82))
+  (define-fun x27 () Int
+    (- 83))
+  (define-fun x26 () Int
+    (- 84))
+  (define-fun x25 () Int
+    (- 85))
+  (define-fun x24 () Int
+    (- 86))
+  (define-fun x23 () Int
+    (- 87))
+  (define-fun x22 () Int
+    (- 88))
+  (define-fun x21 () Int
+    (- 89))
+  (define-fun x20 () Int
+    (- 90))
+  (define-fun x19 () Int
+    (- 91))
+  (define-fun x18 () Int
+    (- 92))
+  (define-fun x17 () Int
+    (- 93))
+  (define-fun x16 () Int
+    (- 94))
+  (define-fun x15 () Int
+    (- 95))
+  (define-fun x14 () Int
+    (- 96))
+  (define-fun x13 () Int
+    (- 97))
+  (define-fun x12 () Int
+    (- 98))
+  (define-fun x11 () Int
+    (- 99))
+  (define-fun x10 () Int
+    (- 100))
+  (define-fun x9 () Int
+    (- 101))
+  (define-fun x8 () Int
+    (- 102))
+  (define-fun x7 () Int
+    (- 103))
+  (define-fun x6 () Int
+    (- 104))
+  (define-fun x124 () Int
+    1)
+  (define-fun x5 () Int
+    (- 105))
+  (define-fun x139 () Int
+    16)
+  (define-fun x123 () Int
+    0)
+  (define-fun x110 () Int
+    0)
+)
+(:add-rows                44
+ :assert-lower            8
+ :assert-upper            14
+ :binary-propagations     1
+ :bound-prop              2
+ :decisions               1
+ :del-clause              1
+ :eliminated-applications 210
+ :eliminated-vars         105
+ :final-checks            1
+ :max-memory              1.17
+ :memory                  0.82
+ :mk-bool-var             23
+ :mk-clause               2
+ :num-allocs              14152
+ :pivots                  16
+ :propagations            1
+ :rlimit-count            40453
+ :time                    0.01
+ :total-time              0.01)

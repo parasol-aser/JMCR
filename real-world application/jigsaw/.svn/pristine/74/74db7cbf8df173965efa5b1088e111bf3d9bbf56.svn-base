@@ -1,0 +1,307 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Jigsaw on Macintosh</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BAKCKGROUND="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG BORDER="0" ALT="W3C" SRC="/icons/WWW/w3c_home" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG BORDER="0" SRC="/icons/jigsaw" WIDTH="212" HEIGHT="49"></A>
+<H1>
+  Jigsaw on Macintosh
+</H1>
+<P>
+<CITE>( This installation tutorial and suggestion list is based on my personal
+experiences with Jigsaw, Metrowerks Java, Sun Java SDK and the Macintosh.
+The standard disclaimer applies: neither Macalot Software or myself will
+be responsible in any way for problems resulting from the use of these
+instructions and suggestions, your mileage may vary. ) </CITE>
+<P>
+<STRONG>Getting the Jigsaw Archive</STRONG>
+<P>
+If you have not already done so,
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/">download the current Jigsaw
+source</A> which at the time of this writing (11/10/96) is at version 1.0a3.
+The archive is available in both a TAR or GZIP TAR format. The GZIPed version
+will be the smallest, so thats the archive I'd recommend downloading.The
+GZIP format archive is available here via
+<A HREF="ftp://ftp.w3.org/pub/jigsaw/jigsaw.tar.gz">ftp</A> or
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/jigsaw.tar.gz">http</A>.
+<P>
+<BR>
+<B>Uncompress the Archive</B><BR>
+<BR>
+The next step is to uncompress the Jigsaw zip archive. To do this you will
+need both a GNUzip extractor and a TAR extractor, both of which can be aquired
+at the following URL:
+<P>
+<A HREF="http://www.javaworld.com/javaworld/common/jw.resources.toc.html">http://ww
+w.javaworld.com/javaworld/common/jw.resources.toc.html</A>
+<P>
+You will use MacGzip to unzip the archive. Make sure you have the option
+to convert LF's to CR's turned off in MacGzip. This is<EM>very</EM> important.
+Once the file has been unzipped you will have a file named Jigsaw.tar. This
+resulting TAR file must be uncompressed next with the TAR extractor. There
+are many files in this archive that must be treated as binary files and cannot
+have LF's converted to CR's. I found that regardless of the state of the
+checkbox in Aladdin's Stuffit Deluxe version 4.0, LF to CR translation still
+took place. This caused me a great deal of headaches, I therefore suggest
+unarchiving with MacTar or a similar application that you are
+<EM>certain</EM> won't translate LF's.
+<P>
+Uncompressing a UNIX TAR archive on Macintosh is usually no big task, but
+I'm afraid it is here for one reason. There are many files in this archive
+with longer than 31 character file names. Some 260 of them to be exact. When
+MacTar encounters a file with a long file name it just skips over it. While
+at least all of these skipped files are documentation files and not source
+files, this will still be a pain since you will have to manually dismiss
+a warning alert each time a long file name is encountered in the archive.
+While the loss of these files <EM>is</EM> a major problem, there is no easy
+solution at this time. Alternately you may want to uncompress the /User/api
+and /User/Reference directories using Stuffit Deluxe. Stuffit simply truncates
+these long file names, permitting you to go into these directories and rename
+these files manually, in order to review the api and reference documentation.
+Regardless, you do however loose the nice feature of online help, available
+on other platforms supporting 64 character file names.
+<P>
+It has been suggested by
+<A HREF="mailto:Anselm%20Baird-Smith%20%3Cabaird@w3.org%3E">Anselm</A> that
+these directories could be left in TAR archive format and a filter resource
+written that translates them on the fly. This would probably be the best
+solution to the problem on platforms with file systems limited to 31 character
+file names, although no work has yet been done in this regard.
+<P>
+<B>Choosing a Development Environment</B>
+<P>
+The SUN Java SDK 1.0.2 for Macintosh has a hopelessly flawed Socket class
+and is therefore unusable as far as Jigsaw is concerned. I am not aware of
+a later fixed version from SUN, if anyone is, please let me know. I have
+not tested with Apple's new MacOS Runtime for Java that is currently at beta
+1. Again, anyone wishing to contribute feedback as to the successes/failures
+attributed with it's use, or any other Java runtime for Macintosh, I'll be
+glad to add your comments to this page.
+<P>
+For the sake of this 'recipe' however, I'll stick with using the Metrowerks
+CW10 IDE and Metrowerks Java runtime. I have been building Jigsaw under
+Metrowerks Java since version 1.0a1 and CW9 . I have witnessed many runtime
+bug fixes and some very radical changes to the Jigsaw internal architecture
+over that period. While there are still a few bugs remaining in the current
+Merowerks 1.0.2 runtime, it appears reasonably stable. The Jigsaw code is
+extremely stable at this point. There have been a few bug fixes and patches
+added since the 1.0a3 release.
+<P>
+<BR>
+<B><FONT SIZE=+2>Jigsaw the Easy Way</FONT></B><BR>
+<BR>
+I think it's really important to point out here, that you don't have to compile
+all of the 300+ Jigsaw source files in order to use Jigsaw on Macintosh.
+The archive comes with a pre-compiled binary zip file that you can link against.
+<P>
+In short, unless you want to make changes to the code, all you need to do
+to build and run a Jigsaw httpd server is to link against the Jigsaw zip
+file contained in the classes folder. Here is how to do this, using the
+Metrowerks CW10 environment:<BR>
+<BR>
+In the folder named "src", create a new Metrowerks project named "Jigsaw.&#181;"
+using the Java Library stationary. Immediately open the preferences for the
+project (using the Edit menu choice Project Settings...) and change the project
+type in the popup menu to "Runnable Zip File" and specify the Main Class
+as: w3c.jigsaw.http.httpd Add the file "Jigsaw.zip" to the project (and remove
+any placeholder files), then choose Make. Move the resulting "Jigsaw.out"
+file into the Jigsaw folder containing the WWW (space) directory and double-click
+to execute. That's it. It's that simple!
+<P>
+<BR>
+<B><FONT SIZE=+2>Jigsaw the Harder Way</FONT></B>
+<P>
+While linking against the supplied zip file is fine for getting your feet
+wet, eventually you'll want to apply some of the bug fix patches to the source
+and probably want to extend Jigsaw by adding your own resource types. To
+do this, you will have to compile all of the 300+ Jigsaw source files contained
+in the 31 different packages that make up the Jigsaw httpd server. There
+are a few gotchas however, that you should be aware of before you start.
+<P>
+<B>Know Bugs and Work Arounds</B>
+<P>
+a) Do not attempt to build Jigsaw under Metrowerks CW9. Do yourself a favor
+and update to CW10. There are just too many bugs in CW9 and the 1.0 and 1.01
+versions of the runtime to work through. <B>Workaround: </B>Save your sanity,
+update to CW10.
+<P>
+b) Java, from the standpoint of a development environment, permits the programmer
+to have like named source files, provided they occur in different packages.
+The <A HREF="http://www.metrowerks.com/">Metrowerks</A> IDE however does
+not permit this behavior, therefore, to build Jigsaw under MW you must create
+two seperate projects. The first project creates a zip file which is subsequently
+included in the second project. <B>Workaround: </B>Download the
+<A HREF="http://www.macalot.com/Public_Files/Jigsaw_Projects.sea.bin">Jigsaw
+projects for Metrowerks</A> self-extracting archive containing the two necessary
+projects and an AppleScript used to automate the build of Jigsaw.
+<P>
+c) Metrowerks IDE uses aliases to maintain the location of files in a Java
+project. When a project is imported to a different machine than the one it
+was created on, these aliases will not resolve, since the dirID's will be
+invalid. The IDE upon recognizing this, will subsequently search for the
+project files in a descending order, begining at the classes directory and
+searching subsequent directories alphabetically until the first matching
+file name is found. As mentioned previously, there are like named files in
+some of the Jigsaw packages and most of the time the IDE will find the
+<EM>wrong</EM> file. If you have problems compiling Jigsaw using the supplied
+Jigsaw projects for Metrowerks, suspect this problem first. <B>Workaround:
+</B>Use an option-click on each of the file names in the project window to
+verify they are the correct files. If they are incorrect, remove the file
+and then re-add the correct file to the package. This will be the case in
+the following packages:
+<P>
+Project: Jigsaw Part1.&#181;
+<PRE><SAMP><FONT SIZE=-1>w3c.www.http - look for incorrect HTTP.java source</FONT></SAMP>
+<SAMP><FONT SIZE=-1>file</FONT></SAMP>
+</PRE>
+<P>
+Project: Jigsaw.&#181;
+<PRE><SAMP><FONT SIZE=-1>w3c.www.protocol.http  - Request.java, Reply.java</FONT></SAMP>
+<SAMP><FONT SIZE=-1>and perhaps others.</FONT></SAMP>
+<SAMP><FONT SIZE=-1>w3c.www.protocol.http.auth  - look for incorrect</FONT></SAMP>
+<SAMP><FONT SIZE=-1>AuthFilter.java</FONT></SAMP>
+<SAMP><FONT SIZE=-1>w3c.www.protocol.http.cache  - many, probably best to</FONT></SAMP>
+<SAMP><FONT SIZE=-1>remove all and re-add</FONT></SAMP>
+<SAMP><FONT SIZE=-1>w3c.tools.forms - many, probably best to remove all and</FONT></SAMP>
+<SAMP><FONT SIZE=-1>re-add</FONT></SAMP>
+
+<SAMP><FONT SIZE=-1>Sorry I'm doing this from memory, there could be</FONT></SAMP>
+<SAMP><FONT SIZE=-1>others!</FONT></SAMP>
+</PRE>
+<P>
+d) There are some problems in the current CW10 Metrowerks Java compiler and
+in the IDE in regards to the way the project data base is searched for class
+dependancies. I have experienced times when you could remove binaries from
+a Java project and yet could still not recompile after changing base classes.
+Some of these problems are corrected in the MW Java compiler I am testing,
+but there are still some problem yet remaining. <B>Workaround: </B>If after
+verifying the files contained in the project are correct and after removing
+binaries the project still won't compile, try closing and then re-opening
+the project, this will usually correct the situation.
+<P>
+e) The 68K version of the Metrowerks 1.0.2 runtime has both a broken Threads
+class and a broken Sockets class. Metrowerks has these problems fixed in
+an upcomming 1.0.3 release and you should see a patch soon, but for now you
+cannot run Jigsaw sucessfully under 68K. <B>Workaround: </B>none, wait for
+1.0.3 update.
+<P>
+f) The File class lastModified() method returns an incorrect (usually negative)
+time stamp for a file or directory's modification date. This causes Jigsaw
+to fail to index files and directories properly. (i.e., if you add a file
+or directory it won't show up). Again, this is now fixed in both the 68K
+and PPC runtime, but if you wish to use Jigsaw before this patch is publicly
+available you must modify the Jigsaw source as per the following.
+<B>Workaround: </B>Search for all occurances of File.lastModified() and enclose
+them in Math.abs() wrappers in both FileResource.java and DirectoryResource.java.
+For example in DirectoryResource.java
+<PRE><CODE><FONT SIZE=-1>public synchronized Enumeration</FONT></CODE>
+<CODE><FONT SIZE=-1>enumerateResourceIdentifiers() {</FONT></CODE>
+<CODE><FONT SIZE=-1>	// Check that our children repository is still</FONT></CODE>
+<CODE><FONT SIZE=-1>valid:</FONT></CODE>
+<CODE><FONT SIZE=-1>	acquireChildren() ;</FONT></CODE>
+<CODE><FONT SIZE=-1>	// If extensible, update if needed:</FONT></CODE>
+<CODE><FONT SIZE=-1>	if ( getExtensibleFlag() ) {</FONT></CODE>
+<CODE><FONT SIZE=-1>	    File directory = getDirectory() ;</FONT></CODE>
+<CODE><FONT SIZE=-1>	    if ( directory != null ) {</FONT></CODE>
+<CODE><FONT SIZE=-1>		long dirstamp  =</FONT></CODE>
+<CODE><FONT SIZE=-1>directory.lastModified();</FONT></CODE>
+<CODE><FONT SIZE=-1>		dirstamp = Math.abs(dirstamp);	// &lt;----</FONT></CODE>
+<CODE><FONT SIZE=-1>Added JTD</FONT></CODE>
+<CODE><FONT SIZE=-1>	....</FONT></CODE>
+</PRE>
+<P>
+While this is not an absolute fix, it will work reasonably well. Be sure
+to remove these wrappers when the 1.0.3 update is used. Since this bug is
+now fixed.
+<P>
+g) Java projects can be built as seperate class files (in the case of Jigsaw
+over 400) or as a single zip file containing all of the classes. I don't
+particularly recommend building Jigsaw as seperate classes. A single executable
+is better for a number of reasons, not the least of which are, use of much
+less disk space, less directory clutter, and easier execution of the resulting
+application. (i.e., you just double-click on the resulting .out file to execute
+it, rather than having to issue a javai command containing a working directory,
+classpath, main class).
+<P>
+Now with all that said, you can move on to the next step of creating the
+necessary two projects and adding the source files to the project. Alternately,
+you may want to download a self extracting archive containing the preconfigured
+<A HREF="http://www.macalot.com/Public_Files/Jigsaw_Projects.sea.bin">Jigsaw
+projects for Metrowerks</A>, if you have not already done so. If you'd like
+instead to create your own project files, the section to follow will explain
+how to create both projects.
+<P>
+<STRONG>Create the Jigsaw Projects</STRONG><BR>
+<BR>
+In the folder named "src" (within the Jigsaw folder), create a new Metrowerks
+project named "Jigsaw.&#181;" using the Java Library stationary. Immediately
+open the preferences for the project (using the Edit menu choice Project
+Settings...) and change the project type in the popup menu to "Runnable Zip
+File" and specify the Main Class as: w3c.jigsaw.http.httpd
+<P>
+Next, also in the "src" folder, create a new Metrowerks project named
+<SAMP><FONT SIZE=-1>Jigsaw Part1.&#181;</FONT></SAMP> using the Java Library
+stationary. Add all of the files in the following directories. It is wise
+to add each package as a seperate group, naming the group the same as the
+package.
+<PRE><FONT SIZE=-1>w3c.cvs</FONT>
+<FONT SIZE=-1>w3c.mux</FONT>
+<FONT SIZE=-1>w3c.util</FONT>
+<FONT SIZE=-1>w3c.jigsaw.auth</FONT>
+<FONT SIZE=-1>w3c.jigsaw.config</FONT>
+<FONT SIZE=-1>w3c.jigsaw.contrib</FONT>
+<FONT SIZE=-1>w3c.jigsaw.daemon</FONT>
+<FONT SIZE=-1>w3c.jigsaw.filters</FONT>
+<FONT SIZE=-1>w3c.jigsaw.formedit</FONT>
+<FONT SIZE=-1>w3c.jigsaw.forms</FONT>
+<FONT SIZE=-1>w3c.jigsaw.html</FONT>
+<FONT SIZE=-1>w3c.jigsaw.http</FONT>
+<FONT SIZE=-1>w3c.jigsaw.indexer</FONT>
+<FONT SIZE=-1>w3c.jigsaw.map</FONT>
+<FONT SIZE=-1>w3c.jigsaw.pics</FONT>
+<FONT SIZE=-1>w3c.jigsaw.resources</FONT>
+<FONT SIZE=-1>w3c.jigsaw.ssi</FONT>
+<FONT SIZE=-1>w3c.jigsaw.status</FONT>
+<FONT SIZE=-1>w3c.jigsaw.tests</FONT>
+<FONT SIZE=-1>w3c.tools.codec</FONT>
+<FONT SIZE=-1>w3v.tools.crypt</FONT>
+<FONT SIZE=-1>w3c.tools.dbm</FONT>
+<FONT SIZE=-1>w3c.tools.sorter</FONT>
+<FONT SIZE=-1>w3c.tools.timers</FONT>
+<FONT SIZE=-1>w3c.www.mime</FONT>
+<FONT SIZE=-1>w3c.www.http</FONT>
+<FONT SIZE=-1>classes.zip</FONT>
+</PRE>
+<P>
+Once you have all the files added to the project, select Make from the Project
+menu. The compile can take anywhere from 10 minutes to an hour, depending
+on the state of file sharing, hard disk speed and HP of your particular machine.
+Perhaps even longer on 68K Macs. When the compile is complete, switch back
+to the Jigsaw.&#181; project, add the resulting <SAMP><FONT SIZE=-1>Jigsaw
+Part1.zip</FONT></SAMP> file to the project, then add the files from the
+remaining packages below.
+<PRE><FONT SIZE=-1>w3c.www.protocol.http</FONT>
+<FONT SIZE=-1>w3c.www.protocol.http.auth</FONT>
+<FONT SIZE=-1>w3c.www.protocol.http.cache</FONT>
+<FONT SIZE=-1>w3c.tools.forms</FONT>
+<FONT SIZE=-1>w3c.jigsaw.cvs</FONT>
+<FONT SIZE=-1>w3c.jigsaw.proxy</FONT>
+<FONT SIZE=-1>Jigsaw Part1.zip</FONT>
+<FONT SIZE=-1>classes.zip</FONT>
+</PRE>
+<P>
+Finally, select Make from the Project menu. When this compile is complete,
+move the resulting <SAMP><FONT SIZE=-1>Jigsaw.out</FONT></SAMP> file into
+the sub-folder named Jigsaw (i.e., in to the directory containing the config
+directory), and double-click to execute Jigsaw. From their you should be
+able to access the Overview.html file. Have Fun! sinc, -
+<A HREF="mailto:jeff@macalot.com">Jeff Dripps</A>
+<P>
+  <HR>
+<P ALIGN=CENTER>
+Last Updated - November 13, 1996 3:58PM EST<BR>
+<I>All contents of these WWW pages are (c) Macalot Software 1986-1996.</I>
+</BODY></HTML>

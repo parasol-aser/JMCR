@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>PutFilter.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// PutFilter.java
+// $Id: PutFilter.html,v 1.1 2010/06/15 12:20:04 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">filters</span>;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">www</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">resources</span>.*;
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">PutFilter</span> <span class="keyword">extends</span> <span class="type">ResourceFilter</span> {
+    <span class="comment">/**
+     * Attribute index - The companion PutList resource's URL.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_PUTLIST</span> = -1;
+
+    <span class="type">static</span> {
+	<span class="type">Class</span>     <span class="variable-name">c</span> = <span class="keyword">null</span>;
+	<span class="type">Attribute</span> <span class="variable-name">a</span> = <span class="keyword">null</span>;
+
+	<span class="keyword">try</span> {
+	    c = Class.forName("<span class="string">org.w3c.jigsaw.filters.PutFilter</span>");
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace();
+	    System.exit(1);
+	}
+	<span class="comment">// Register the PutList URL attribute:
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">put-list</span>"
+				, <span class="keyword">null</span>
+				, Attribute.EDITABLE|Attribute.MANDATORY);
+	ATTR_PUTLIST = AttributeRegistry.registerAttribute(c, a);
+    }
+
+    <span class="comment">/**
+     * Resolve the companion PutList URL attribute into a resource:
+     */</span>
+
+    <span class="string">private</span> <span class="type">ResourceReference</span> <span class="variable-name">list</span> = <span class="keyword">null</span>;
+    <span class="preprocessor">protected</span> <span class="type">synchronized</span> <span class="type">ResourceReference</span> <span class="function-name">resolvePutListResource</span>() {
+	<span class="comment">// Prepare for lookup:
+</span>	<span class="type">ResourceReference</span> <span class="variable-name">rr_root</span> = <span class="keyword">null</span>;
+	rr_root = ((httpd) getServer()).getRootReference();
+	<span class="type">FramedResource</span> <span class="variable-name">root</span> = <span class="keyword">null</span>;
+	root = ((httpd) getServer()).getRoot();
+	<span class="type">String</span>       <span class="variable-name">u</span>  = getPutListURL();
+	<span class="keyword">if</span> ( u == <span class="keyword">null</span> )
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	<span class="comment">// Do the lookup:
+</span>	<span class="type">ResourceReference</span> <span class="variable-name">r_target</span> = <span class="keyword">null</span>;
+	<span class="keyword">try</span> {
+	    <span class="type">LookupState</span>  <span class="variable-name">ls</span> = <span class="keyword">new</span> <span class="type">LookupState</span>(u);
+	    <span class="type">LookupResult</span> <span class="variable-name">lr</span> = <span class="keyword">new</span> <span class="type">LookupResult</span>(rr_root);
+	    root.lookup(ls, lr);
+	    r_target = lr.getTarget();
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    r_target = <span class="keyword">null</span>;
+	}
+	<span class="keyword">if</span> (r_target != <span class="keyword">null</span>) {
+	  <span class="keyword">try</span> {
+	    <span class="type">Resource</span> <span class="variable-name">target</span> = r_target.lock();
+	    <span class="keyword">if</span> (! (target <span class="keyword">instanceof</span> <span class="type">PutListResource</span>) )
+	      r_target = <span class="keyword">null</span>;
+	    <span class="keyword">else</span>
+	      list = r_target;
+	  } <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+	    <span class="comment">// continue
+</span>	  } <span class="keyword">finally</span> {
+	    r_target.unlock();
+	  }
+	}
+	<span class="keyword">return</span> r_target;
+    }
+
+    <span class="comment">/**
+     * Get our companion PutListResource's URL.
+     * </span><span class="keyword">@return </span><span class="comment">The URL encoded as a String, or &lt;strong&gt;null&lt;/strong&gt; if
+     * undefined.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getPutListURL</span>() {
+	<span class="keyword">return</span> getString(ATTR_PUTLIST, <span class="keyword">null</span>);
+    }
+
+    <span class="comment">/**
+     * Catch PUTLIST assignments.
+     * </span><span class="keyword">@param </span><span class="variable-name">idx</span><span class="comment"> The attribute being updated.
+     * </span><span class="keyword">@param </span><span class="variable-name">value</span><span class="comment"> It's new value.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">setValue</span>(<span class="type">int</span> <span class="variable-name">idx</span>, <span class="type">Object</span> <span class="variable-name">value</span>) {
+	<span class="reference">super</span>.setValue(idx, value);
+	<span class="keyword">if</span> ( idx == ATTR_PUTLIST ) {
+	    <span class="type">synchronized</span>(<span class="reference">this</span>) {
+		list = <span class="keyword">null</span>;
+	    }
+	}
+    }
+
+    <span class="comment">/**
+     * Nothing done in the ingoingFilter.
+     * We wait until the outgoigFilter.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request that is about to be processsed.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>) {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+    
+    <span class="comment">/**
+     * Catch successfull PUTs, and keep track of them.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The original request.
+     * </span><span class="keyword">@param </span><span class="variable-name">reply</span><span class="comment"> The original reply.
+     * </span><span class="keyword">@return </span><span class="comment">Always &lt;strong&gt;null&lt;/strong&gt;.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">req</span>, 
+					 <span class="type">ReplyInterface</span> <span class="variable-name">rep</span>) 
+  {
+        <span class="type">Request</span> <span class="variable-name">request</span> = (<span class="type">Request</span>) req;
+	<span class="type">Reply</span>   <span class="variable-name">reply</span>   = (<span class="type">Reply</span>) rep;
+	<span class="comment">// Is this a successfull PUT request ?
+</span>	<span class="keyword">if</span> (request.getMethod().equals("<span class="string">PUT</span>") 
+	    && ((reply.getStatus()/100) == 2)) {
+	    <span class="comment">// Cool, keep track of the modified file:
+</span>	  <span class="type">ResourceReference</span> <span class="variable-name">rr</span>   = <span class="keyword">null</span>;
+	  <span class="type">PutListResource</span>   <span class="variable-name">l</span>    = <span class="keyword">null</span>;
+	  <span class="type">boolean</span>           <span class="variable-name">done</span> = <span class="keyword">false</span>;
+	  <span class="type">synchronized</span> (<span class="reference">this</span>) {
+	    rr = resolvePutListResource();
+	    <span class="keyword">if</span> (rr != <span class="keyword">null</span>) {
+	      <span class="keyword">try</span> {
+		l = (<span class="type">PutListResource</span>) rr.lock();
+		<span class="keyword">if</span> ( l != <span class="keyword">null</span> ) {
+		  l.registerRequest(request);
+		  done = <span class="keyword">true</span>;
+		}
+	      } <span class="keyword">catch</span> (<span class="type">InvalidResourceException</span> <span class="variable-name">ex</span>) {
+		done = <span class="keyword">false</span>;
+	      } <span class="keyword">finally</span> {
+		rr.unlock();
+	      }
+	    }
+	  }
+	  <span class="comment">// Make sure we did something:
+</span>	  <span class="keyword">if</span> ( done ) {
+	    httpd s = (httpd) getServer();
+	    s.errlog(getClass().getName()+
+		     "<span class="string">: unable to resolve companion PutListResource at </span>"+
+		     getPutListURL());
+	  }
+	}
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">initialize</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+	<span class="reference">super</span>.initialize(values);
+    }
+
+}
+
+    </pre>
+  </body>
+</html>

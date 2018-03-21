@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The GenericAuthFilter administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  GenericAuthFilter
+</H1>
+<P>
+The GenericAuthFilter provides a basic authentication mechanism. Depending
+on the realm it uses, and on its user description, it will use either IP
+filtering, or IP filtering with Basic authentication.
+<P>
+The filter is configured to allow only some <A HREF="#users">users</A> or
+some users belonging to a given set of <A HREF="#groups">groups</A> to access
+the information it protects. Users are recorded in a realm database. If no
+allowed users or groups is specified, <I>all</I> users of the realm are allowed.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.auth.GenericAuthFilter.html">GenericAuthFilter</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.auth.AuthFilter.html">AuthFilter</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The GenericAuthFilter defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#users">users</A>
+  <LI>
+    <A HREF="#groups">groups</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="users">users</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The list of the names of the users allowed to access the information protected
+    by the authentication filter.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editale
+    <A HREF="../api/w3c.jigsaw.resources.StringArrayAttribute.html">StringArrayAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute id]s undefined by default.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="groups">groups</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The list of the names of the groups allowed to access the information protected
+    by the authentication filter.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editale
+    <A HREF="../api/w3c.jigsaw.resources.StringArrayAttribute.html">StringArrayAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute is undefined by default.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.auth.GenericAuthFilter.html,v 1.1 1996/04/12 21:19:01 abaird
+Exp $</I>
+<P>
+</BODY></HTML>

@@ -1,0 +1,324 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>Genereal properties reference manual</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  GeneralProp
+</H1>
+<P>
+This resource provides access to <B>Jigsaw</B>'s general properties.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.http.GeneralProp.html">GeneralProp</A> class
+inherits from the following classes:
+<UL>
+  <LI>
+    PropertySet (aka abstract class)
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The HTTPResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#w3c.jigsaw.server">w3c.jigsaw.server</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.checkSensitivity">w3c.jigsaw.checkSensitivity</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.root">w3c.jigsaw.root</A>
+  <LI>
+    <A HREF="#s3c.jigsaw.host">w3c.jigsaw.host</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.port">w3c.jigsaw.port</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.root.store">w3c.jigsaw.root.store</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.root.name">w3c.jigsaw.root.name</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.publicMethods">w3c.jigsaw.publicMethods</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.trace">w3c.jigsaw.trace</A>
+  <LI>
+    <A HREF="#w3c.jigsaw.docurl">w3c.jigsaw.docurl</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="w3c.jigsaw.server">w3c.jigsaw.server</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The string that <B>Jigsaw</B> will emit as its identification through the
+    <CODE>Server</CODE> header.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to
+    <STRONG>Jigsaw/<I>major</I>.<I>minor</I></STRONG>, where <I>major</I> is
+    the current major release number, and <I>minor</I> is the minor one. As an
+    example, September 7th, 1996 <B>Jigsaw</B> release will emit Jigsaw/1.0a2.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.checkSensitivity">w3c.jigsaw.checkSensitivity</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should <B>Jigsaw</B> double check case sensitivity when accessing files.
+    On non-broken systems, the underlying file system is case-sensitive and the
+    whole world is very happy. However a few, old operating systems have not
+    incorporated that feature yet. For those system, turning this falg to
+    <STRONG>true</STRONG> will ensure that the URLs served by <B>Jigsaw</B> remains
+    case-sensitive.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    Because they are security implications related to not having this flag set
+    when running on a case-insensitive file system, this attribute defaults to
+    <STRONG>true</STRONG>. It is highly recommended that you turn it to
+    <STRONG>false</STRONG> when possible.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.root">w3c.jigsaw.root</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This property should provide the top directory of the server. This property,
+    by itself, is only used to get defaults value for other properties. A typical
+    top directory for a server will contain the following sub directories:
+    <DL>
+      <DT>
+	config
+      <DD>
+	Which will contain the required configuration files, among which:
+	<DL>
+	  <DT>
+	    httpd.props
+	  <DD>
+	    Will be the file containing the <B>Jigsaw</B> properties,
+	  <DT>
+	    jindex.cfg
+	  <DD>
+	    Will be the file containing the default settings for the indexer,
+	</DL>
+      <DT>
+	logs
+      <DD>
+	Which will contain the log files.
+      <DT>
+	WWW
+      <DD>
+	Which will contain the actual entities to be exported, along with their
+	description.
+      <DT>
+	bin
+      <DD>
+	Will optionally contain some scripts to run the binaries associated with
+	<B>Jigsaw</B>.
+    </DL>
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.FileAttribute.html">FileAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>Jigsaw</B>'s current directory.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.host">w3c.jigsaw.host</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This property should provide the full name (including the domain name) of
+    the machine that hosts the server. Don't forget to provide the host's domain-name
+    along with its name, otherwise, all urls dynamically generated by the server
+    will fail when trigered from a machine outside the server's domain.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to the machine on which the server runs.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.port">w3c.jigsaw.port</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The port on which the server will listen for client connections. Unless you
+    run the server as root, you won't be able to run the server on a port lesser
+    than 1024. This will be fixed in future releases.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.IntegerAttribute.html">IntegerAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This defaults to port <B><STRONG>8001</STRONG></B>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.root.store">w3c.jigsaw.root.store</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the store repository to be used for the space directory.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.FileAttribute.html">FileAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This defaults to
+    &lt;<A HREF="#w3c.jigsaw.root">w3c.jigsaw.root</A>&gt;/config/stores/
+    <STRONG>root.idx</STRONG>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.root.name">w3c.jigsaw.root.name</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the resource to be used as the server's root resource. This name
+    should be a valid resource name within the scope of the space directory resource
+    store (see above). This property is used, for example, to turn the server
+    into a proxy (by giving the name of some ProxyDirectory resource, instead
+    of the default name of the DirectoryResource for the space directory).
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">ObjectAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <STRONG>root</STRONG>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.publicMethods">w3c.jigsaw.publicMethods</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The set of public methods supported by that server. This set of methods is
+    being exported through the HTTP <CODE>Public</CODE> header.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.StringArrayAttribute.html">StringArrayAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <STRONG>{GET, HEAD, PUT, POST, LINK, UNLINK, OPTIONS,
+    DELETE}</STRONG>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.trace">w3c.jigsaw.trace</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Turn the server in <EM>trace mode</EM>. This flag wil lmake the server emit
+    various traces into the logger trace file, along with some debugging information
+    to the server's standard output stream. This flag has to be turned on for
+    clients trace flag to be effective.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <STRONG>false</STRONG>.
+</DL>
+<P>
+  <HR>
+<P>
+<A NAME="w3c.jigsaw.docurl">w3c.jigsaw.docurl</A>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The URL path of the &nbsp;<B>Jigsaw</B>'s documentation, as served by that
+    server. This can be either a relative URL (it will be absolutized relative
+    to the server's root URL), or an absolute URL.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.jigsaw.resources.ObjectAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.http.GeneralProp.html,v 1.2 1996/09/11 22:21:47 abaird
+Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>
