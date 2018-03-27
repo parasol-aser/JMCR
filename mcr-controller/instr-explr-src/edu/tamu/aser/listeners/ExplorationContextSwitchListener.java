@@ -3,7 +3,7 @@ package edu.tamu.aser.listeners;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.tamu.aser.exploration.Scheduler;
+import edu.tamu.aser.reexcution.Scheduler;
 import edu.tamu.aser.scheduling.events.EventDesc;
 import edu.tamu.aser.scheduling.events.LocationDesc;
 import edu.tamu.aser.scheduling.strategy.ThreadInfo;

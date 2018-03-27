@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.

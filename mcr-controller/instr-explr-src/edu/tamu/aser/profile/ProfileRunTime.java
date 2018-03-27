@@ -3,7 +3,6 @@ package edu.tamu.aser.profile;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import edu.tamu.aser.exploration.Scheduler;
 import edu.tamu.aser.mcr.trace.AbstractNode;
 import edu.tamu.aser.mcr.trace.JoinNode;
 import edu.tamu.aser.mcr.trace.LockNode;
@@ -14,6 +13,7 @@ import edu.tamu.aser.mcr.trace.Trace;
 import edu.tamu.aser.mcr.trace.UnlockNode;
 import edu.tamu.aser.mcr.trace.WaitNode;
 import edu.tamu.aser.mcr.trace.WriteNode;
+import edu.tamu.aser.reexcution.Scheduler;
 import edu.tamu.aser.rvinstrumentation.RVConfig;
 import edu.tamu.aser.rvinstrumentation.RVGlobalStateForInstrumentation;
 import edu.tamu.aser.scheduling.strategy.MCRStrategy;

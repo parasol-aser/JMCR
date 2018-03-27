@@ -5,9 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-//import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Zephyr;
-
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
 public class testArray {

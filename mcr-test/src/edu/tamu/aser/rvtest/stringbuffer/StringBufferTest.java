@@ -3,7 +3,7 @@ package edu.tamu.aser.rvtest.stringbuffer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
 
 
 

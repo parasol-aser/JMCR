@@ -3,7 +3,7 @@ package edu.tamu.aser.rvtest_simple_tests;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
 import instrumented.java.util.Collections;
 import instrumented.java.util.LinkedList;
 import instrumented.java.util.List;

@@ -13,8 +13,8 @@ import java.util.Set;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 
-import edu.tamu.aser.exploration.Scheduler;
 import edu.tamu.aser.mcr.config.Configuration;
+import edu.tamu.aser.reexcution.Scheduler;
 
 public class RVInstrumentor {
     private static final String SLASH = "/";
