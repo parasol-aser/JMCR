@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 
-import edu.tamu.aser.MCRProperties;
-import edu.tamu.aser.scheduling.ChoiceType;
+import edu.tamu.aser.rvinstrumentation.MCRProperties;
 
 /**
  * Reproduces a given schedule.

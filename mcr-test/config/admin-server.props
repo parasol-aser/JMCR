@@ -1,0 +1,19 @@
+#Updated by Upgrader
+#Thu Sep 09 14:02:25 CEST 1999
+org.w3c.jigsaw.trace=false
+org.w3c.jigsaw.client.bufsize=8192
+org.w3c.jigsaw.root.class=org.w3c.jigsaw.resources.DirectoryResource
+org.w3c.jigsaw.version.counter=4
+org.w3c.jigsaw.root.name=root
+org.w3c.jigsaw.propfile=config/admin-server.props
+org.w3c.jigsaw.checkSensitivity=false
+org.w3c.jigsaw.config=configadm
+org.w3c.jigsaw.keepAlive=true
+org.w3c.jigsaw.client.debug=false
+org.w3c.jigsaw.docurl=/User/Reference
+org.w3c.jigsaw.client.priority=5
+org.w3c.jigsaw.port=8009
+org.w3c.jigsaw.root=
+org.w3c.jigsaw.request.timeout=3000000
+org.w3c.jigsaw.serializer=org.w3c.tools.resources.serialization.xml.XMLSerializer
+org.w3c.jigsaw.http.ClientFactory=org.w3c.jigsaw.http.socket.SocketClientFactory

@@ -23,9 +23,9 @@ import edu.illinois.imunit.internal.parsing.Orderings;
 import edu.illinois.imunit.internal.parsing.ParseException;
 import edu.illinois.imunit.internal.parsing.ScheduleParser;
 import edu.illinois.imunit.internal.parsing.TokenMgrError;
-import edu.tamu.aser.MCRProperties;
 import edu.tamu.aser.mcr.ExploreSeedInterleavings;
 import edu.tamu.aser.mcr.trace.Trace;
+import edu.tamu.aser.rvinstrumentation.MCRProperties;
 
 /**
  * MCR runner for JUnit4 tests.
@@ -68,12 +68,20 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
     
     private Thread getNewExplorationThread() {
         return new Thread() {
-            public void run() {                           
+            public void run() { 
+                Thread.currentThread().setName("NewExploration");
                 while (Scheduler.canExecuteMoreSchedules()) {
 //                    long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
                     Scheduler.startingScheduleExecution();
 //                    System.out.println("======>> Starting Schedule Execution Done!");
-                    JUnit4MCRRunner.super.runChild(method, wrappedNotifier);  //after choosen all the objects
+                    try {
+                        JUnit4MCRRunner.super.runChild(method, wrappedNotifier);  //after choosen all the objects
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                        e.printStackTrace();
+                        System.err.println("=============");
+                    }
+                    
                     if (wrappedNotifier.isTestFailed()) {
                         wrappedNotifier.getFailure().getException().printStackTrace();
                         Scheduler.failureDetected(wrappedNotifier.getFailure().getMessage());
@@ -141,7 +149,7 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
      */
     private void exploreTest(FrameworkMethod method, RunNotifier notifier) {
 
-        stopOnFirstError = true;
+        stopOnFirstError = false;
         String stopOnFirstErrorString = MCRProperties.getInstance().getProperty(MCRProperties.STOP_ON_FIRST_ERROR_KEY);
         if (stopOnFirstErrorString.equalsIgnoreCase("false")) {
             stopOnFirstError = false;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.tamu.aser.exploration.Scheduler;
-import edu.tamu.aser.scheduling.ThreadInfo;
 import edu.tamu.aser.scheduling.events.EventDesc;
 import edu.tamu.aser.scheduling.events.LocationDesc;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 public class ExplorationContextSwitchListener extends ExplorationListenerAdapter {
     
@@ -56,7 +56,7 @@ public class ExplorationContextSwitchListener extends ExplorationListenerAdapter
         for (String s : contextSwitchInfo) {
             System.out.println(s);
         }
-        System.out.println("============================================================");
+//        System.out.println("============================================================");
     }
     
     @Override

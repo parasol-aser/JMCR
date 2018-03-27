@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="UnsafeUtilTest" project="stormpot-master" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="stormpot.UnsafeUtilTest" time="0.002">
-    <testcase name="compareAndSwapIntMustReturnTrueWhenUpdateSucceeds" classname="stormpot.UnsafeUtilTest" time="0.002"/>
-    <testcase name="compareAndSwapIntMustReturnFalseWhenUpdateFails" classname="stormpot.UnsafeUtilTest" time="0.0"/>
-    <testcase name="unsafeMustBeAvailable" classname="stormpot.UnsafeUtilTest" time="0.0"/>
-    <testcase name="putOrderedIntMustBeImmediatelyObservableInSameThread" classname="stormpot.UnsafeUtilTest" time="0.0"/>
-  </testsuite>
-</testrun>

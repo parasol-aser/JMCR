@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import edu.tamu.aser.MCRProperties;
+
 import edu.tamu.aser.exploration.Scheduler;
 import edu.tamu.aser.mcr.config.Configuration;
 
@@ -201,7 +201,7 @@ public class RVInstrumentor {
                      * instrument the class
                      */
                     if (shouldInstrumentClass(name)) {
-                        System.err.println("Instrumented " + name);
+//                        System.err.println("Instrumented " + name);
                         ClassReader classReader = new ClassReader(bytes); //bytes is the .class we are going to read
                         ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
 

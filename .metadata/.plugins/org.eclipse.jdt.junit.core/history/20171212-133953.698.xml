@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="MCRPreciseLeakDetectorTest" project="mcr-test-concurrent-objectPool" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="stormpot.MCRPreciseLeakDetectorTest" time="1.125">
-    <testcase name="mustCountCorrectlyAfterAddLeakAddLeakRemove" classname="stormpot.MCRPreciseLeakDetectorTest" time="0.027"/>
-    <testcase name="mustHandleManyAddedReplacedAndRemovedObjects" classname="stormpot.MCRPreciseLeakDetectorTest" time="1.098"/>
-  </testsuite>
-</testrun>

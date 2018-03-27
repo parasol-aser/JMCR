@@ -1,0 +1,833 @@
+[http-server] started at: Wed Oct 22 12:18:01 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 12:18:18 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 12:31:26 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 12:31:43 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 13:02:45 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 13:03:24 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 13:06:58 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 13:07:15 CDT 2014.
+[http-server] started at: Wed Oct 22 13:09:32 CDT 2014.
+[http-server] started at: Wed Oct 22 14:12:47 CDT 2014.
+[http-server] started at: Wed Oct 22 14:16:22 CDT 2014.
+[http-server] started at: Wed Oct 22 14:21:40 CDT 2014.
+[http-server] started at: Wed Oct 22 14:38:36 CDT 2014.
+[http-server] started at: Wed Oct 22 14:40:56 CDT 2014.
+[http-server] started at: Wed Oct 22 14:46:27 CDT 2014.
+[http-server] started at: Wed Oct 22 14:46:41 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 14:50:13 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 14:51:33 CDT 2014.
+[http-server] started at: Wed Oct 22 14:54:02 CDT 2014.
+client-1(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+client-2(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 22 14:55:20 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:05:42 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:05:47 CDT 2014.
+[http-server] started at: Wed Oct 22 15:06:28 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:15:37 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:15:43 CDT 2014.
+[http-server] started at: Wed Oct 22 15:19:42 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 22 15:19:47 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:20:08 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:20:13 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:27:59 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:28:04 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:41:04 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:41:09 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:48:48 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:48:53 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:55:14 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:55:19 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 15:55:32 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 15:55:37 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:00:01 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:00:06 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:01:23 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:01:28 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:02:56 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:03:01 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:12:47 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:12:52 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:14:20 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:14:25 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:16:18 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:16:23 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:16:55 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:17:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:18:43 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:19:38 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:20:32 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:20:41 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:20:46 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:20:51 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:20:53 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:20:58 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:22:18 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:22:24 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:22:28 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:22:33 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:23:01 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:23:06 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:24:21 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:24:26 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:24:29 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:24:32 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:24:45 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:24:50 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:24:55 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:25:02 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:25:08 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:25:12 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:25:17 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:09 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:27:14 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:18 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:20 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:22 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:24 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:25 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:27:31 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:38 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:27:43 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:28:43 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:28:48 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:28:56 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:29:01 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:29:11 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:29:16 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:29:17 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:29:47 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:29:52 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:29:52 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:29:57 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:29:58 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:03 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:03 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:08 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:09 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:14 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:14 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:20 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:20 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:25 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:26 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:31 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:31 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:36 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:37 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:42 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:42 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:47 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:48 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:53 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:53 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:30:58 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:30:59 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:31:04 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:31:04 CDT 2014.
+[http-server] started at: Wed Oct 22 16:44:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:10 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:15 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:16 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:21 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:21 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:26 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:27 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:32 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:32 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:38 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:38 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:43 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:43 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:49 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:49 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:44:54 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:44:55 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:00 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:05 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:06 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:11 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:11 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:16 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:17 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:22 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:22 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:27 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:28 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:33 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:33 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:38 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:39 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:44 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:44 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:49 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:50 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:45:55 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:45:55 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:01 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:06 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:06 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:11 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:12 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:17 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:17 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:22 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:23 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:28 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:28 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:33 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:34 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:39 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:39 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:44 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:45 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:50 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:50 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:46:55 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:46:56 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:01 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:01 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:06 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:07 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:12 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:12 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:17 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:18 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:23 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:23 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:28 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:29 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:34 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:34 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:39 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:40 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:45 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:45 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:50 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:51 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:47:56 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:47:56 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:01 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:02 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:07 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:07 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:12 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:13 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:18 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:18 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:23 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:24 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:29 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:29 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:34 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:35 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:40 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:40 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:46 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:46 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:51 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:52 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:48:57 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:48:57 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:02 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:03 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:08 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:08 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:13 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:14 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:19 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:19 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:24 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:25 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:30 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:30 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:35 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:36 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:41 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:41 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:46 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:47 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:52 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:52 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:49:57 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:49:58 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:03 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:03 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:08 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:09 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:14 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:14 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:19 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:20 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:25 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:25 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:30 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:31 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:36 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:36 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:41 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:42 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:47 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:47 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:52 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:53 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:50:58 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:50:58 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:03 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:04 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:09 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:09 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:14 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:15 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:20 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:20 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:25 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:26 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:31 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:31 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:36 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:37 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:42 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:42 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:47 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:48 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:53 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:53 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:51:58 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:51:59 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:04 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:04 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:10 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:10 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:15 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:15 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:20 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:21 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:26 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:26 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:31 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:32 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:37 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:37 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:42 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:43 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:48 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:48 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:54 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:54 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:52:59 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:52:59 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:04 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:05 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:10 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:10 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:16 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:16 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:21 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:21 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:27 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:27 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:32 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:33 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:38 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:38 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:43 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:44 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:49 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:49 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:53:54 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:53:55 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:00 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:05 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:06 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:11 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:11 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:16 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:17 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:22 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:22 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:27 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:28 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:33 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:33 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:38 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:39 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:44 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:44 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:49 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:50 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:54:55 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:54:55 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:55:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:55:01 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:55:06 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:55:06 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:55:11 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:55:12 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 16:55:22 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 16:55:27 CDT 2014.
+[http-server] started at: Wed Oct 22 17:24:10 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 17:24:28 CDT 2014.
+[http-server] shutdown inited...(save done)
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown completed at: Wed Oct 22 17:24:35 CDT 2014.
+[http-server] started at: Wed Oct 22 18:31:25 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 18:32:11 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 18:32:17 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 22 18:32:40 CDT 2014.
+[http-server] shutdown completed at: Wed Oct 22 18:32:45 CDT 2014.
+[http-server] started at: Thu Oct 23 11:27:36 CDT 2014.
+[http-server] shutdown inited...(save done)
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Thu Oct 23 11:28:00 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Thu Oct 23 11:28:27 CDT 2014.
+[http-server] started at: Thu Oct 23 11:33:27 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Thu Oct 23 11:33:54 CDT 2014.
+[http-server] started at: Thu Oct 23 16:06:10 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Thu Oct 23 16:06:48 CDT 2014.
+[http-server] shutdown completed at: Thu Oct 23 16:06:53 CDT 2014.
+[http-server] started at: Mon Oct 27 12:19:10 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon Oct 27 12:19:38 CDT 2014.
+[http-server] started at: Mon Oct 27 14:30:44 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 14:30:52 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 14:30:56 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 14:31:01 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon Oct 27 14:31:06 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 14:31:38 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 14:31:43 CDT 2014.
+[http-server] started at: Mon Oct 27 14:39:22 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 14:39:29 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 14:39:34 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:00:36 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:00:41 CDT 2014.
+[http-server] started at: Mon Oct 27 15:04:43 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:04:53 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:04:58 CDT 2014.
+[http-server] started at: Mon Oct 27 15:07:53 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:08:02 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:08:07 CDT 2014.
+[http-server] started at: Mon Oct 27 15:14:18 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:14:55 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:15:05 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:15:10 CDT 2014.
+[http-server] started at: Mon Oct 27 15:16:12 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:16:20 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:16:25 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:21:52 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:21:57 CDT 2014.
+[http-server] started at: Mon Oct 27 15:24:59 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:25:10 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 15:26:50 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 15:26:55 CDT 2014.
+[http-server] started at: Mon Oct 27 15:34:50 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Mon Oct 27 15:36:16 CDT 2014.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon Oct 27 15:36:44 CDT 2014.
+[http-server] started at: Mon Oct 27 18:19:42 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:20:35 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:22:55 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 18:23:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:32:58 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 18:33:03 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:38:43 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:39:05 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:39:41 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 18:39:54 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:40:53 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 18:41:00 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:42:28 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 18:42:35 CDT 2014.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon Oct 27 18:48:21 CDT 2014.
+[http-server] shutdown completed at: Mon Oct 27 18:48:26 CDT 2014.
+[http-server] started at: Wed Oct 12 13:23:35 CDT 2016.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 12 13:33:01 CDT 2016.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 12 13:33:21 CDT 2016.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 12 13:33:44 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 13:34:12 CDT 2016.
+[http-server] started at: Wed Oct 12 14:29:08 CDT 2016.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Oct 12 14:29:31 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 14:30:00 CDT 2016.
+[http-server] started at: Wed Oct 12 14:36:06 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Wed Oct 12 14:36:21 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 14:36:50 CDT 2016.
+[http-server] started at: Wed Oct 12 14:40:03 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 14:40:32 CDT 2016.
+[http-server] started at: Wed Oct 12 14:51:09 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 14:51:37 CDT 2016.
+[http-server] started at: Wed Oct 12 14:56:59 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 14:57:28 CDT 2016.
+[http-server] started at: Wed Oct 12 15:00:12 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 15:00:41 CDT 2016.
+[http-server] started at: Wed Oct 12 15:01:05 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 15:01:34 CDT 2016.
+[http-server] started at: Wed Oct 12 15:04:39 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 15:05:07 CDT 2016.
+[http-server] started at: Wed Oct 12 15:06:41 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 15:07:09 CDT 2016.
+[http-server] started at: Wed Oct 12 15:12:55 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 15:13:24 CDT 2016.
+[http-server] started at: Wed Oct 12 15:15:56 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 15:16:24 CDT 2016.
+[http-server] started at: Wed Oct 12 21:16:38 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 21:17:07 CDT 2016.
+[http-server] started at: Wed Oct 12 21:30:17 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 21:30:45 CDT 2016.
+[http-server] started at: Wed Oct 12 21:32:04 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 21:32:33 CDT 2016.
+[http-server] started at: Wed Oct 12 21:36:32 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 21:37:00 CDT 2016.
+[http-server] started at: Wed Oct 12 21:37:52 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 21:38:20 CDT 2016.
+[http-server] started at: Wed Oct 12 22:11:02 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 22:11:31 CDT 2016.
+[http-server] started at: Wed Oct 12 22:12:42 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 22:13:11 CDT 2016.
+[http-server] started at: Wed Oct 12 22:14:04 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Oct 12 22:14:32 CDT 2016.
+[http-server] started at: Fri Oct 14 13:29:00 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 13:29:29 CDT 2016.
+[http-server] started at: Fri Oct 14 13:39:52 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 13:40:22 CDT 2016.
+[http-server] started at: Fri Oct 14 14:49:46 CDT 2016.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Fri Oct 14 14:52:32 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 14:53:00 CDT 2016.
+[http-server] started at: Fri Oct 14 15:10:05 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 15:10:34 CDT 2016.
+[http-server] started at: Fri Oct 14 15:15:20 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 15:15:49 CDT 2016.
+[http-server] started at: Fri Oct 14 15:18:23 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 15:18:52 CDT 2016.
+[http-server] started at: Fri Oct 14 15:22:09 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 14 15:22:38 CDT 2016.
+[http-server] started at: Fri Oct 28 14:14:53 CDT 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri Oct 28 14:15:22 CDT 2016.
+[http-server] started at: Mon Nov 07 20:41:46 EST 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Thu Nov 10 16:18:09 CST 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Thu Nov 10 16:18:37 CST 2016.
+[http-server] started at: Sat Nov 26 17:10:14 CST 2016.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Sat Nov 26 17:10:43 CST 2016.
+[http-server] started at: Sun Aug 13 10:40:40 CDT 2017.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Sun Aug 13 10:41:16 CDT 2017.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Sun Aug 13 10:41:45 CDT 2017.
+[http-server] started at: Wed Jan 31 20:42:07 CST 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Wed Jan 31 20:42:58 CST 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Jan 31 20:43:27 CST 2018.
+[http-server] started at: Wed Jan 31 21:01:59 CST 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Wed Jan 31 21:02:30 CST 2018.

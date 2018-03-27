@@ -41,7 +41,7 @@ public class RVExample {
 					if (x > 1) {
 						if (y == 3) {
 							System.err.println("Find the error!");
-							fail();
+							fail("FAIL!!!!!!!!!!!");
 						} else
 							y = 2;
 					}

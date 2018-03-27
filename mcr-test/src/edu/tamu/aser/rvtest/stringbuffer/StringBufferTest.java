@@ -20,8 +20,8 @@ public class StringBufferTest {
     static StringBuffer al2;
     public static void main(String args[]) throws InterruptedException {
     	
-    	al1 = new StringBuffer("H");
-    	al2 = new StringBuffer("W");
+    	al1 = new StringBuffer("Hello");
+    	al2 = new StringBuffer("World");
     	
         WorkThread t1 = new WorkThread(0);
         WorkThread t2 =  new WorkThread(1);

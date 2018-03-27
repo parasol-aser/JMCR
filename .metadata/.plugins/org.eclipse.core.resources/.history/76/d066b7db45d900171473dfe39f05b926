@@ -1,5 +1,0 @@
-package com.googlecode.concurrenttrees.tests;
-
-public class ConcurrentSuffixTreeTest {
-
-}

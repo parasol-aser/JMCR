@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="instr-explr-src"/>
+	<classpathentry excluding="edu/tamu/aser/rvinstrumentation/PORVectorClock.java" kind="src" path="instr-explr-src"/>
 	<classpathentry kind="lib" path="lib/junit.jar" sourcepath="lib/junit.jar"/>
 	<classpathentry kind="lib" path="lib/org.hamcrest.core.jar"/>
 	<classpathentry kind="lib" path="lib/imunit.jar"/>

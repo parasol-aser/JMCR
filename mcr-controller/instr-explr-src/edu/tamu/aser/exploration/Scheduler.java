@@ -3,6 +3,7 @@ package edu.tamu.aser.exploration;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,16 +20,14 @@ import edu.illinois.imunit.internal.parsing.Name;
 import edu.illinois.imunit.internal.parsing.Ordering;
 import edu.illinois.imunit.internal.parsing.Orderings;
 import edu.illinois.imunit.internal.parsing.SimpleEvent;
-import edu.tamu.aser.MCRProperties;
+import edu.tamu.aser.internaljuc.MyUnsafe;
+import edu.tamu.aser.internaljuc.Reex_Condition;
+import edu.tamu.aser.internaljuc.Reex_ReentrantLock;
 import edu.tamu.aser.internaljuc.Reex_Semaphore;
 import edu.tamu.aser.internaljuc.Reex_TimeUnit;
-import edu.tamu.aser.internaljuc.locks.MyUnsafe;
-import edu.tamu.aser.internaljuc.locks.Reex_Condition;
-import edu.tamu.aser.internaljuc.locks.Reex_ReentrantLock;
 import edu.tamu.aser.listeners.Listeners;
+import edu.tamu.aser.rvinstrumentation.MCRProperties;
 import edu.tamu.aser.rvinstrumentation.RVRunTime;
-import edu.tamu.aser.scheduling.ChoiceType;
-import edu.tamu.aser.scheduling.ThreadInfo;
 //import edu.tamu.aser.rvinstrumentation.RaceDetect;
 import edu.tamu.aser.scheduling.events.ArrayAccessEventDesc;
 import edu.tamu.aser.scheduling.events.BlockedForIMUnitEventDesc;
@@ -44,7 +43,9 @@ import edu.tamu.aser.scheduling.events.ThreadLifeEventDesc;
 import edu.tamu.aser.scheduling.events.WaitNotifyEventDesc;
 import edu.tamu.aser.scheduling.filtering.DefaultFilter;
 import edu.tamu.aser.scheduling.filtering.SchedulingFilter;
+import edu.tamu.aser.scheduling.strategy.ChoiceType;
 import edu.tamu.aser.scheduling.strategy.SchedulingStrategy;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 /**
  * Class that orchestrates threads so that they can be scheduled using custom
@@ -125,8 +126,21 @@ public class Scheduler {
                     Listeners.fireCompletedExploration();
                     Scheduler.endThread();
                 }
-                else
-                {
+                else if (e instanceof ConcurrentModificationException) {
+                    String message = "";
+                    for( StackTraceElement traceElement : e.getStackTrace())
+                         message +=traceElement.toString()+"\n";
+                 
+                    if(message.isEmpty())
+                    {
+                        System.out.println("DEBUG");
+                    }
+                 
+                     JUnit4MCRRunner.npes.add(message);
+                     failureDetected(null);
+                     Listeners.fireCompletedExploration();
+                     Scheduler.endThread();
+                } else {
                     failureDetected(null);
                     Listeners.fireCompletedExploration();
                     System.exit(2);
@@ -359,6 +373,7 @@ public class Scheduler {
         Thread schedulerThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                Thread.currentThread().setName("Sheduler");
                 boolean timeout = false;
                 while (true) {  
                     schedulerStateLock.lock();

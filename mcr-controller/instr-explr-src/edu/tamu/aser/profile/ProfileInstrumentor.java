@@ -12,11 +12,12 @@ import java.util.Set;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import edu.tamu.aser.MCRProperties;
+
 import edu.tamu.aser.exploration.Scheduler;
 import edu.tamu.aser.profile.ProfileClassTransformer;
 import edu.tamu.aser.profile.ProfileRunTime;
 import edu.tamu.aser.rvinstrumentation.ExtendedClassWriter;
+import edu.tamu.aser.rvinstrumentation.MCRProperties;
 
 public class ProfileInstrumentor {
     private static final String SLASH = "/";

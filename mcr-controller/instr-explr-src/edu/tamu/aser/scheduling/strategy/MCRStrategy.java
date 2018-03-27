@@ -12,15 +12,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import edu.tamu.aser.MCRProperties;
 import edu.tamu.aser.mcr.StartExploring;
 import edu.tamu.aser.mcr.config.Configuration;
 import edu.tamu.aser.mcr.trace.Trace;
 import edu.tamu.aser.mcr.trace.TraceInfo;
+import edu.tamu.aser.rvinstrumentation.MCRProperties;
 import edu.tamu.aser.rvinstrumentation.RVGlobalStateForInstrumentation;
 import edu.tamu.aser.rvinstrumentation.RVRunTime;
-import edu.tamu.aser.scheduling.ChoiceType;
-import edu.tamu.aser.scheduling.ThreadInfo;
 import edu.tamu.aser.scheduling.events.EventType;
 
 public class MCRStrategy extends SchedulingStrategy {
@@ -114,12 +112,12 @@ public class MCRStrategy extends SchedulingStrategy {
 			prefix.add(choice);
 		}
 
-//		if (Configuration.DEBUG) {
+		if (Configuration.DEBUG) {
 		    System.out.print("<< Exploring trace executed along causal schedule " + i + ": ");
 	        i++;
 	        System.err.println(choicesMade);
 	        System.out.print("\n");
-//        }
+        }
         
 
 		//executeMultiThread(trace, prefix);

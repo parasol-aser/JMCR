@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="edu/tamu/aser/rvtest/BytecodeTest.java|edu/tamu/aser/rvtest/Deadlock.java|edu/tamu/aser/rvtest/DeadlockSimple.java|edu/tamu/aser/rvtest/MCRTest.java|edu/tamu/aser/rvtest/RVExample2.java|edu/tamu/aser/rvtest/SimpleBug.java|edu/tamu/aser/rvtest/Test2.java|edu/tamu/aser/rvtest/TestClass.java|edu/tamu/aser/rvtest/TestFile.java|edu/tamu/aser/rvtest/account2/|edu/tamu/aser/rvtest/airlinetickets/|edu/tamu/aser/rvtest/bug.java|edu/tamu/aser/rvtest/bug2.java|edu/tamu/aser/rvtest/correctness.java|edu/tamu/aser/rvtest/dstest/|edu/tamu/aser/rvtest/groovy/|edu/tamu/aser/rvtest/instance.java|edu/tamu/aser/rvtest/list/|edu/tamu/aser/rvtest/pool107_copy.java|edu/tamu/aser/rvtest/syncBug.java|edu/tamu/aser/rvtest/testASM.java|edu/tamu/aser/rvtest/testSDG.java|edu/tamu/aser/rvtest/testSDG1.java|edu/tamu/aser/rvtest/testSDG2.java|edu/tamu/aser/rvtest/testSDG3.java|edu/tamu/aser/rvtest/testTSO.java|edu/tamu/aser/rvtest/testTSO2.java|edu/tamu/aser/rvtest/waitTest.java|org/apache/commons/|org/apache/commons/pool/|org/apache/commons/pool/impl/|org/apache/commons/pool/performance/|omcr/colt/|omcr/hazelcast/" kind="src" path="src"/>
+	<classpathentry excluding="edu/tamu/aser/rvtest/BytecodeTest.java|edu/tamu/aser/rvtest/Deadlock.java|edu/tamu/aser/rvtest/DeadlockSimple.java|edu/tamu/aser/rvtest/MCRTest.java|edu/tamu/aser/rvtest/RVExample2.java|edu/tamu/aser/rvtest/SimpleBug.java|edu/tamu/aser/rvtest/Test2.java|edu/tamu/aser/rvtest/TestClass.java|edu/tamu/aser/rvtest/TestFile.java|edu/tamu/aser/rvtest/account2/|edu/tamu/aser/rvtest/airlinetickets/|edu/tamu/aser/rvtest/bug.java|edu/tamu/aser/rvtest/bug2.java|edu/tamu/aser/rvtest/correctness.java|edu/tamu/aser/rvtest/dstest/|edu/tamu/aser/rvtest/groovy/|edu/tamu/aser/rvtest/instance.java|edu/tamu/aser/rvtest/list/|edu/tamu/aser/rvtest/pool107_copy.java|edu/tamu/aser/rvtest/syncBug.java|edu/tamu/aser/rvtest/testASM.java|edu/tamu/aser/rvtest/testSDG.java|edu/tamu/aser/rvtest/testSDG1.java|edu/tamu/aser/rvtest/testSDG2.java|edu/tamu/aser/rvtest/testSDG3.java|edu/tamu/aser/rvtest/testTSO.java|edu/tamu/aser/rvtest/testTSO2.java|edu/tamu/aser/rvtest/waitTest.java|org/apache/commons/|org/apache/commons/pool/|org/apache/commons/pool/impl/|org/apache/commons/pool/performance/|omcr/colt/|omcr/hazelcast/|instrumented/java/util/Random.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/mcr-controller"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/mcr-engine"/>
@@ -10,5 +10,9 @@
 	<classpathentry kind="lib" path="lib/narada.jar"/>
 	<classpathentry kind="lib" path="lib/colt-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/concurrent.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/derby-10.3.2.1"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jigsaw"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/weblech"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

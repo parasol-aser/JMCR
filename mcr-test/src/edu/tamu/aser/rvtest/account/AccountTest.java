@@ -266,7 +266,7 @@ public class AccountTest extends Failable {
 
         if (account.amount != 100) {
         	fail("result is not correct.");
-            //fail("Multi-threaded deposits and withdrawals caused incorrect account state!");
+//            fail("Multi-threaded deposits and withdrawals caused incorrect account state!");
         	System.out.println("Multi-threaded deposits and withdrawals caused incorrect account state!");
         }
 

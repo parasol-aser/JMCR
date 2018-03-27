@@ -3,6 +3,7 @@ package edu.tamu.aser.rvtest.allocationvector;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
 import org.junit.runner.RunWith;
 
 import edu.tamu.aser.exploration.JUnit4MCRRunner;
@@ -10,7 +11,7 @@ import edu.tamu.aser.exploration.JUnit4MCRRunner;
 @RunWith(JUnit4MCRRunner.class)
 public class AllocationTest {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws InterruptedException {
         AllocationTest allocationTest = new AllocationTest();
         allocationTest.testOneTenthAllocation();
         allocationTest.testOneTenthFreeing();
@@ -24,53 +25,53 @@ public class AllocationTest {
     }
 
 //    @Test
-    public void testOneTenthAllocation() throws Exception {
+    public void testOneTenthAllocation() throws InterruptedException {
         allocateAndEnsureNoErrors(40, 2, 2);
     }
 
 //    @Test
-    public void testOneTenthFreeing() throws Exception {
+    public void testOneTenthFreeing() throws InterruptedException {
         freeAndEnsureNoErrors(40, 2, 2);
     }
 
 //    @Test
-    public void testOneTenthAllocationAndFree() throws Exception {
+    public void testOneTenthAllocationAndFree() throws InterruptedException {
         allocateAndFreeAndEnsureNoErrors(40, 2, 2);
     }
 
 //    @Test
-    public void testHalfAllocation() throws Exception {
+    public void testHalfAllocation() throws InterruptedException {
         allocateAndEnsureNoErrors(8, 2, 2);
     }
 
 //    @Test
-    public void testHalfFreeing() throws Exception {
+    public void testHalfFreeing() throws InterruptedException {
         freeAndEnsureNoErrors(8, 2, 2);
     }
 
 //    @Test
-    public void testHalfAllocationAndFree() throws Exception {
+    public void testHalfAllocationAndFree() throws InterruptedException {
         allocateAndFreeAndEnsureNoErrors(8, 2, 2);
     }
 
 //    @Test
-    public void testFullAllocation() throws Exception {
+    public void testFullAllocation() throws InterruptedException {
         allocateAndEnsureNoErrors(4, 2, 2);
     }
 
 //    @Test
-    public void testFullFreeing() throws Exception {
+    public void testFullFreeing() throws InterruptedException {
         freeAndEnsureNoErrors(4, 2, 2);
     }
 
     @Test
-    public void testFullAllocationAndFree() throws Exception {
+    public void testFullAllocationAndFree() throws InterruptedException {
         allocateAndFreeAndEnsureNoErrors(4, 2, 2);
     }
 
     private AllocationVector vector;
 
-    public void allocateAndFreeAndEnsureNoErrors(int vectorSize, int allocationSize, int numThreads) throws Exception {
+    public void allocateAndFreeAndEnsureNoErrors(int vectorSize, int allocationSize, int numThreads) throws InterruptedException {
 
         vector = new AllocationVector(vectorSize);
         AllocateAndFreeThread[] threads = new AllocateAndFreeThread[numThreads];
@@ -91,7 +92,7 @@ public class AllocationTest {
         checkForErrors(threadResults);
     }
 
-    public void allocateAndEnsureNoErrors(int vectorSize, int allocationSize, int numThreads) throws Exception {
+    public void allocateAndEnsureNoErrors(int vectorSize, int allocationSize, int numThreads) throws InterruptedException {
 
         vector = new AllocationVector(vectorSize);
         AllocateAndFreeThread[] threads = new AllocateAndFreeThread[numThreads];
@@ -112,7 +113,7 @@ public class AllocationTest {
         checkForErrors(threadResults);
     }
 
-    public void freeAndEnsureNoErrors(int vectorSize, int allocationSize, int numThreads) throws Exception {
+    public void freeAndEnsureNoErrors(int vectorSize, int allocationSize, int numThreads) throws InterruptedException {
 
         vector = new AllocationVector(vectorSize);
         AllocateAndFreeThread[] threads = new AllocateAndFreeThread[numThreads];
@@ -151,10 +152,9 @@ public class AllocationTest {
 
     private void checkForErrors(int[][] threadResults) {
         for (int[] threadResult : threadResults) {
-            if (threadResult[0] == -2 || threadResult[0] == -3) {
-                //Assert.fail("Tried to allocate a block which was already allocated or free a block that was already free");
+            if (threadResult[0] == -2 || threadResult[0] == -3) {     	
+                Assert.fail("Tried to allocate a block which was already allocated or free a block that was already free");
                 System.out.println("Tried to allocate a block which was already allocated or free a block that was already free");
-
             }
         }
     }

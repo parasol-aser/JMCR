@@ -3,8 +3,8 @@ package edu.tamu.aser.scheduling.filtering;
 import java.util.Comparator;
 import java.util.Set;
 
-import edu.tamu.aser.scheduling.ThreadInfo;
 import edu.tamu.aser.scheduling.events.LocationDesc;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 public class LocationMatchPrioritizer implements Comparator<ThreadInfo> {
 

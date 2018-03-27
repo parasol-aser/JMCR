@@ -3,7 +3,6 @@ package edu.tamu.aser.scheduling.strategy;
 import java.util.List;
 import java.util.SortedSet;
 import edu.tamu.aser.rvinstrumentation.RVGlobalStateForInstrumentation;
-import edu.tamu.aser.scheduling.ChoiceType;
 
 public class RVProfileStrategy extends SchedulingStrategy {
 

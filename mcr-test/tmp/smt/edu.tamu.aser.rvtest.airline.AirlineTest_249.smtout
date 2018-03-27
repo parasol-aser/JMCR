@@ -1,0 +1,10 @@
+unsat
+(error "line 37 column 10: model is not available")
+(:eliminated-applications 12
+ :eliminated-vars         6
+ :max-memory              0.67
+ :memory                  0.63
+ :num-allocs              3292
+ :rlimit-count            389
+ :time                    0.00
+ :total-time              0.00)
