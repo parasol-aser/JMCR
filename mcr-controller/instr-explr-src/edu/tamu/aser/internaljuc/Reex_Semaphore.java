@@ -37,7 +37,6 @@ package edu.tamu.aser.internaljuc;
 import java.util.*;
 
 import edu.tamu.aser.internaljuc.Reex_TimeUnit;
-import edu.tamu.aser.internaljuc.locks.Reex_AbstractQueuedSynchronizer;
 
 
 /**

@@ -43,7 +43,8 @@ public class RVSharedAccessEventsClassTransformer extends ClassVisitor {
     }
 	
 	public FieldVisitor visitField(int access, String name, String desc,
-            String signature, Object value) {
+            String signature, Object value) 
+	{
         String sig_var = (classname+"."+name).replace("/", ".");
         RVGlobalStateForInstrumentation.instance.getVariableId(sig_var);
         //Opcodes.ACC_FINAL

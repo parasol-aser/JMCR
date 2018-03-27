@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Example.java&apos; to &apos;mcr-test/src/edu.tamu.aser.rvtest_simple_tests&apos;&#x0A;- Original project: &apos;mcr-test&apos;&#x0A;- Destination element: &apos;mcr-test/src/edu.tamu.aser.rvtest_simple_tests&apos;&#x0A;- Original element: &apos;edu.tamu.aser.rvtest_simple_tests.Example.java&apos;" description="Copy compilation unit" destination="/src&lt;edu.tamu.aser.rvtest_simple_tests" element1="/src&lt;edu.tamu.aser.rvtest_simple_tests{Example.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1521149920284" units="1" version="1.0"/>
+</session>

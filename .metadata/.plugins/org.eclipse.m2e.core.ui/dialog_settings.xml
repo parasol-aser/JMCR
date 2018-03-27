@@ -8,8 +8,10 @@
 		<list key="ciManagementSystem">
 		</list>
 		<list key="issueManagementSystem">
+			<item value="code.google.com"/>
 		</list>
 		<list key="issueManagementUrl">
+			<item value="http://code.google.com/p/concurrentlinkedhashmap/issues"/>
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
@@ -20,9 +22,12 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool"/>
+			<item value="/Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master"/>
+			<item value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-linkedHashMap"/>
+			<item value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-tree"/>
 			<item value="/Users/Alan/GitHub/public_repos/JMCR/stormpot-master"/>
 			<item value="/Users/Alan/GitHub/public_repos/JMCR/menagerie-master"/>
-			<item value="/Users/Alan/GitHub/public_repos/JMCR/concurrentlinkedhashmap-master"/>
 			<item value="/Users/Alan/GitHub/public_repos/JMCR/concurrent-trees-master"/>
 			<item value="/Users/Alan/GitHub/public_repos/JMCR/mapdb-master"/>
 		</list>

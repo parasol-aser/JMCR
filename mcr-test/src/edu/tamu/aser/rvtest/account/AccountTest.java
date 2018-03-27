@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
 public class AccountTest extends Failable {
@@ -266,7 +266,7 @@ public class AccountTest extends Failable {
 
         if (account.amount != 100) {
         	fail("result is not correct.");
-            //fail("Multi-threaded deposits and withdrawals caused incorrect account state!");
+//            fail("Multi-threaded deposits and withdrawals caused incorrect account state!");
         	System.out.println("Multi-threaded deposits and withdrawals caused incorrect account state!");
         }
 

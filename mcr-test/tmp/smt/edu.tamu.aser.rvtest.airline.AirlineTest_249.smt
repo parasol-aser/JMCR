@@ -1,0 +1,38 @@
+(set-logic QF_IDL)
+(declare-const x20 Int)
+(declare-const x21 Int)
+(declare-const x22 Int)
+(declare-const x23 Int)
+(declare-const x24 Int)
+(declare-const x25 Int)
+(declare-const x26 Int)
+(declare-const x17 Int)
+(declare-const x18 Int)
+(declare-const x19 Int)
+(assert (< x20 x21 ))
+(assert (> x21 x20 ) )
+(assert (< x21 x22 ))
+(assert (< x22 x23 ))
+(assert (< x23 x24 ))
+(assert (< x24 x25 ))
+(assert (< x25 x26 ))
+(assert (< x17 x18 ))
+(assert (< x18 x19 ))
+(assert (< x19 x20 ))
+(assert (and true true )
+)
+
+(assert 
+(> x19 x22 )
+ )
+
+(assert (and true true )
+)
+
+(assert 
+(> x19 x22 )
+ )
+
+(check-sat)
+(get-model)
+(exit)

@@ -1,0 +1,9 @@
+HOW TO MODIFY THE JIGADM CONFIGURATION:
+
+ 2) create a temporary directory (ie jigadm)
+ 2) unzip jigadm.zip in this directory
+ 3) modify the configuration
+ 4) create another zip (in jigadm/ type 'zip -r -0 jigadm.zip *')
+ 5) replace the old jigadm.zip by the new one.
+
+Jigsaw Team.

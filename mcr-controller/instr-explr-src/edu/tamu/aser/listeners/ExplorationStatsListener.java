@@ -6,12 +6,12 @@ import java.util.SortedSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import edu.tamu.aser.MCRProperties;
+import edu.tamu.aser.rvinstrumentation.MCRProperties;
 import edu.tamu.aser.rvinstrumentation.RVRunTime;
-import edu.tamu.aser.scheduling.ChoiceType;
-import edu.tamu.aser.scheduling.ThreadInfo;
 import edu.tamu.aser.scheduling.events.EventDesc;
+import edu.tamu.aser.scheduling.strategy.ChoiceType;
 import edu.tamu.aser.scheduling.strategy.MCRStrategy;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 public class ExplorationStatsListener extends ExplorationListenerAdapter {
 
@@ -156,6 +156,9 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
         System.err.flush();
         System.err.println("\n!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #" + numSchedules + ": " + ((errorMsg == null) ? "" : errorMsg));
         System.err.println("The following trace triggered this error:");
+        
+//        completedExploration();
+//        System.exit(-1);
        
 //        System.err.println(MCRProperties.SCHEDULING_STRATEGY_KEY + "=" + ReproScheduleStrategy.class.getName());
 //        System.err.println(MCRProperties.SCHEDULING_REPRO_CHOICES_KEY + "=" + choicesMade + "\n");
@@ -169,12 +172,17 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
     }
 
     private String getDurationString(long milliSecs) {
+        
         long secs = milliSecs / 1000;
         long mins = secs / 60;
         long hours = mins / 60;
         secs = secs % 60;
         mins = mins % 60;
-        return String.format("%d:%02d:%02d", hours, mins, secs);
+        
+        long milli = milliSecs - secs *1000;
+        
+        return String.format("%d:%02d:%02d  + %02d milli sec", hours, mins, secs, milli);
+        
     }
 
 }

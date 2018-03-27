@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Z3_PATH" key="selection"/>
+		<item value="MONITOR" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="Z3_PATH"/>
-			<item value="readBuffers"/>
-			<item value="dependen"/>
-			<item value="jun"/>
-			<item value="junit"/>
-			<item value="main"/>
-			<item value="concurrent"/>
-			<item value="Value for &apos;TEST&apos;"/>
+			<item value="monitor"/>
+			<item value="!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE"/>
+			<item value="============================================================"/>
+			<item value="listener"/>
+			<item value="CONTEXT SWITCH INFO"/>
+			<item value="stopOnFirstError"/>
+			<item value="startTime"/>
+			<item value="EXPLORATION TIME"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Int"/>
@@ -25,7 +25,7 @@
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1232" key="DIALOG_X_ORIGIN"/>
+		<item value="1015" key="DIALOG_X_ORIGIN"/>
 		<item value="180" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

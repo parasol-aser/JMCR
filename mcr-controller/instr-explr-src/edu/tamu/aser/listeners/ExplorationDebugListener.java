@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.SortedSet;
 
-import edu.tamu.aser.exploration.Scheduler;
-import edu.tamu.aser.scheduling.ChoiceType;
-import edu.tamu.aser.scheduling.ThreadInfo;
+import edu.tamu.aser.reexcution.Scheduler;
 import edu.tamu.aser.scheduling.events.EventDesc;
+import edu.tamu.aser.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 public class ExplorationDebugListener extends ExplorationListenerAdapter {
 

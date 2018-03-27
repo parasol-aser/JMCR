@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
 public class RVExample {
@@ -41,7 +41,7 @@ public class RVExample {
 					if (x > 1) {
 						if (y == 3) {
 							System.err.println("Find the error!");
-							fail();
+							fail("FAIL!!!!!!!!!!!");
 						} else
 							y = 2;
 					}

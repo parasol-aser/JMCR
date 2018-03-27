@@ -6,10 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-import edu.tamu.aser.exploration.Scheduler;
 import edu.tamu.aser.mcr.ExploreSeedInterleavings;
 import edu.tamu.aser.mcr.config.Configuration;
 import edu.tamu.aser.mcr.trace.Trace;
+import edu.tamu.aser.reexcution.Scheduler;
 import edu.tamu.aser.scheduling.filtering.LocationBasedPreemptionFilter;
 import edu.tamu.aser.scheduling.filtering.SchedulingFilter;
 //import edu.tamu.aser.scheduling.strategy.RandomCAPPStrategy;

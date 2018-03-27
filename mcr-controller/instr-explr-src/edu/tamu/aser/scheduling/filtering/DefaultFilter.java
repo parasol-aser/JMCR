@@ -2,7 +2,7 @@ package edu.tamu.aser.scheduling.filtering;
 
 import java.util.SortedSet;
 
-import edu.tamu.aser.scheduling.ChoiceType;
+import edu.tamu.aser.scheduling.strategy.ChoiceType;
 
 /**
  * Default {@link SchedulingFilter} that does not perform any filtering.

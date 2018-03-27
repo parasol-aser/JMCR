@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jxml version="1.0" xmlns="http://jigsaw.w3.org/JXML/jxml1.0">
+ <resource class='org.w3c.jigsaw.auth.AuthUser'>
+  <attribute name='identifier' flag='6' class='org.w3c.tools.resources.StringAttribute'>admin</attribute>
+  <resourcearray name='frames' class='org.w3c.tools.resources.FrameArrayAttribute' length='0'>
+  </resourcearray>
+  <attribute name='last-modified' flag='3' class='org.w3c.tools.resources.DateAttribute'>Fri, 13 Feb 1998 15:37:40 GMT</attribute>
+  <attribute name='help-url' flag='1' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+  <attribute name='email' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+  <attribute name='comments' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+  <array name='ipaddress' flag='2' class='org.w3c.jigsaw.auth.IPTemplatesAttribute' length='0'>
+  </array>
+  <attribute name='password' flag='2' class='org.w3c.jigsaw.auth.PasswordAttribute'>admin</attribute>
+  <array name='groups' flag='2' class='org.w3c.tools.resources.StringArrayAttribute' length='0'>
+  </array>
+ </resource>
+</jxml>

@@ -46,3 +46,6 @@ bench_mcr/
 mcr-test-concurrent-tree/
 mcr-test-concurrent-linkedHashMap/
 mcr-test-concurrent-objectPool/
+concurrency-bugs-subjects/
+mcr-test/tmp/
+

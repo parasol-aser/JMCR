@@ -6,8 +6,6 @@ import java.util.Vector;
 //import com.sun.java.util.jar.pack.Package.Class.Field;
 import java.lang.reflect.Field;
 
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
-import edu.tamu.aser.exploration.Scheduler;
 import edu.tamu.aser.mcr.config.Configuration;
 import edu.tamu.aser.mcr.graph.Queue;
 import edu.tamu.aser.mcr.trace.AbstractNode;
@@ -20,6 +18,8 @@ import edu.tamu.aser.mcr.trace.Trace;
 import edu.tamu.aser.mcr.trace.UnlockNode;
 import edu.tamu.aser.mcr.trace.WaitNode;
 import edu.tamu.aser.mcr.trace.WriteNode;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.Scheduler;
 import edu.tamu.aser.scheduling.strategy.MCRStrategy;
 
 public class RVRunTime {

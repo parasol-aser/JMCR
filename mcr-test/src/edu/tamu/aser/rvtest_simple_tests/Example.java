@@ -2,58 +2,39 @@ package edu.tamu.aser.rvtest_simple_tests;
 
 import static org.junit.Assert.*;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.sun.org.apache.bcel.internal.generic.StackInstruction;
-
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reexcution.JUnit4MCRRunner;
+import junit.framework.Assert;
 
 @RunWith(JUnit4MCRRunner.class)
 public class Example {
 
-	private static int x, y;
-	static int a,b;
+//	private static int x, y;
 	//private static Object lock = new Object();
-	
-//	static ReLock reLock = new ReLock();
-	static int s = 0;
 
+	static int x, y;
 	public static void main(String[] args) {
 		Thread t1 = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
+				int b = x;
 				y = 1;
-			}
-		});
-		
-		Thread t2 = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				a = x;
-				b = y;
 			}
 		});
 
 		t1.start();
-		t2.start();
 
+		int a = y;
 		x = 1;
 
 		try {
 			t1.join();
-			t2.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("a= " + a);
-		System.out.println("b= " + b);
 	}
 
 	@Test
@@ -61,8 +42,6 @@ public class Example {
 		try {
 			x = 0;
 			y = 0;
-//			a = 0;
-//			b = 0;
 		Example.main(null);
 		} catch (Exception e) {
 			System.out.println("here");

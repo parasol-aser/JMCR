@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jxml version="1.0" xmlns="http://jigsaw.w3.org/JXML/jxml1.0">
+ <resource class='org.w3c.tools.resources.FileResource'>
+  <attribute name='identifier' flag='6' class='org.w3c.tools.resources.StringAttribute'>empty.txt</attribute>
+  <resourcearray name='frames' class='org.w3c.tools.resources.FrameArrayAttribute' length='1'>
+   <resource class='org.w3c.jigsaw.frames.HTTPFrame'>
+    <attribute name='identifier' flag='6' class='org.w3c.tools.resources.StringAttribute'>frame-0</attribute>
+    <resourcearray name='frames' class='org.w3c.tools.resources.FrameArrayAttribute' length='0'>
+    </resourcearray>
+    <attribute name='last-modified' flag='3' class='org.w3c.tools.resources.DateAttribute'>Wed, 21 Jan 1998 17:53:32 GMT</attribute>
+    <attribute name='help-url' flag='1' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+    <attribute name='oid' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@</attribute>
+    <attribute name='quality' flag='2' class='org.w3c.tools.resources.DoubleAttribute'>1.0</attribute>
+    <attribute name='title' flag='2' class='org.w3c.tools.resources.StringAttribute'>Text document</attribute>
+    <attribute name='content-language' flag='2' class='org.w3c.jigsaw.frames.LanguageAttribute'>@@NULL@@</attribute>
+    <attribute name='content-encoding' flag='2' class='org.w3c.jigsaw.frames.EncodingAttribute'>@@NULL@@</attribute>
+    <attribute name='content-type' flag='2' class='org.w3c.jigsaw.frames.MimeTypeAttribute'>text/plain</attribute>
+    <attribute name='content-length' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@</attribute>
+    <attribute name='icon' flag='2' class='org.w3c.tools.resources.StringAttribute'>text.gif</attribute>
+    <attribute name='maxage' flag='2' class='org.w3c.tools.resources.LongAttribute'>172800000</attribute>
+    <attribute name='send-md5' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false</attribute>
+    <attribute name='allow-delete' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false</attribute>
+    <attribute name='putable' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false</attribute>
+    <attribute name='relocate' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>true</attribute>
+    <attribute name='index' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+    <attribute name='icondir' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+    <attribute name='browsable' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false</attribute>
+    <attribute name='style-sheet-link' flag='2' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+   </resource>
+  </resourcearray>
+  <attribute name='last-modified' flag='3' class='org.w3c.tools.resources.DateAttribute'>Wed, 21 Jan 1998 17:53:32 GMT</attribute>
+  <attribute name='help-url' flag='1' class='org.w3c.tools.resources.StringAttribute'>@@NULL@@</attribute>
+  <attribute name='oid' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@</attribute>
+  <attribute name='filename' flag='2' class='org.w3c.tools.resources.FilenameAttribute'>@@NULL@@</attribute>
+  <attribute name='file-stamp' flag='1' class='org.w3c.tools.resources.DateAttribute'>Wed, 31 Dec 1969 23:59:59 GMT</attribute>
+  <attribute name='file-length' flag='1' class='org.w3c.tools.resources.IntegerAttribute'>@@NULL@@</attribute>
+  <attribute name='backup' flag='2' class='org.w3c.tools.resources.BooleanAttribute'>false</attribute>
+ </resource>
+</jxml>

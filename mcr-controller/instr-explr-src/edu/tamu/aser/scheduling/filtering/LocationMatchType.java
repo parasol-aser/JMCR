@@ -1,8 +1,8 @@
 package edu.tamu.aser.scheduling.filtering;
 
-import edu.tamu.aser.scheduling.ThreadInfo;
 import edu.tamu.aser.scheduling.events.FieldAccessEventDesc;
 import edu.tamu.aser.scheduling.events.LocationDesc;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 public enum LocationMatchType {
 

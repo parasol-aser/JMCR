@@ -4,8 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.SortedSet;
 
-import edu.tamu.aser.scheduling.ChoiceType;
-
 /**
  * Abstract class that should be extended to specify a scheduling strategy that
  * is to be using during exploration.

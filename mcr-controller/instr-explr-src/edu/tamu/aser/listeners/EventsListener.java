@@ -3,10 +3,10 @@ package edu.tamu.aser.listeners;
 import java.util.List;
 import java.util.SortedSet;
 
-import edu.tamu.aser.exploration.Scheduler;
-import edu.tamu.aser.scheduling.ChoiceType;
-import edu.tamu.aser.scheduling.ThreadInfo;
+import edu.tamu.aser.reexcution.Scheduler;
 import edu.tamu.aser.scheduling.events.*;
+import edu.tamu.aser.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.scheduling.strategy.ThreadInfo;
 
 public class EventsListener extends ExplorationListenerAdapter {
 
