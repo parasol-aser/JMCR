@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 
 import com.sun.org.apache.bcel.internal.generic.StackInstruction;
 
-import edu.tamu.aser.reexcution.JUnit4MCRRunner;
+import edu.tamu.aser.reexecution.JUnit4MCRRunner;
 import sun.net.www.content.audio.x_aiff;
 
 @RunWith(JUnit4MCRRunner.class)

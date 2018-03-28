@@ -21,7 +21,6 @@ INDEX VERSION 1.127+/Users/Alan/GitHub/public_repos/JMCR/.metadata/.plugins/org.
 836912424.index
 4068369105.index
 374512361.index
-3201122468.index
 2164164014.index
 1044104405.index
 3127791440.index
@@ -43,7 +42,6 @@ INDEX VERSION 1.127+/Users/Alan/GitHub/public_repos/JMCR/.metadata/.plugins/org.
 2896820761.index
 3844434828.index
 870374635.index
-873038565.index
 854318898.index
 3022202141.index
 2843829329.index
