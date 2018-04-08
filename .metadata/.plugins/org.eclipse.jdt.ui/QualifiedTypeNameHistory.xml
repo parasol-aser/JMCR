@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.HashSet"/>
-<fullyQualifiedTypeName name="java.util.Stack"/>
 <fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.LockNode"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
@@ -56,8 +54,10 @@
 <fullyQualifiedTypeName name="instrumented.java.util.Set"/>
 <fullyQualifiedTypeName name="edu.tamu.aser.rvtest_simple_tests.MTSetTest"/>
 <fullyQualifiedTypeName name="java.util.ConcurrentModificationException"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="org.junit.internal.runners.statements.Fail"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="sun.net.www.content.audio.x_aiff"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.util.EntityResolver2Wrapper"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 </qualifiedTypeNameHistroy>

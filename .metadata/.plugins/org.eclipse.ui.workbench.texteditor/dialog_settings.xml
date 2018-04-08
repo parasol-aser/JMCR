@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="MONITOR" key="selection"/>
+		<item value="stop" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="stop"/>
+			<item value="spring"/>
 			<item value="monitor"/>
 			<item value="!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE"/>
 			<item value="============================================================"/>
 			<item value="listener"/>
 			<item value="CONTEXT SWITCH INFO"/>
 			<item value="stopOnFirstError"/>
-			<item value="startTime"/>
-			<item value="EXPLORATION TIME"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Int"/>

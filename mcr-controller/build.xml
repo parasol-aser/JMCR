@@ -40,7 +40,7 @@
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="instr-explr-src">
+            <fileset dir="src">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
@@ -63,14 +63,14 @@
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="instr-explr-src"/>
+            <src path="src"/>
             <classpath refid="mcr-controller.classpath"/>
         </javac>
     	
     	<delete file="../dist/instrumentor.jar" />
     	
     	<jar destfile="../dist/instrumentor.jar" compress="true">
-    		<fileset dir="instr-explr-src">			
+    		<fileset dir="src">			
     		    <include name="RVMANIFEST.MF" />
     		</fileset>
     		<fileset dir="bin">

@@ -6,7 +6,7 @@ import org.junit.Test;
 //import org.junit.internal.runners.statements.Fail;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.reexcution.JUnit4MCRRunner;
+import edu.tamu.aser.reexecution.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
 public class BubbleSortTest {

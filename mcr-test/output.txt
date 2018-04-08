@@ -1,5 +1,4 @@
-In this file you will find the number of the bug appearances accordingly to the number of threads that the bugged program utilized with:
-
-Few Threads: 
-
-Number Of Threads: 5 Number Of Bugs: 
+<MergeSort,-2>
+<MergeSort,-3>
+<MergeSort,-2>
+<MergeSort,-1>

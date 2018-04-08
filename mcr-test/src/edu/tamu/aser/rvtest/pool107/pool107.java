@@ -22,7 +22,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.reexcution.JUnit4MCRRunner;
+import edu.tamu.aser.reexecution.JUnit4MCRRunner;
 import pool107.org.apache.commons.pool.impl.GenericObjectPool;
 /**
  * @author Rodney Waldhoff
