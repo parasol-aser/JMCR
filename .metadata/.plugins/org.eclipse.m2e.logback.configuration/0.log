@@ -3973,3 +3973,35 @@ org.eclipse.core.runtime.CoreException: Launch configuration MCRMultiThreadedTes
 2018-03-27 17:20:39,809 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
 2018-03-27 17:20:39,811 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-03-27 17:20:39,812 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2018-04-02 17:55:06,047 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-02 17:55:06,054 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-tree/code/src/main/resources
+2018-04-02 17:55:06,701 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-02 17:55:06,715 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 46 resources
+2018-04-02 17:55:07,301 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-02 17:55:07,301 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2018-04-02 17:55:07,303 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-02 17:55:07,303 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2018-04-08 13:05:48,614 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:05:48,622 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-tree/code/src/main/resources
+2018-04-08 13:05:49,645 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:05:49,662 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 46 resources
+2018-04-08 13:05:50,528 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:05:50,528 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2018-04-08 13:05:50,530 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:05:50,531 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2018-04-08 13:14:07,626 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:14:07,630 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2018-04-08 13:14:07,633 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:14:07,633 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2018-04-08 13:14:31,220 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:14:31,221 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2018-04-08 13:14:31,223 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:14:31,224 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2018-04-08 13:14:51,835 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:14:51,835 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2018-04-08 13:14:51,837 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:14:51,838 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources
+2018-04-08 13:20:09,600 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:20:09,601 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/main/resources
+2018-04-08 13:20:09,603 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-04-08 13:20:09,603 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Alan/GitHub/public_repos/JMCR/mcr-test-concurrent-objectPool/src/test/resources

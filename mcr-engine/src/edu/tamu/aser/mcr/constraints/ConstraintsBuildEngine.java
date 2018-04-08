@@ -28,6 +28,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.sun.org.apache.xerces.internal.util.EntityResolver2Wrapper;
+
 /**
  * The engine for constraint construction and solving.
  * 
@@ -52,7 +54,8 @@ public class ConstraintsBuildEngine
 	
 	//constraints below
 	protected StringBuilder CONS_DECLARE;
-	protected StringBuilder CONS_ASSERT;
+	protected StringBuilder CONS_ASSERT_PO;
+	protected StringBuilder CONS_ASSERT_VALID;
 	protected String CONS_SETLOGIC = "(set-logic QF_IDL)\n";//use integer difference logic
 	protected final StringBuilder CONS_GETMODEL = new StringBuilder("(check-sat)\n(get-model)\n(exit)");
 	
@@ -95,10 +98,13 @@ public class ConstraintsBuildEngine
 	/**
 	 * This function is for generating constraints for new schedule
 	 * it does not need to contain all the nodes, just the nodes dependent
+	 * @author Alan
 	 * @param trace
 	 * @param depNodes 
 	 */
 	public void constructPOConstraintsRMM(Trace trace, HashSet<AbstractNode> depNodes){	
+		
+		CONS_ASSERT_PO = new StringBuilder("");
 
 		//get needed data structure
 		HashMap<String,HashMap<Long,Vector<IMemNode>>> indexedMap1 = trace.getIndexedThreadReadWriteNodes();
@@ -171,7 +177,7 @@ public class ConstraintsBuildEngine
 					{
 						long thisGID  = nodes.get(i).getGID();
 						String var = makeVariable(thisGID);
-						CONS_ASSERT.append("(assert (< ").append(lastVar).append(" ").append(var).append("))\n");
+						CONS_ASSERT_PO.append("(assert (< ").append(lastVar).append(" ").append(var).append("))\n");
 						
 						reachEngine.addEdge(lastGID, thisGID);
 
@@ -219,7 +225,7 @@ public class ConstraintsBuildEngine
 					{
 						long thisGID  = nodes.get(j).getGID();
 						String var = makeVariable(thisGID);
-						CONS_ASSERT.append("(assert (< ").append(lastVar).append(" ").append(var).append("))\n");
+						CONS_ASSERT_PO.append("(assert (< ").append(lastVar).append(" ").append(var).append("))\n");
 						
 						//the order is added to reachability engine for quick testing
 						reachEngine.addEdge(lastGID, thisGID);
@@ -263,7 +269,7 @@ public class ConstraintsBuildEngine
 						{
 							long thisGID  = nodes.get(j).getGID();
 							String var = makeVariable(thisGID);
-							CONS_ASSERT.append("(assert (< ").append(lastVar).append(" ").append(var).append("))\n");
+							CONS_ASSERT_PO.append("(assert (< ").append(lastVar).append(" ").append(var).append("))\n");
 							
 							//the order is added to reachability engine for quick testing
 							reachEngine.addEdge(lastGID, thisGID);
@@ -317,7 +323,7 @@ public class ConstraintsBuildEngine
 				{
 					long thisGID = nonMemNodes.get(i).getGID();
 					String thisVar = makeVariable(thisGID);
-					CONS_ASSERT.append("(assert (< ").append(lastVar).append(" ").append(thisVar).append("))\n");
+					CONS_ASSERT_PO.append("(assert (< ").append(lastVar).append(" ").append(thisVar).append("))\n");
 					
 					//the order is added to reachability engine for quick testing
 					reachEngine.addEdge(lastGID, thisGID);
@@ -351,7 +357,7 @@ public class ConstraintsBuildEngine
 						long nodeGID = nodes.get(j).getGID();
 						String nodeVar = makeVariable(nodeGID);
 						
-						CONS_ASSERT.append("(assert (< ").append(nodeVar).append(" ").append(curVar).append("))\n");
+						CONS_ASSERT_PO.append("(assert (< ").append(nodeVar).append(" ").append(curVar).append("))\n");
 						
 						//the order is added to reachability engine for quick testing
 						reachEngine.addEdge(nodeGID, curGID);
@@ -373,7 +379,7 @@ public class ConstraintsBuildEngine
 						long nodeGID = nodes.get(j).getGID();
 						String nodeVar = makeVariable(nodeGID);
 						
-						CONS_ASSERT.append("(assert (< ").append(curVar).append(" ").append(nodeVar).append("))\n");
+						CONS_ASSERT_PO.append("(assert (< ").append(curVar).append(" ").append(nodeVar).append("))\n");
 						
 						//the order is added to reachability engine for quick testing
 						reachEngine.addEdge(curGID, nodeGID);
@@ -409,7 +415,7 @@ public class ConstraintsBuildEngine
 							if (depNodes.contains(nodes.get(j))) {
 								long thisGID = nodes.get(j).getGID();
 								String thisVar = makeVariable(thisGID);
-								CONS_ASSERT.append("(assert (< ").append(lastVar).append(" ").append(thisVar).append("))\n");
+								CONS_ASSERT_PO.append("(assert (< ").append(lastVar).append(" ").append(thisVar).append("))\n");
 								
 								//the order is added to reachability engine for quick testing
 								reachEngine.addEdge(lastGID, thisGID);
@@ -435,7 +441,7 @@ public class ConstraintsBuildEngine
 	 */
 	public void constructSyncConstraintsRMM(Trace trace, HashSet<AbstractNode> depNodes){
 		//construct a new lockset for this segment
-		CONS_ASSERT = new StringBuilder("");		
+		CONS_ASSERT_VALID = new StringBuilder("");		
 		
 		lockEngine = new LockSetEngine();
 		
@@ -470,14 +476,14 @@ public class ConstraintsBuildEngine
 						 * under TSO, the start node should happen before all the nodes that belong to the 
 						 * thread it starts
 						 */
-						if(Configuration.mode=="TSO"||Configuration.mode=="PSO"){
+						if(Configuration.mode.equals("TSO") || Configuration.mode.equals("PSO")){
 							Vector<AbstractNode> nodesSet = trace.getThreadNodesMap().get(tid);
 							for(int j=0; j<nodesSet.size(); j++){
 								if (depNodes.contains((AbstractNode)nodesSet.get(j))) {
 									long nodeGID = nodesSet.get(j).getGID();
 									String nodeVar = makeVariable(nodeGID);
 									
-									CONS_ASSERT.append("(assert (< ").append(var).append(" ").append(nodeVar).append("))\n");
+									CONS_ASSERT_VALID.append("(assert (< ").append(var).append(" ").append(nodeVar).append("))\n");
 									
 									reachEngine.addEdge(thisGID, nodeGID);
 								}
@@ -492,7 +498,7 @@ public class ConstraintsBuildEngine
 								String fvar = makeVariable(fGID);
 							
 								//start-begin ordering
-								CONS_ASSERT.append("(assert (< ").append(var).append(" ").append(fvar).append("))\n");
+								CONS_ASSERT_VALID.append("(assert (< ").append(var).append(" ").append(fvar).append("))\n");
 							
 								reachEngine.addEdge(thisGID, fGID);
 							
@@ -517,7 +523,7 @@ public class ConstraintsBuildEngine
 										long nodeGID = nodesSet.get(j).getGID();
 										String nodeVar = makeVariable(nodeGID);
 										
-										CONS_ASSERT.append("(assert (< ").append(nodeVar).append(" ").append(var).append("))\n");
+										CONS_ASSERT_VALID.append("(assert (< ").append(nodeVar).append(" ").append(var).append("))\n");
 										
 										reachEngine.addEdge(nodeGID, thisGID);
 									}
@@ -534,7 +540,7 @@ public class ConstraintsBuildEngine
 								String lvar = makeVariable(lGID);
 								
 								//end-join ordering
-								CONS_ASSERT.append("(assert (< ").append(lvar).append(" ").append(var).append("))\n");
+								CONS_ASSERT_VALID.append("(assert (< ").append(lvar).append(" ").append(var).append("))\n");
 								reachEngine.addEdge(lGID,thisGID);
 
 							}
@@ -662,7 +668,7 @@ public class ConstraintsBuildEngine
 								cons_b= "(or (> "+var_lp1_a+" "+var_lp2_b+") (> "+var_lp2_a+" "+var_lp1_b+"))";
 							}
 							if(!cons_b.isEmpty())
-								CONS_ASSERT.append("(assert "+cons_b+")\n");
+								CONS_ASSERT_VALID.append("(assert "+cons_b+")\n");
 
 						}
 					}
@@ -999,7 +1005,7 @@ public class ConstraintsBuildEngine
 	public void constructSyncConstraints(Trace trace, HashSet<AbstractNode> depNodes)
 	{
 		
-		CONS_ASSERT = new StringBuilder("");
+		CONS_ASSERT_VALID = new StringBuilder("");
 		
 		//fork-join wait-notify
 		for(Iterator<Entry<AbstractNode,AbstractNode>> it = 
@@ -1016,7 +1022,7 @@ public class ConstraintsBuildEngine
 					continue;
 				String var2 = makeVariable(node2.getGID());
 	
-				CONS_ASSERT.append("(assert (< ").append(var2).append(" ").append(var1).append(" ))\n");
+				CONS_ASSERT_VALID.append("(assert (< ").append(var2).append(" ").append(var1).append(" ))\n");
 			}
 		}
 		
@@ -1138,7 +1144,7 @@ public class ConstraintsBuildEngine
 								cons_b= "(or (> "+var_lp1_a+" "+var_lp2_b+" ) (> "+var_lp2_a+" "+var_lp1_b+" ))";
 							}
 							if(!cons_b.isEmpty())
-								CONS_ASSERT.append("(assert "+cons_b+" )\n");
+								CONS_ASSERT_VALID.append("(assert "+cons_b+" )\n");
 
 						}
 					}
@@ -1157,6 +1163,8 @@ public class ConstraintsBuildEngine
 	 */
 	public void constructPOConstraints(Trace trace, HashSet<AbstractNode> depNodes)
 	{
+		
+		CONS_ASSERT_PO = new StringBuilder("");
 		HashMap<Long,Vector<AbstractNode>> map = trace.getThreadNodesMap();
 		
 		Iterator<Vector<AbstractNode>> mapIt = map.values().iterator();
@@ -1173,7 +1181,7 @@ public class ConstraintsBuildEngine
 					String lastVar = makeVariable(lastGID);
 					long thisGID  = thisNode.getGID();
 					String var = makeVariable(thisGID);
-					CONS_ASSERT.append("(assert (< ").append(lastVar).append(" ").append(var).append(" ))\n");
+					CONS_ASSERT_PO.append("(assert (< ").append(lastVar).append(" ").append(var).append(" ))\n");
 					
 					lastGID = thisGID;
 				}
@@ -1235,7 +1243,7 @@ public class ConstraintsBuildEngine
 			CONS_CAUSAL_RW= constructDataValidityConstraints(trace,depNodes,readNodes);
 		}
 		
-		if (Configuration.mode == "TSO"|| Configuration.mode == "PSO") 
+		if (Configuration.mode.equals("TSO")|| Configuration.mode.equals("PSO")) 
 		{
 			//under TSO, I explicitly revoke addConstraints to the trace
 			constructSyncConstraintsRMM(trace, depNodes);
@@ -1370,9 +1378,9 @@ public class ConstraintsBuildEngine
 		 * I will declare the constraints variables here
 		 * for all the varaibles that appear in the constraints
 		 */
-		declareVariables(CONS_ASSERT.append(causalConstraint));
+		declareVariables(CONS_ASSERT_PO.append(causalConstraint).append(CONS_ASSERT_VALID));
 				
-		StringBuilder msg = new StringBuilder(CONS_SETLOGIC).append(CONS_DECLARE).append(CONS_ASSERT).append(causalConstraint).append(CONS_GETMODEL);	
+		StringBuilder msg = new StringBuilder(CONS_SETLOGIC).append(CONS_DECLARE).append(CONS_ASSERT_VALID).append(CONS_ASSERT_PO).append(causalConstraint).append(CONS_GETMODEL);	
 		task.sendMessage(msg.toString(),makeVariable(gid),makeVariable(wgid), makeVariable(gid_prefix),reachEngine, causalConstraint.toString(), config);
 		
 		return task.schedule;

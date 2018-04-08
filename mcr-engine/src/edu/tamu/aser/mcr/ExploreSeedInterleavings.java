@@ -133,7 +133,7 @@ public class ExploreSeedInterleavings {
 			}
 				
 			//check read-write
-			if(readnodes!=null){
+   			if(readnodes!=null){
 				for(int i=0;i<readnodes.size();i++)
 				{
 					
@@ -385,7 +385,8 @@ public class ExploreSeedInterleavings {
 					StringBuilder sb = 
 							engine.constructFeasibilityConstraints(trace,depNodes,readDepNodes, rnode, wnode);
 					
-					//construct read write constraints
+					//construct read write constraints, namely, all other writes either happen before the Write
+					//or after the Read.
 					StringBuilder sb3 = 
 							engine.constructReadWriteConstraints(engine,trace,depNodes, rnode, wnode, otherWriteNodes);
 					
@@ -415,6 +416,7 @@ public class ExploreSeedInterleavings {
 				}
 			}
 		}// end for_writes	
+		
 		//add the equivalent class to the whole vector
 		if (Configuration.OMCR && !prefix.isEmpty()) {
 			mValuesPrefixes.put(wValue, prefix);
@@ -470,12 +472,6 @@ public class ExploreSeedInterleavings {
 		}
 		
 	}
-	
-//	private static void addToEquivalentClass(Trace trace, Vector<String> pAB, 
-//			Vector<String> pA,
-//			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass){
-//		
-//	}
 	
 	private static boolean checkEquivalence(Trace trace, Vector<String> pAB, 
 			Vector<String> pA, String vA, Vector<String> pB, String vB) {		
@@ -670,22 +666,7 @@ public class ExploreSeedInterleavings {
 			//for the implementation, just make all the assignments under main
 			
 			//@Alan
-			
 			int start_index = 0;
-//			if (schedule_prefix.size() == 0) {
-//				start_index = 0;
-//				while(start_index < schedule.size()){
-//					String xi = schedule.get(start_index);
-//					long gid = Long.valueOf(xi.substring(1));
-//					AbstractNode start_node = trace.getFullTrace().get((int) (gid-1));
-//					if (start_node instanceof StartNode) {
-//						break;
-//					}
-//					start_index++;
-//				}
-//				
-//			}
-			
 			for (int i=start_index; i<schedule.size(); i++)
 			{
 				String xi = schedule.get(i);
@@ -708,7 +689,8 @@ public class ExploreSeedInterleavings {
 						addr=""+node.getType();
 					}
 					name = name + "_" + addr;
-				}					
+				}
+				
 				schedule_a.add(name);
 			}
 				
