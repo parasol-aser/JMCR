@@ -146,6 +146,7 @@ public class RVInstrumentor {
     }
 
     public static void premain(String agentArgs, Instrumentation inst) {
+        
         MCRProperties mcrProps = MCRProperties.getInstance();
         storePropertyValues(mcrProps.getProperty(MCRProperties.INSTRUMENTATION_PACKAGES_IGNORE_PREFIXES_KEY), pckgPrefixesToIgnore);
         storePropertyValues(mcrProps.getProperty(MCRProperties.INSTRUMENTATION_PACKAGES_IGNORE_KEY), pckgsToIgnore);
@@ -196,6 +197,14 @@ public class RVInstrumentor {
                      * or the class is included in the classes to instrument,
                      * instrument the class
                      */
+                    /*
+                     * If debugging is enabled, check and print out the
+                     * instrumented class
+                     */
+                    if (Configuration.DEBUG) 
+                    {
+                        System.out.println("Instrumenting " + name);
+                    }
                     if (shouldInstrumentClass(name)) {
 //                        System.err.println("Instrumented " + name);
                         ClassReader classReader = new ClassReader(bytes); //bytes is the .class we are going to read
@@ -207,14 +216,7 @@ public class RVInstrumentor {
                         classReader.accept(rvsharedAccessEventsTransformer, ClassReader.EXPAND_FRAMES);
                         bytes = classWriter.toByteArray();
                          
-                        /*
-                         * If debugging is enabled, check and print out the
-                         * instrumented class
-                         */
-                        if (Configuration.DEBUG) 
-                        {
-                            System.out.println("Instrumented " + name);
-                        }
+                       
                     }
                 } catch (Throwable th) {
                     th.printStackTrace();

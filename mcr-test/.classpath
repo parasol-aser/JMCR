@@ -4,15 +4,16 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/mcr-controller"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/mcr-engine"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 7 [1.7.0_79]"/>
 	<classpathentry kind="lib" path="lib/iagent.jar"/>
 	<classpathentry kind="lib" path="lib/hazelcast-3.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/narada.jar"/>
 	<classpathentry kind="lib" path="lib/colt-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/concurrent.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/derby-10.3.2.1"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jigsaw"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/weblech"/>
 	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/lib/derby2861.jar"/>
+	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/lib/weblech.jar"/>
+	<classpathentry kind="lib" path="lib/servlet.jar"/>
+	<classpathentry kind="lib" path="lib/jigsaw.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

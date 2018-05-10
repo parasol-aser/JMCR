@@ -12,6 +12,7 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/Users/Alan/GitHub/public_repos/JMCR/real-world application/MyDerby-10.3"/>
 			<item value="/Users/Alan/GitHub/public_repos/JMCR/real-world application"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

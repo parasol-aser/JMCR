@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.LockNode"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
-<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.AbstractNode"/>
-<fullyQualifiedTypeName name="edu.tamu.aser.mcr.trace.UnlockNode"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
@@ -36,7 +31,6 @@
 <fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.MemoryLeakTest"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radixinverted.ConcurrentInvertedRadixTree"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrenttrees.radixreversed.ConcurrentReversedRadixTree"/>
 <fullyQualifiedTypeName name="edu.tamu.aser.mcr.graph.testReachability"/>
@@ -46,7 +40,6 @@
 <fullyQualifiedTypeName name="org.junit.After"/>
 <fullyQualifiedTypeName name="com.google.caliper.model.BenchmarkSpec.Builder"/>
 <fullyQualifiedTypeName name="com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap.Builder"/>
-<fullyQualifiedTypeName name="edu.tamu.aser.rvtest_simple_tests.StringBufferTest.WorkThread"/>
 <fullyQualifiedTypeName name="edu.tamu.aser.rvtest_simple_tests.MTListTest"/>
 <fullyQualifiedTypeName name="instrumented.java.util.Random"/>
 <fullyQualifiedTypeName name="java.util.concurrent.atomic.AtomicLong"/>
@@ -60,4 +53,11 @@
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.util.EntityResolver2Wrapper"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="edu.tamu.aser.rvtest_simple_tests.StringBufferTest.WorkThread"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Attribute.Layout.Element"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array"/>
+<fullyQualifiedTypeName name="buffertest.quickSort"/>
+<fullyQualifiedTypeName name="com.sun.accessibility.internal.resources.accessibility"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.SWAP"/>
 </qualifiedTypeNameHistroy>

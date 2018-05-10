@@ -30,8 +30,6 @@ import spider.SpiderConfig;
 import spider.Spider;
 
 import spider.Constants;
-import weblech.util.Logger;
-
 import java.util.Properties;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

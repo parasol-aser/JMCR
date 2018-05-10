@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="main-10-230-154-190.tamulink.tamu.edu" name="edu.tamu.aser.rvtest.weblech.WeblechTest" skipped="0" tests="1" time="0.0" timestamp="2018-05-10T18:55:00">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="env.XPC_SERVICE_NAME" value="0" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="env.SECURITYSESSIONID" value="186a6" />
+    <property name="env._system_arch" value="x86_64" />
+    <property name="env.GEM_HOME" value="/Users/Alan/.rvm/gems/ruby-2.3.0" />
+    <property name="os.name" value="Mac OS X" />
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/classes" />
+    <property name="env.TMPDIR" value="/var/folders/r9/sv6x0v8j4r145btfhw0npn700000gn/T/" />
+    <property name="env.PWD" value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test" />
+    <property name="env.LANG" value="en_US.UTF-8" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="/usr/local/Cellar/ant/1.9.7/libexec" />
+    <property name="java.runtime.version" value="1.8.0_101-b13" />
+    <property name="env.MY_RUBY_HOME" value="/Users/Alan/.rvm/rubies/ruby-2.3.0" />
+    <property name="env.Apple_PubSub_Socket_Render" value="/private/tmp/com.apple.launchd.ENUGKltrAp/Render" />
+    <property name="env.rvm_version" value="1.27.0 (latest)" />
+    <property name="user.name" value="Alan" />
+    <property name="env.USER" value="Alan" />
+    <property name="env.SHELL" value="/bin/bash" />
+    <property name="env.__CF_USER_TEXT_ENCODING" value="0x1F5:0x0:0x0" />
+    <property name="env._system_type" value="Darwin" />
+    <property name="env.PATH" value="/usr/local/opt/llvm/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/Alan/.rvm/gems/ruby-2.3.0/bin:/Users/Alan/.rvm/gems/ruby-2.3.0@global/bin:/Users/Alan/.rvm/rubies/ruby-2.3.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Library/TeX/texbin:/Applications/Racket v6.6/bin:/Users/Alan/.rvm/bin" />
+    <property name="user.language" value="en" />
+    <property name="env.rvm_prefix" value="/Users/Alan" />
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib" />
+    <property name="ant.project.default-target" value="build" />
+    <property name="env.XPC_FLAGS" value="0x0" />
+    <property name="ant.project.name" value="mcr-test" />
+    <property name="env.rvm_path" value="/Users/Alan/.rvm" />
+    <property name="env.RUBY_VERSION" value="ruby-2.3.0" />
+    <property name="java.version" value="1.8.0_101" />
+    <property name="env.JAVA_MAIN_CLASS_1327" value="org.apache.tools.ant.launch.Launcher" />
+    <property name="user.timezone" value="" />
+    <property name="ant.file.type.mcr-test" value="file" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="env._system_name" value="OSX" />
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/endorsed" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="env.rvm_bin_path" value="/Users/Alan/.rvm/bin" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="env.SHLVL" value="2" />
+    <property name="ECLIPSE_HOME" value="../../../../../../Applications/Eclipse.app/Contents/Eclipse/" />
+    <property name="file.separator" value="/" />
+    <property name="env._system_version" value="10.12" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="52.0" />
+    <property name="jigsaw.location" value="../real-world application/jigsaw" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="env.LOGNAME" value="Alan" />
+    <property name="ant.file" value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/build.xml" />
+    <property name="os.version" value="10.12.6" />
+    <property name="env.TERM_PROGRAM_VERSION" value="388.1.2" />
+    <property name="env.CLICOLOR" value="1" />
+    <property name="path.separator" value=":" />
+    <property name="java.vm.version" value="25.101-b13" />
+    <property name="ant.library.dir" value="/usr/local/Cellar/ant/1.9.7/libexec/lib" />
+    <property name="junit.output.dir" value="junit" />
+    <property name="env.IRBRC" value="/Users/Alan/.rvm/rubies/ruby-2.3.0/.irbrc" />
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob" />
+    <property name="env.TERM" value="xterm-256color" />
+    <property name="sun.io.unicode.encoding" value="UnicodeBig" />
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit" />
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+    <property name="env.LSCOLORS" value="GxFxCxDxBxegedabagaced" />
+    <property name="env.GEM_PATH" value="/Users/Alan/.rvm/gems/ruby-2.3.0:/Users/Alan/.rvm/gems/ruby-2.3.0@global" />
+    <property name="user.home" value="/Users/Alan" />
+    <property name="target" value="1.7" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="env.TERM_PROGRAM" value="Apple_Terminal" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.library.path" value="/Users/Alan/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:." />
+    <property name="gopherProxySet" value="false" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 9 2016" />
+    <property name="java.class.path" value="/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-launcher.jar:/usr/local/share/ant:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-antlr.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-bcel.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-bsf.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-log4j.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-oro.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-regexp.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-resolver.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-apache-xalan2.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-commons-logging.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-commons-net.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-jai.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-javamail.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-jdepend.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-jmf.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-jsch.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-junit.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-junit4.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-launcher.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-netrexx.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-swing.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant-testutil.jar:/usr/local/Cellar/ant/1.9.7/libexec/lib/ant.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/lib/tools.jar" />
+    <property name="sun.java.command" value="org.apache.tools.ant.launch.Launcher -cp  -lib /usr/local/share/ant WeblechTest" />
+    <property name="ant.file.mcr-test" value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/build.xml" />
+    <property name="env.TERM_SESSION_ID" value="4E32D0DC-DD73-4B45-BAFC-F6E7F1CC0FB4" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="env.HOME" value="/Users/Alan" />
+    <property name="debuglevel" value="source,lines,vars" />
+    <property name="java.io.tmpdir" value="/var/folders/r9/sv6x0v8j4r145btfhw0npn700000gn/T/" />
+    <property name="env.LD_LIBRARY_PATH" value="/usr/local/Cellar/llvm/4.0.0_1/lib:" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="env.SSH_AUTH_SOCK" value="/private/tmp/com.apple.launchd.RIHkFEJ28D/Listeners" />
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment" />
+    <property name="os.arch" value="x86_64" />
+    <property name="mcr-controller.location" value="../mcr-controller" />
+    <property name="mcr-engine.location" value="../mcr-engine" />
+    <property name="java.ext.dirs" value="/Users/Alan/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java" />
+    <property name="user.dir" value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test" />
+    <property name="derby-10.3.2.1.location" value="../real-world application/derby-10.3.2.1" />
+    <property name="weblech.location" value="../real-world application/weblech" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="env.CPLUS_INCLUDE_PATH" value="/usr/local/Cellar/llvm/4.0.0_1/include:" />
+    <property name="basedir" value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="/usr/local/Cellar/ant/1.9.7/libexec/lib/ant.jar" />
+    <property name="source" value="1.7" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="ant.project.invoked-targets" value="WeblechTest" />
+  </properties>
+  <testcase classname="edu.tamu.aser.rvtest.weblech.WeblechTest" name="unknown" time="0.0">
+    <error message="Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
+</error>
+  </testcase>
+</testsuite>
