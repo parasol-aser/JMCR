@@ -77,7 +77,7 @@ function runTests()
     echo "Running tests from: ${class_name}"    
 
     java -ea -javaagent:lib/iagent.jar \
-    	-cp 'bin:../dist/*:../lib/*'  \
+    	-cp 'bin:../dist/*:../lib/*:lib/*'  \
      	-Ddebug=$debug \
      	-Dstatic_opt=$static_opt \
      	-Domcr=$Domcr \

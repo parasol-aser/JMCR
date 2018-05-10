@@ -13,5 +13,5 @@
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="edu.tamu.aser.rvtest.jigsaw.JigsawTest"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="mcr-test"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1g -javaagent:lib/iagent.jar"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1g -javaagent:lib/iagent.jar -Ddebug=true"/>
 </launchConfiguration>

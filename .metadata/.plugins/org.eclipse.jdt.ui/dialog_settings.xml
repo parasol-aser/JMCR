@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item value="0" key="CallHierarchyViewPart.call_mode"/>
 	<item value="2" key="CallHierarchyViewPart.field_mode"/>
-	<item value="/Users/Alan/GitHub/public_repos/JMCR/lib" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="3" key="CallHierarchyViewPart.orientation"/>
 	<item value="filter_imports;" key="filters_last_used"/>
 	<item value="500" key="CallHierarchyViewPart.ratio0"/>
@@ -89,6 +89,7 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="mcr-test/lib/jigsaw.jar"/>
 			<item value="/Users/Alan/GitHub/public_repos/JMCR/lib/jigsaw.jar"/>
 			<item value="mcr-test-concurrent-objectPool/lib/src.jar"/>
 			<item value="mcr-test-concurrent-linkedHashMap/lib/src.jar"/>

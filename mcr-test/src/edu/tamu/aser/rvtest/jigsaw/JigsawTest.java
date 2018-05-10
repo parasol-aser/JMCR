@@ -1,7 +1,5 @@
 package edu.tamu.aser.rvtest.jigsaw;
 
-import java.util.Set;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -52,6 +50,7 @@ public class JigsawTest
 //		}
 
 		System.out.println("Done");
+//		System.exit(0);
 
 	}catch(Exception e)
 	{

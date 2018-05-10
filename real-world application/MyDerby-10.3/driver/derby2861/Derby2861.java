@@ -1,14 +1,9 @@
 package derby2861;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import org.apache.derby.jdbc.AutoloadedDriver;
 import org.apache.derby.jdbc.EmbeddedDriver;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import edu.tamu.aser.exploration.JUnit4ReExRunner;
+//import edu.tamu.aser.exploration.JUnit4ReExRunner;
 //import edu.tamu.aser.rvtest.derby.DerbyTest;
 
 //10.3.2.1
@@ -36,7 +31,7 @@ import edu.tamu.aser.exploration.JUnit4ReExRunner;
  * Stop here.
  * </pre>
  */
-@RunWith(JUnit4ReExRunner.class)
+//@RunWith(JUnit4ReExRunner.class)
 public class Derby2861
 {
     /**

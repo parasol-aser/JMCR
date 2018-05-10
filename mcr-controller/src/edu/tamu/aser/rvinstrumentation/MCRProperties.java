@@ -51,6 +51,8 @@ public class MCRProperties extends Properties {
             if (this.getClass().getResourceAsStream(DEFAULT_PROPERTIES)==null) {
                 System.err.println("No" + DEFAULT_PROPERTIES);
             }
+            
+            String class1 = this.getClass().toString();
 
             load(this.getClass().getResourceAsStream(DEFAULT_PROPERTIES));
             // Load user provided properties

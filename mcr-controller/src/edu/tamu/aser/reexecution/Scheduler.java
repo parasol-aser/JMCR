@@ -455,7 +455,6 @@ public class Scheduler {
             } else {
                 Listeners.fireMakingChoice(Collections.unmodifiableSortedSet(objectChoices), choiceType);
                 chosenObject = schedulingStrategy.choose(Collections.unmodifiableSortedSet(objectChoices), choiceType);            
-                //what does this mean?
                 Listeners.fireChoiceMade(chosenObject);
             }
             return chosenObject;

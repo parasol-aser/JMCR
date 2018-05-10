@@ -28,7 +28,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
     private static final String EXPLORATION_STATS_FOOTER = "=================================================";
     private static final String EXPLORATION_STATS_HEADER = "=============== EXPLORATION STATS ===============";
 
-    private static final long TIMEOUT_ONE_HOUR_IN_MSEC = 10*1000L * 60L * 60L;   //20 mins to 600 mins
+    private static final long TIMEOUT_ONE_HOUR_IN_MSEC = 24*1000L * 60L * 60L;   //24h
 
     private final static Long timeoutValue = Long.parseLong(MCRProperties.getInstance().getProperty(MCRProperties.EXPLORATION_TIMEOUT_KEY,
             "" + TIMEOUT_ONE_HOUR_IN_MSEC));
@@ -55,8 +55,8 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
             @Override
             public void run() {
                 timeoutOccurred = true;
-                completedSchedule(null); // update stats
-                completedExploration(); // print stats
+                completedSchedule(null);   // update stats
+                completedExploration();    // print stats
                 System.exit(124);
             }
 
@@ -155,7 +155,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
         System.out.flush();
         System.err.flush();
         System.err.println("\n!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #" + numSchedules + ": " + ((errorMsg == null) ? "" : errorMsg));
-        System.err.println("The following trace triggered this error:");
+//        System.err.println("The following trace triggered this error:");
         
 //        completedExploration();
 //        System.exit(-1);
@@ -163,9 +163,9 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
 //        System.err.println(MCRProperties.SCHEDULING_STRATEGY_KEY + "=" + ReproScheduleStrategy.class.getName());
 //        System.err.println(MCRProperties.SCHEDULING_REPRO_CHOICES_KEY + "=" + choicesMade + "\n");
         
-        for (int i = 0; i < RVRunTime.failure_trace.size() ; i++) {
-            System.err.println("       " + RVRunTime.failure_trace.get(i));
-        }
+//        for (int i = 0; i < RVRunTime.failure_trace.size() ; i++) {
+//                System.err.println("       " + RVRunTime.failure_trace.get(i));
+//        }
         
         
         System.err.flush();

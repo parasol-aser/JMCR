@@ -57,12 +57,12 @@
   <attribute name='key' flag='4' class='org.w3c.tools.resources.IntegerAttribute'>-1777994148</attribute>
  </resource>
  <resource class='org.w3c.tools.resources.store.NewStoreEntry'>
-  <attribute name='repository' flag='4' class='org.w3c.tools.resources.StringAttribute'>11/st-11</attribute>
-  <attribute name='key' flag='4' class='org.w3c.tools.resources.IntegerAttribute'>-275376817</attribute>
- </resource>
- <resource class='org.w3c.tools.resources.store.NewStoreEntry'>
   <attribute name='repository' flag='4' class='org.w3c.tools.resources.StringAttribute'>15/st-15</attribute>
   <attribute name='key' flag='4' class='org.w3c.tools.resources.IntegerAttribute'>502216783</attribute>
+ </resource>
+ <resource class='org.w3c.tools.resources.store.NewStoreEntry'>
+  <attribute name='repository' flag='4' class='org.w3c.tools.resources.StringAttribute'>11/st-11</attribute>
+  <attribute name='key' flag='4' class='org.w3c.tools.resources.IntegerAttribute'>-275376817</attribute>
  </resource>
  <resource class='org.w3c.tools.resources.store.NewStoreEntry'>
   <attribute name='repository' flag='4' class='org.w3c.tools.resources.StringAttribute'>22/st-22</attribute>

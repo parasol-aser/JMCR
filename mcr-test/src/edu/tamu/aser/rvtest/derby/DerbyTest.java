@@ -1,7 +1,5 @@
 package edu.tamu.aser.rvtest.derby;
 
-import static org.junit.Assert.fail;
-
 import org.apache.derby.jdbc.EmbeddedDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
