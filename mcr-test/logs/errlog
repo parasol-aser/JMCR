@@ -900,3 +900,92 @@ client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.
 [http-server] shutdown inited...(save done)
 [http-server] shutdown completed at: Thu May 10 15:29:07 CDT 2018.
 [http-server] started at: Thu May 10 15:30:52 CDT 2018.
+[http-server] started at: Fri May 11 15:32:44 CDT 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] started at: Fri May 11 16:26:32 CDT 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Fri May 11 16:27:01 CDT 2018.
+[http-server] started at: Mon May 14 11:12:53 CDT 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 11:13:22 CDT 2018.
+[http-server] started at: Mon May 14 11:29:38 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 11:35:49 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 11:36:36 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 13:31:24 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 13:31:40 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 13:31:46 CDT 2018.
+[http-server] started at: Mon May 14 13:31:54 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 13:33:32 CDT 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Mon May 14 13:47:57 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 13:52:41 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 13:53:59 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 13:59:46 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:00:12 CDT 2018.
+[http-server] started at: Mon May 14 14:07:54 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:07:59 CDT 2018.
+[http-server] started at: Mon May 14 14:15:40 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:19:01 CDT 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] started at: Mon May 14 14:24:45 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:25:06 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:29:10 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:31:13 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:31:52 CDT 2018.
+[http-server] shutdown inited...(save done)
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown completed at: Mon May 14 14:32:26 CDT 2018.
+[http-server] started at: Mon May 14 14:36:12 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:37:01 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:37:37 CDT 2018.
+[http-server] started at: Mon May 14 14:38:53 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:39:29 CDT 2018.
+[http-server] started at: Mon May 14 14:40:30 CDT 2018.
+[http-server] started at: Mon May 14 14:41:14 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:41:50 CDT 2018.
+[http-server] started at: Mon May 14 14:43:05 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:43:37 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:45:43 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:46:33 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:47:32 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:48:08 CDT 2018.
+[http-server] started at: Mon May 14 14:54:31 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] started at: Mon May 14 14:54:50 CDT 2018.
+client-0(http-server-socket-clients:1): caught ClientException: [org.w3c.jigsaw.http.ClientException] End Of File
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:55:19 CDT 2018.
+[http-server] started at: Mon May 14 14:55:47 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 14:56:23 CDT 2018.
+[http-server] started at: Mon May 14 15:03:06 CDT 2018.
+[http-server] shutdown inited...(save done)
+[http-server] shutdown completed at: Mon May 14 15:03:42 CDT 2018.

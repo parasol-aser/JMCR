@@ -1,0 +1,54 @@
+HTML BODY {
+  /* beige */
+  background-color: white;
+  /* black */
+  color: black;
+}
+
+PRE SPAN.doc-string {
+  /* purple */
+  color: purple;
+}
+
+PRE SPAN.reference {
+  /* red3 */
+  color: rgb(205,0,0);
+}
+
+PRE SPAN.type {
+  /* MediumPurple3 */
+  color: rgb(137,104,205);
+}
+
+PRE SPAN.function-name {
+  /* forestgreen */
+  color: rgb(34,139,34);
+  font-weight: bold;
+}
+
+PRE SPAN.string {
+  /* blue4 */
+  color: rgb(0,0,139);
+}
+
+PRE SPAN.comment {
+  /* red */
+  color: red;
+  font-style:italic;
+}
+
+PRE SPAN.variable-name {
+  /* blue3 */
+  color: rgb(0,0,205);
+}
+
+PRE SPAN.preprocessor {
+  /* blue3 */
+  color: rgb(0,0,205);
+}
+
+PRE SPAN.keyword {
+  /* goldenrod3 */
+  color: rgb(205,155,29);
+}
+

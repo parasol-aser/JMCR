@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+   "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+  <STYLE TYPE="text/css">
+      .item1 {
+        color: blue;
+        font-weight  : bold;
+      }
+
+      .item2 {
+        color: red;
+        font-weight  : bold;
+      }
+
+      .item3 {
+        color: gray;
+        font-weight  : bold;
+      }
+
+      .item4 {
+        color: green;
+        font-weight  : bold;
+      }
+
+      .string {
+        color: gray;
+        font-style: italic;
+      }
+    </STYLE>
+  <TITLE>How to compile Jigsaw</TITLE>
+  <LINK rel="stylesheet" type="text/css" href="../style/doc.css">
+</HEAD>
+<BODY>
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <H1 class="title">
+	Jigsaw<BR>
+	<SPAN class="subtitle">How to compile Jigsaw</SPAN>
+      </H1>
+      <HR NOSHADE width="70%" align="left">
+      <A href="../../Overview.html">Jigsaw Home</A> /
+      <A href="../Overview.html">Documentation Overview</A> /
+      <a href="Tutorials.html">Tutorials</a>
+    </div>
+    <div class="body">
+<P>
+<B>Jigsaw</B> is delivered with a set of makefiles, so you can use the
+<SPAN CLASS="item2">make</SPAN> tool to compile <B>Jigsaw</B>.<br>
+The average time of building <b>Jigsaw</b> on a SUN Ultra 30 is 1mn40 or 13mn
+using the makefiles, using jdk_1.2.2_05a, depending on your OS/CPU/compiler, 
+your mileage may vary.
+<H1>
+  On UNIX machine
+</H1>
+<P>
+According to your shell (for example <B>bash</B>), just set the following
+environment variable:
+<DIV CLASS="box">
+  <B>MAKEDIR</B> = <TT>&lt;instdir&gt;/Jigsaw/src/makefiles</TT>
+  <P>
+  export <B>MAKEDIR</B>
+</DIV>
+<P>
+<B>Note:</B> Since 2.0.2, the <B>MAKEDIR</B> variable is no more used, so
+don't take care of it.
+<P>
+Now you have to update your <B>CLASSPATH</B> to compile <B>Jigsaw</B> and
+use the new compiled classes.
+<P>
+<DIV CLASS="box">
+  <B>CLASSPATH</B> = <TT>&lt;instdir&gt;/Jigsaw/src/classes/:...</TT>
+  <P>
+  instead of
+  <P>
+  <B>CLASSPATH</B> =
+  <TT>&lt;instdir&gt;/Jigsaw/classes/jigsaw.jar:...</TT>
+  <P>
+	  Of course be sure to add all the external jars needed by your
+	  version of Jigsaw, <a href="http://jakarta.apache.org/downloads/binindex.html">servlet.jar</a>, and for 2.1 <a href="http://www.jclark.com/xml/xp/index.html">sax.jar and xp.jar</a>. Some sources may require additional packages like <a href="http://jakarta.apache.org/oro/index.html">jakarta-oro</a>.<br>
+	  then
+  <P>
+  export <B>CLASSPATH</B> <BR>
+</DIV>
+<P>
+Then you can use <SPAN CLASS="item2">make</SPAN> in any directory under
+<TT>&lt;instdir&gt;/Jigsaw/src/classes</TT>.
+Another way if you want to compile everything faster, see this:<br>
+<code>cd &lt;instdir&gt;/Jigsaw/src/classes && javac -O `find . -name \*.java`</code>
+<H1>
+  On Windows Machine
+</H1>
+<P>
+You can use the <SPAN CLASS="item2">make</SPAN> tool from the
+<A HREF="http://www.cygnus.com/misc/gnu-win32/">GNU tools</A> for Windows.
+<P>
+Then you just have to set the same environment variable (with <B>bash</B>):
+<DIV CLASS="box">
+  <B>MAKEDIR</B> = <TT>&lt;instdir&gt;\Jigsaw\src\makefiles</TT>
+  <P>
+  export <B>MAKEDIR</B>
+</DIV>
+<P>
+<B>Note:</B> Since 2.0.2, the <B>MAKEDIR</B> variable is no more used, so
+don't take care of it.
+<P>
+And your <B>CLASSPATH</B> should become:
+<P>
+<DIV CLASS="box">
+  <B>CLASSPATH</B> = <TT>&lt;instdir&gt;\Jigsaw\src\classes\:...</TT>
+  <P>
+  instead of
+  <P>
+  <B>CLASSPATH</B> =
+  <TT>&lt;instdir&gt;\Jigsaw\classes\jigsaw.jar:...</TT>
+  <P>
+  then
+  <P>
+  export <B>CLASSPATH</B> <BR>
+</DIV>
+<P>
+Then you can use <SPAN CLASS="item2">make</SPAN> in any directory under
+<TT>&lt;instdir&gt;\Jigsaw\src\classes</TT>, provided you have "make"
+	installed.
+    </div> <!-- body -->
+    <div class="footer">
+<P>
+  <HR noshade>
+<A href="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+<SPAN class="mini"> $Id: compile.html,v 1.10 1999/03/26 15:34:04 bmahe Exp
+$ </SPAN>
+<P class="policyfooter">
+<FONT size=-1>
+<A href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</A> &copy;
+1999 <A href="http://www.w3.org">W3C</A>
+(<A href="http://www.lcs.mit.edu">MIT</A>,
+<A href="http://www.inria.fr/">INRIA</A>,
+<A href="http://www.keio.ac.jp/">Keio</A> ), All Rights Reserved. W3C
+<A href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability,
+</A> <A href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark
+</A>, <A href="/Consortium/Legal/copyright-documents.html"> document use
+</A> and <A href="/Consortium/Legal/copyright-software.html"> software licensing
+</A> rules apply. Your interactions with this site are in accordance with
+our <A href="/Consortium/Legal/privacy-statement.html#Public"> public </A>
+and <A href="/Consortium/Legal/privacy-statement.html#Members"> Member </A>
+privacy statements.</FONT>
+</div>
+</BODY></HTML>

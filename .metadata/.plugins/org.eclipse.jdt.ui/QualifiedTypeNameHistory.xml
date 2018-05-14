@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.fastinfoset.util.ContiguousCharArrayArray"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
@@ -60,4 +57,7 @@
 <fullyQualifiedTypeName name="buffertest.quickSort"/>
 <fullyQualifiedTypeName name="com.sun.accessibility.internal.resources.accessibility"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.SWAP"/>
+<fullyQualifiedTypeName name="java.lang.Class"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
 </qualifiedTypeNameHistroy>

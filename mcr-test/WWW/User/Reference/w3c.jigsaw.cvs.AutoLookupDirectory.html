@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The AutolookupDirectory administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  AutoLookupDirectory
+</H1>
+<P>
+A directory resource that will allow you to fetch non-existing files from
+CVS. it is a subclass of
+<A HREF="w3c.jigsaw.resources.PutableDirectory.html">PutableDirectory</A>.
+If a resource is not present, it will try to get it from cvs, if it does
+not exist, it will act like a normal
+<A HREF="w3c.jigsaw.resources.PutableDirectory.html">PutableDirectory</A>.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.cvs.AutoLookupDirectory.html">AutoLookupDirectory</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.PutableDirectory.html">PutableDirectory</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The AutoLookupDirectory defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#autoupdate">autoupdate</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME=autoupdate>autoupdate</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the entries be always refreshed when requested? Note that if set to
+    <B>true</B>, it will consume time and the performance of the server will
+    collapse.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable BooleanAttribute.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:ylafon@w3.org">Yves Lafon</A><BR>
+$Id: w3c.jigsaw.cvs.AutoLookupDirectory.html,v 1.2 1996/12/09 03:17:38 jigsaw
+Exp $</I>
+</BODY></HTML>

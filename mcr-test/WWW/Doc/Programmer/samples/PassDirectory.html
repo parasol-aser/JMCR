@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>PassDirectory.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// PassDirectory.java
+// $Id: PassDirectory.html,v 1.1 2010/06/15 12:20:04 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">resources</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.*;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">PassDirectory</span> <span class="keyword">extends</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">resources</span>.<span class="type">DirectoryResource</span> {
+
+    <span class="comment">/**
+     * Attribute index - The target physicall directory of this resource.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_PASSTARGET</span> = -1 ;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span>   = <span class="keyword">null</span> ;
+	<span class="type">Class</span>     <span class="variable-name">cls</span> = <span class="keyword">null</span> ;
+
+	<span class="comment">// Get a pointer to our class.
+</span>	<span class="keyword">try</span> {
+	    cls = Class.forName("<span class="string">org.w3c.jigsaw.resources.PassDirectory</span>") ;
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace() ;
+	    System.exit(1) ;
+	}
+	<span class="comment">// The directory attribute.
+</span>	a = <span class="keyword">new</span> <span class="type">FileAttribute</span>("<span class="string">pass-target</span>"
+			      , <span class="keyword">null</span>
+			      , Attribute.EDITABLE);
+	ATTR_PASSTARGET = AttributeRegistry.registerAttribute(cls, a) ;
+    }
+
+    <span class="comment">/**
+     * Catch side-effects on pass-target, to absolutize it.
+     * </span><span class="keyword">@param </span><span class="variable-name">idx</span><span class="comment"> The attribute to set.
+     * </span><span class="keyword">@param </span><span class="variable-name">value</span><span class="comment"> The new value.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">setValue</span>(<span class="type">int</span> <span class="variable-name">idx</span>, <span class="type">Object</span> <span class="variable-name">value</span>) {
+	<span class="reference">super</span>.setValue(idx, value);
+	<span class="keyword">if</span> ( idx == ATTR_PASSTARGET ) {
+	    <span class="type">File</span> <span class="variable-name">file</span> = (<span class="type">File</span>) value;
+	    <span class="keyword">if</span> ( ! file.isAbsolute() ) {
+		<span class="comment">// Make it absolute, relative to the server space.
+</span>		<span class="type">File</span> <span class="variable-name">abs</span> = <span class="keyword">new</span> <span class="type">File</span>(getServer().getRootDirectory()
+				    , file.toString());
+		values[ATTR_PASSTARGET] = abs;
+		values[ATTR_DIRECTORY]  = abs;
+	    }
+	}
+    }
+
+    <span class="comment">/**
+     * The getDirectory method now returns the pass-directory.
+     * </span><span class="keyword">@return </span><span class="comment">The pass target location.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">File</span> <span class="function-name">getDirectory</span>() {
+	<span class="keyword">return</span> (<span class="type">File</span>) getValue(ATTR_PASSTARGET, <span class="keyword">null</span>) ;
+    }
+
+    <span class="comment">/**
+     * Make the directory attribute default to the target location.
+     * This is required for classes that rely on the directory attribute to
+     * compute their own attributes.
+     * </span><span class="keyword">@param </span><span class="variable-name">values</span><span class="comment"> The values we should initialized from.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">initialize</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+	<span class="reference">super</span>.initialize(values);
+	<span class="type">File</span> <span class="variable-name">target</span> = getDirectory();
+	<span class="keyword">if</span> ( target != <span class="keyword">null</span> ) 
+	    setValue(ATTR_DIRECTORY, target);
+    }
+
+
+}
+
+    </pre>
+  </body>
+</html>

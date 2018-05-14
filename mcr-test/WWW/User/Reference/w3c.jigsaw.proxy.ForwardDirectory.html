@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>ProxyDirectory reference manual.</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+<IMG SRC="/icons/WWW/w3c_home.gif" ALT="W3C" BORDER="0" WIDTH="72"
+    HEIGHT="48"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  ForwardDirectory
+</H1>
+<P>
+This resource is tha base class for the
+<A HREF="w3c.jigsaw.proxy.ProxyDirectory.html">ProxyDirectory</A> and the
+<A HREF="w3c.jigsaw.proxy.MirrorDirectory.html">MirrorDirectory</A> classes.
+It uses the w3c HTTP client side API to forward requests to either some other
+server, or some proxy.
+<P>
+Before configuring the caching part of this resource, you should read the
+<A HREF="w3c.www.protocol.http.HttpManager.html"><B>Jigsaw</B>'s client API
+reference manual</A>, which defines all the properties supported.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.resources.ForwardDirectory.html">ForwardDirectory</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="../api/w3c.jigsaw.resources.ContainerResource.html">ContainerResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.proxy.ForwardDirectory.html">ForwardDirectory</A>
+defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#local-root">local-root</A>
+  <LI>
+    <A HREF="#received-by">received-by</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="local-root">local-root</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The follow up root resource, when the received request is targeted explicitly
+    to the server. This followup root resource, is given by its name, and should
+    already exist in the root resource store.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a
+    <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="received-by">received-by</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The String that the proxy will emit as the <I>received-by</I> part of the
+    <CODE>Via</CODE> header.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a
+    <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    When unspecified, this attribute defaults to the name of the host running
+    the proxy. For security reasons, it might be usefull (and is allowed) to
+    use a fake name instead.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.proxy.ForwardDirectory.html,v 1.4 1997/07/31 08:23:50
+ylafon Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

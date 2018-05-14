@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The PutableDirectory administration guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  PutableDirectory
+</H1>
+<P>
+A directory resource that will allow you to create new resources through
+the HTTP <B>PUT</B> method. When this resource is looked up, it uses the
+normal
+<A HREF="w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>
+alogorithm to find the appropriate resource. If this fails, it goes to the
+<A HREF="../Introduction/indexer.html">resource indexer</A>, and asks it
+to create a resource having the given name. If this succeeds, the newly created
+resource is attached as a child of the directory resource, and the <B>PUT</B>
+method is delegated to it.
+<P>
+Notice that the indexer should be configured to create a resource that handles
+the <B>PUT</B> method, otherwise, the resource will be effectively created,
+but it will fail to save the put'ed content (the
+<A HREF="w3c.jigsaw.resources.FileResource.html">FileResource</A>, for example,
+should have its
+<A HREF="w3c.jigsaw.resources.FileResource.html#putable">putable</A> attribute
+turned to <B>true</B>).
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.resources.PutableDirectory.html">PutableDirectory</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The PutableDirectory defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#browsable">browsable</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME=browsable>browsable</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should this directory handle the <A HREF="http://www.gnn.com">GNN</A>
+    <B>BROWSE</B> method ? When trun to <B>true</B> the putable directory will
+    reply appropriately to the <A HREF="http://www.gnn.com">GNN</A> <B>BROWSE</B>
+    method (which allows it to get the directory content).
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editable BooleanAttribute.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.resources.PutableDirectory.html,v 1.1 1996/04/13 02:23:07
+abaird Exp $</I>
+</BODY></HTML>

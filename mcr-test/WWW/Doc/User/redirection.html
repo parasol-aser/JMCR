@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+  <META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Redirections in Jigsaw</TITLE>
+  <LINK rel="stylesheet" type="text/css" href="../style/doc.css">
+</HEAD>
+<BODY bgcolor="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <H1 class="title">
+	Redirections
+      </H1>
+      <P>
+      <HR noshade="noshade" width="70%" align="left">
+      <A href="../../Overview.html">Jigsaw Home</A> /
+      <A href="../Overview.html">Documentation Overview</A>
+    </div>
+    <div class="body">
+<P>
+Here we describe (with examples) what kind of redirection
+<STRONG>Jigsaw</STRONG> is able to perform and how to configure those
+redirections.
+<P>
+This document has the following sections:
+<UL>
+  <LI>
+    <A href="#L179">HTTP redirections</A>
+  <LI>
+    <A href="#L186">Internal redirections</A>
+  <LI>
+    <A href="#L228">Servlet mapping</A>
+</UL>
+<H1>
+  HTTP redirections<A name="L179"></A>
+</H1>
+<P>
+When a document has moved, for example <CODE>http://host1/Doc.html</CODE>
+is now reachable at <CODE>http://host2/Doc.html</CODE>, you should use the
+<A href="../Reference/org.w3c.jigsaw.frames.RelocateFrame.html">RelocateFrame</A>.
+<P>
+With <A href="JigAdmin/Overview.html">JigAdmin</A>, remove the HTTPFrame
+of Doc1.html (the one at <CODE>http://host1/Doc.html</CODE>) and add a
+RelocateFrame, then set the <STRONG>location</STRONG> field to
+<CODE>http://host2/Doc.html</CODE>. Now, this frame will emit an HTTP redirect
+reply for every requests. Also, it can be configured to handle the PATH info
+so that you can remap http://host1/foo/(.*) to http://host2/bar/$1.
+<H1>
+  Internal redirections<A name="L186"></A>
+</H1>
+<P>
+Sometimes, you need to perform internal redirections. For example, if you
+want requests on all documents with a <CODE>foo</CODE> extension to be redirected
+to a cgi script you will need to use the
+<A href="../Reference/org.w3c.jigsaw.frames.RedirecterFrame.html">RedirecterFrame</A>.
+Each document (with foo extension) must be indexed to a
+<A href="../Reference/org.w3c.tools.resources.FramedResource.html">FramedResource</A>
+associated to a RedirecterFrame (read the <A href="indexers.html">indexers
+documentation</A> for more details) and the <STRONG>target</STRONG> field
+of the RedirecterFrame must be set to the cgi script url (eg:
+/cgi-bin/fooscript). It operates "behind the scene" as the client doesn't
+get a redirect (unless the target resource generate one). As of avril 29th
+1999, it handles PATH_INFO.
+<H1>
+  Servlet mapping<A name="L228"></A>
+</H1>
+<P>
+If you want to map an extension to a specific servlet, for example gnujsp
+servlet with jsp extension (<A href="../FAQ.html#jsp">FAQ</A>), you need
+to perform an internal redirection that take care of the "path translated".
+The
+<A href="../Reference/org.w3c.jigsaw.servlet.ServletMapperFrame.html">ServletMapperFrame</A>
+is what you need. Configure it in the same way that the RedirecterFrame.
+<P>
+<STRONG>Note:</STRONG> this frame doesn't handle pathinfo (it doesn't make
+sense).
+    </div> <!-- body -->
+    <div class="footer">
+<P>
+  <HR noshade="noshade" width="100%">
+<A href="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+<SPAN class="mini"> $Id: redirection.html,v 1.4 1999/04/29 09:05:00 bmahe
+Exp $ </SPAN>
+<P class="policyfooter">
+<FONT size="-1"><A href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</A>
+&copy; 1999 <A href="http://www.w3.org">W3C</A>
+(<A href="http://www.lcs.mit.edu">MIT</A>,
+<A href="http://www.inria.fr/">INRIA</A>,
+<A href="http://www.keio.ac.jp/">Keio</A> ), All Rights Reserved. W3C
+<A href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability,
+</A> <A href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark
+</A>, <A href="/Consortium/Legal/copyright-documents.html"> document use
+</A> and <A href="/Consortium/Legal/copyright-software.html"> software licensing
+</A> rules apply. Your interactions with this site are in accordance with
+our <A href="/Consortium/Legal/privacy-statement.html#Public"> public </A>
+and <A href="/Consortium/Legal/privacy-statement.html#Members"> Member </A>
+privacy statements.</FONT>
+    </div>
+</BODY></HTML>

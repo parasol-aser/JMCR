@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>ErrorFilter.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// ErrorFilter.java
+// $Id: ErrorFilter.html,v 1.1 2010/06/15 12:20:07 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">filters</span>;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">www</span>.<span class="reference">http</span>.*;
+
+<span class="comment">/**
+ * The ErroFilter class allows you to customize and enhance error messages.
+ * This filter will catch all errors on their way back to the client, and
+ * use internal requests to provide a nice customizable error message.
+ * &lt;p&gt;You can use any resources (including server side includes, content
+ * negotiated resources, etc) to deliver error messages.
+ */</span>
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">ErrorFilter</span> <span class="keyword">extends</span> <span class="type">ResourceFilter</span> {
+    <span class="comment">/**
+     * A request state, to avoid looping on errors about errors.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">final</span> <span class="type">String</span> <span class="variable-name">ERRED</span> = "<span class="doc-string">org.w3c.jigsaw.filters.ErrorFilter</span>";
+
+    <span class="comment">/**
+     * Attribute index - The base URL for error messages.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_BASEURL</span> = -1;
+    <span class="comment">/**
+     * Attribute index - The common extension for error messages (can be null).
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_EXTENSION</span> = -1;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span>   = <span class="keyword">null</span>;
+	<span class="type">Class</span>     <span class="variable-name">cls</span> = <span class="keyword">null</span>;
+
+	<span class="keyword">try</span> {
+	    cls = Class.forName("<span class="string">org.w3c.jigsaw.filters.ErrorFilter</span>");
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace();
+	    System.exit(1);
+	}
+	<span class="comment">// Declare the error base URL attribute:
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">base-url</span>"
+				, "<span class="string">/errors</span>"
+				, Attribute.EDITABLE);
+	ATTR_BASEURL = AttributeRegistry.registerAttribute(cls, a);
+	<span class="comment">// Declare the extension attribute:
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">extension</span>"
+				, "<span class="string">html</span>"
+				, Attribute.EDITABLE);
+	ATTR_EXTENSION = AttributeRegistry.registerAttribute(cls, a);
+    }
+
+    <span class="comment">/**
+     * Get the base URL describing the error directory.
+     * </span><span class="keyword">@return </span><span class="comment">The base URL.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getBaseURL</span>() {
+	<span class="keyword">return</span> (<span class="type">String</span>) getValue(ATTR_BASEURL, <span class="keyword">null</span>);
+    }
+
+    <span class="comment">/**
+     * Get the value of the extension attribute.
+     * </span><span class="keyword">@return </span><span class="comment">A String, for the common extension to error messages, or 
+     * &lt;strong&gt;null&lt;/strong&gt; if undefined.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getExtension</span>() {
+	<span class="keyword">return</span> (<span class="type">String</span>) getValue(ATTR_EXTENSION, <span class="keyword">null</span>);
+    }
+
+    <span class="comment">/**
+     * Compute the path for the given status code.
+     * </span><span class="keyword">@return </span><span class="comment">A path leading to the customizable error message for the 
+     * given status code.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getErrorResource</span>(<span class="type">int</span> <span class="variable-name">status</span>) {
+	<span class="type">String</span> <span class="variable-name">ext</span> = getExtension() ;
+	<span class="keyword">if</span> ( ext != <span class="keyword">null</span> ) {
+	    <span class="keyword">return</span> getBaseURL()+"<span class="string">/</span>"+Integer.toString(status)+"<span class="string">.</span>"+ext;
+	} <span class="keyword">else</span> {
+	    <span class="keyword">return</span> getBaseURL()+"<span class="string">/</span>"+Integer.toString(status);
+	}
+    }
+
+    <span class="comment">/**
+     * This one just makes sure the outgoing filter gets called.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The original request to be handled.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+    <span class="comment">/**
+     * Re-compute error message.
+     * This filter uses internal redirection to get the error message body.
+     * In case of failure, the original reply is returned, otherwise, a new
+     * reply is gotten from the appropriate error resource, and is returned.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request that has been handled.
+     * </span><span class="keyword">@param </span><span class="variable-name">reply</span><span class="comment"> The reply, as emited by the original resource.
+     * </span><span class="keyword">@return </span><span class="comment">A new error reply, having the same status code, and 
+     * authentication information then the given reply, but enhanced
+     * with the error resource body.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">req</span>, 
+					 <span class="type">ReplyInterface</span> <span class="variable-name">rep</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="type">Request</span> <span class="variable-name">request</span> = (<span class="type">Request</span>) req;
+	<span class="type">Reply</span>   <span class="variable-name">reply</span>   = (<span class="type">Reply</span>) rep;
+	<span class="comment">// Filter valid replies:
+</span>	<span class="type">int</span> <span class="variable-name">status</span> = reply.getStatus();
+	<span class="keyword">switch</span> (status/100) {
+	<span class="keyword">case</span> <span class="reference">1</span>:
+	<span class="keyword">case</span> <span class="reference">2</span>:
+	<span class="keyword">case</span> <span class="reference">3</span>:
+	<span class="keyword">case</span> <span class="reference">10</span>:
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	}
+	<span class="comment">// Filter replies that are already taken care of:
+</span>	<span class="keyword">if</span> ( request.hasState(ERRED) )
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	<span class="comment">// Hack error replies:
+</span>	<span class="type">Request</span> <span class="variable-name">ereq</span>  = (<span class="type">Request</span>) request.getClone();
+	<span class="type">Reply</span>   <span class="variable-name">erep</span>  = <span class="keyword">null</span>;
+	<span class="keyword">try</span> {
+	    ereq.setState(ERRED, Boolean.TRUE);
+	    ereq.setURLPath(getErrorResource(status));
+	    ereq.setMethod("<span class="string">GET</span>");
+	    erep = (<span class="type">Reply</span>) getServer().perform(ereq);
+	    <span class="comment">// Hack back the original reply into the new reply:
+</span>	    <span class="comment">// - Put back the status
+</span>	    <span class="type">HeaderValue</span> <span class="variable-name">v</span> = <span class="keyword">null</span>;
+	    erep.setStatus(reply.getStatus());
+	    <span class="comment">// - Put back the authenticate informations
+</span>	    v = reply.getHeaderValue(reply.H_WWW_AUTHENTICATE);
+	    erep.setHeaderValue(reply.H_WWW_AUTHENTICATE, v);
+	    <span class="comment">// - Put back the proxy authenticate informations
+</span>	    v = reply.getHeaderValue(reply.H_PROXY_AUTHENTICATE);
+	    erep.setHeaderValue(reply.H_PROXY_AUTHENTICATE, v);
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    <span class="keyword">return</span> reply;
+	}
+	<span class="keyword">return</span> erep;
+    }
+
+    <span class="comment">/**
+     * We do catch exceptions, just in case we can customize the error.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request tha triggered the exception.
+     * </span><span class="keyword">@param </span><span class="variable-name">ex</span><span class="comment"> The exception.
+     * </span><span class="keyword">@param </span><span class="variable-name">filters</span><span class="comment"> Remaining filters to be called.
+     * </span><span class="keyword">@param </span><span class="variable-name">idx</span><span class="comment"> Current filter index within above array.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">exceptionFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>,
+					  <span class="type">ProtocolException</span> <span class="variable-name">ex</span>,
+					  <span class="type">FilterInterface</span> <span class="variable-name">filters</span>[],
+					  <span class="type">int</span> <span class="variable-name">idx</span>) 
+    {
+	<span class="type">Reply</span> <span class="variable-name">reply</span> = (<span class="type">Reply</span>) ex.getReply();
+	<span class="keyword">if</span> ( reply != <span class="keyword">null</span> ) {
+	    <span class="keyword">try</span> {
+		<span class="keyword">return</span> outgoingFilter(request, reply, filters, idx);
+	    } <span class="keyword">catch</span> (<span class="type">ProtocolException</span> <span class="variable-name">exx</span>) {
+	    }
+	}
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+    
+    <span class="reference">public</span> <span class="type">void</span> <span class="function-name">initialize</span>(<span class="type">Object</span> <span class="variable-name">values</span>[]) {
+	<span class="reference">super</span>.initialize(values);
+    }
+	
+}
+
+    </pre>
+  </body>
+</html>

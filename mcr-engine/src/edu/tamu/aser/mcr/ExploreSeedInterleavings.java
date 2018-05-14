@@ -786,6 +786,8 @@ public class ExploreSeedInterleavings {
 		Configuration.numReads = 0;
 		Configuration.rwConstraints = 0;
 		Configuration.solveTime = 0;
+		
+		long s = trace.getFullTrace().size();
 			
 		//OPT: if #sv==0 or #shared rw ==0 continue	
 		if(trace.hasSharedVariable())

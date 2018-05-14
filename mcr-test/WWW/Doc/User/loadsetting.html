@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+  <TITLE>Load setting parameters in Jigsaw</TITLE>
+  <LINK rel="stylesheet" type="text/css" href="../style/doc.css">
+    <style type="text/css">
+      dt {font-weight: bold}
+      hr.footer { margin-top: 20px }
+    </style>
+</HEAD>
+<BODY bgcolor="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <H1 class="title">
+	Socket Connection Properties
+      </H1>
+      <P>
+      <HR noshade="noshade" width="70%" align="left">
+      <A href="../../Overview.html">Jigsaw Home</A> /
+      <A href="../Overview.html">Documentation Overview</A>
+    </div>
+    <div class="body">
+    <P>Here we describe the use of the four sliders used in the 
+      SocketConnectionProp to tune <STRONG>Jigsaw</STRONG> according to the
+      load level of your server.<P>
+      This document has the following sections:
+    <UL>
+      <LI>
+	<A href="#L179">Client handling</A>
+      <LI>
+	<A href="#L186">Load map</A>
+      <LI>
+	<A href="#L228">Load level behaviour</A>
+    </UL>
+    
+    <!-- background and samll explanations -->
+    <H1>
+      Client handling<A name="L179"></A>
+    </H1>
+    <P>When a browser connects to <STRONG>Jigsaw</STRONG>, it will create a 
+      new connection, called "Client" in the server, this Client is taken 
+      from the pool of free clients of the SocketConnectionFactory.<p>
+    <P>The client may be used for multiple request on the same connection,
+      "keep-alive" connections are handled by the factory, instead of using
+      fixed timeouts, thus allowing better control of the load and a better
+      handling of persistent connections.</p>
+    <P>There are two lists used by the factory:
+    <dl>
+      <dt>Free Clients</dt>
+      <dd>The list of free clients, clients are created on the fly, but
+	instead of going through the expensive creation process, they are
+	stored when they are available. A new client is always added to this 
+	list first before being used.<dd>
+      <dt>Idle Clients</dt>
+      <dd>The list of idle clients, the clients already bound to a connection
+	in "keep-alive" mode and waiting for a new request on this connection.
+      </dd>
+    </dl>
+    <p>The number of Clients is limited, so are the number of free clients and
+      idle clients. The repartition of the clients on those lists depends on
+      the load of the server and the settings, the server will adapt its 
+      behaviour depending on those settings.
+
+      <!-- load repartition according to client states -->
+    <H1>
+      Load map<A name="L186"></A>
+    </H1>
+    <P>The load map is:</p>
+    <img src="load" alt="Server load map">
+    <p>This is the behaviour as of <strong>Jigsaw 2.0.3</strong>, it may be
+      modified to enhance the smoothness of the server.<br>
+      The "Dead" level is obtained when the number of free clients is 0.
+
+      <!-- server behaviour depending on server load -->
+
+    <h1>
+      Load level behaviour<A name="#L228"></A>
+    </h1>
+    <p>Depending on the load level, the server will have a different behaviour.
+      Here is a small description of what happens:</p>
+    <dl>
+      <dt>Light
+      <dd>New clients are always accepted
+      <dt>Average
+      <dd>New clients are accepted, and some idle clients are shut down.
+	The number of idle clients that will be shut down is the amount to
+	set the freeCount to maxFree.
+      <dt>High
+      <dd>Same as average, but the "accept thread" priority is lowered, so that
+	"clients" may finish their job first.
+      <dt>Dead
+      <dd>Connections are refused (Overloaded entries in the errlog).
+    </dl>
+    <p>A good tool to see the number of established connection to your machine
+      is "netstat". If you have statistics on the usage and the maximal number
+      of established connections, using a very large configuration, you may 
+      then adjust the settings to lower the resources used.<p>
+    <p>Rules of thumb:
+    <ul>
+      <li>maxClients - maxFree should be close to the maximum of established 
+	connections, (usually a bell curve on a week day).
+      <li>more soon ;)
+    </ul>
+    <!-- usual footer -->
+    </div> <!-- body -->
+    <div class="footer">
+    <HR noshade="noshade" width="100%" class="footer">
+    <A href="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+    <SPAN class="mini"> $Id: loadsetting.html,v 1.1 2010/06/15 12:22:58 smhuang Exp $</SPAN>
+    <P class="policyfooter">
+<FONT size="-1"><A href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</A>
+&copy; 1999 <A href="http://www.w3.org">W3C</A>
+(<A href="http://www.lcs.mit.edu">MIT</A>,
+<A href="http://www.inria.fr/">INRIA</A>,
+<A href="http://www.keio.ac.jp/">Keio</A> ), All Rights Reserved. W3C
+<A href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability,
+</A> <A href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark
+</A>, <A href="/Consortium/Legal/copyright-documents.html"> document use
+</A> and <A href="/Consortium/Legal/copyright-software.html"> software licensing
+</A> rules apply. Your interactions with this site are in accordance with
+our <A href="/Consortium/Legal/privacy-statement.html#Public"> public </A>
+and <A href="/Consortium/Legal/privacy-statement.html#Members"> Member </A>
+privacy statements.</FONT>
+</div>
+</BODY></HTML>

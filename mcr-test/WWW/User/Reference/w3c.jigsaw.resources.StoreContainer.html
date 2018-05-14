@@ -1,0 +1,161 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>StoreContainer reference page</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  StoreContainer
+</H1>
+<P>
+The StoreContainer resource is a virtual resource containers that provide
+support for &nbsp;storing children resources in a
+<I><A HREF="../api/w3c.jigsaw.resources.StoreContainer.html">SimpleResourceStore</A></I>.
+It has no dependencies to the file system, and can (should) be used to implement
+virtual hierarchy of objects.
+<P>
+This class is an abstract class byt itself, you need to refine it with a
+way to create new children resources in order to instantiate it.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.resources.StoreContainer.html">StoreContainer</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    ContainerResource (an abstract class)
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The StoreContainer defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#extensible">extensible</A><A HREF="#index"></A>
+  <LI>
+    <A HREF="#index">index</A>
+  <LI>
+    <A HREF="#relocate">relocate</A>
+  <LI>
+    <A HREF="#repository">repository</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="extensible">extensible</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should this directory automatically keep in sync with the underlying physical
+    directory ? The directory resource maintains a cache of its list of children,
+    which may be outdated if the directory is changed through direct file system
+    access. When this flag is turned to <B>true, </B>the directory resource will
+    make its best effort to keep in sync with it, by adopting the following lookup
+    algorithm: first look up children in our cache list, if this fails, check
+    if some appropriate file exists. If such a file exists, hand it to the
+    <A HREF="../api/w3c.jigsaw.indexer.ResourceIndexer.html">ResourceIndexer</A>
+    and install the resulting resource (if any) as a new child of the directory
+    resource.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>true</B>.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="index">index</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The optional name of the directory child resource that is to be used as the
+    directory index. This attribute should name an existing child resource, that
+    will be used as the index resource of the directory (all accesses to the
+    directory will be delegated to it).
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute value is computed by concatenating (in the appropriate file-system
+    dependant way), the parent's resource directory value, with this directory
+    identifier.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="relocate">relocate</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the directory emit a relocation reply when accessed through an invalid
+    URL. A common case of handling invalid directory access is to emit a relocation
+    reply so that the browser gets access to the directory through a valid URL
+    (e.g. <CODE>http://www.w3.org/pub </CODE>is invalid, because <CODE>pub</CODE>
+    is a directory, the correct URL is <CODE>http://www.w3.org/pub/</CODE>).
+    When this flag is set to <B>true</B>, the directory resource will emit the
+    appropriate relocation reply.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable and non-saved
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute value defaults to <B>true</B>.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="repository">repository</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the file to be used as the resource store database in this directory.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable and mandatory
+    <A HREF="../api/w3c.jigsaw.resources.FilenameAttribute.html">FilenameAttribute</A>.<I></I>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute value is computed by concatenating (in the appropriate file-system
+    dependant way), the parent's resource directory value, with this directory
+    identifier.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.resources.StoreContainer.html,v 1.1 2010/06/15 12:22:24 smhuang Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>AccessLimitFilter.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// AccessLimitFilter.java
+// $Id: AccessLimitFilter.html,v 1.1 2010/06/15 12:20:03 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">filters</span> ;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.* ;
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">util</span>.<span class="type">Hashtable</span> ;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">www</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">http</span>.* ;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">resources</span>.* ;
+
+<span class="comment">/**
+ * This filters limit the simultaneous accesses to its target resource.
+ */</span>
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">AccessLimitFilter</span> <span class="keyword">extends</span> <span class="type">ResourceFilter</span> {
+    <span class="comment">/**
+     * Attribute index - The maximum allowed simultaneous accesses.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_LIMIT</span> = -1 ;
+    <span class="comment">/**
+     * Attribute index - The time to wait for the lock (if limit reached)
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_TIMEOUT</span> = -1 ;
+
+    <span class="type">static</span> {
+	<span class="type">Attribute</span> <span class="variable-name">a</span>   = <span class="keyword">null</span> ;
+	<span class="type">Class</span>     <span class="variable-name">cls</span> = <span class="keyword">null</span> ;
+
+	<span class="keyword">try</span> {
+	    cls = Class.forName("<span class="string">org.w3c.jigsaw.filters.AccessLimitFilter</span>");
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace() ;
+	    System.exit(1) ;
+	}
+	<span class="comment">// The limit attribute
+</span>	a = <span class="keyword">new</span> <span class="type">IntegerAttribute</span>("<span class="string">limit</span>"
+				 , <span class="keyword">new</span> <span class="type">Integer</span>(1)
+				 , Attribute.EDITABLE) ;
+	ATTR_LIMIT = AttributeRegistry.registerAttribute(cls, a) ;
+	<span class="comment">// The timeout attribute
+</span>	a = <span class="keyword">new</span> <span class="type">IntegerAttribute</span>("<span class="string">timeout</span>"
+				 , <span class="keyword">new</span> <span class="type">Integer</span>(60000)
+				 , Attribute.EDITABLE) ;
+	ATTR_TIMEOUT = AttributeRegistry.registerAttribute(cls, a) ;
+    }
+
+    <span class="comment">/**
+     * Current number of requets that have reached the target.
+     */</span>
+
+    <span class="preprocessor">protected</span> <span class="type">int</span> <span class="variable-name">count</span>   = 0 ;
+
+
+    <span class="comment">/**
+     * Get the maximum number of allowed simultaneous accesses.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">int</span> <span class="function-name">getLimit</span>() {
+	<span class="keyword">return</span> getInt(ATTR_LIMIT, 1) ;
+    }
+     
+    <span class="comment">/**
+     * Get the timeout before we send back an error.
+     * A client will wait only for this duration before being thrown an
+     * error.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">int</span> <span class="function-name">getTimeout</span>() {
+	<span class="keyword">return</span> getInt(ATTR_TIMEOUT, -1);
+    }
+
+
+    <span class="comment">/**
+     * Count number of hits to the page, block when limit exceeded.
+     * This filter maintains the actual number of hits to its target. When this
+     * number exceeds the predefined limit, it blocks the caller until some
+     * othre thread exits the target.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request to be handled.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">synchronized</span> 
+	<span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span> (<span class="type">RequestInterface</span> <span class="variable-name">req</span>) 
+	<span class="keyword">throws</span> <span class="type">HTTPException</span>
+    {
+	<span class="type">Request</span> <span class="variable-name">request</span> = (<span class="type">Request</span>) req;
+	<span class="type">int</span> <span class="variable-name">limit</span>   = getLimit() ;
+	<span class="type">int</span> <span class="variable-name">timeout</span> = getTimeout() ;
+
+	<span class="keyword">if</span> ( limit < 0 )
+	    <span class="keyword">return</span> <span class="keyword">null</span>;
+	<span class="keyword">while</span> ( count >= limit ) {
+	    <span class="keyword">if</span> ( timeout > 0 ) {
+		<span class="keyword">try</span> {
+		    wait((<span class="type">long</span>) timeout, 0) ;
+		} <span class="keyword">catch</span> (<span class="type">InterruptedException</span> <span class="variable-name">ex</span>) {
+		}
+		<span class="keyword">if</span> ( count >= limit ) {
+		    <span class="type">String</span> <span class="variable-name">msg</span> = "<span class="string">Simultaneous number of access to this page </span>"
+			+ "<span class="string">is limited to </span>" + limit + "<span class="string"> you was not able to </span>"
+			+ "<span class="string">get in.</span>" ;
+		    <span class="type">Reply</span> <span class="variable-name">error</span> = request.makeReply(HTTP.SERVICE_UNAVAILABLE);
+		    error.setContent (msg) ;
+		    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">HTTPException</span> (error) ;
+		}
+	    } <span class="keyword">else</span> {
+		<span class="keyword">try</span> {
+		    wait() ;
+		} <span class="keyword">catch</span> (<span class="type">InterruptedException</span> <span class="variable-name">ex</span>) {
+		}
+	    }
+	}
+	count++ ;
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+    <span class="comment">/**
+     * Notify that someone has exit the target entity.
+     * This method decrements the actual number of hits to the filter's
+     * target, and notify any awaiting threads that they can now enter
+     * safely.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The request being handled.
+     * </span><span class="keyword">@param </span><span class="variable-name">reply</span><span class="comment"> The reply to be emited.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">synchronized</span> 
+	<span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span> (<span class="type">RequestInterface</span> <span class="variable-name">req</span>, 
+				       <span class="type">ReplyInterface</span> <span class="variable-name">rep</span>) 
+	<span class="keyword">throws</span> <span class="type">HTTPException</span>
+    {
+	count-- ;
+	notifyAll() ;
+	<span class="keyword">return</span> <span class="keyword">null</span> ;
+    }
+
+
+}
+
+
+    </pre>
+  </body>
+</html>

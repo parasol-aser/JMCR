@@ -1,0 +1,522 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head>
+<meta content="HTML Tidy for Solaris (vers 1st April 2003), see www.w3.org" name="generator">
+<link rel="stylesheet" type="text/css" href="../style/doc.css"><title>Configuring SSL in Jigsaw</title></head>
+
+<body>
+<div class="icons-w3c"><a href="http://www.w3.org/"><img src="/Icons/w3c_home" alt="W3C logo" border="0" height="48" width="72"></a></div>
+<div class="icons-jigsaw"><a href="http://www.w3.org/Jigsaw/"><img src="/Icons/jigsaw" alt="Jigsaw" border="0" height="49" width="212"></a></div>
+<div class="title">
+<h1 class="title">Jigsaw<br>
+<span class="subtitle">SSL configuration</span></h1>
+<hr align="left" noshade="noshade" width="70%">
+<a href="http://www.w3.org/Jigsaw/Overview.html">Jigsaw Home</a> /
+<a href="http://www.w3.org/Jigsaw/Doc/Overview.html">Documentation
+Overview</a></div>
+<div class="body">
+<p>In the first part of the tutorial, SSL is being configured for
+<b>server authentication</b>.<br>
+In the second part, the SSL configuration is extended for also
+providing <b>client authentication</b>.</p>
+<p>SSL configuration is a two-step process. First the SSL
+certificates need to be created, and then the jigsaw server needs
+to be configured.</p>
+<p><font color="red">Make sure that jdk 1.4.x or higher is being
+used.<br>
+When using jdk 1.2.x or 1.3.x, the JSSE jars must be available in
+the class path.<br>
+Optional client authentication or generic trust stores require at
+least jdk 1.5.x.</font></p>
+<p>We are going to be using the SSL implementation from Sun. Mainly
+the keytool
+(http://java.sun.com/j2se/1.4/docs/tooldocs/solaris/keytool.html)
+is used to configure the SSL certificates. If keytool is not in
+your default PATH, you can find it in the "bin" directory of your
+JDK installation.</p>
+<ol>
+<li>Create a directory under jigsaw for the <b>key store</b>
+keeping the server certificate, which is presented to accessing
+clients</li>
+<li>Run the jdk's keytool to first generate the self signed server
+certificate.<br>
+ In addition, the public/private key pair is generated during this
+process.Example:<br>
+ 
+<div class="box"><code>keytool -genkey -alias troi.example.com
+-keypass example -keystore
+/opt/jigsaw/dev/Jigsaw/keystore/troi.keystore -keyalg
+RSA</code></div></li>
+<li>Run the keytool again to make a certificate request. This is
+what is sent to verisign or our own certificate authority. You can
+skip this if you want to sign it yourself.<!--      Example:</br>
+      <div class="box"><code>keytool -certreq -alias troi.example.com -keypass example -keystore
+      /opt/jigsaw/dev/Jigsaw/keystore/troi.keystore</code></div>
+-->
+Example - specifying the output is put into a file:<br>
+ 
+<div class="box"><code>keytool -certreq -alias troi.example.com
+-keypass example -keystore
+/opt/jigsaw/dev/Jigsaw/keystore/troi.keystore -file
+troi.csr</code></div>
+It will output something like: 
+<div class="box">
+<pre>      -----BEGIN NEW CERTIFICATE REQUEST-----
+      MIICgTCCAj4CAQAwezELMAkGA1UEBhMCVVMxETAPBgAAAAgTCElsbGlub2lzMRYwFAYDVQQHEw1E
+      b3duZXJzIEdyb3ZlMRAwDgYDVQQKEwdQZXJzZWNvMRkwFwYDVQQLExBCdXNpbmVzcyBTeXN0ZW1z
+      MRQwEgYDVQQDEwtCcmlhbiBMYWlyZDCCAbgwggEsBgcqhkjOOAQBMIIBHwKBgQD9f1OBHXUSKVLf
+      Spwu7OTn9hG3UjzvRADDHj+AtlEmaUVdQCJR+1k9jVj6v8X1ujD2y5tVbNeBO4AdNG/yZmC3a5lQ
+      paSfn+gEexAiwk+7qdf+t8Yb+DtX58aophUPBPuD9tPFHsMCNVQTWhaRMvZ1864rYdcq7/IiAxmd
+      0UgBxwIVAJdgUI8VIwvMspK5gqLrhAvwWBz1AoGBAPfhoIXWmz3ey7yrXDa4V7l5lK+7+jrqgvlX
+      TAs9B4JnUVlXjrrUWU/mcQcQgYC0SRZxI+hMKBYTt88JMozIpuE8FnqLVHyNKOCjrh4rs6Z1kW6j
+      fwv6ITVi8ftiegEkO8yk8b6oUZCJqIPf4VrlnwaSi2ZegHtVJWQBTDv+z0kqA4GFAAKBgQDc5Ki4
+      7dX93se92yzYjxJIi99R9EZYHu4sNUH9obMQYO7o5u/3AOkxzqHLx60wWbf9JoCAlMe8q2i28NNC
+      hjsN6LN7V0fgA05k/CzM9pMxbgeA0dqwQrtroWkJnFyzzFLrxjv7Rrh5RDGV/+ZeR72ZpHwy1GOj
+      yDB2Dz+NE98sgKAAMAsGByqGSM44BAMFAAMwADAtAhRumfMg6P1KJmstMYga74KxaPLBfgIVAIwB
+      bVanNqQb898bqHBkRybHIFqW
+      -----END NEW CERTIFICATE REQUEST-----
+</pre></div>
+<p>Now we will import the response from the certificate
+authority.</p>
+<div class="box"><code>keytool -import -alias sis.example.com
+-keystore sis.keystore -file sis.cer -keyalg RSA
+-trustcacerts</code></div>
+<p>and skip the next point (related to self-signature)</p></li>
+<li>If you want to self-sign the certificate, you may proceed like
+this:Example:<br>
+ 
+<div class="box"><code>keytool -selfcert -alias troi.example.com
+-keystore /opt/jigsaw/dev/Jigsaw/keystore/troi.keystore -keyalg
+RSA</code></div></li>
+<li>Create a new configuration file called https-XXXXX.props where
+the XXXXX is the outside service (ex: enter.example.com). You can
+copy the default http- server.props to get started</li>
+<li>Edit the https-XXXXX.props file and add the following entries: 
+<div class="box">
+<pre>      # Points to the key store (cf. 4. above, don't forget to put the full path to the keystore)
+      org.w3c.jigsaw.ssl.keystore.path=
+      # Supplies the password for accessing the key store ...
+      org.w3c.jigsaw.ssl.keystore.password=
+      # Finally, the socket client factory has to be set to the SSL factory ...
+      org.w3c.jigsaw.<b>http</b>.ClientFactory=org.w3c.jigsaw.<b>https</b>.socket.SSLSocketClientFactory
+</pre></div>
+<p>Of course you may change the default port to use the default one
+for SSL: 443 (or any other you like and which is not yet used)</p>
+<p>You should also change the propfile value to match the name of
+your configuration file.</p></li>
+<li>Edit the server.props to use the new configuration file and add
+the following when creating the new server configurationExample -
+note the piece in bold. That lets jigsaw know, which listener
+daemon to start:<br>
+ 
+<div class="box">
+<pre>org.w3c.jigsaw.daemon.handlers=https-server|...
+https-server.org.w3c.jigsaw.daemon.class=org.w3c.jigsaw.<b>https.httpsd</b>
+</pre></div></li></ol>
+<p>This should cover the setup requirements. You should be able to
+start jigsaw and see something like the following when the start up
+occurs:</p>
+<div class="box"><code>Jigsaw[2.2.4]: serving at
+https://troi:8002/</code></div>
+<p>You can also use the secure protocol for webdav, in which case
+the daemon class must be set to</p>
+<div class="box">
+<code>org.w3c.jigsaw.<b>webdavs.webdavsd</b></code></div>
+<p><font color="blue">Server authentication enables a client to
+verify in a secure way, which server she or he is talking
+to.</font></p>
+<i>The SUN provider uses the proprietary JKS default key store
+type. When using a suitable security provider, e.g. bouncy castle,
+the standard PKCS#12 key store type is available as an option. The
+SUN provider also offers PKCS#12 in jdk 1.5.x.<br>
+<br>
+In addition, jdk 1.5.x supplies the PKCS#11 key store type for
+accessing suitable hardware tokens, e.g. the eToken physical store
+or other smartcard types. Hardware tokens provide a stronger level
+of security by effectively preventing the private key from being
+copied or stolen: <b>The private key never leaves the
+token</b>.<br>
+<br>
+With the current Jigsaw https implementation, you can use any of
+the above at your choice.</i><br>
+<br>
+ Note:<br>
+For using <font color="red">hardware tokens</font> to store your
+server certificate, you must install the PKCS#11 driver software
+for your token and add the SUN PKCS#11 provider bridge to the
+security configuration file of your java runtime environment
+($JAVA_HOME/lib/security/java.security). 
+<div class="box">
+<pre>security.provider.7=sun.security.pkcs11.SunPKCS11 ${java.home}/lib/pkcs11.properties
+</pre></div>
+The specified provider configuration file
+($JAVA_HOME/lib/pkcs11.properties) must contain a reference to the
+PKCS#11 driver of your token. The file content might look like this
+(sample for eToken on a Windows system): 
+<div class="box">
+<pre>name = eToken
+library = /WINDOWS/SYSTEM32/eTpkcs11.dll
+</pre></div>
+After these prerequisites (cf. the JDK PKCS#11 guide for further
+details), you can adapt your Jigsaw ssl properties, i.e. you must
+set your key store type to PKCS#11 and the password to the pin of
+your token. The path to the key store must remain undefined, i.e.
+null or blank.<br>
+ 
+<div class="box">
+<pre>org.w3c.jigsaw.ssl.keystore.type=<b>pkcs11</b>
+org.w3c.jigsaw.ssl.keystore.password=myPin1234
+</pre></div>
+<p>Jigsaw also provides for <font color="blue">client
+authentication</font>, which addresses the other way around: It
+<font color="blue">enables a server (and a web application) to
+verify in a secure way, which client accesses the server.</font>
+Although, client authentication is rarely used in the web, it is a
+powerful infrastructure for building secure web applications with
+distributed user management.</p>
+<p>For clients to be verified, they must present a certificate,
+which can be checked by the server using public key
+infrastructure.<br>
+In order to do so, the server needs an additional <b>trust
+store</b> for also keeping track of the CA certificates used to
+sign client certificates.</p>
+<p>Extending the SSL configuration for also verifying clients is a
+two-step process again. First the trust store has to be populated
+with CA certificates (at least one, the so-called "trust anchor"),
+and then the jigsaw server needs to be configured.</p>
+<p>You can obtain a client certificate from an authority like
+verisign and store it in your browser for being presented to the
+server during the SSL handshake. In this case, you also need to
+import the authority's certificate used to sign yours into the
+server's trust store. The latter task can be performed using
+keytool again.</p>
+<p>If you prefer acting as your own CA, keytool and the SUN JCE
+implementation are not sufficient, because they currently do not
+provide for signing certificates other than your own. However, you
+can download a free JCE extension from <a href="http://www.bouncycastle.org/">bouncy castle</a>, which also
+provides for certificate signing features. You can modify the
+following sample code for playing CA:</p>
+<p>Make sure that the bouncy castle bcprov-jdk14-121.jar file is in
+your JRE/lib/ext directory.</p>
+<div class="box">
+<pre>/**
+ * Copyright (c) 2004 Thomas.Kopp@dialogika.de
+ * All rights reserved.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+import java.io.*;
+import java.util.*;
+
+import java.security.Security;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.cert.*;
+
+import org.bouncycastle.jce.*;
+import org.bouncycastle.jce.provider.*;
+import org.bouncycastle.asn1.x509.*;
+
+/**
+ * Sample signing utility developped for simplified interoperability with keytool.
+ *
+ * It assumes that the CA has a self-signed certificate with alias "ca" in the "ca.db" JKS type keystore.
+ * In addition, it assumes that a self-signed client certificate with alias "foo" resides in
+ * the "bar.db" JKS type keystore. The CA-signed version gets stored with alias "foo" again in 
+ * the "bar.p12" PKCS12 type keystore, so that it can easily be imported by web browsers.
+ *
+ * The ca uses the "manager" password for accessing its own store and the "example"
+ * password for accessing the client stores and certificates.
+ */ 
+public class signtool {
+
+    static {
+              // add the bouncy castle provider
+              Security.addProvider(new BouncyCastleProvider());
+    }
+    
+    public static void main(String[] args) {
+        try {
+              // The issuer certificate access
+              KeyStore ksca = KeyStore.getInstance("JKS");
+              ksca.load(new FileInputStream("ca.db"), "manager".toCharArray());
+              X509Certificate cacert = (X509Certificate)ksca.getCertificate("ca");
+              PrivateKey caprivate = (PrivateKey)ksca.getKey("ca", "manager".toCharArray());
+
+              // The subject certificate access
+              KeyStore ksbar = KeyStore.getInstance("JKS");
+              ksbar.load(new FileInputStream("bar.db"), "example".toCharArray());
+              X509Certificate foocert = (X509Certificate)ksbar.getCertificate("foo");
+              PrivateKey fooprivate = (PrivateKey)ksbar.getKey("foo", "example".toCharArray());
+
+              // The certificate chain building process
+              X509V3CertificateGenerator engine = new X509V3CertificateGenerator();
+              engine.setSerialNumber(foocert.getSerialNumber());
+              engine.setSignatureAlgorithm(foocert.getSigAlgName());
+              engine.setNotBefore(foocert.getNotBefore());
+              engine.setNotAfter(foocert.getNotAfter());
+              engine.setPublicKey(foocert.getPublicKey());
+              engine.setSubjectDN(new X509Name(true, foocert.getSubjectX500Principal().getName()));
+              engine.setIssuerDN(new X509Name(true, cacert.getSubjectX500Principal().getName()));
+              
+              // ... and a little signature ...
+              X509Certificate foosigned = engine.generateX509Certificate(caprivate);
+              
+              X509Certificate[] signedchain = new X509Certificate[] { foosigned, cacert };
+              
+              // The signed certificate update
+              KeyStore ksbarca = KeyStore.getInstance("PKCS12", "BC");
+              ksbarca.load(null, null); // for initializing the keystore
+              ksbarca.setKeyEntry("foo", fooprivate, "example".toCharArray(), signedchain);
+              ksbarca.store(new FileOutputStream("bar.p12"), "example".toCharArray());
+              
+              System.out.println(Arrays.asList(signedchain));
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+</pre></div>
+<p>Now, being able to set up a server-side trust store keeping a CA
+certificate and to import a CA-signed certificate into your
+browser's certificate store, we can complete the client
+authentication configuration.</p>
+<ol>
+<li>Create a key store (named "trust store") with keytool
+containing your self-signed or a true, imported CA certificate.
+(cf. previous section for details)</li>
+<li>Create a key store with keytool containing your own self-signed
+client certificate.</li>
+<li>Either sign your own client certificate with your own CA
+certificate as explained above or let it sign by a true CA.</li>
+<li>Import the signed client certificate into your browser's
+certificate store.<br>
+<br>
+ Note: Browsers normally require the PKCS#12 key store type for
+import.</li>
+<li style="list-style-type: none; list-style-image: none; list-style-position: outside;"><br></li>
+<li>Edit the https-XXXXX.props file and add the following entries: 
+<div class="box">
+<pre>      # Points to the trust store (cf. 1. above, don't forget to put the full path to the truststore)
+      org.w3c.jigsaw.ssl.truststore.path=
+      # Supplies the password for accessing the trust store ...
+      org.w3c.jigsaw.ssl.truststore.password=
+      # Optionally, you can decide, whether to force clients (right side set to: true) to authenticate or 
+      # also admit a client without successful authentication (right side set to: false), which is the default
+      org.w3c.jigsaw.ssl.must.authenticate=
+</pre></div></li></ol>
+<p>This should cover the setup requirements. When starting and
+accessing a server url, you should (after server certificate
+presentation) be asked to type your browser's certificate store
+password, because the server wants to check your client
+certificate. If this is successful or the
+<code>org.w3c.jigsaw.ssl.must.authenticate</code> option is set to
+<code>false</code> you are allowed to continue.</p>
+<p>Note, client certificates and other SSL characteristics are also
+transparent to a servlet via the <code>getAuthType</code>,
+<code>getRemoteUser</code>, <code>getUserPrincipal</code> methods
+and the following request attributes of the servlet api:</p>
+<div class="box">
+<pre> javax.servlet.request.cipher_suite
+ javax.servlet.request.key_size
+ javax.servlet.request.X509Certificate
+ 
+</pre></div>
+<p><br></p>
+<i>Finally, Jigsaw offers a <b>generic key store</b> feature, which
+provides for bridging to the Java Certification Path API in order
+to use PKIX standards for validating client certificates. The
+feature is provided by using the key manager or trust manager
+factory initialization with the
+<code>javax.net.ssl.ManagerFactoryParameters</code> parameter when
+the generic key or trust store flag is set to
+<code>true</code>.<br>
+<br>
+In this case, the ManagerFactoryParameters implementation must be
+supplied to Jigsaw as an arbitray Java class in the class path,
+with its class name being configured as the
+<code>org.w3c.jigsaw.ssl.truststore.type</code> property and with
+the class implementing the following method:</i> 
+<div class="box">
+<pre>public static ManagerFactoryParameters getInstance(String path, String password)
+    throws InvalidAlgorithmParameterException;
+</pre></div>
+<i>The path and password parameters of the method are taken from
+the respective properties of the Jigsaw key or trust store
+configuration.</i><br>
+<br>
+ The following example shows how to use Jigsaw <font color="red">PKIX client certificate validation</font>.<br>
+ 
+<ol>
+<li>Configure a generic trust store for the
+<code>foo.MyStore</code> implementation class.
+<div class="box">
+<pre>org.w3c.jigsaw.ssl.truststore.generic=true
+org.w3c.jigsaw.ssl.truststore.type=foo.MyStore
+org.w3c.jigsaw.ssl.truststore.path=...
+org.w3c.jigsaw.ssl.truststore.password=...
+</pre></div></li>
+<li>Make the <code>foo.MyStore</code> class available in the class
+path. The corresponding Java source might look like this: 
+<div class="box">
+<pre>/**
+ * Copyright (c) 2004 Thomas.Kopp@dialogika.de
+ * All rights reserved.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+package foo;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
+import java.lang.reflect.Constructor;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+
+import java.security.InvalidAlgorithmParameterException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+
+import java.security.cert.Certificate;
+import java.security.cert.CertPathParameters;
+import java.security.cert.CertStore;
+import java.security.cert.CollectionCertStoreParameters;
+import java.security.cert.PKIXBuilderParameters;
+import java.security.cert.X509CertSelector;
+
+import javax.net.ssl.ManagerFactoryParameters;
+
+/**
+ * This class delegates trust store features to the jce certpath api.
+ * It compiles under JDK 1.4.x, but requires at least JDK 1.5.x at runtime.
+ *
+ * In this example, a simple collection only is used for storing trust material.
+ * For a more realistic scenario, you might choose to regularily refresh 
+ * the collection from an underlying relational database or to use an
+ * LDAP certificate store instead. Refreshing could be performed by 
+ * implementing the MyStore class as a Runnable and using a periodically 
+ * running background thread that updates the collection.
+ */ 
+public class MyStore {
+    
+    public static PKIXBuilderParameters getParameters(String path, String password) 
+        throws InvalidAlgorithmParameterException {
+        try {
+              // path contains a list of ordinary key store paths with 
+              // identical passwords and with the first list element being 
+              // the trust anchor 
+              StringTokenizer list = new StringTokenizer(path, java.io.File.pathSeparator);
+              
+              // get a keystore with the CA trust anchor
+              KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+              ks.load(new BufferedInputStream(new FileInputStream(list.nextToken())), 
+                      (null != password) ? password.toCharArray() : new char[0]);
+              
+              // wrap it as a PKIX builder parameters instance
+              PKIXBuilderParameters pkix = 
+                  new PKIXBuilderParameters(ks, new X509CertSelector());
+
+              // set additional attributes, e.g no revocation list checking for simplicity.
+              // Otherwise certores will have to be added using the addCertStore method for
+              // adding additional certificate and crl material
+              pkix.setRevocationEnabled(false);
+
+              // the list of additional signer certificates for populating the trust store
+              Collection untrusted = new ArrayList();
+              while (list.hasMoreTokens()) {
+                   KeyStore ks2 = KeyStore.getInstance(KeyStore.getDefaultType());
+                   ks2.load(new BufferedInputStream(new FileInputStream(list.nextToken())), 
+                            (null != password) ? password.toCharArray() : new char[0]);
+                   Enumeration keys = ks2.aliases();
+                   while (keys.hasMoreElements()) {
+                         String alias = keys.nextElement().toString();
+                         Certificate cert = ks2.getCertificate(alias);
+                         if (cert != null) {
+                            untrusted.add(cert);
+                         }
+                   }
+              }
+              
+              // create an untrusted collection store and add it
+              CollectionCertStoreParameters params = 
+                  new CollectionCertStoreParameters(untrusted);
+              CertStore store = CertStore.getInstance("Collection", params);
+              pkix.addCertStore(store);
+              
+              return pkix;
+        }
+        catch (Exception ex) {
+              InvalidAlgorithmParameterException sub = 
+                  new InvalidAlgorithmParameterException(ex.toString());
+              sub.initCause(ex);
+              throw sub;
+        }
+    }
+    
+    public static ManagerFactoryParameters getInstance(String path, String password) 
+        throws InvalidAlgorithmParameterException {
+        try {
+              PKIXBuilderParameters pkix = getParameters(path, password);
+              
+              // wrap the certification path resolution bundle 
+              // as a suitable trust manager wrapper instance
+              Class wrapper = Class.forName("javax.net.ssl.CertPathTrustManagerParameters");
+              Constructor c = wrapper.getConstructors()[0];
+              ManagerFactoryParameters mfp = 
+                  (ManagerFactoryParameters)c.newInstance(new Object[] {pkix});
+              return mfp;
+        }
+        catch (InvalidAlgorithmParameterException ex) {
+              throw ex;
+        }
+        catch (Exception ex) {
+              InvalidAlgorithmParameterException sub = 
+                  new InvalidAlgorithmParameterException(ex.toString());
+              sub.initCause(ex);
+              throw sub;
+        }
+    }
+}
+</pre></div></li></ol></div>
+<!-- body -->
+<div class="footer">
+<hr noshade="noshade">
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+ <span class="mini">$Id: ssl.html,v 1.11 2004/02/10 14:36:22 ylafon
+Exp $</span> 
+<p class="policyfooter"><font size="-1"><a href="http://www.w3.org/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+© 2003 <a href="http://www.w3.org/">W3C</a> (<a href="http://www.lcs.mit.edu/">MIT</a>, <a href="http://www.ercim.org/">ERCIM</a>, <a href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice.html#Legal%20Disclaimer">
+liability,</a> <a href="http://www.w3.org/Consortium/Legal/ipr-notice.html#W3C%20Trademarks">
+trademark</a> , <a href="http://www.w3.org/Consortium/Legal/copyright-documents.html">document
+use</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-software.html">software
+licensing</a> rules apply. Your interactions with this site are in
+accordance with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement.html#Public">public</a>
+and <a href="http://www.w3.org/Consortium/Legal/privacy-statement.html#Members">
+Member</a> privacy statements.</font></p></div>
+</body></html>
