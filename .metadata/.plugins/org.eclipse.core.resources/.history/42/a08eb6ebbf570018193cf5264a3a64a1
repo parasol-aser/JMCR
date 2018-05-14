@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="mcr-test">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../../Applications/Eclipse.app/Contents/Eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="derby-10.3.2.1.location" value="../real-world application/derby-10.3.2.1"/>
+    <property name="jigsaw.location" value="../real-world application/jigsaw"/>
+    <property name="mcr-engine.location" value="../mcr-engine"/>
+    <property name="mcr-controller.location" value="../mcr-controller"/>
+    <property name="weblech.location" value="../real-world application/weblech"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="mcr-engine.classpath">
+        <pathelement location="${mcr-engine.location}/bin"/>
+        <pathelement location="${mcr-engine.location}/lib/ant.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/jcommander-1.36.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/h2-rvpredict.jar"/>
+        <pathelement location="${ECLIPSE_HOME}"/>
+        <pathelement location="${mcr-engine.location}/lib/jigsaw-sexpr.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.api.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.ifc.sdg.core.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.ui.ifc.sdg.graphviewer.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.ui.ifc.wala.console.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.wala.core.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.wala.dictionary.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/joana.wala.jodroid.jar"/>
+        <pathelement location="${mcr-engine.location}/lib/com.microsoft.z3.jar"/>
+    </path>
+    <path id="mcr-controller.classpath">
+        <pathelement location="${mcr-controller.location}/bin"/>
+        <pathelement location="${mcr-controller.location}/lib/junit.jar"/>
+        <pathelement location="${mcr-controller.location}/lib/org.hamcrest.core.jar"/>
+        <pathelement location="${mcr-controller.location}/lib/imunit.jar"/>
+        <pathelement location="${mcr-controller.location}/lib/guava-21.0.jar"/>
+        <pathelement location="${mcr-controller.location}/lib/asm.jar"/>
+        <path refid="mcr-engine.classpath"/>
+    </path>
+    <path id="mcr-test.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <path refid="mcr-controller.classpath"/>
+        <path refid="mcr-engine.classpath"/>
+        <pathelement location="lib/iagent.jar"/>
+        <pathelement location="lib/hazelcast-3.3.2.jar"/>
+        <pathelement location="lib/narada.jar"/>
+        <pathelement location="lib/colt-1.2.0.jar"/>
+        <pathelement location="lib/concurrent.jar"/>
+        <path refid="derby-10.3.2.1.classpath"/>
+        <path refid="jigsaw.classpath"/>
+        <path refid="weblech.classpath"/>
+        <pathelement location="../lib/log4j-1.2.15.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+                <exclude name="edu/tamu/aser/rvtest/BytecodeTest.java"/>
+                <exclude name="edu/tamu/aser/rvtest/Deadlock.java"/>
+                <exclude name="edu/tamu/aser/rvtest/DeadlockSimple.java"/>
+                <exclude name="edu/tamu/aser/rvtest/MCRTest.java"/>
+                <exclude name="edu/tamu/aser/rvtest/RVExample2.java"/>
+                <exclude name="edu/tamu/aser/rvtest/SimpleBug.java"/>
+                <exclude name="edu/tamu/aser/rvtest/Test2.java"/>
+                <exclude name="edu/tamu/aser/rvtest/TestClass.java"/>
+                <exclude name="edu/tamu/aser/rvtest/TestFile.java"/>
+                <exclude name="edu/tamu/aser/rvtest/account2/"/>
+                <exclude name="edu/tamu/aser/rvtest/airlinetickets/"/>
+                <exclude name="edu/tamu/aser/rvtest/bug.java"/>
+                <exclude name="edu/tamu/aser/rvtest/bug2.java"/>
+                <exclude name="edu/tamu/aser/rvtest/correctness.java"/>
+                <exclude name="edu/tamu/aser/rvtest/dstest/"/>
+                <exclude name="edu/tamu/aser/rvtest/groovy/"/>
+                <exclude name="edu/tamu/aser/rvtest/instance.java"/>
+                <exclude name="edu/tamu/aser/rvtest/list/"/>
+                <exclude name="edu/tamu/aser/rvtest/pool107_copy.java"/>
+                <exclude name="edu/tamu/aser/rvtest/syncBug.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testASM.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testSDG.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testSDG1.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testSDG2.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testSDG3.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testTSO.java"/>
+                <exclude name="edu/tamu/aser/rvtest/testTSO2.java"/>
+                <exclude name="edu/tamu/aser/rvtest/waitTest.java"/>
+                <exclude name="org/apache/commons/"/>
+                <exclude name="org/apache/commons/pool/"/>
+                <exclude name="org/apache/commons/pool/impl/"/>
+                <exclude name="org/apache/commons/pool/performance/"/>
+                <exclude name="omcr/colt/"/>
+                <exclude name="omcr/hazelcast/"/>
+                <exclude name="instrumented/java/util/Random.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${mcr-engine.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${mcr-controller.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${mcr-engine.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${mcr-controller.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="edu/tamu/aser/rvtest/BytecodeTest.java"/>
+            <exclude name="edu/tamu/aser/rvtest/Deadlock.java"/>
+            <exclude name="edu/tamu/aser/rvtest/DeadlockSimple.java"/>
+            <exclude name="edu/tamu/aser/rvtest/MCRTest.java"/>
+            <exclude name="edu/tamu/aser/rvtest/RVExample2.java"/>
+            <exclude name="edu/tamu/aser/rvtest/SimpleBug.java"/>
+            <exclude name="edu/tamu/aser/rvtest/Test2.java"/>
+            <exclude name="edu/tamu/aser/rvtest/TestClass.java"/>
+            <exclude name="edu/tamu/aser/rvtest/TestFile.java"/>
+            <exclude name="edu/tamu/aser/rvtest/account2/"/>
+            <exclude name="edu/tamu/aser/rvtest/airlinetickets/"/>
+            <exclude name="edu/tamu/aser/rvtest/bug.java"/>
+            <exclude name="edu/tamu/aser/rvtest/bug2.java"/>
+            <exclude name="edu/tamu/aser/rvtest/correctness.java"/>
+            <exclude name="edu/tamu/aser/rvtest/dstest/"/>
+            <exclude name="edu/tamu/aser/rvtest/groovy/"/>
+            <exclude name="edu/tamu/aser/rvtest/instance.java"/>
+            <exclude name="edu/tamu/aser/rvtest/list/"/>
+            <exclude name="edu/tamu/aser/rvtest/pool107_copy.java"/>
+            <exclude name="edu/tamu/aser/rvtest/syncBug.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testASM.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testSDG.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testSDG1.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testSDG2.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testSDG3.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testTSO.java"/>
+            <exclude name="edu/tamu/aser/rvtest/testTSO2.java"/>
+            <exclude name="edu/tamu/aser/rvtest/waitTest.java"/>
+            <exclude name="org/apache/commons/"/>
+            <exclude name="org/apache/commons/pool/"/>
+            <exclude name="org/apache/commons/pool/impl/"/>
+            <exclude name="org/apache/commons/pool/performance/"/>
+            <exclude name="omcr/colt/"/>
+            <exclude name="omcr/hazelcast/"/>
+            <exclude name="instrumented/java/util/Random.java"/>
+            <classpath refid="mcr-test.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="AccountTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.account.AccountTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="AccountTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.account.AccountTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="airline">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.airline.airlineTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="airline_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.airline.airlineTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="AirlineTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.airline.AirlineTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="AirlineTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.airline.AirlineTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar  -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="AllocationTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.allocationvector.AllocationTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="AllocationTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.allocationvector.AllocationTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar  -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="bakery">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.bakery" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="bakery_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.bakery" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar  -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Bank">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.account.Bank" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Bank_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.account.Bank" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="BubbleSortTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.bubblesort.BubbleSortTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="BubbleSortTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.bubblesort.BubbleSortTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="coltTest">
+        <java classname="omcr.colt.coltTest" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="Critical">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Critical" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="dekker">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.dekker" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="dekker_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.dekker" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="DerbyTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.derby.DerbyTest" todir="${junit.output.dir}"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.Example" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example1Lock">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example1Lock" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example1Lock_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example1Lock" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example2">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example2" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example2_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example2" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example3">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example3" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example3_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example3" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example4">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example4" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example4_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.Example4" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example_Reviewer_CAV">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.Example_Reviewer_CAV" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example_Reviewer_CAV_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.Example_Reviewer_CAV" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example_SharedVar (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.Example_SharedVar" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Example_SharedVar">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.Example_SharedVar" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Ddebug=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="GarageTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.garage.GarageTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="JigsawTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.jigsaw.JigsawTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="JigsawTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.jigsaw.JigsawTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="lamport (1)">
+        <java classname="edu.tamu.aser.rvtest.tso.lamport" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="lamport">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.lamport" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="lamport_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.lamport" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Loader">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.loader.Loader" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Manager">
+        <java classname="omcr.manager.Manager" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="ManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.manager.ManagerTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="MTListTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.MTListTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="MTListTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.MTListTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=true"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="MTSetTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.MTSetTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="omcr.airline">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="peterson">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.peterson" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="peterson_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.peterson" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="PingPong">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.pingpong.PingPong" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="PingPong_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.pingpong.PingPong" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="PLDI15">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.PLDI15" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="PLDI15_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.omcr.PLDI15" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="pool107">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.pool107.pool107" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="pool107_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.pool107.pool107" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="RVExample">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.RVExample" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="RVExample_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.RVExample" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="spinlock">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.tso.spinlock" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="StringBufferTest (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.stringbuffer.StringBufferTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="StringBufferTest (2)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest_simple_tests.StringBufferTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="StringBufferTest">
+        <java classname="edu.tamu.aser.rvtest_simple_tests.StringBufferTest" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="Test1">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.comparisonWithNidhugg.Test1" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea -Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="Test2">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.comparisonWithNidhugg.Test2" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea -Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="TestCopy">
+        <java classname="TestCopy" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="TestZ3">
+        <java classname="TestZ3" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="TicketsOrderSim">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.ticketorder.TicketsOrderSim" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="TicketsOrderSim_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="omcr.ticketorder.TicketsOrderSim" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="WeblechTest (1)">
+        <java classname="edu.tamu.aser.rvtest.weblech.WeblechTest" failonerror="true" fork="yes">
+            <classpath refid="mcr-test.classpath"/>
+        </java>
+    </target>
+    <target name="WeblechTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.weblech.WeblechTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="WeblechTest_OMCR">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.tamu.aser.rvtest.weblech.WeblechTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-Xmx1g -javaagent:lib/iagent.jar -Domcr=&quot;true&quot;"/>
+            <classpath refid="mcr-test.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
