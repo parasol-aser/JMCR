@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css">
+  <title>Virtual Hosting</title>
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+
+<body>
+
+<div class="icons-w3c">
+<a href="../../../"><img src="/Icons/w3c_home" border="0" alt="W3C logo"
+height="48" width="72"></a></div>
+
+<div class="icons-jigsaw">
+<a href="../../"><img src="/Icons/jigsaw" border="0" alt="Jigsaw" height="49"
+width="212"></a></div>
+
+<div class="title">
+<h1 class="title">Virtual Hosting in Jigsaw</h1>
+<hr noshade="noshade" width="70%" align="left">
+<a href="../../Overview.html">Jigsaw Home</a> / <a
+href="../Overview.html">Documentation Overview</a> / <a
+href="Tutorials.html">Tutorials</a></div>
+
+<div class="body">
+<p>Running Jigsaw with virtual hosting involves the following steps:</p>
+
+<p><b>1)</b> Open a JigAdmin window (see <a href="AdminTools.html">JigAdmin
+documentation</a>)</p>
+
+<p><b>2)</b> Create the virtual resource.</p>
+<ol>
+  <li>Select the "<tt>Root</tt>" node.</li>
+  <li>Select "<tt>Add Resource</tt>" in the popup menu (right click).</li>
+  <li>Type the name of the virtual resource in the Identifier field (ie
+    "virtual").</li>
+  <li>Select the "<b><tt>org.w3c.tools.resources.VirtualHostResource</tt></b>"
+    class.</li>
+  <li>Click on the "<tt>Ok</tt>" button.</li>
+</ol>
+
+<p><img src="images/virtual1.gif" vspace="20" height="401" width="666"
+alt="virtual-hosting"> <img src="images/virtual2.gif" vspace="20" height="162"
+width="441" alt="virtual-hosting"></p>
+
+<p><b>3)</b> Attach a VirtualHostFrame to the new "virtual" resource.</p>
+<ol>
+  <li>Select "<tt>Edit Resource</tt>" in the popup menu.</li>
+  <li>In the resource editor, Select "<tt>Add Frame</tt>" in the popup
+  menu.</li>
+  <li>Select the "<b><tt>org.w3c.jigsaw.frames.VirtualHostFrame</tt></b>"
+    class.</li>
+  <li>Click on the "<tt>Ok</tt>" button.</li>
+</ol>
+
+<p><img src="images/virtual3.gif" vspace="20" height="401" width="666"
+alt="virtual-hosting"> <img src="images/virtual4.gif" vspace="20" height="365"
+width="461" alt="virtual-hosting"></p>
+
+<p><b>4)</b> Modify the VirtualHostFrame attributes. See the VirtualHostFrame
+<a href="../Reference/org.w3c.jigsaw.frames.VirtualHostFrame.html">reference
+page </a>that describe these attributes. Type the old root resource name (ie
+"root") in the "Followup" field. Don't forget to commit your changes by
+clicking on the "<tt>Commit</tt>" button.</p>
+
+<p><img src="images/virtual6.gif" vspace="20" height="365" width="461"
+alt="virtual-hosting"></p>
+
+<p><b>5)</b> Add you virtual host. You can add as many virtual host as you
+want, but in this example we will add only one virtual host that will be a
+PassDirectory (see <a
+href="../Reference/org.w3c.jigsaw.frames.VirtualHostFrame.html">here</a> for
+more details).</p>
+<ol>
+  <li>Select the "virtual" node.</li>
+  <li>Select "<tt>Add Resource</tt>" in the popup menu.</li>
+  <li>Type the name of the virtual host with the port number in the
+    "Identifier" field (ie www.example.org:8001)</li>
+  <li>Select the "<b><tt>org.w3c.tools.resources.PassDirectory</tt></b>"
+    class.</li>
+  <li>Click on the "<tt>OK</tt>" button.</li>
+</ol>
+
+<p><img src="images/virtual7.gif" vspace="20" height="401" width="666"
+alt="virtual-hosting"></p>
+
+<p><b>6)</b> Configure your virtual host.</p>
+<ol>
+  <li>Expand the "virtual" node.</li>
+  <li>Select the child node "www.example.org:8001".</li>
+  <li>Select "<tt>Edit Resource</tt>" in the popup menu.</li>
+  <li>Select the "www.example.org:8001" node in the resource editor tree.</li>
+  <li>Type, in the "pass-target" field, the path of the directory (ie
+    /home/Jigsaw/Jigsaw/WWW2) that will be the root directory of your virtual
+    host.</li>
+  <li>Commit your changes by clicking on the "<tt>Commit</tt>" button.</li>
+</ol>
+
+<p><b>7)</b> Add a HTTPFrame to your new PassDirectory.</p>
+<ol>
+  <li>Select the "www.example.org:8001" node (in the resource editor)</li>
+  <li>Seect "<tt>Add Frame</tt>" in the popup menu.</li>
+  <li>Select the "<b><tt>org.w3c.jigsaw.frames.HTTPFrame</tt></b>" class.</li>
+  <li>Click on the "<tt>Ok</tt>" button.</li>
+</ol>
+
+<p><img src="images/virtual8.gif" vspace="20" height="426" width="403"
+alt="virtual-hosting"></p>
+
+<p><b>8)</b> Edit the general properties. Set the "Root Name" property to
+"virtual" and click on the "Commit" button.</p>
+
+<p><img src="images/virtual9.gif" vspace="20" height="401" width="666"
+alt="virtual-hosting"></p>
+
+<p><b>9)</b> Save the configuration, Jigsaw has a new virtual host! Now
+incoming request for www.example.org on port 8001 will be on the
+/virtual/www.example.org:8001 resources, the others requests will be
+dispatched to the "root" resource. <br>
+</p>
+</div>
+<!-- body -->
+
+<div class="footer">
+<p></p>
+<hr noshade="noshade">
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+<span class="mini"> $Id: virtual-hosting.html,v 1.1 2010/06/15 12:23:00 smhuang Exp $ </span>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> © 1999 <a
+href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>, <a
+href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability, </a> <a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html"> document use </a> and <a
+href="/Consortium/Legal/copyright-software.html"> software licensing </a>
+rules apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public"> public </a> and <a
+href="/Consortium/Legal/privacy-statement.html#Members"> Member </a> privacy
+statements.</font></p>
+</div>
+</body>
+</html>

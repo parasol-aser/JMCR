@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Jigsaw Administration Tools</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home"
+    WIDTH="72" HEIGHT="48" ALT="W3C" BORDER="0"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG SRC="/icons/jigsaw" ALT="Jigsaw"
+    BORDER="0" WIDTH="212" HEIGHT="49"></A>
+<H1>
+  Jigsaw Administration Tools
+</H1>
+<P>
+There are, since <B>Jigsaw</B> 1.0beta, two different ways of administrating
+your server. The first one is the oldest one and is a per-server administration
+scheme, using HTML and
+<A HREF="../Tutorials/configuration.html#global-configuration">form-based
+editors</A>. <BR>
+The new one is a graphical interface which communicate with an Administration
+server, called <B>JigAdmin Server</B>. This server can administer multiple
+Jigsaw servers running on the same machine, provided these servers has been
+launched at the same time (means by the same java VM), we will call this
+graphical interface <B>JigAdmin</B>.
+<P>
+To use JigAdmin, follow one of these link:
+<UL>
+  <LI>
+    <A HREF="#running">How to run JigAdmin</A>
+  <LI>
+    <A HREF="#using">How to use JigAdmin</A>
+  <LI>
+    <A HREF="#navigate">How to navigate in the tree browser</A>
+</UL>
+<H2>
+  <A NAME="Running">Running JigAdmin</A>
+</H2>
+<H3>
+  JigAdmin Server
+</H3>
+<P>
+This is very easy in fact. The default configuration files provided both
+by the upgrade of an earlier <B>Jigsaw</B> or by the default installation
+are designed to start two server, an instance of <B>Jigsaw</B> and one
+<B>JigAdmin Server</B>. The default port of <B>JigAdmin Server</B> is 8009.
+When you start the server with:
+<P>
+<CODE>java w3c.jigsaw.Main</CODE>
+<P>
+You must see, among the trace, &nbsp;this output:
+<P>
+<CODE>JigAdmin[1.0alpha]: serving at http://tarantula.inria.fr:8009/</CODE>
+<H3>
+  JigAdmin Client
+</H3>
+<P>
+Now that the administration server is running, you can access it with the
+following command:
+<P>
+<CODE>java w3c.jigadm.Main [-root root] [url]</CODE>
+<P>
+The default root is your current directory, so if you are in the same directory
+where you started <B>Jigsaw</B>, you don't need the "-root" option.<BR>
+If you are running the administration server on the same machine, using the
+default port 8009, you don't need to provide an URL. The URL is the one of
+the administration server.
+<H2>
+  <A NAME="Using">Using JigAdmin</A>
+</H2>
+<H3>
+  Authentification
+</H3>
+<P>
+To access the administration server, you need to be authentificated for obvious
+reasons.<BR>
+The realm used to access the server is "admin", the default user is "admin"
+and the default password is also "admin". After the first authentification,
+modify the user ot the password or both to avoid unwanted changes to your
+server!
+<P>
+Now a new frame should popup and you must see this:
+<P>
+<IMG SRC="jigadm1.gif" WIDTH="130" HEIGHT="119" ALT="jigadm default screen">
+<P>
+You are now ready to navigate through the server and configure your servers!
+<H3>
+  The administration zone
+</H3>
+<P>
+Expand the first node by clicking on the small icon. You must see something
+like this:
+<P>
+<IMG SRC="jigadm2.gif" WIDTH="130" HEIGHT="133" ALT="first node expansion">
+<P>
+The "control" resource is used to control the server, the control resource
+of "Root" means that it controls the administration server itself.
+<P>
+The "http-server" resource is the first server administrated by <B>JigAdmin
+Server</B>. It corresponds to the server with the properties located in
+<CODE>http-server.props</CODE>.
+<P>
+The "realms" resource is used to allow access to the authentification realms
+used by the server. The "realms" resource of "Root" allows you to edit, modify
+or add new users to access <B>JigAdmin Server</B>.
+<H3>
+  The server zone
+</H3>
+<P>
+Expand one of the server node (in the default configuration, you will only
+have one server to edit: http-server). You must now see something like this:
+<P>
+<IMG SRC="jigadm3.gif" WIDTH="141" HEIGHT="171" ALT="after expansion of a server node">
+<P>
+The "control" resource has the same meaning and same role as in the
+administration zone.
+<P>
+The "indexers" resource is used to add, delete or edit the indexers of the
+server. Read more about <A HREF="../Introduction/indexer.html">indexers</A>
+to understand how to edit them.
+<P>
+The "properties" resource corresponds to the general properties of
+<B>Jigsaw</B>. Read more about <A HREF="propeditor.html">properties</A> to
+understand how to edit them. It correspond to the old
+<CODE>/Admin/Properties</CODE> directory of the form based editor.
+<P>
+The "realms" resource is also the same as in the administration zone.
+<P>
+The "space" resource correspond to the root resource of your server. Under
+"space" you will find the resources actually served by <B>Jigsaw</B>. It
+is the place to go if you want to add, delete or edit resources, add, delete
+or edit&nbsp;filters and so on.
+<H3>
+  <A NAME="navigate">Note on the tree browser</A>
+</H3>
+<H4>
+  Navigation helps
+</H4>
+<P>
+To expand or collapse a node, you must click on the icon.<BR>
+To edit a resource, you must click on the label, the label will become magenta,
+like this:
+<P>
+<IMG SRC="jigadm4.gif" WIDTH="172" HEIGHT="176" ALT="selected node">
+<P>
+The menu "Admin-Server" has the following capabilities:
+<UL>
+  <LI>
+    Open - Go to another <B>JigAdmin Server</B>
+  <LI>
+    Open in new window - same as open, but in a new window
+  <LI>
+    Close window
+  <LI>
+    Exit - close all windows and exit
+</UL>
+<P>
+  <HR>
+<P>
+<A HREF="mailto:ylafon@w3.org">Yves Lafon</A><BR>
+$Id: AdminTools.html,v 1.1 2010/06/15 12:20:56 smhuang Exp $
+<P>
+</BODY></HTML>

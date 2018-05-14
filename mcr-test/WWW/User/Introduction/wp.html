@@ -1,0 +1,736 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <TITLE>Jigsaw design rationale</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home" WIDTH="72" HEIGHT="48"
+    ALT="W3C" BORDER="0"></A>
+<A HREF="../Overview.html" TARGET="_top_"><IMG SRC="/icons/jigsaw"
+    WIDTH="212" HEIGHT="49" ALT="Jigsaw" BORDER="0"></A>
+<H1>
+  Jigsaw: An object oriented server
+</H1>
+<P>
+This document explains the current design of <B>Jigsaw</B>. Since this project
+started, a year ago, the only thing that remained across the various test
+implementations that were written, is the choice of the Java language as
+the implementation language. It is not the purpose of this document to explain
+this choice, but we still think that having threads, garbage collection,
+portability and a secure language helped us a lot throughout the actual design.
+<P>
+This paper is divided into three sections, each of them describing a precise
+point in the space of possible servers design. We started with a simple-minded
+file based server, whose principal drawback was the lack of an explicit
+meta-information store. The second design caught up with this drawback, but
+lacks the ability to <I>write</I> documents to the server (in the wide sense
+of write, you can always implement PUT as a CGI script). The third design
+took on the idea of persistent objects that emerged from the second design,
+and brought it up to a full writable, persistent object <I>store</I>.
+<P>
+As we walk through these various design, it is left as an exercise to the
+reader to try to find a suitable answer to the following problems:
+<DL>
+  <DT>
+    Efficient content negotiation
+  <DD>
+    How can content negotiation can be efficiently implemented in this server
+    design. By efficient we typically mean the number of file-system accesses,
+    the number of files to parse, etc required before the actual content negotiation
+    algorithm can run.
+  <DT>
+    How does this design allow for handling PUT
+  <DD>
+    Although acknowledged by vendors only lately, the WWW was initially conceived
+    as a <I>read/write</I> space. Most servers can handle PUT through CGI scripts,
+    however, there is more to editing then just putting a file. Does the proposed
+    design allow you to dynamically plug in authentication information, or other
+    kinds of <I>meta-information</I> ?
+  <DT>
+    How does it handle configuration
+  <DD>
+    When it comes to configuration, most servers today require a stop/edit/restart
+    cycle. Does the proposed design allow for something better ?
+</DL>
+<P>
+We will see by the conclusion, that the current <B>Jigsaw</B> design is tuned
+for answering each of these precise questions. As we walk through the designs,
+we will use the configuration process of each of the designed servers as
+the key to enter their implementations. Configuration of servers is often
+left-over, although it can be used to reverse engineer the implementation
+of a server, as we will see.
+<H2>
+  <A NAME="file">The file-based design (or the lack of meta-information)</A>
+</H2>
+<P>
+The first of <B>Jigsaw</B>'s design, was aimed toward serving files, and
+supporting things like CGI scripts. Generally, it was the result of trying
+to emulate what current servers do, while still trying to take advantage
+of Java features (such as dynamic class loading).
+<H3>
+  Configuration process
+</H3>
+<P>
+In this design, the configuration process was pretty similar to classical
+servers. A central configuration file would split the exported information
+space (implemented by the underlying file-system) into various <I>areas</I>,
+each of them being handled in some specific ways. Typical statements of the
+configuration file would include things like:
+<PRE>/foo/bar/* FileHandler()
+</PRE>
+<P>
+The server would compile this statement by creating some <I>rule</I> stating
+that all URLs having the <CODE>/foo/bar</CODE> prefix were to be handled
+by some instance of the FileHandler Java class. At runtime, when receiving
+a request, the server engine would extract the target URL, find the best
+matching rule and hand out the request for processing by the appropriate
+<I>handler</I>. The FileHandler would do the normal work of serving the physical
+file mapped to the requested URL.
+<P>
+This rule mechanism was directly inspired by the CERN server, with the syntax
+change justified by the fact that you would be able to dynamically load new
+area handlers. So, for example, if the rule:
+<PRE>/cgi-bin/* CgiHandler()
+</PRE>
+<P>
+was present in the configuration file, the instance of the CgiHandler Java
+class would be created on demand, (i.e. only if some document in this area
+was requested.). This handler would be used to run the scripts in the given
+area, and serve their result, following the CGI specification.
+<P>
+The configuration file syntax included the concept of <I>filters</I>. Filters
+were invoked before the actual processing of a request by its area handler.
+To setup a filter on some area, you would add a statement like:
+<PRE>/protected/* AuthFilter("realm", CgiHandler())
+</PRE>
+<P>
+This functional view of filters was inspired by the Strand (see the Strand
+<A HREF="http://www.osf.org/www/waiba/papers/www4oreo.htm">paper</A> of the
+WWW'95 conference) work at OSF, which uses them in proxies rather then in
+servers themselves. In the above case, the request would be first run through
+the AuthFilter (which would check its authorization information) before being
+handed out to the CgiHandler. Note how the configuration file syntax allowed
+for passing parameters to the actual filters or handlers (such as the
+<I>realm</I> in the above statement). The server provided a way to specify
+what arguments were required by each of the handlers (or filters), and would
+parse them in some uniform manner, so that the configuration file syntax
+could be kept consistent. In spirit, this was similar to the way Apache handles
+configuration files, and allows each module to register for a set of
+configuration directives.
+<H3>
+  Lessons learned
+</H3>
+<P>
+This first design had some nice properties. The first one was simplicity.
+Not so much simplicity <I>per-se</I>, but simplicity because the design would
+match what people expected from a web server. We felt that the ability to
+run the server straight out of the box, without having to deal with each
+exported information individually was important (i.e. the ability to set
+global defaults, that would apply to everything in the exported information
+space).
+<P>
+From an implementation point of view, having only one handler object per
+area also meant that the server would not be overcrowded with thousands of
+small objects representing each exported resource. This meant that memory
+requirements would be kept low (well, at least proportional to the number
+of areas, which is expected to be much smaller then the number of exported
+objects).
+<P>
+However, the big win in this design was the integration of the concept of
+filters inside the server architecture. This proved invaluable as a mean
+of decoupling server's functionality. The simple fact that authentication
+could be handled in a more generic framework, for example, brought a &nbsp;lot
+of simplicity in the server design. The important thing here was that the
+number of phases to process a request was significantly reduced. Instead
+of being:
+<OL>
+  <LI>
+    URL translation to a local name
+  <LI>
+    Access authentication
+  <LI>
+    Compute the reply
+  <LI>
+    ...
+</OL>
+<P>
+We would now have:
+<OL>
+  <LI>
+    URL translation
+  <LI>
+    Compute the reply
+  <LI>
+    ...
+</OL>
+<P>
+Since the authentication phase would be integrated (through filters) to the
+computation of the reply stage. Reducing the number of phases in request
+processing also meant that the general request processing model of the server
+would be more simple, which in turn meant that extension writers would have
+their job eased. Two other important benefits of filters were:
+<OL>
+  <LI>
+    The ability to extend the server functionality <I>orthogonally</I> to the
+    way the request was actually processed by its handler.
+  <LI>
+    The cost of running the filters would be paid <I>only</I> when appropriate.
+    It allowed you for example, to specify that the <CODE>/foo/bar</CODE> should
+    be enhanced with some special logging.
+</OL>
+<P>
+However, there were bad news too. Things began to turn out really badly when
+we tried to add content negotiation to this design. There was mainly two
+ways to proceed:
+<DL>
+  <DT>
+    The CERN server way
+  <DD>
+    Once the requested URL has been converted to a file-system path, check if
+    it comes with an extension. If no extension is available, list all the files
+    in the requested document's directory, and match them against the root of
+    the file name. Then run the negotiation process among the set of matching
+    entries.
+  <DT>
+    The index file way (currently implemented by Apache and WN)
+  <DD>
+    For a document to be negotiated, we have to write some <I>map</I> or
+    <I>index</I> file in that directory, describing each variant of the negotiated
+    resource. When needed, the server parses this file, and negotiates among
+    the set of described variants
+</DL>
+<P>
+The CERN server approach was quite nice since it would run behind the scene:
+the web master would just start its server, and without (nearly) any additional
+information, the server would support content negotiation. However, the
+efficiency of the above scheme was obviously poor. The second approach coped
+with the efficiency problem (although the server would still have to parse
+an ASCII file to get the set of variants), but incurred more work for the
+web master (which would now have to write the appropriate description files).
+<P>
+Although we felt content negotiation was an important feature to provide,
+what this revealed was a much more general problem: <B>the lack of an efficient
+meta-information store</B>. With such a thing, we would be able to efficiently
+access a resource's meta-information, which would allow for a fast implementation
+of the content-negotiation algorithm.
+<P>
+To make this problem more apparent, ask yourself how your favorite server
+deduces the content-type of the document it serves. For example, the CERN
+server walks through all file extensions it knows of (which it gets from
+the central configuration file), trying to find the one that matches the
+name of the document &nbsp;(a file in this case) to be served. The thing
+that matters here is not really the computation of the content-type by itself,
+but rather the fact that it is <I>recomputed</I> each time the same document
+is served. If your document is accessed fifty times per second, then you
+will walk through the extensions list fifty times, in the same second.
+<P>
+For content-type this is not a big deal, although if the list of known extensions
+grows too much, then this can cause some significant damage to the server
+performances. Where things really hurt, is when it comes to meta-information
+that is hard to compute, such as digital signatures, or meta-information
+to be extracted by parsing an HTML document (i.e. as given through the
+<CODE>META</CODE> tag). In these cases, you really don't want the server
+to spend time recomputing the meta-information, what you want is to cache
+them once they have been computed for latter reuse.
+<P>
+This lack of efficient meta-information store has already been acknowledged
+by some server authors. The WN server [reference], for example, defines
+per-directory configuration files, that allows web-masters to provide the
+additional meta-information pertaining to specific documents in some given
+directory. We will come back to this latter.
+<H3>
+  Summary
+</H3>
+<P>
+At this point, we had a first server running, but we were stuck, mainly by
+the lack of a meta-information store. We had also left over a number of important
+features, such as how PUT would be handled, how a single file would be protected
+(although this would be possible as an extreme case of an area containing
+a single file).
+<P>
+In fact, we were ready for our next redesign.
+<H2>
+  <A NAME="directory-config">Efficient per-directory configuration files (or
+  the read-only server)</A>
+</H2>
+<P>
+Guess what ? The second redesign of <B>Jigsaw</B> emphasised the meta-information
+storage. Our first goal was to set for a real database of meta-information
+about resources. Numerous ways were available for implementing this, ranging
+from connecting the server to a full-blown database, down to simple per-directory
+configuration files. The WN server uses the latter approach with some success,
+so we first settled for this.
+<H3>
+  Toward an efficient meta-information store
+</H3>
+<P>
+The first question we had to answer was <I>how</I> the meta-information store
+would be implemented. The WN implementation offered at least one possible
+solution. Each meta-information would be written down in a per-directory
+configuration file by the web master (with the optional help of an
+<I>indexer</I> program). After the translation process (i.e once the URL
+was converted to a local name), the server would check the appropriate
+per-directory configuration file, parse it and get from it the required
+information (e.g. the content-type of the document to be served, it's title,
+etc.).
+<P>
+We were not quite happy with this model, for several reasons. The first obvious
+one was the CPU cost of reading this per-directory configuration file on
+each request. Although this can be less expensive than recomputing entirely
+the meta-information from scratch, we felt that the server had better things
+to do than parsing some ASCII file before being able to handle an incoming
+request. &nbsp;We felt this particularly important since we were to use a
+multi-threaded server rather than a forking server, which meant that we could
+- at least - be able to cache the result of parsing the per-directory
+configuration file (more on this latter).
+<P>
+The other concern we had, which was consistent with our first experiment,
+was to try to reduce the number of phases needed to process a request (with
+the hope that this would make the overall design simpler, which ultimately
+would allow us to provide a simple extension API). In particular, we were
+interested in having an <I>object oriented lookup</I> rather than the not-so-nice
+translation phase of common servers. What we really wanted to achieve here,
+is a simplification of the server main loop, so that it would be captured
+by something similar to the following pseudo code:
+<CENTER>
+</CENTER>
+<CENTER>
+  <TABLE BORDER CELLPADDING="2">
+    <TR>
+      <TD><PRE>public class httpd extends Thread {
+
+    public void run() {
+        while ( true ) {
+            Socket client = accept() ;
+            new httpdClient(socket).start() ;
+        }
+    }
+}
+
+public class httpdClient extends Thread {
+
+    public void run() {
+        while (keep_alive) {
+            Request  request = getNextRequest() ;
+            Resource target  = lookup(request) ;
+            Reply reply = target.perform(request);
+            reply.emit() ;
+        }
+    }
+}
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<PRE>
+</PRE>
+<P>
+Once again, our goal here was to provide a simple enough request processing
+model, to allow for an easy to use server-side API.&nbsp;
+<P>
+Finally, in the process of architecturing this new design, another idea made
+came about: as the server would have to maintain a database of per-resource
+information, why not use this database to also <I>configure</I> the resource
+behavior. A resource would have a set of <I>attributes</I>, containing both
+its meta-information, and its configuration data. As an example, the FileResource
+(i.e. the resource class that knows how to serve files) could have a
+<CODE>writable</CODE> attribute to configure the fact that PUT is allowed.
+<P>
+As a result of all this, the idea that <B>exported resources should be persistent
+objects</B> seemed appealing enough to be worth a try.
+<H3>
+  Configuration process&nbsp;
+</H3>
+<P>
+Instead of going into the implementation details, we will quickly walk through
+the configuration process, giving the details needed to understand the pitfall
+of this design. To implement persistent objects, we first needed a way of
+describing these objects, so that the web master would be able to create
+and configure them. We choosed to use per-directory configuration file, along
+with an ASCII syntax for describing these objects. These files would then
+be read and parsed by an <I>indexer</I> program, that would resurrect them
+out of their ASCII representation, and dump them out in a binary format,
+suitable to be fed to the server itself. The main purpose of this extra
+compilation stage was to release the server from having to parse the ASCII
+files as mentioned above.
+<P>
+In this setting, a typical configuration file would look like this:
+<CENTER>
+</CENTER>
+<CENTER>
+  <TABLE BORDER CELLPADDING="2">
+    <TR>
+      <TD><PRE> 1] (entity w3c.http.core.DirectoryEntity<BR> 2] &nbsp;:name "root"
+ 3] &nbsp;:entities ((entity w3c.http.core.FileResource 
+ 4]              :name "Welcome.html"
+ 5]              :content-type "text/html")<BR> 6]  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(filter w3c.http.auth.BasicAuthFilter<BR> 7] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:realm "my-realm"<BR> 8] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(entity w3c.http.core.FileResource 
+ 9]               :name "protected.html" 
+10]               :content-type "text/html"))))
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+<BR>
+This file would be put in some directory, then the web master would run the
+<CODE>jindex</CODE> program, that would convert this file (usually named
+<CODE>jindex.txt</CODE>) into a binary file, containing a serialization of
+each of the objects described in it (this last file would be called
+<CODE>jindex</CODE>). More precisely, the above file describes three different
+resources:
+<UL>
+  <LI>
+    The first one (starting at line 1), of Java class DirectoryResource describes
+    how to export the directory in which the above configuration file was found.
+    It has two attributes: its <I>name</I>, whose value here is <B>root</B>,
+    and an <I>entities</I> attribute giving the list of sub-resources (lines
+    3 to 10)
+  <LI>
+    The first sub-resource (lines 3 to 5) described here is a simple file resource,
+    whose name is <B>Welcome.html</B> and whose content-type is <B>text/html</B>.
+    In the URL space, this resource would be named
+    <CODE>.../root/Welcome.html</CODE>. The lookup process would first get to
+    the resource named <CODE>root</CODE>, and would invoke the root resource
+    <CODE>lookup</CODE> method, with as parameter the Welcome.html string, to
+    get back the actual FileResource encapsulating the file.
+  <LI>
+    The last sub-resource (lines 6 to 10) here is filtered by an instance of
+    the BasicAuthFilter class. This class has a <I>realm</I> attribute indicating
+    in which realm incoming requests should be authentified, before being handed
+    out to the actual resource.
+</UL>
+<P>
+Once this file was compiled, the server would then be run. Upon receiving
+a request the lookup process would load into memory the appropriate binary
+files, and resurrect the objects as required. Loading these files was done
+through a cache, so that efficient access would be allowed (we'll come back
+to this latter).
+<P>
+With this new design, we were eager to see how content negotiation would
+be handled (hey, the whole point was to have an efficient implementation
+of content negotiation). Content negotiation would be handled by the
+NegotiatedResource Java class, that would store all its variants, and their
+meta-information, in order to run the negotiation algorithm as quickly as
+possible. A typical negotiated resource would be described by:
+<P>
+<CENTER>
+  <TABLE BORDER CELLPADDING="2">
+    <TR>
+      <TD><PRE> 1] (entity w3c.http.core.NegotiatedResource<BR> 2] &nbsp;:name "foo"
+ 3] &nbsp;:variants ((entity w3c.http.core.FileResource 
+ 4]              :name "foo.gif" 
+ 5]              :type "image/gif" 
+ 6]              :quality 0.9)<BR> 7]  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(entity w3c.http.core.FileResource 
+ 8]              :name "foo.png" 
+ 9]              :type "image/x-png" 
+10]              :quality 1.0)))
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+In brief, the NegotiatedResource class had a <I>variants</I> attribute describing
+all the variants among which negotiation was allowed for the given resource.
+Each variant would get its quality from a <I>quality</I> attribute. Note
+how this time, all the information required to run the content negotiation
+algorithm would be readily available to the server. Note also how the
+content-type and other meta-information would be accessed directly once a
+resource was restored from its serialized form.
+<P>
+However, a set of new problems arose in this design, which made up a new
+lesson.
+<H3>
+  Lessons
+</H3>
+<P>
+First of all, we were quite happy with this new design. It had solved the
+meta-information store problem in a nice way, but most interestingly, each
+exported resource would now be encapsulated in its own object, bringing up
+a natural server extension API: to extend the server with a new functionality
+(such as CGI scripts handling), you would just write a new resource sub-class
+matching your needs. One nice side-effect of this new design was that agents
+(eg downloading code to the server) could be implemented really easily: instead
+of serializing a resource to the disk, you would just serialize it to a socket
+connected to the target server . The implementation of this design indeed
+came with an Agent class, sub-class of the generic Resource class, that would
+allow them to <I>go</I> from one site to the other by the use of a <CODE>go(URL
+url)</CODE> method.
+<P>
+The filter concept was reintegrated in the new design. This was not so simple:
+the previous design allowed you to filter a whole area (as defined by its
+prefix), what we wanted now was both the ability to plug a filter on
+<I>one</I> single resource, while at the same time keep a way to tell that
+a whole area should be filtered. To solve the conflict, we wrote a new
+FilteredResource class, whose lookup method would invoke any of its filters.
+By using this trick, we were able to filter, for example, all accesses to
+some <CODE>/foo/bar/*</CODE> area: the resource exporting the
+<CODE>bar</CODE> directory would be a sub-class of the FilteredResource,
+and what ever filters were plugged on it would be called each time the bar
+resource was crossed by the lookup process.
+<P>
+Compared to other servers, this design allowed for an efficient implementation,
+since the cost of recomputing meta-information would totally disappear. There
+were still, however, some drawbacks.
+<P>
+The implementation complexity reached a new order of magnitude: this time,
+the server process would have to host one Java object per exported resource.
+This meant that it might have to keep in memory hundreds of thousands of
+these objects. Fortunately, because these objects were persistent, it was
+quite easy to fix this problem by using some appropriate caching mechanism.
+Once a resource was detected idle for a given duration of time, it could
+be serialized back to disk (if needed), freeing the memory it occupied before.
+It would then be brought up to memory later if requested.
+<P>
+The configuration process was now much more difficult to handle. We experimented
+with ways of making it easier. The idea here, was to put the complexity in
+the indexer program: when the indexer was run in some directory, it would
+match all files found against a global configuration database, describing
+how files should be wrapped into resources, based on their extensions. A
+typical statement in this configuration database would look like:
+<CENTER>
+</CENTER>
+<CENTER>
+  <TABLE BORDER CELLPADDING="2">
+    <TR>
+      <TD><PRE>(extension ".html"
+ :class w3c.http.core.FileResource
+ :type "text/html"
+ :quality 1.0
+ :icon "html.gif")
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<P>
+When encountering a .html file, the indexer would then know that by default
+(i.e. if no other statement was made about the file in the per-directory
+configuration file), it should build a FileResource to export the file.
+<P>
+Another problem with this design was the requirement to run the indexer in
+each directory before running the server. This was definitely breaking with
+our "run straight out of the box" goal. More importantly, the fact that
+meta-information were stored <I>both</I> in a ASCII file version, and in
+a binary version (the compiled form) meant that the server had to deal with
+two kinds of inconsistencies:
+<UL>
+  <LI>
+    As the server would cache the binary files, they might become out of
+    synchronization with the ASCII file, or even with the binary file themselves:
+    we lacked a way of notifying the server that it should flush some cached
+    binary file (well, it was possible, but added as a hack, instead of being
+    thought of right from the beginning).
+  <LI>
+    We wanted our server to handle PUT of new documents. This would mean that
+    the server itself would have to edit the <I>binary</I> version of the
+    per-directory configuration file. This, by itself was easy, but changes to
+    the binary file would be superseded by the recompilation of the ASCII
+    per-directory configuration file.
+</UL>
+<H3>
+  Summary
+</H3>
+<P>
+Except for the problem of the cache coherency mentioned above, this design
+was quite nice for a read-only server. In particular, it made us buy the
+idea of a server of persistent objects, by opposition of the simple file-based
+design that we designed first. This was a big step forward.
+<P>
+However, when it came to make the server writable, things hurt. The real
+lesson from this design was two fold:
+<UL>
+  <LI>
+    Persistent objects were good
+  <LI>
+    If you were to have your server serve an <I>editable</I> space, then simply
+    dumping the body of a PUT method into some file was not enough: you ought
+    to provide a way of <B>editing the meta-information associated to each
+    resource</B> through the server itself.
+</UL>
+<P>
+As a side effect, the second point would solve our caching &nbsp;of the
+per-directory information problem: <I>only</I> the server should write these
+information, in order to avoid the conflicts created by having two potential
+sources of edits to a single resource. The implications of these two lessons
+lead us to a new redesign of <B>Jigsaw</B>.
+<H2>
+  <A NAME="object-oriented">The object oriented design</A>
+</H2>
+<P>
+This last presented design is the current <B>Jigsaw</B> design, as of version
+1.0a. The main lessons it takes into account can be summarized as:
+<UL>
+  <LI>
+    All exported resources are persistent objects, they can be edited only through
+    the server
+  <LI>
+    All resources should be able to support filters
+  <LI>
+    The configuration process must be changed in order to be done through the
+    server, so that it can keep its cache of persistent resources up-to-date.
+</UL>
+<P>
+As usual now, we are going to walk through the configuration process, trying
+to highlight the parts of &nbsp;implementation that are relevant to this
+discussion.
+<H3>
+  Configuration process
+</H3>
+<P>
+As of this release, the configuration process is now totally runnable through
+HTML forms. To handle this in some generic fashion, the resource objects
+have been extended with a way to describe themselves. Each resource supports
+a <CODE>getAttribute()</CODE> method, which is responsible for returning
+the full list of attributes they support, along with various type information.
+More precisely, each declared attribute of a resource as a piece of
+meta-information associated with it, that describes how values for this attribute
+can be edited and saved. Based on this description, the <B>Jigsaw</B>
+configuration module is able to dynamically generate a form, suitable to
+edit any resource attribute. This is how <B>Jigsaw</B>'s configuration is
+done today.
+<P>
+Resource filters are handled as&nbsp;a specific attribute of the FilteredResource
+class, whose instances can be edited dynamically. As a side effect of this
+resource module, it appeared that <I>any</I> piece of data (be it configuration
+or not), that needs to be edited through the server could now be turned into
+some specific kind of resources. The current <B>Jigsaw</B> implementation
+takes full advantage of this, and things like authentication realms are typically
+implemented as special classes of resources. This not only means that we
+get authentication realms for free, it also means that any caching scheme
+applied to resources also applies to authentication realms. <B>Jigsaw</B>
+keeps an LRU list of resources loaded in memory, this list can include things
+like authentication realms (which are kept in memory only when they are really
+needed), authentication realm users, etc. All these data structures, by
+inheriting from the Resource class, gets the caching behavior for free.
+<P>
+Another place where resources are used is in the global configuration database.
+Remember how the previous design maintained a list of extensions, in order
+to provide to the indexer program the knowledge about how files should be
+indexed (wrapped into resource instances) by default. This last design of
+<B>Jigsaw</B> maintains a similar database, with the indexer now being part
+of the server itself. For example, each extension property is defined through
+a special <I>extension resource</I>, that has attributes for storing the
+class of resource to export the matching files, default attribute values
+(such as the expire date, etc).
+<P>
+Because the indexer is now part of <B>Jigsaw</B>, the server can now be used
+straight out of the box: you can just run <B>Jigsaw</B> in some root directory,
+and it will dynamically create the queried resource instances as it runs.
+Each time a resource is created, it is made persistent, so that next time
+the server runs, it doesn't have to recreate them. Resources are serialized
+into per-directory binary files, which are totally under the control of the
+server (these files are usually named <I>.jigidx</I> files, with their backup
+version being <I>.jigidx.bak</I>).
+<P>
+The usual stop/edit/restart cycle needed to change the server configuration
+has now totally disappeared, you can edit the resource configuration (defined
+through some of their attribute values) dynamically, while the server is
+running.
+<H3>
+  Lessons
+</H3>
+<P>
+<B>Jigsaw</B>'s current design seems to fulfill all our needs. The implementation
+still needs some tuning, and some features need to be added, but the APIs
+seems pretty stable now.
+<P>
+The implementation is now fairly complex. It uses a number of caching mechanisms
+(who said a server was just a series of caches ?), which do impact the current
+extension APIs (although not the one that will be commonly used, such as
+the resource class). Improvement to the implementation will be made by turning
+most of the design into <I>interfaces</I> and by making the current
+implementations (the actual classes) a set of sample implementations for
+these interfaces.
+<P>
+<B>Jigsaw</B> also lacks some important features: support for virtual hosts,
+server-side markup and these kind of things. Most of these features (if not
+all) can be implemented as either new resource classes, or new filters.
+<H2>
+  Next step
+</H2>
+<P>
+So what will the next design of <B>Jigsaw</B> will be? Well, as said above,
+there will probably <I>not</I> be a redesign of <B>Jigsaw</B> until some
+time. Once the current implementation is cleanly separated between a set
+of interfaces and a set of implementations, it will be possible to add
+functionality in a clean way.
+<P>
+Among the number of things that might happen, there are two of them on which
+I would like to insist:
+<UL>
+  <LI>
+    As a matter of fact, <B>Jigsaw</B> can be considered as some sort of object
+    oriented database. It would be nice to be able to reuse available technology
+    here. The ResourceStore interface can be implemented to fetch serialized
+    objects from any kind of database, rather then from a per-directory configuration
+    file. This could improve both the robustness and the performance.
+  <LI>
+    The configuration process, as described above, suffers from a lack of user
+    friendliness. This can be remedied by having the <I>client</I> being more
+    smart. The use of HTML forms as a general means to edit the object attributes
+    limits the range of usable UI metaphors. Work will be done to first provide
+    access to the server through RMI, and then using this remote interface, write
+    up a real server administration application (probably composed of a set of
+    applets).
+  <LI>
+    Use Java ability to move code around. All along the paper we have insisted
+    on the fact that resources were self-contained: they know of their own
+    description, their configuration and their behavior. This means that if you
+    were able to move these objects on the network, you could achieve a nice
+    replication environment, bringing computation closer to the clients. More
+    precisely, today the world is divided into &nbsp;two big categories: the
+    CGI world which emphasis on the computation happening on the server side,
+    and the Applet world, which emphasizes on the computation happening on the
+    client side. We would like to experiment with something in between those,
+    where computation would happen in proxy servers.
+</UL>
+<H2>
+  Conclusion
+</H2>
+<P>
+We have walked through three different server designs. The first one was
+a simple file-based server, we show why the lack of a meta-information store
+lead to an inefficient server implementation. The second design corrected
+this by using per-directory configuration files. This effectively solved
+the first problem, however it brought up a new set of issues when it came
+to have a <I>writable</I> server. Our last design is an attempt at solving
+all the problems encountered so far, it has now been stable for several months.
+<P>
+It is interesting to note how our requirements on the server have changed
+during the whole year, in particular, the emphasis on a server to both serve
+and <I>store</I> documents has taken an increasing priority in the design.
+<P>
+To conclude, I would like to highlight how the three problems we mentioned
+in the introduction are now solved:
+<DL>
+  <DT>
+    Efficient content negotiation
+  <DD>
+    We show that this first problem is related with the fact that our initial
+    design didn't support efficiently a meta-information store. The current version
+    of <B>Jigsaw</B> supports content negotiation and is able to run it
+    <I>without</I> touching the disk in most cases.
+  <DT>
+    PUTed document meta-information
+  <DD>
+    <B>Jigsaw</B> supports PUT: the first time a document is PUT'ed to the server
+    (it is created in fact), <B>Jigsaw</B> creates an appropriate empty resource
+    instance, which will capture all the meta-information that come from the
+    PUT request. This means that you can safely PUT a document whose name is
+    foo.bar, and whose content-type is text/html.
+  <DT>
+    Editing the information space configuration
+  <DD>
+    Adding authentication to an area of information exported by the server, is
+    just adding an authentication filter to the appropriate DirectoryResource.
+    This can be done entirely through forms, by editing the resource's attributes.
+</DL>
+<P>
+  <HR>
+<BR>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: wp.html,v 1.1 2010/06/15 12:20:10 smhuang Exp $</I>
+</BODY></HTML>

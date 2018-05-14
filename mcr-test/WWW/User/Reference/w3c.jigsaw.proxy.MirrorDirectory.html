@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>MirrorDirectory reference manual</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+<IMG SRC="/icons/WWW/w3c_home.gif" ALT="W3C" BORDER="0" WIDTH="72"
+    HEIGHT="48"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  MirrorDirectory
+</H1>
+<P>
+This resource class allows you to mirror any existing site. It works by using
+the caching module of <B>Jigsaw</B> and by using a different lookup strategy
+for the cached resource. It will handle redirections too, so that if the
+origin server emits a redirection to an URL that it holds, then the mirror
+resource will rewrite the redirection and hand it out as being the target
+of the relocation.
+<P>
+<B>Warning</B>: because this resource really does what it claims to do, it
+should <I>always</I> be &nbsp;used in conjunction with the
+<A HREF="w3c.jigsaw.resources.VirtualHostResource.html">VirtualHostResource</A>.
+As <B>Jigsaw</B> will mirror a given site, it will no longer export the
+<CODE>Admin</CODE> directory, hence were you not to use the virtual host
+handling the configuration would no longer be accessible.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.resources.MirrorDirectory.html">MirrorDirectory</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="../api/w3c.jigsaw.proxy.ForwardDirectory.html">ForwardDirectory</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The MirrorDirectory defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#mirrors">mirrors</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="mirrors">mirrors</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The base URL of the site to mirror. This is typically of the form
+    <B>http://<I>host</I>:<I>port</I></B>, eg http://www.w3.org.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed
+    <A HREF="../api/w3c.tools.store.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value, but is madatory for the mirroring to
+    take place.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.proxy.MirrorDirectory.html,v 1.1 1996/09/25 14:23:12
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>PutSizeFilter.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// PutSizeFilter.java
+// $Id: PutSizeFilter.html,v 1.1 2010/06/15 12:20:04 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1997.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">filters</span>;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">io</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">www</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">resources</span>.*;
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">PutSizeFilter</span> <span class="keyword">extends</span> <span class="type">ResourceFilter</span> {
+    <span class="comment">/**
+     * Attribute index - The maximum size of the put document
+     */</span>
+    
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_PUTSIZE</span> = -1;
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_STRICT</span>  = -1;
+
+    <span class="type">static</span> {
+	<span class="type">Class</span>     <span class="variable-name">c</span> = <span class="keyword">null</span>;
+	<span class="type">Attribute</span> <span class="variable-name">a</span> = <span class="keyword">null</span>;
+
+	<span class="keyword">try</span> {
+	    c = Class.forName("<span class="string">org.w3c.jigsaw.filters.PutSizeFilter</span>");
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace();
+	    System.exit(1);
+	}
+	<span class="comment">// Register the PutList URL attribute:
+</span>	a = <span class="keyword">new</span> <span class="type">IntegerAttribute</span>("<span class="string">put-size</span>"
+				 , <span class="keyword">new</span> <span class="type">Integer</span>(65536)
+				 , Attribute.EDITABLE|Attribute.MANDATORY);
+	ATTR_PUTSIZE = AttributeRegistry.registerAttribute(c, a);
+	a = <span class="keyword">new</span> <span class="type">BooleanAttribute</span>("<span class="string">strict</span>"
+				 , <span class="keyword">new</span> <span class="type">Boolean</span>(<span class="keyword">true</span>)
+				 , Attribute.EDITABLE|Attribute.MANDATORY);
+	ATTR_STRICT = AttributeRegistry.registerAttribute(c, a);
+    }
+
+    <span class="string">private</span> <span class="type">Reply</span> <span class="function-name">notifyFailure</span>(<span class="type">Request</span> <span class="variable-name">request</span>) {
+	<span class="type">Reply</span> <span class="variable-name">er</span> = <span class="keyword">null</span>;
+	<span class="keyword">if</span> (request.getExpect() != <span class="keyword">null</span>)
+	    er = request.makeReply(HTTP.EXPECTATION_FAILED);
+	<span class="keyword">else</span>
+	    er = request.makeReply(HTTP.UNAUTHORIZED);
+	er.setContent("<span class="string">&lt;P&gt;You are not allowed to PUT documents more than </span>" +
+		      getInt(ATTR_PUTSIZE, -1) + "<span class="string">bytes long&lt;/P&gt;</span>");
+	<span class="keyword">return</span> er;
+    }
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">req</span>) {
+	<span class="type">Request</span> <span class="variable-name">request</span> = (<span class="type">Request</span>) req;
+	<span class="keyword">if</span>(request.getMethod().equals("<span class="string">PUT</span>")) {
+	    <span class="keyword">if</span>(getBoolean(ATTR_STRICT, <span class="keyword">true</span>) && !request.hasContentLength()) 
+		<span class="keyword">return</span> notifyFailure(request);
+	    <span class="keyword">if</span>(request.getContentLength() > getInt(ATTR_PUTSIZE, -1))
+		<span class="keyword">return</span> notifyFailure(request);
+	}
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+     
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">req</span>, 
+					 <span class="type">ReplyInterface</span> <span class="variable-name">rep</span>) {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+}
+
+    </pre>
+  </body>
+</html>

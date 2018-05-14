@@ -64,19 +64,8 @@ public class RVInstrumentor {
             return false;
         }
         
-//        System.err.println("insted class: " + name);
-        
-//        if (name.sub) {
-//            
-//        }
-        
-//        if(name.equals("java/util/concurrent/ArrayBlockingQueue")){
-//            return true;
-//        }
-        
-        //concurrent classes
-//        if (name.startsWith("java/util/concurrent/ConcurrentHashMap") && !name.equals("java/util/concurrent/ConcurrentHashMap")) {
-//            return true;
+//        if (name.equals("org/apache/derby/impl/io/DirFile")) {
+//            System.out.println("Debug");
 //        }
         
         String pckgName = INSTRUMENTATION_PACKAGES_DEFAULT;
@@ -201,11 +190,12 @@ public class RVInstrumentor {
                      * If debugging is enabled, check and print out the
                      * instrumented class
                      */
-                    if (Configuration.DEBUG) 
-                    {
-                        System.out.println("Instrumenting " + name);
-                    }
+                    
                     if (shouldInstrumentClass(name)) {
+                        if (Configuration.DEBUG) 
+                        {
+                            System.out.println("Instrumenting " + name);
+                        }
 //                        System.err.println("Instrumented " + name);
                         ClassReader classReader = new ClassReader(bytes); //bytes is the .class we are going to read
                         ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);

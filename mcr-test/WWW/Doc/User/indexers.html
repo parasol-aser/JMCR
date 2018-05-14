@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="../style/doc.css">
+  <title>Indexer Configuration</title>
+  <style type="text/css">  IMG.SCREENSHOT { 
+       margin-bottom: 20pt;
+       margin-top: 6pt
+ }</style>
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B"
+alink="#FF0000">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <h1 class="title">Indexer configuration</h1>
+      <hr noshade="noshade" width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> / <a
+	href="../Overview.html">Documentation Overview</a> /
+      <a href="Tutorials.html">Tutorials</a>
+    </div>
+    <div class="body">
+
+<p>In this section, the Jigsaw2.0 version of the indexing scheme will be
+presented. The Jigsaw1.0 scheme is easy to find out as it is much simpler than
+the 2.0 one (no protocol frames).</p>
+
+<h2>Goal of an indexer</h2>
+The main goal of an indexer is to create and setup some resource
+automatically. The resources can be created depending on their name or their
+extension. Once the resource has been created, the indexer is also in charge
+of attaching the right frames to this resource, like the HTTP frame, the
+filters and so on.
+
+<h2>Description of an indexer</h2>
+    <ol>
+      <li>Class and attributes of an indexer.
+	<dl>
+	  <dt>Class:</dt>
+	  <dd>Usually, the indexer's class is
+	    <tt>org.w3c.tools.resources.indexer.SampleResourceIndexer</tt></dd>
+	  <dt>identifier</dt>
+	  <dd>The name of the indexer, ex: "icons"</dd>
+	  <dt>Last-modified</dt>
+	  <dd>Unused, but resent as, internally, it is a resource.</dd>
+	  <dt>super-indexer</dt>
+	  <dd>The name of the parent indexer used when the current indexer
+	    fails to index. By default, the super indexer is the "default"
+	    indexer.</dd>
+	</dl>
+      </LI>
+      <li>The sons of an indexer
+	<dl>
+	  <dt>directories</dt>
+	  <dd>Used to index files matching exactly a name, mainly used to index
+	    directories. You can specify that an "Icons" directory will always
+	    be negotiable, for example. The default name (ie: matching all
+	    directory names) is "*default*"</dd>
+	  <dt>extensions</dt>
+	  <dd>Used to index files with a specific extension. For example, 
+	    "html" is a FileResource with an HTTPFrame set to give the 
+	    "text/html" content type to this file. Then all the "foo.html" 
+	    files will be indexed as "text/html" type object when accessed
+	    by HTTP. The default extension (ie: matching all the extension
+	    names) is "*default*". To index files with no extensions, you must
+	    use the name "*noextension*".</dd>
+	</dl>
+    </ol>
+
+<h2>Setting up the indexer</h2>
+We will use a small example. The indexer will create all directories named
+"Icons" as a normal DirectoryResource, but using "icons" as its indexers. It
+means that all the Icons directories and their subdirectories will be indexed
+with "icons" instead of "default". Along with that, we will define a new
+extension "mpg" as a "video/mpeg" object.
+
+<p></p>
+<ol>
+  <li>Open a jigadmin window</li>
+  <li>Go to the server you want to add the indexer to (usually http-server),
+    double click on the "indexers" node. On the right side, you must
+	see the resource editor popup</li>
+  <br>
+  <img src="images/indexers1.gif" alt="screenshot of Jigadm"
+  class="SCREENSHOT" height="394" width="568">
+   <ul>
+    <li>Create an indexer. To do so, select "Add Resource" in the
+	popup menu (right click on "Indexers" node), put a name in the
+	identifier textfield (ex: "testindexer"), then, using the
+	pulldown menu, select the class of indexer you want to
+	use. The common indexer is 
+      <tt>org.w3c.tools.resources.indexer.SampleResourceIndexer</tt> click on
+      the "Ok" button and you are all set for the next step:</li>
+    <li>You now have a "testindexer" node. Open this node and you will see the
+      two directories "directories" and "extensions", as described above. The
+      Resource editor shows the super-indexer field. Let it blank as there is
+      no specific indexer to call before asking the default indexer if this
+      one fails.</li>
+  </ul>
+  <br>
+  <img src="images/indexers2.gif" alt="jigadm screenshot" class="SCREENSHOT"
+  height="241" width="381">
+   <ul>
+    <li>Right click on "directories", then select "Add Resource" in
+	the popup menu. Type "Icons" in the indentifier textfield, and select
+      <tt>org.w3c.tools.resources.DirectoryResource </tt>using the pull-down
+      menu. It means that all the directories named "Icons" will be created as
+      a DirectoryResource. You have now to configure this resource.</li>
+  </ul>
+  <br>
+  <img src="images/indexers3.gif" class="SCREENSHOT" height="154"
+      width="425">
+  <img src="images/indexers4.gif" class="SCREENSHOT" height="394"
+      width="568">
+   <ul>
+    <li>Double-click on the new "Icons" directory under the
+	"directories" node, the resource editor appears first. We want
+	to change the indexer on this resource, so select the "Icons"
+	node (in the resource editor) to show the right helper. You 
+      have now the attributes, amongst them, the indexer. Select "icons" using
+      the option menu, then click on "Commit" to confirm your changes. BEWARE!
+      The indexer is not yet completely setup, as this resource can't be
+      accessed in any way! You need to add a ProtocolFrame to allow one
+      protocol to access this resource. To do so, select "Add Frame"
+	in the main menu of the resource editor or using the popup menu.
+      Select the most basic protocol frame:
+      <tt>org.w3c.jigsaw.frames.HTTPFrame </tt>and add it to the resource.
+      Click now in the small tree browser below, <tt>HTTPFrame (frame-0)</tt>
+      should appear. Click on it and you will be able to configure the
+      HTTPFrame (which looks like an old Jigsaw-1.0 Resource) set the icon to
+      dir.gif to enhance it.</li>
+  </ul>
+  <br>
+    <img src="images/indexers5.gif" alt="jigadmin screenshot"
+      class="SCREENSHOT" height="134" width="413">
+    <img src="images/indexers6.gif" alt="jigadmin screenshot"
+      class="SCREENSHOT" height="493" width="492">
+   <ul>
+    <li>Now you have to create the new extension. You must use the same
+      process as above, except for some details. Add the "mpg" resource with
+      the <tt>org.w3c.tools.resources.FileResource</tt> class to the
+      "extensions" directory. Then add an HTTPFrame to it, open the "mpg" node
+      in the little tree browser. Change the mime type, by selecting the right
+      one (video/mpeg) in the content-type editor. Add movie.gif as the
+      default icon for directory listing, commit.</li>
+  </ul>
+  <br>
+  <img src="images/indexers8.gif" alt="jigadmin screenshot" class="SCREENSHOT"
+  height="394" width="568">
+  <img src="images/indexers7.gif" alt="jigadmin screenshot" class="SCREENSHOT"
+  height="494" width="492">
+   <ul>
+    <li>You are all set now, don't forget to save your changes using the
+      control resource of the server. You can now use this indexer.</li>
+  </ul>
+</ol>
+Of course this is an example, if you want to add an extension for the whole
+server, the best way is to add it directly in the default indexer. Another
+thing, it is better to use <tt>org.w3c.jigsaw.resources.DirectoryResource
+</tt>than <tt>org.w3c.tools.resources.DirectoryResource</tt>, just to check if
+you read ALL the documentation ;)
+
+<h2><a name="content-type-indexer"></a>The Content Type Indexer</h2>
+In some cases the file extension is not the only criteria, for exemple when a
+PUT request occurs the indexer should use the Content-Type header comming with
+the request (if there is a content-type header). This is the job of the
+Content Type Indexer. <br>
+    <img src="images/indexers9.gif" alt="ContentTypeIndexer screen shot"
+      vspace="10" height="397" width="666">
+ <br>
+The Content Type Indexer (<tt>org.w3c.jigsaw.indexer.ContentTypeIndexer</tt>),
+has one more child, the <tt>content-types </tt>node. The associations between
+mime types and resources are stored in this new child.
+
+<p>Since 2.0.2 the ContentTypeIndexer accept generic mime types like
+<b>text:*</b>, <b>*:xml</b> or even <b>*:*</b>. For example, if you define
+<b>text:*</b> as a FileResource using a HTTPFrame (with a content-type set to
+<b>*none*</b>) all content types like text/html, text/plain, text/xml will be
+accepted.</p>
+
+<p><b>Note</b>: As you can see in the screenshot, the mime types stored in the
+indexer are not "real" mime types, the <tt>'/' </tt>has been replaced by a
+<tt>':'.</tt> We decided that because the <tt>'/'</tt> can create some
+conflicts with the URLs in <b>Jigsaw</b>.</p>
+    </div> <!-- body -->
+    <div class="footer">
+<p></p>
+<hr noshade="noshade">
+
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+<span class="mini"> $Id: indexers.html,v 1.1 2010/06/15 12:22:56 smhuang Exp $
+</span>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> &copy; 1999
+<a href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>,
+<a href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability, </a> <a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html"> document use </a> and <a
+href="/Consortium/Legal/copyright-software.html"> software licensing </a>
+rules apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public"> public </a> and <a
+href="/Consortium/Legal/privacy-statement.html#Members"> Member </a> privacy
+statements.</font></p>
+    </div>
+</body>
+</html>

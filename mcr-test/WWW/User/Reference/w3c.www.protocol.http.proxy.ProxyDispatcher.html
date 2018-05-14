@@ -1,0 +1,156 @@
+<HTML>
+<HEAD>
+  <TITLE>The ProxyDispatcherFilter administration guide.</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<PRE><A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48" SRC="/icons/WWW/w3c_home"></A> <A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_"><IMG ALT="Jigsaw" BORDER="0" WIDTH="212" HEIGHT="49" SRC="/icons/jigsaw">
+</A> 
+  <HR>
+</PRE>
+<H1>
+  ProxyDispatcher
+</H1>
+<P>
+The ProxyDispatcher is a filter that allows some rule to be applied to some
+given request before the HTTP client side API emits out a request. The set
+of rules can be extended in <B>Java</B>, check <A HREF="#rules">below</A>
+for the currently defined rules.
+<P>
+<B>Warning</B>: When configuring that filter along with <B>Jigsaw</B>'s proxy
+module, you will need to manually edit <B>Jigsaw</B>'s property file (usually
+found at <CODE>config/http-server.props</CODE>, otherwise, you know what
+we are talking about).
+<H3>
+  <A NAME="rules">ProxyDispatcher Rules</A>
+</H3>
+<P>
+The basic syntax for the ProxyDispatcher <I>rule file</I> is captured by
+the following BNF:
+<PRE>rule-file := (record)*
+record    := comment | rule
+comment   := '#' &lt;any chars up to EOL&gt;
+rule      := rule-lhs SPACES rule-rhs
+rule-lhs  := token | default
+default   := 'default'
+rule-rhs  := forbid | direct | proxy | authorization 
+forbid    := 'forbid'
+direct    := 'direct'
+proxy     := 'proxy' SPACES url
+authorization := 'authorization' SPACES user SPACES password
+user      := token
+password  := token
+EOL       := '\r' | '\r\n' | 'n'
+SPACES    := (' '|'\t')+
+
+</PRE>
+<P>
+A sample ProxyDispatcher rule file looks like:
+<PRE># Sample ProxyDispatcher rule file
+# --------------------------------
+
+# Make all access to US through us.proxy.com
+edu proxy http://us.proxy.com:8080/
+org proxy http://us.proxy.com:8080/
+
+# Accesses to french site are direct (no proxy)
+fr  direct
+
+# Accesses to 18.59.*.* network are direct
+18.59 direct
+
+# Accesses to the protected site gets decorated with auth infos:
+www.protected.com authorization joe-user joe-password
+
+# Forbid accesses to some sites
+
+www.evilsite.com forbid
+
+# force all other request to go through world.proxy.org
+DEFAULT proxy http://world.proxy.org:8080/
+
+</PRE>
+<P>
+The rule matching algorithm matches the host name part of urls, or the
+numeric part, if the address is numeric, no name resolution. 
+The matching algorithm tries to find the best match, starting with the most
+significant part of the URL (in www.foo.com, com is the most significant part,
+in 18.23.0.22, 18 is the most significant part) and then walking toward the
+best match, hence host names are implicitly "terminated" by * if you will.
+&nbsp;In the above example, any
+access to <CODE>www.foo.fr/x/y</CODE> would be handled by:
+<OL>
+  <LI>
+    Reverting the host name components: <CODE>fr foo www</CODE>
+  <LI>
+    Looking for a match on fr (found)
+  <LI>
+    Looking for a match on <CODE>fr </CODE>foo (not found)
+</OL>
+<P>
+In that case the rule found at step 2 is the most specific, and gets applied.
+<P>
+This examples is self explanatory, and illustrates all the rules currently
+handled by the filter. When used in conjunction with the
+<A HREF="w3c.www.protocol.http.icp.ICPFilter.html">ICP filter</A>, you can
+get a very powerful caching hierarchy.
+<P>
+Note also that the underlying implementation of the rule matching algorithm 
+allows a large number of rules which can lead to a big static routing table.
+<P>
+  <HR>
+<H2>
+  Properties 
+</H2>
+<P>
+The ProxyDispatcher defines the following properties:
+<UL>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.proxy.rules">w3c.www.protocol.http.proxy.rules</A>
+  <LI>
+    <A HREF="#w3c.www.protocol.http.proxy.debug">w3c.www.protocol.http.proxy.debug</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="w3c.www.protocol.http.proxy.rules">w3c.www.protocol.http.proxy.rules</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The location of the rules for the ProxyDispatcher filter. The <I>rule file</I>
+    expresses a rule to be applied when fetching a document, see the
+    <A HREF="#rules">rule syntax</A> for more informations.
+  <DT>
+    <I>type</I>
+  <DD>
+    This property can be either a full URL or a filename.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property has no default value, and <B>must</B> be set for the filter
+    to be activated.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="w3c.www.protocol.http.proxy.debug">w3c.www.protocol.http.proxy.debug</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the filter emit debugging traces ? When set to <B>true</B> this will
+    make the filter tells which rule it applies on which fetched URL.
+  <DT>
+    <I>type</I>
+  <DD>
+    A boolean property
+  <DT>
+    <I>default value</I>
+  <DD>
+    This property defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:ylafon@w3.org">ylafon</A><BR>
+$Id: w3c.www.protocol.http.proxy.ProxyDispatcher.html,v 1.1 2010/06/15 12:22:29 smhuang Exp $</I>
+<P>
+</BODY></HTML>

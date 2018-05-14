@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN"
+                      "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+  <head>
+    <title>HeaderFilter.java</title>
+    <meta name="Author" content="Benoit Mahe">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Generator" content="*emacs: emacs-css">
+
+    <link rel="Stylesheet" media="screen" type="text/css" href="default-html.css">
+  </head>
+  <body>
+
+    <pre>
+<span class="comment">// HeaderFilter.java
+// $Id: HeaderFilter.html,v 1.1 2010/06/15 12:20:05 smhuang Exp $
+// (c) COPYRIGHT MIT and INRIA, 1996.
+// Please first read the full copyright statement in file COPYRIGHT.html
+</span>
+<span class="keyword">package</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="type">filters</span>;
+
+<span class="keyword">import</span> <span class="reference">java</span>.<span class="reference">net</span>.*;
+
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">tools</span>.<span class="reference">resources</span>.<span class="type">ProtocolException</span>;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">www</span>.<span class="reference">http</span>.*;
+<span class="keyword">import</span> <span class="reference">org</span>.<span class="reference">w3c</span>.<span class="reference">jigsaw</span>.<span class="reference">http</span>.*;
+
+<span class="comment">/**
+ * Enforces a specific header value on all replies.
+ * Usefull for testing.
+ */</span>
+
+<span class="reference">public</span> <span class="keyword">class</span> <span class="function-name">HeaderFilter</span> <span class="keyword">extends</span> <span class="type">ResourceFilter</span> {
+    <span class="comment">/**
+     * Attribute index - The header name to add to replies.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_HEADER_NAME</span> = -1;
+    <span class="comment">/**
+     * Attribute index - The header value.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_HEADER_VALUE</span> = -1;
+    <span class="comment">/**
+     * Attribute index - SHould we use no-cache on that header.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_NOCACHE</span> = -1;
+    <span class="comment">/**
+     * Attribute index - Should we use connection on that header.
+     */</span>
+    <span class="preprocessor">protected</span> <span class="type">static</span> <span class="type">int</span> <span class="variable-name">ATTR_CONNECTION</span> = -1;
+
+    <span class="type">static</span> {
+	<span class="type">Class</span> <span class="variable-name">c</span> = <span class="keyword">null</span>;
+	<span class="type">Attribute</span> <span class="variable-name">a</span> = <span class="keyword">null</span>;
+	<span class="keyword">try</span> {
+	    c = Class.forName("<span class="string">org.w3c.jigsaw.filters.HeaderFilter</span>");
+	} <span class="keyword">catch</span> (<span class="type">Exception</span> <span class="variable-name">ex</span>) {
+	    ex.printStackTrace();
+	    System.exit(1);
+	}
+	<span class="comment">// Register the header name attribute:
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">header-name</span>"
+				, <span class="keyword">null</span>
+				, Attribute.EDITABLE);
+	ATTR_HEADER_NAME = AttributeRegistry.registerAttribute(c, a);
+	<span class="comment">// Register the header value attribute.
+</span>	a = <span class="keyword">new</span> <span class="type">StringAttribute</span>("<span class="string">header-value</span>"
+				, <span class="keyword">null</span>
+				, Attribute.EDITABLE);
+	ATTR_HEADER_VALUE = AttributeRegistry.registerAttribute(c, a);
+	<span class="comment">// Register the nocache attribute.
+</span>	a = <span class="keyword">new</span> <span class="type">BooleanAttribute</span>("<span class="string">no-cache</span>"
+				 , <span class="reference">Boolean</span>.<span class="type">FALSE</span>
+				 , Attribute.EDITABLE);
+	ATTR_NOCACHE = AttributeRegistry.registerAttribute(c, a);
+	<span class="comment">// Register the connection attribute.
+</span>	a = <span class="keyword">new</span> <span class="type">BooleanAttribute</span>("<span class="string">connection</span>"
+				 , <span class="reference">Boolean</span>.<span class="type">FALSE</span>
+				 , Attribute.EDITABLE);
+	ATTR_CONNECTION = AttributeRegistry.registerAttribute(c, a);
+    }
+
+	
+    <span class="comment">/**
+     * Get the header to set, if any.
+     * </span><span class="keyword">@return </span><span class="comment">A String encoded header name, or &lt;strong&gt;null&lt;/strong&gt;.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getHeaderName</span>() {
+	<span class="type">String</span> <span class="variable-name">value</span> = getString(ATTR_HEADER_NAME, <span class="keyword">null</span>);
+	<span class="keyword">if</span> ( value != <span class="keyword">null</span> )
+	    <span class="keyword">return</span> value.toLowerCase();
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+    <span class="comment">/**
+     * Get the header value to set, if any.
+     * </span><span class="keyword">@return </span><span class="comment">A String encoded value for the header to set, or &lt;strong&gt;
+     * null&lt;/strong&gt;.
+     */</span>
+    
+    <span class="reference">public</span> <span class="type">String</span> <span class="function-name">getHeaderValue</span>() {
+	<span class="keyword">return</span> getString(ATTR_HEADER_VALUE, <span class="keyword">null</span>);
+    }
+
+    <span class="comment">/**
+     * Should we add this header's name to the &lt;code&gt;no-cache&lt;/code&gt; 
+     * directive.
+     * </span><span class="keyword">@return </span><span class="comment">A boolean.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">checkNoCache</span>() {
+	<span class="keyword">return</span> getBoolean(ATTR_NOCACHE, <span class="keyword">false</span>);
+    }
+
+    <span class="comment">/**
+     * Should we add this header to the connection header.
+     * </span><span class="keyword">@return </span><span class="comment">A boolean.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">boolean</span> <span class="function-name">checkConnection</span>() {
+	<span class="keyword">return</span> getBoolean(ATTR_CONNECTION, <span class="keyword">false</span>);
+    }
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">ingoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">request</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+    <span class="comment">/**
+     * The outgoing filter decorates the reply appropriately.
+     * </span><span class="keyword">@param </span><span class="variable-name">request</span><span class="comment"> The original request.
+     * </span><span class="keyword">@param </span><span class="variable-name">reply</span><span class="comment"> The originial reply.
+     * </span><span class="keyword">@return </span><span class="comment">Always &lt;strong&gt;null&lt;/strong&gt;.
+     */</span>
+
+    <span class="reference">public</span> <span class="type">ReplyInterface</span> <span class="function-name">outgoingFilter</span>(<span class="type">RequestInterface</span> <span class="variable-name">req</span>,
+					 <span class="type">ReplyInterface</span> <span class="variable-name">rep</span>) 
+	<span class="keyword">throws</span> <span class="type">ProtocolException</span>
+    {
+	<span class="type">Reply</span> <span class="variable-name">reply</span> = (<span class="type">Reply</span>) rep;
+	<span class="type">String</span> <span class="variable-name">hname</span> = getHeaderName();
+	<span class="keyword">if</span> ( hname != <span class="keyword">null</span> ) {
+	    <span class="type">String</span> <span class="variable-name">hvalue</span> = getHeaderValue();
+	    <span class="keyword">if</span> ( hvalue == <span class="keyword">null</span> ) {
+		reply.removeHeader(hname);
+	    } <span class="keyword">else</span> {
+		reply.setValue(hname, hvalue);
+	    }
+	    <span class="keyword">if</span> ( checkNoCache() )
+		reply.addNoCache(hname);
+	    <span class="keyword">if</span> ( checkConnection() )
+		reply.addConnection(hname);
+	}
+	<span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+}
+
+    </pre>
+  </body>
+</html>

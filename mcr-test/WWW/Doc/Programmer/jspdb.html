@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>JSP, Java Beans, Database and Jigsaw</title>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css">
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<div class="icons-w3c">
+<a href="../../../"><img src="/Icons/w3c_home" border="0" alt="W3C logo"
+height="48" width="72"></a></div>
+
+<div class="icons-jigsaw">
+<a href="../../"><img src="/Icons/jigsaw" border="0" alt="Jigsaw" height="49"
+width="212"></a></div>
+
+<div class="title">
+<h1 class="title">JSP, Beans and Databases</h1>
+<hr noshade="noshade" width="70%" align="left">
+<a href="../../Overview.html">Jigsaw Home</a> / <a
+href="../Overview.html">Documentation Overview</a></div>
+
+<div class="left">
+<p class="link"><span class="linktitle">This Page</span><br>
+<a class="local" href="#intro">Introduction</a><br>
+<a class="local" href="#setup">Setup</a><br>
+<a class="local" href="#how">How it works</a><br>
+<a class="local" href="#sample">Sample Application</a><br>
+<a class="local" href="#ack">Acknoledgments</a><br>
+<a class="local" href="#questions">Questions</a><br>
+</p>
+
+<p class="link"><span class="linktitle">Jigsaw Links</span><br>
+<a class="local" href="../User/jsp.html">JSP and Jigsaw</a><br>
+<a class="local"
+href="api/org/w3c/tools/jdbc/package-summary.html">API</a><br>
+<a class="local"
+href="http://jigsaw.w3.org/Tools/jdbcbean.jar">jdbcbean.jar</a><br>
+</p>
+
+<p class="link"><span class="linktitle">Related Links</span><br>
+<a class="local" href="http://java.sun.com/products/jsp/docs.html">JSP
+tutorial</a><br>
+<a class="local" href="http://www.postgresql.org/">Postgresql</a><br>
+<a class="local"
+href="http://industry.java.sun.com/products/jdbc/drivers">JDBC drivers</a><br>
+</p>
+</div>
+
+<div class="body">
+<a name="intro"></a>
+
+<h1>Introduction</h1>
+In this document we will describe how to communicate with a database in a jsp
+page using Java Beans and the <code>org.w3c.tools.jdbc</code> package. <a
+name="setup"></a>
+
+<h1>Setup</h1>
+We need three things before starting the experimentation:
+
+<p></p>
+<ol>
+  <li>Install JSP in Jigsaw (read the <a
+  href="../User/jsp.html">tutorial</a>)</li>
+  <li>Install a database, (eg <a
+    href="http://www.postgresql.org/">postgresql</a>) if you don't have one
+    already installed on your system.</li>
+  <li>Get the JDBC drivers relative to your database (you can find them at <a
+    href="http://industry.java.sun.com/products/jdbc/drivers">javasoft</a>)</li>
+</ol>
+<a name="how"></a>
+
+<h1>How it works</h1>
+<img src="jspbeandb.gif" width="624" height="272" border="0"
+alt="schema explaining how it works">
+
+<p>The system is built with some Java Beans linked to the database via a
+serializer (<a
+href="api/org/w3c/tools/jdbc/JdbcBeanSerializer.html">JdbcBeanSerializer</a>).
+Each bean is a "mirror" of a table in the database, its properties are
+strictly equivalents (same name, same type) to the table colums. The
+serializer is in charge to build the SQL request depending on the values of
+the bean properties, it use a <a
+href="api/org/w3c/tools/jdbc/JdbcServer.html">JdbcServer</a> to send the
+request to the database (The JdbcServer manage a pool of persistent
+connections to the database). The serializer read the result and fill the
+bean(s) with the collected values. Then the jsp page use the serializer as an
+iterator and read the bean properties. <a name="sample"></a></p>
+
+<h1>Sample application</h1>
+To describe how to use the <code>org.w3c.tools.jdbc</code> package we're going
+to create a sample application. We want to implement a search engine about
+movies. So we have a database with three tables: <code>actors</code>,
+<code>movies</code> and <code>starring</code>, we want to be able to insert
+and search data in these tables. For that we'll write some jsp pages that use
+some java beans.
+
+<h2>The SQL Tables</h2>
+Note: The SQL statements are compatible with postgresql, read the <a
+href="http://www.postgresql.org/docs/user/user.htm">postgresql
+documentation</a> for more details.
+
+<p></p>
+
+<table border="2" width="50%">
+  <caption>Movies</caption>
+  <tbody>
+    <tr>
+      <th>movieid</th>
+      <th>Title</th>
+      <th>Director</th>
+      <th>Year</th>
+    </tr>
+    <tr align="center">
+      <td>1</td>
+      <td>12 Monkeys</td>
+      <td>Terry Gilliam</td>
+      <td>1995</td>
+    </tr>
+  </tbody>
+</table>
+
+<p></p>
+<pre style="font-family: serif">CREATE TABLE movies (
+    movieid    SERIAL NOT NULL PRIMARY KEY,
+    title      varchar(255) NOT NULL,
+    director   varchar(30),
+    year       int4
+)
+      </pre>
+
+<p></p>
+
+<table border="2" width="50%">
+  <caption>Actors</caption>
+  <tbody>
+    <tr>
+      <th>actorid</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+    <tr align="center">
+      <td>1</td>
+      <td>Bruce</td>
+      <td>Willis</td>
+    </tr>
+  </tbody>
+</table>
+
+<p></p>
+<pre style="font-family: serif">CREATE TABLE actors (
+    actorid    SERIAL NOT NULL PRIMARY KEY,
+    firstname  varchar(255) NOT NULL,
+    lastname   varchar(255) NOT NULL
+)
+      </pre>
+
+<table border="2" width="50%">
+  <caption>Starring</caption>
+  <tbody>
+    <tr>
+      <th>movieid</th>
+      <th>actorid</th>
+    </tr>
+    <tr align="center">
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p></p>
+<pre style="font-family: serif">CREATE TABLE starring (
+    movieid   int4,
+    actorid   int4,
+    PRIMARY KEY (movieid, actorid)
+)
+      </pre>
+
+<h2>The Java beans</h2>
+For each table in our database we need to write one Java Bean that extends <a
+href="api/org/w3c/tools/jdbc/JdbcBeanAdapter.html">org.w3c.tools.jdbc.JdbcBeanAdapter</a>
+or that implements the <a
+href="api/org/w3c/tools/jdbc/JdbcBeanInterface.html">org.w3c.tools.jdbc.JdbcBeanInterface</a>
+interface.
+
+<p></p>
+
+<h3>Movie Bean</h3>
+<pre style="font-family: serif">public class MovieBean extends org.w3c.tools.jdbc.JdbcBeanAdapter {
+    
+    protected int    movieid  = -1;
+    protected String title    = null;
+    protected String director = null;
+    protected int    year     = -1;
+
+    public void setMovieid(int movieid) {
+        int oldvalue = this.movieid;
+        this.movieid = movieid;
+        pcs.firePropertyChange("movieid", oldvalue, movieid);
+    }
+
+    public int getMovieid() {
+        return movieid;
+    }
+
+    public void setTitle(String title) {
+        String oldvalue = this.title;
+        this.title      = title;
+        pcs.firePropertyChange("title", oldvalue, title);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setDirector(String director) {
+        String oldvalue = this.director;
+        this.director   = director;
+        pcs.firePropertyChange("director", oldvalue, director);
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setYear(int year) {
+        int oldvalue = this.year;
+        this.year    = year;
+        pcs.firePropertyChange("year", oldvalue, year);
+    }
+
+    public int getYear() {
+        return year;
+    }
+}
+      </pre>
+
+<h3>Actor Bean</h3>
+<pre style="font-family: serif">public class ActorBean extends org.w3c.tools.jdbc.JdbcBeanAdapter {
+    
+    protected int    actorid   = -1;
+    protected String firstname = null;
+    protected String lastname  = null;
+
+    public void setActorid(int actorid) {
+        int oldvalue = this.actorid;
+        this.actorid = actorid;
+        pcs.firePropertyChange("actorid", oldvalue, actorid);
+    }
+
+    public int getActorid() {
+        return actorid;
+    }
+
+    public void setFirstname(String firstname) {
+        String oldvalue = this.firstname;
+        this.firstname  = firstname;
+        pcs.firePropertyChange("firstname", oldvalue, firstname);
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setLastname(String lastname) {
+        String oldvalue = this.lastname;
+        this.lastname   = lastname;
+        pcs.firePropertyChange("lastname", oldvalue, lastname);
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+}
+      </pre>
+
+<h3>Starring Bean</h3>
+<pre style="font-family: serif">public class StarringBean extends org.w3c.tools.jdbc.JdbcBeanAdapter {
+    
+    protected int movieid = -1;   
+    protected int actorid = -1;
+    
+    // related beans
+    protected MovieBean movieBean = null;
+    protected ActorBean actorBean = null;
+
+    public void setMovieid(int movieid) {
+        int oldvalue = this.movieid;
+        this.movieid = movieid;
+        pcs.firePropertyChange("movieid", oldvalue, movieid);
+    }
+
+    public int getMovieid() {
+        return movieid;
+    }
+
+    public void setActorid(int actorid) {
+        int oldvalue = this.actorid;
+        this.actorid = actorid;
+        pcs.firePropertyChange("actorid", oldvalue, actorid);
+    }
+
+    public int getActorid() {
+        return actorid;
+    }
+
+    public void setMovieBean(MovieBean movieBean) {
+        Object old = this.movieBean;
+        this.movieBean = movieBean;
+        pcs.firePropertyChange("movieBean", old, movieBean);
+    }
+
+    public MovieBean getMovieBean() {
+        return movieBean;
+    }
+
+    public void setActorBean(ActorBean actorBean) {
+        Object old = this.actorBean;
+        this.actorBean = actorBean;
+        pcs.firePropertyChange("actorBean", old, actorBean);
+    }
+
+    public ActorBean getActorBean() {
+        return actorBean;
+    }
+
+}
+      </pre>
+
+<p>As you can see, the Java Beans are strictly equivalent to the table they
+represents. The name of the bean properties <u>MUST</u> be strictly equals to
+the column names in the SQL table. Note that <code>StarringBean</code> has two
+special properties that are one <code>ActorBean</code> and one
+<code>MovieBean</code>, this will be used by the <a
+href="api/org/w3c/tools/jdbc/JdbcBeanSerializer.html">JdbcBeanSerializer</a>
+to perfom SQL request on several tables at a time.</p>
+
+<p>It is necessary to fire a <code>PropertyChangeEvent</code> each time a
+property is modified (the Serializer needs it).</p>
+
+<h2>The Jsp pages</h2>
+And now we just need to write our jsp pages, in this sample application we'll
+just write three pages, one used to insert data, one to search data and one to
+configure our beans.
+
+<h3>config.jsp</h3>
+
+<div class="border">
+<pre style="font-family: serif">&lt;jsp:useBean id="configbean" 
+             class="org.w3c.tools.jdbc.JdbcBeanAdapter" 
+             scope="session" &gt;
+    &lt;jsp:setProperty name="configbean" 
+                     property="jdbcDriver" 
+                     value="org.postgresql.Driver" /&gt;
+    &lt;jsp:setProperty name="configbean" 
+                     property="jdbcURI" 
+                     value="jdbc:postgresql://our.db.host/ourdb" /&gt;
+    &lt;jsp:setProperty name="configbean" 
+                     property="jdbcUser" 
+                     value="joeuser" /&gt;
+    &lt;jsp:setProperty name="configbean" 
+                     property="jdbcPassword" 
+                     value="our password" /&gt;
+&lt;/jsp:useBean&gt;</pre>
+</div>
+
+<p>In <code>config.jsp</code> we specify the common values for our jdbc
+beans:</p>
+
+<p></p>
+<ul>
+  <li>The jdbc driver</li>
+  <li>The database URI</li>
+  <li>The jdbc username</li>
+  <li>The jdbc password</li>
+</ul>
+
+<p>This will be used to initialize our beans.</p>
+
+<h3>addmovie.jsp</h3>
+<img src="addmovie.gif" width="343" height="189" border="0"
+alt="sample interface with a form">
+
+<p>First we initialize moviebean:</p>
+
+<div class="border">
+<pre style="font-family: serif">&lt;%@ page import="org.w3c.tools.jdbc.*" %&gt;
+&lt;%@ include file="config.jsp" %&gt;
+&lt;!-- initialize moviebean and specify the table name "movies" --&gt;
+&lt;jsp:useBean id="moviebean" class="MovieBean" scope="request"&gt;
+    &lt;%
+        JdbcBeanUtil.initializeBean(configbean, moviebean, "movies");
+    %&gt;
+&lt;/jsp:useBean&gt;
+        </pre>
+</div>
+
+<p>As you can see, the serializer is used to insert the values received during
+a POST request into the database.</p>
+
+<div class="border">
+<pre style="font-family: serif">&lt;!-- set properties --&gt;
+&lt;jsp:setProperty name="moviebean" property="*" /&gt;
+
+&lt;!-- html starts here --&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Add Movie&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Add Movie&lt;/h1&gt;
+&lt;%
+    if (request.getMethod().equals("POST")) {
+       // Insert movie in database
+       if (moviebean.getSerializer().insert()) {
+%&gt;
+     Movie added!
+&lt;%
+       } else {
+%&gt;
+     SQL Error.
+&lt;%
+    } else {
+%&gt;
+    &lt;form method="POST"&gt;
+       &lt;table border="0"&gt;
+       &lt;tr&gt;
+       &lt;td&gt;Title : &lt;/td&gt;&lt;td&gt;&lt;input type="text" name="title"&gt;&lt;/td&gt;
+       &lt;/tr&gt;&lt;tr&gt;
+       &lt;td&gt;Director: &lt;/td&gt;&lt;td&gt;&lt;input type="text" name="director"&gt;&lt;/td&gt;
+       &lt;/tr&gt;&lt;tr&gt;
+       &lt;td&gt;Year : &lt;/td&gt;&lt;td&gt;&lt;input type="text" name="year" size="4"&gt;&lt;/td&gt;
+       &lt;/tr&gt;&lt;tr&gt;
+       &lt;td colspan="2"&gt;&lt;input type="submit"&gt;&lt;/td&gt;
+       &lt;/tr&gt;
+       &lt;/table&gt;
+    &lt;/form&gt;
+&lt;%
+    }
+%&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </pre>
+</div>
+
+<p>This is a sample, we should verify that all mandatory properties are
+specified and valid before calling the serializer
+(<code>moviebean.getSerializer().insert()</code>).</p>
+
+<h3>search.jsp</h3>
+<img src="searchmovie.gif" width="350" height="154" border="0"
+alt="form to search for a movie">
+
+<p>In the first part of the jsp page we initialize our three beans.</p>
+
+<div class="border">
+<pre style="font-family: serif">&lt;%@ page import="org.w3c.tools.jdbc.*" %&gt;
+&lt;%@ include file="config.jsp" %&gt;
+
+&lt;!-- initialize moviebean and specify the table name "movies" --&gt;
+&lt;jsp:useBean id="moviebean" class="MovieBean" scope="request"&gt;
+    &lt;%
+        JdbcBeanUtil.initializeBean(configbean, moviebean, "movies");
+    %&gt;
+&lt;/jsp:useBean&gt;
+
+&lt;!-- initialize actorbean and specify the table name "actors" --&gt;
+&lt;jsp:useBean id="actorbean" class="ActorBean" scope="request"&gt;
+    &lt;%
+        JdbcBeanUtil.initializeBean(configbean, actorbean, "actors");
+    %&gt;
+&lt;/jsp:useBean&gt;
+
+&lt;!-- initialize starringbean and specify the table name "starrings" --&gt;
+&lt;jsp:useBean id="starringbean" class="StarringBean" scope="request"&gt;
+    &lt;%
+        JdbcBeanUtil.initializeBean(configbean, starringbean, "starrings");
+        starringBean.setMovieBean(moviebean);
+        starringBean.setActorBean(actorbean);
+    %&gt;
+&lt;/jsp:useBean&gt;</pre>
+</div>
+
+<p>As you can see, <code>starringbean</code> is associated with
+<code>moviebean</code> and <code>actorbean</code>. Then <code>moviebean</code>
+and <code>actorbean</code> will be automatically updated by the
+<code>starringbean</code> serializer during the result iteration.</p>
+
+<div class="border">
+<pre style="font-family: serif">&lt;!-- set properties --&gt;
+&lt;jsp:setProperty name="actorbean" property="*" /&gt;
+
+&lt;!-- html starts here --&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Search movies&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+&lt;%
+    if (request.getMethod().equals("POST")) {
+        JdbcBeanSerializer serializer = starringbean.getSerializer();
+        serializer.select();
+        if (serializer.first()) {
+            do {
+%&gt;
+    &lt;!-- display result --&gt;
+    &lt;jsp:getProperty name="moviebean" property="title"/&gt;,
+    (&lt;jsp:getProperty name="moviebean" property="year"/&gt;)&lt;br&gt;
+    Directed by &lt;jsp:getProperty name="moviebean" property="director"/&gt;
+    &lt;hr&gt;
+&lt;%            
+            } while (serializer.next());
+        }
+    } else {
+%&gt;
+    &lt;h1&gt;Search movies starring:&lt;/h1&gt;
+       &lt;form method="POST"&gt;
+       &lt;table border="0"&gt;
+       &lt;tr&gt;
+       &lt;td&gt;Actor's Firstname : &lt;/td&gt;
+       &lt;td&gt;&lt;input type="text" name="firstname"&gt;&lt;/td&gt;
+       &lt;/tr&gt;&lt;tr&gt;
+       &lt;td&gt;Actor's Lastname: &lt;/td&gt;
+       &lt;td&gt;&lt;input type="text" name="lastname"&gt;&lt;/td&gt;
+       &lt;/tr&gt;&lt;tr&gt;
+       &lt;td colspan="2"&gt;&lt;input type="submit"&gt;&lt;/td&gt;
+       &lt;/tr&gt;
+       &lt;/table&gt;
+    &lt;/form&gt;
+&lt;%
+    }
+%&gt;
+    &lt;hr&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </pre>
+</div>
+<a name="ack"></a>
+
+<h1>Acknowledgments</h1>
+Thanks to Mark G. Woodruff (bugs fixed in findColumn) <a name="questions"></a>
+
+<h1>Questions &amp; Comments</h1>
+This documentation is not complete, it needs to be improved. Send comments and
+questions at <a href="mailto:jigsaw@w3.org">jigsaw@w3.org</a>.</div>
+<!-- body -->
+
+<div class="footer">
+<p></p>
+<hr noshade="noshade" width="100%">
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a> <br>
+$Id: jspdb.html,v 1.1 2010/06/15 12:22:18 smhuang Exp $
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>  ©  1997 <a
+href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>, <a
+href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability,</a> <a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark</a>, <a
+href="/Consortium/Legal/copyright-documents.html">document use </a>and <a
+href="/Consortium/Legal/copyright-software.html">software licensing </a>rules
+apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public"> public</a> and <a
+href="/Consortium/Legal/privacy-statement.html#Members"> Member</a> privacy
+statements.</font></p>
+</div>
+</body>
+</html>

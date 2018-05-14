@@ -1,0 +1,319 @@
+<HTML>
+<HEAD>
+  <TITLE>WWW5 API Workshop - Jigsaw an OO Web server</TITLE>
+</HEAD>
+<BODY>
+<H1>
+  <A HREF="http://www.w3.org/pub/WWW/"><IMG BORDER="0" ALT="W3C" SRC="/icons/WWW/w3c_home.gif" WIDTH="72"
+  HEIGHT="48"></A>
+</H1>
+<H1>
+  Jigsaw, An Object-Oriented Web server
+</H1>
+<P>
+<I>Anselm Baird-Smith &lt;abaird@w3.org&gt;,<BR>
+World Wide Web Consortium,<BR>
+April 1995</I>.
+<H2>
+  <A NAME="introduction">Introduction</A>
+</H2>
+<P>
+Most HTTP servers today, are tuned to serve files. This intimate relationship
+&nbsp;between HTTP servers and their underlying file system has always affected
+their design in significant ways: the mapping from URL to their target resource
+generally relies on the file system hierarchy and the configuration information
+are generally understood as global to the whole server, or in some cases
+<I>per directory</I>, but no server today, allows you to fully configure
+your server on a <I>per-resource</I> basis.
+<P>
+In designing <B>Jigsaw</B>, the new experimental server from the World-Wide-Web
+consortium (written in Java), we took the opportunity of starting from scratch
+to test a new approach: <I>each exported resource is a full object</I>. This
+paper will briefly explain the <I>Resource</I> concept of <B>Jigsaw</B> and
+its configuration process.
+<H2>
+  <A NAME=resources>Resources</A>
+</H2>
+<P>
+<B>Jigsaw</B> is made of two different modules: the <I>server engine</I>
+deals with incoming connections, decoding requests and presenting them to
+the <I>resource module</I> which will perform them and produce either reply
+or error messages. The connection between these modules is described by an
+interface, so that you can replace them if needed. We will focus here on
+our sample implementation of the resource module.
+<H3>
+  What are <I>resources</I>
+</H3>
+<P>
+In the HTTP specification, a resource is described &nbsp;as "An network data
+object or service which can be identified by a URI". The <B>Jigsaw</B> design
+takes these words for truth: each resource is an object inheriting from the
+<CODE>Resource</CODE> class. As such, they have an associated behavior, and
+some internal state:
+<UL>
+  <LI>
+    The <I>behavior</I> of a resource is defined by its Java class (any subclass
+    of <CODE>Resource</CODE>). At this basic level, no particular requirements
+    are made on the behavior of a resource: it can define whatever methods it
+    wants.
+  <LI>
+    The <I>internal state</I> of a resource is a set of <I>attributes</I>. Attributes
+    have an associated description which indicates their name, how their values
+    should be saved to persistent storage, how they are restored from persistent
+    storage, and enough type information to be able to edit them.
+</UL>
+<P>
+An <CODE>HTTPResource</CODE>, is a resource tuned to handle the HTTP protocol:
+it inherits from the <CODE>Resource</CODE> class the ability to be saved
+and restored from persistent storage, along with the ability to describe
+and access its internal state. At this level of the class hierarchy, resources
+are able to handle an HTTP request by generating an appropriate Reply object:
+they can be plugged into the <I>server engine</I>. The set of attributes
+defined by the <CODE>HTTPResource</CODE> class is made of:
+<DL>
+  <DT>
+  <DT>
+    Content language
+  <DD>
+    The language tag of the resource, describing the natural languages in which
+    the content of the resource is emitted
+  <DT>
+    Content length
+  <DD>
+    The length of the content of the resource
+  <DT>
+    Content type
+  <DD>
+    The type of the content of the resource (e.g. <CODE>text/html</CODE>)
+  <DT>
+    Expires
+  <DD>
+    The date at which the resource expires
+  <DT>
+    Icon
+  <DD>
+    Any icon associated with this resource.
+  <DT>
+    Last modified
+  <DD>
+    The date of the last modification of the resource
+  <DT>
+    Quality
+  <DD>
+    A floating point number in the range <CODE>[0,1]</CODE>, indicating the quality
+    of the content of the resource
+  <DT>
+    Title
+  <DD>
+    The title of the resource
+</DL>
+<P>
+None of these attributes are mandatory: resources that generate their content
+dynamically, for example, might not have a predefined
+<CODE>content-length</CODE> or <CODE>content-type</CODE>; A resource whose
+content is negotiated will dynamically generate its <CODE>quality</CODE>
+attribute (typically by using the quality attribute of the selected variant).
+<H3>
+  Jigsaw resource class hierarchy
+</H3>
+<P>
+Although object oriented, we still want <B>Jigsaw</B> to be able to - at
+least - provide the basic functionality of a Web server: serve files in a
+filesystem hierarchy. This is handled by two particular sub-classes of
+<CODE>HTTPResource</CODE>: The <CODE>DirectoryResource</CODE> class handles
+file system directories and the <CODE>FileResource</CODE> handles files.
+<P>
+The <CODE>DirectoryResource</CODE> class inherits from the
+<CODE>ContainerResource</CODE> class the ability to manage a set of children
+resources. This last class specifies how resources are looked-up. The basic
+algorithm is the following: parse the requested URL into a sequence of
+components, then take the first of them, look it up in the server's root
+<CODE>ContainerResource</CODE> instance to obtain a target resource. If they
+are no more components to look up, then the target is the target for the
+URL, otherwise, the target should be itself a <CODE>ContainerResource</CODE>,
+to which we delegate the lookup of the remaining components. This lookup
+process takes a time proportional to the number of components in the requested
+URL, however, one can define its own <CODE>ContainerResource</CODE> subclass,
+and override the lookup algorithm all together.
+<P>
+The <CODE>DirectoryResource</CODE> maintains a <CODE>ResourceStore</CODE>
+to keep track of its children. This resource store manages the pickled version
+of each child, which is unpickled on-demand when looked-up. An optional
+<CODE>ResourceStoreManager</CODE> instance will keep track of accesses to
+loaded resource stores, in order to remove from memory the ones that have
+not been used for a while.
+<P>
+Most children of a directory resource instance will be
+<CODE>FileResource</CODE> instances. The file resource class defines the
+<CODE>head</CODE>, <CODE>get</CODE>&nbsp;and optionally the <CODE>put</CODE>
+methods. For the sake of efficiency, the file resource (optionally) caches
+the <CODE>content-length </CODE>and <CODE>last-modified</CODE> attributes
+(which it gets from the file system), so that <I>if-modified-since</I> request
+can be handled without any disk accesses.
+<P>
+These two classes, defines 90 percent of what a Web server is expected to
+do: serve files of some underlying file system. <B>Jigsaw</B> provides more
+resources: the <CODE>PostableResource</CODE> class is a basic class for handling
+the &nbsp;HTML form's POST method, the <CODE>CGIResource</CODE> class handles
+CGI scripts, etc. Of course, the server maintainer has the ability to defines
+its own resource sub-classes, and install instances of them as children of,
+for example, some <CODE>DirectoryResource</CODE> instance. This results in
+a very flexible server extension API. Again <B>Jigsaw</B> provides some basic
+packages of classes to help you here, the <B>form</B> package, for example,
+provides a high level API to manage HTML forms, allowing you to register
+fields of given types, etc.
+<H3>
+  Resource filters
+</H3>
+<P>
+We have briefly described the basic design of <B>Jigsaw</B> and explained
+how it allows for common server features. However, at this point, one might
+wonder how authentication is handled.
+<P>
+<B>Jigsaw</B> defines another important subclass of <CODE>Resource</CODE>:
+the <CODE>FilteredResource</CODE> class. Both the
+<CODE>ContainerResource</CODE> class and the <CODE>FileResource</CODE> class
+inherit from this new class, which provides the ability to filter requests
+to some particular target, or set of targets. A <CODE>ResourceFilter</CODE>
+is itself a resource (i.e. it has its own class, and it defines its own set
+of attributes). Instances of <CODE>ResourceFilter</CODE> are attached to
+a particular <CODE>FilteredResource</CODE> instance, and filtersall access
+to them: at lookup stage, the filter's <CODE>ingoingFilter</CODE> method
+is called with the request as the only parameter, and on the way back, its
+<CODE>outgoingFilter</CODE> method is (optionally) called with both the request
+and the target generated reply.
+<P>
+Given this, authentication is implemented as a special filter, whose
+<CODE>ingoingFilter</CODE> method will authenticate the given request, using
+whatever algorithm it wants. <B>Jigsaw</B> provides one
+<CODE>GenericAuthFilter</CODE> class that allows to authenticate requests
+by IP addresses, using the Basic authentication scheme or the Digest
+authentication scheme, or a mix of the first with one of the others.
+<P>
+The concept of filters allows for much more than just authentication. Also
+provided are a <CODE>DebugFilter</CODE> (that will print requests and replies
+to some given target) and an <CODE>AccessLimitFilter</CODE> (that will limit
+the number of simultaneous requests to some targets). Logging can be implemented
+as filters too resulting in a powerful mean of getting detailed logging
+information for only a sub-space of the whole information space exported
+by the server. A <CODE>PICSFilter</CODE> has also been integrated into
+<B>Jigsaw</B>, allowing it to serve
+<A HREF="http://www.w3.org/pub/WWW/PICS/">PICS</A> rating labels with documents.
+<H2>
+  <A NAME=configuration>Configuration</A>
+</H2>
+<H3>
+  Mapping files to resources, editing resource attributes
+</H3>
+<P>
+At this point, one might wonder how all these objects are created. The
+configuration process for <B>Jigsaw</B> was probably one of the most challenging
+problem (it is responsible for at least three of the entire re-design of
+<B>Jigsaw</B>). The main problem is the following: server administrators
+are used to configure their whole server through one single centralized
+configuration file, while for <B>Jigsaw</B> <I>each</I> resource might need
+some specific information. There are two central pieces to the actual solution
+we have tested:
+<UL>
+  <LI>
+    Resource meta description: as we have mentioned previously, each attribute
+    of a resource has an associated meta description, from which one should be
+    able to at-least deduce a generic editor for this attribute values.
+  <LI>
+    The lazy resource indexer. To help server administrators, <B>Jigsaw</B> defines
+    a special class that will try to create a resource instance suitable to export
+    a given directory, or given file. This creation process takes place <I>only
+    once</I> in the whole lifetime of the server (resource persists across
+    <B>Jigsaw</B> invocations).
+</UL>
+<P>
+The first piece allows for the editing of resource attributes, which is one
+part of the configuration process. The current version of <B>Jigsaw</B> comes
+with a generic form based editor that allows you to edit any resource on
+the server. Although not very user-friendly, this generic editor is mainly
+a proof of concept. It should be noted here, that this provides for a very
+fine-grain configuration: one is able, for example, to say that the file
+<CODE>/pub/foo.html</CODE>'s content type is <CODE>text/plain</CODE> and
+not <CODE>text/html</CODE>.
+<P>
+The second piece tackles with the creation process of resource
+instances&nbsp;associated with directories or files. One trivial way to cope
+with this would be to ask for the server administrator to declare each files
+of its system, along with the requested information (e.g. the class of the
+resource to be created for the file, the file's attributes, etc.). This,
+of course, is not acceptable. By default (this can be turned off) the
+<CODE>DirectoryResource</CODE> class implements lookup in the following way:
+it first looks in its resource store for the given child, if this fails,
+it then goes to the resource indexer, and asks it for a default resource
+instance to export the file. The sample resource indexer can be configured
+to create particular instances of resource sub-classes based on the file's
+extension, or if the file is a directory, on its name.
+<H3>
+  Global server configuration
+</H3>
+<P>
+<B>Jigsaw</B>'s configuration is not only made of its information space
+configuration: one would like to be able to configure the resource indexer,
+the&nbsp;authentication realms or the global server properties (such as its
+port number, etc.). One nice thing about the <B>Jigsaw</B> design, is that
+if you represent these configuration &nbsp;information as instances of
+sub-classes of the <CODE>Resource</CODE> class, then they will inherit
+persistency, caching and the ability to be edited (which is really what you
+want).
+<P>
+Due to this, the current <B>Jigsaw</B> release provides form-based edition
+of the following pieces:
+<UL>
+  <LI>
+    The resource indexer can be configured through forms: you can declare &nbsp;how
+    file's of a &nbsp;given extension are to be mapped to resources, and provide
+    a default set of attribute values for these newly created resources.
+  <LI>
+    Authentication realms are editable through forms too, along with each of
+    the users they define.
+</UL>
+<P>
+You can, in fact, install and configure <B>Jigsaw</B> without having a text
+editor.
+<H2>
+  <A NAME=conclusion>Conclusion</A>
+</H2>
+<P>
+We have briefly described <B>Jigsaw</B> architecture, and have shown how
+an object based server can implement the basic functionalities expected from
+a Web server, and more. We believe that the most important characteristics
+of our design are:
+<DL>
+  <DT>
+    Persistency of resource instances
+  <DD>
+    Web objects should be think of as persistent objects right from the begining:
+    they have to persist across server invocation (e.g. the server should be
+    able to pickle and unpickle them as needed).
+  <DT>
+    Edition of resource instances
+  <DD>
+    The configuration of <B>Jigsaw </B>&nbsp;is done through the edition of resource
+    attributes. <B>Jigsaw</B> 's design emphasis on this by having each resource
+    embedding a description of itself.
+</DL>
+<P>
+Other design considerations have played an important role in <B>Jigsaw</B>'s
+design, in particular the ability to unpickle resources only on-demand (so
+that the server don't start by unpickling its whole information space), and
+the caching mechanism for managing the number of unpickled resources at a
+given time. To conclude, we would like to emphasis on the fact that given
+this design, <B>Jigsaw</B>'s configuration is no more in one single configuration
+file, but rather spread across the various resources instances.
+<P>
+<B>Jigsaw</B> is still in its alpha stage, and will be available to members
+by May, and to the public by June.
+<P>
+  <HR>
+<P>
+<A HREF="mailto:jigsaw@w3.org"><I>Anselm Baird-Smith</I></A><BR>
+$Id: Position.html,v 1.1 2010/06/15 12:28:16 smhuang Exp $
+<P>
+<H3>
+</H3>
+</BODY></HTML>

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>The RelocateFrame reference manual</title>
+  <link href="jigsaw@w3.org" rel="made">
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">body { margin: 20pt; color: black; background: white; font-family: helvetica;} </style>
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+
+<body>
+<a href="../../.." target="_top_"><img src="../../../Icons//WWW/w3c_home.gif"
+alt="W3C" border="0" width="72" height="48">
+</a><a href="../../" target="_top_"> <img src="../../../Icons//jigsaw"
+alt="Jigsaw" border="0">
+</a>
+<hr noshade size="1">
+
+<a href="resources.html">All resources</a> <a href="frames.html">All frames
+</a>
+<hr noshade size="1">
+
+
+<h1>RelocateFrame</h1>
+
+<p>This frame emits a HTTP redirect.</p>
+<hr noshade size="1">
+
+
+<h2>Inherits</h2>
+
+<p>The <a
+href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/frames/RelocateFrame.html">RelocateFrame</a>
+class inerits from the following classes:</p>
+<ul>
+  <li><a href="org.w3c.tools.resources.Resource.html">Resource</a></li>
+  <li><a
+  href="org.w3c.tools.resources.FramedResource.html">FramedResource</a></li>
+  <li><a
+  href="org.w3c.tools.resources.ResourceFrame.html">ResourceFrame</a></li>
+  <li><a
+  href="org.w3c.tools.resources.ProtocolFrame.html">ProtocolFrame</a></li>
+  <li><a href="org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</a></li>
+</ul>
+
+<p></p>
+<hr noshade size="1">
+
+
+<h2>Attributes description</h2>
+
+<p>The RelocateFrame defines the following attributes:</p>
+<ul>
+  <li><a href="#location">location</a></li>
+  <li><a href="#handle-pathinfo">handle-pathinfo</a></li>
+  <li><a href="#permanent-redirect">permanent-redirect</a></li>
+  <li><a href="#use-usual-response">use-usual-response</a></li>
+  <li><a href="#methods">methods</a></li>
+</ul>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a name="location">location</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>The relocation location.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringAttribute.html">StringAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>null</b>.</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a name="handle-pathinfo">handle-pathinfo</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>Should this frame also handle extra path infos ? Example:
+      <tt>http://yourserver.com/foobar</tt> is relocated at
+      <tt>http://yourserver.com/relocated</tt>. If <tt>handle-pathinfo </tt>is
+      set to <b>true</b> then a request on
+      <tt>http://youserver.com/foobar/index.html</tt> will return a HTTP
+      redirect on <tt>http://yourserver.com/relocated/index.html</tt>.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>true</b>.</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a name="permanent-redirect">permanent-redirect</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>If use-usual-response is not set, you can select the redirect type
+      with this parameter (permanent or temporary).</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>false</b>.</dd>
+</dl>
+
+<p></p>
+<hr noshade size="1">
+
+<code><a name="use-usual-response">use-usual-response</a></code>
+<dl>
+  <dt><i>semantics</i></dt>
+    <dd>If you want your server to use the classical and deprecated "302
+      Found" response.</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</a></dd>
+  <dt><i>default value</i></dt>
+    <dd>This attribute defaults to <b>true</b>.</dd>
+</dl>
+<hr noshade size="1">
+
+
+<p><code><a name="methods">methods</a></code></p>
+
+<p>semantics</p>
+<dl>
+    <dd>Perform the redirection only for the given  HTTP methods (GET, PUT,
+      POST, ...). Default is "perform redirection for all methods".</dd>
+  <dt><i>type</i></dt>
+    <dd>This attribute is an editable <a
+      href="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/StringArrayAttribute.html">StringArrayAttribute</a></dd>
+  <dt><i>default value</i></dt>
+</dl>
+
+<p>This attribute defaults to <b>null</b>.</p>
+
+<p></p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><i><a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+$Id: org.w3c.jigsaw.frames.RelocateFrame.html,v 1.8 1999/10/27 22:30:44 ylafon
+Exp $</i></p>
+</body>
+</html>

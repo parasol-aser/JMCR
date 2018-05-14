@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress/1.2 -->
+  <TITLE>PICSFilter reference guide</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  PICSFilter
+</H1>
+<P>
+The PICSFilter will catch all ingoing requests to some target resource(s)
+and decorate them, on the way back with PICS labels (if possible).
+<P>
+To find labels, the PICSFilter goes to a LabelBureau, which implements a
+label database (see the <A HREF="../Administration/pics.html">PICS administration
+guide</A> for more informations on label bureaus).
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The <A HREF="../api/w3c.jigsaw.pics.PICSFilter.html">PICSFilter</A> class
+inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.ResourceFilter.html">ResourceFilter</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The PICSFilter defines the following attribute:
+<UL>
+  <LI>
+    <A HREF="#bureau">bureau</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="bureau">bureau</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The identifier of the bureau's database to query to get document labels.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a editale
+    <A HREF="../api/w3c.jigsaw.resources.FileAttribute.html">FileAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.pics.PICSFilter.html,v 1.1 1996/04/29 23:36:25 abaird Exp
+$</I>
+<P>
+</BODY></HTML>

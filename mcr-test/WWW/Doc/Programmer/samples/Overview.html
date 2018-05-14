@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" 
+                      "http://www.w3.org/TR/REC-html40/loose.dtd"> 
+<HTML>
+<HEAD>
+    <link rel="stylesheet" type="text/css" href="../../style/doc.css">
+    <TITLE>Sample code</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+    <H1 class="title">
+	Jigsaw<br>
+	<span class="subtitle">Sample code</span>
+      </H1>
+      <hr NOSHADE width="70%" align="left">
+      <a href="../../../Overview.html">Jigsaw Home</a> /
+      <a href="../../Overview.html">Documentation Overview</a>
+    </div>
+    <div class="body">
+This documents has the following sections:
+    <p>
+    <ul>
+      <li><a href="#standard">Standard frames</a>
+      <li><a href="#filters">Filter frames</a>
+      <li><a href="#resources">Standard resources</a>
+    </ul>
+<a name="standard"></a>
+<H1>
+  Standard frames
+</H1>
+<ul>
+      <li><A HREF="ResourceFrame.html">ResourceFrame</A>
+	<div>The generic frame class.</div>
+      <li><A HREF="ProtocolFrame.html">ProtocolFrame</A>
+	<div>The generic protocol frame.</div>
+      <li>
+	<A HREF="HTTPFrame.html">HTTPFrame</A>
+	<div>
+	  The basic frame for all HTTP accessible resources.
+	</div>
+      <li>
+	<A HREF="CgiFrame.html">CgiFrame</A>
+	<div>
+	  A frame that allows you to run CGI/1.1 compliant
+	  scripts. This is, of course, not the best, nor the
+	  recommended way of extending Jigsaw.
+	</div>
+      <li>
+	<A HREF="NegotiatedFrame.html">NegotiatedFrame</A>
+	<div>
+	  A frame that handles negotiation among a given set of
+	  variant resources. 
+	</div>
+      <li>
+	<A HREF="PostableFrame.html">PostableFrame</A>
+	<div>
+	  The basic frame class for handling the HTTP POST method.
+	</div>
+      <li>
+	<A HREF="RedirecterFrame.html">RedirecterFrame</A>
+	<div>
+	  A frame that handle internal redirection.
+	</div>
+      <li>
+	<A HREF="RelocateFrame.html">RelocateFrame</A>
+	<div>
+	  A frame that handle HTTP redirection.
+	</div>
+      <li>
+	<A HREF="VirtualHostFrame.html">VirtualHostFrame</A>
+	<div>
+	  A top level frame that will handle virtual hosts as
+	  described in HTTP/1.1 specification.
+	</div>
+    </ul>
+	<a name="filters"></a>
+	<H1>
+	  Filter frames
+	</H1>
+    <ul>
+      <li>
+	<A HREF="ResourceFilter.html">ResourceFilter</A>
+	<div>
+	  The top filter class.
+	</div>
+      <li>
+	<A HREF="GenericAuthFilter.html">GenericAuthFilter</A>
+	<div>
+	  This filter provides several ways of protecting part of your
+	  information space, using BasicAuthentication. 
+	</div>
+      <li>
+	<A HREF="AccessLimitFilter.html">AccessLimitFilter</A>
+	<div>
+	  Limit the number of simultaneous accesses to a resource.
+	</div>
+      <li>
+	<A HREF="CounterFilter.html">CounterFilter</A>
+	<div>
+	  Count the number of traversals or hits of its target.
+	</div>
+      <li>
+	<A HREF="DebugFilter.html">DebugFilter</A>
+	<div>
+	  Print incoming request and outgoing replies.
+	</div>
+      <li>
+	<A HREF="ErrorFilter.html">ErrorFilter</A>
+	<div>
+	  The error filter allows you to redefine on the fly all error
+	  messages emitted by <B>Jigsaw</B> by using internal
+	  redirections: all errors are then emitted by some other
+	  resource (which can be any of the Jigsaw supported
+	  resources). 
+	</div>
+      <li>
+	<A HREF="GZIPFilter.html">GZIPFilter</A>
+	<div>
+	  This filter will compress "on the fly" the content of
+	  replies using GZIP. 
+	</div>
+      <li>
+	<A HREF="HeaderFilter.html">HeaderFilter</A>
+	<div>
+	  Enforces a specific header value on all replies.
+	</div>
+      <li>
+	<A HREF="LogFilter.html">LogFilter</A>
+	<div>
+	  The log filter allows you to get very detailed logging of
+	  transactions for a particular sub-space of your web server.
+	</div>
+      <li>
+	<A HREF="ProcessFilter.html">ProcessFilter</A>
+	<div>
+	  A filter that will process a reply's content through any
+	  external filter program.
+	</div>
+      <li>
+	<A HREF="PutFilter.html">PutFilter</A>
+	<div>
+	  This filter update the PutListResource.
+	</div>
+      <li>
+	<A HREF="GrepPutFilter.html">GrepPutFilter</A>
+	<div>
+	  This PutFilter allows you to control the content of puted
+	  documents.
+	</div>
+      <li>
+	<A HREF="PutSizeFilter.html">PutSizeFilter</A>
+	<div>
+	  This filter allows you to limit the size of puted documents
+	</div>
+    </ul>
+
+    <a name="resources"></a>
+    <H1>
+      Standard resources
+    </H1>
+    <ul>
+      <li>
+	<A HREF="Resource.html">Resource</A>
+	<div>
+	  The generic resource class in <B>Jigsaw</B>.
+	</div>
+      <li>
+	<A HREF="FramedResource.html">FramedResource</A>
+	<div>
+	  This resource can be associated with frames. This is the
+	  base resource used. 
+	</div>
+      <li>
+	<A HREF="AbstractContainer.html">AbstractContainer</A>
+	<div>
+	  This is the generic resource container class.
+	</div>
+      <li>
+	<A HREF="ContainerResource.html">ContainerResource</A>
+	<div>
+	  This resource can manage and store its children.
+	</div>
+      <li>
+	<A HREF="ExternalContainer.html">ExternalContainer</A>
+	<div>
+	  This container can have a specific and external store.
+	</div>
+      <li>
+	<A HREF="DirectoryResource.html">DirectoryResource</A>
+	<div>
+	  The directory resource.
+	</div>
+      <li>
+	<A HREF="PassDirectory.html">PassDirectory</A>
+	<div>
+	  A directory resource that emulates the CERN-server PASS
+	  rule. (May manage content negotiation)
+	</div>
+      <li>
+	<A HREF="VirtualHostResource.html">VirtualHostResource</A>
+	<div>
+	  Just a base for the <A
+	    HREF="VirtualHostFrame.html">VirtualHostFrame</A>.  It
+	  handles the URI lookup. 
+	</div>
+      <li>
+	<A HREF="FileResource.html">FileResource</A>
+	<div>
+	  The basic file resource.
+	</div>
+    </ul>
+    </div> <!-- body -->
+    <div class="footer">
+<P>
+    <HR WIDTH="100%" noshade>
+    <a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+    <span class="mini">
+      $Id: Overview.html,v 1.1 2010/06/15 12:20:08 smhuang Exp $
+    </span>
+    <p class="policyfooter">
+      <font size=-1>
+	<a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+	&copy; 1999 <a href="http://www.w3.org">W3C</a> 
+	(<a href="http://www.lcs.mit.edu">MIT</a>, 
+	<a href="http://www.inria.fr/">INRIA</a>, 
+	<a href="http://www.keio.ac.jp/">Keio</a> ), 
+	All Rights Reserved. W3C 
+	<a href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer">
+	  liability,
+	</a>
+	<a href="/Consortium/Legal/ipr-notice.html#W3C Trademarks">
+	  trademark
+	</a>, 
+	<a href="/Consortium/Legal/copyright-documents.html">
+	  document use 
+	</a>
+	and
+	<a href="/Consortium/Legal/copyright-software.html">
+	  software licensing
+	</a> rules apply. Your interactions with this site are in
+	accordance with our 
+	<a href="/Consortium/Legal/privacy-statement.html#Public">
+	  public
+	</a> and 
+	<a href="/Consortium/Legal/privacy-statement.html#Members">
+	  Member
+	</a>
+	privacy statements.</font>
+    </div>
+</BODY></HTML>

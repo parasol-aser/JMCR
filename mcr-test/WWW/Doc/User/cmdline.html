@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+   "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../style/doc.css">
+<title>Jigsaw command line options</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+    <div class="title">
+      <h1 class="title">
+	Jigsaw<br>
+	<span class="subtitle">Command Line Options</span>
+      </h1>
+      <hr noshade="noshade" width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> / <a
+	href="../Overview.html">Documentation Overview</a>
+    </div>
+    <div class="body">
+<h3>Usage</h3>
+
+<tt>java org.w3c.jigsaw.Main [<i>options</i>]</tt>
+
+<p>The available options are:</p>
+<ul>
+<li>
+<a href="#help">-help</a>
+</li>
+<li>
+<a href="#root">-root</a>
+</li>
+<li>
+-<a href="#space">space</a>
+</li>
+<li>
+<a href="#config">-config</a>
+</li>
+<li>
+<a href="#host">-host</a> (deprecated)
+</li>
+<li>
+<a href="#port">-port</a>
+</li>
+<li>
+<a href="#p">-p</a>
+</li>
+<li>
+<a href="#trace">-trace</a>
+</li>
+<li>
+<a href="#noupgrade">-noupgrade</a>
+</li>
+<li>
+<a href="#maxstores">-maxstores</a>
+</li>
+</ul>
+<hr noshade size="1">
+
+
+<p><a name="root"></a><b>-root</b> <i>root-directory</i></p>
+
+<p>The root directory is the one in which <b>Jigsaw</b> will run. By default,
+this is the directory in which <b>Jigsaw</b> is being run. That directory
+should (if no other command line options are provided) contain at least:</p>
+<dl>
+<dt>A <tt>config</tt> directory</dt>
+<dd>
+Containing the server's configuration
+</dd>
+<dt>A <tt>logs</tt> directory</dt>
+<dd>
+Where <b>Jigsaw</b> will emit its log files.
+</dd>
+<dt>A <tt>WWW</tt> directory</dt>
+<dd>
+Containing the document to serve.
+</dd>
+</dl>
+<hr noshade size="1">
+
+
+<p><a name="space"></a><b>-space</b> <i>space-directory</i> (deprecated)</p>
+
+<p>The space directory is the directory that contains the actual documents to
+be served by <b>Jigsaw</b>. If this command line option is not provided the
+space directory defaults to the <tt>WWW</tt> directory under the current <a
+href="#root">root directory</a>.</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><a name="config"></a><b>-config</b> <i>config-directory</i></p>
+
+<p>The config directory is the directory containing <b>Jigsaw</b>'s
+configuration. It is possible for two different servers to share the same
+space directory, but only one server can be run within a given
+configuration.</p>
+
+<p>This directory defaults to the <tt>config</tt> directory under the <a
+href="#root">root directory</a>.</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><a name="host"></a><b>-host</b> <i>hostname</i> (deprecated)</p>
+
+<p>Fully qualified host name of the host running <b>Jigsaw</b>. Java1.0.2
+doesn't provide the necessary support to discover that information, and it
+might also be usefull if your machine supports several names (ie DNS
+aliases).</p>
+
+<p>By default the hostname used by the server is the result of that
+expression:</p>
+
+<p><tt>InetAddress.getLocalHost().getHostName();</tt></p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><a name="port"></a><b>-port</b> <i>port (deprecated)</i></p>
+
+<p>The TCP port number <b>Jigsaw</b> should be listening at. By default
+<b>Jigsaw</b> listen on port 8001. On UNIX, you may want to try the supported
+native code to run <b>Jigsaw</b> on port 80 (check the appropriate FAQ
+entry).</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><a name="trace"></a><b>-trace</b></p>
+
+<p>Enables tracing of all requests/replies. This command line option does
+<i>not</i> take precedence over the current value of the
+<tt>w3c.jigsaw.trace</tt> property, as defined in the
+<tt>config/http-server.props</tt> file.</p>
+
+<p>By default this toggle is set of <b>false</b>.</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<p><a name="noupgrade"></a><b>-noupgrade</b></p>
+
+<p>Prevent any automatic upgrade of <b>Jigsaw</b>'s configuration. By default
+<b>Jigsaw</b> will automatically upgrade the configuration if needed, if this
+flag is set, <b>Jigsaw</b> will just emit an error, stating that your
+configuration needs to be upgraded.</p>
+
+<p></p>
+<hr noshade size="1">
+
+
+<br>
+<a name="maxstores"></a><b>-maxstores </b><i>number</i>
+
+<p>Max number of stores in memory.</p>
+
+<p></p>
+<hr noshade size="1" width="100%">
+
+
+<br>
+<a name="help"></a><b>-help</b>
+
+<p>Display online help for all above options.</p>
+</div> <!-- body -->
+<div class="footer">
+<p></p>
+<hr noshade="noshade">
+
+
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+<span class="mini"> $Id: cmdline.html,v 1.1 2010/06/15 12:22:59 smhuang Exp $
+</span>
+
+<p class="policyfooter"><font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> &copy; 1999
+<a href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>,
+<a href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability, </a> <a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html"> document use </a> and <a
+href="/Consortium/Legal/copyright-software.html"> software licensing </a>
+rules apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public"> public </a> and <a
+href="/Consortium/Legal/privacy-statement.html#Members"> Member </a> privacy
+statements.</font></p>
+    </div>
+  </body>
+</html>

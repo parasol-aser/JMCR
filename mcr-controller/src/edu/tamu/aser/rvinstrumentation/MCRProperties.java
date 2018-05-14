@@ -1,5 +1,7 @@
 package edu.tamu.aser.rvinstrumentation;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -48,13 +50,12 @@ public class MCRProperties extends Properties {
         try {
             // Load defaults first
             
-            if (this.getClass().getResourceAsStream(DEFAULT_PROPERTIES)==null) {
+            InputStream inputStream = null;
+            inputStream = this.getClass().getResourceAsStream(DEFAULT_PROPERTIES);
+            if (inputStream == null){
                 System.err.println("No" + DEFAULT_PROPERTIES);
             }
-            
-            String class1 = this.getClass().toString();
-
-            load(this.getClass().getResourceAsStream(DEFAULT_PROPERTIES));
+            load(inputStream);
             // Load user provided properties
             if (propertiesFileLocation != null) {
                 load(this.getClass().getResourceAsStream(propertiesFileLocation));
@@ -74,6 +75,7 @@ public class MCRProperties extends Properties {
 
     @Override
     public String getProperty(String key) {
+        
         // check system properties first
         String prop = System.getProperty(key);
         // then check mcr.properties

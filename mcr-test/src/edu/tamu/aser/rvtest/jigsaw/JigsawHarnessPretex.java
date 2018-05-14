@@ -139,7 +139,8 @@ public class JigsawHarnessPretex
 //            "http://localhost:8001/User/Tutorials/usecvs.html"
     };
 
-    private static String readFully(Reader r) throws IOException {
+    @SuppressWarnings("unused")
+	private static String readFully(Reader r) throws IOException {
         char[] buf = new char[10000];
         StringBuffer str = new StringBuffer();
         while (true) {
@@ -154,7 +155,7 @@ public class JigsawHarnessPretex
 
     public static void readURL(String url) {
         try {
-            //System.out.println("Opening url " + url + " at time " + System.currentTimeMillis());
+            System.out.println("Opening url " + url + " at time " + System.currentTimeMillis());
             URL u = new URL(url);
             URLConnection c = u.openConnection();
             c.connect();
@@ -176,6 +177,7 @@ public class JigsawHarnessPretex
 
     static void waitForPort(int port) {
         while (true) {
+        	for(int i=0; i<10; i++){
             try {
                 Socket s = new Socket("localhost", port);
                 return;
@@ -185,22 +187,23 @@ public class JigsawHarnessPretex
                 } catch (InterruptedException e) {
                 }
             }
+        	}
+        	break;
         }
     }
 
     static void runLoader(String[] args) {
         waitForPort(8001);
-        Thread[] threads = new Thread[URLs.length];
+             
+        int iter=1;
+        int n=2;   //number of threads
         
-        int m=1,n=2;
-        if(args.length==2)
-        {
-        	n=Integer.valueOf(args[0]);
-        	m=Integer.valueOf(args[1]);
-        }
+        Thread[] threads = new Thread[n];
+
         long t1 = System.currentTimeMillis();
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < iter; i++) {
             System.out.println("Iteration: " + i);
+            
             for (int j = 0; j < n; j++) {
             	//for (int j = 0; j < URLs.length; j++) {
                 threads[j] = (new MyThread(URLs[j]));
@@ -213,8 +216,11 @@ public class JigsawHarnessPretex
                 }
                 //readURL(URLs[j]);
             }
+            
+            
         }
-        for (int i = 0; i < 2; i++) {
+        
+        for (int i = 0; i < n; i++) {
         	//for (int i = 0; i < URLs.length; i++) {
             try {
                 threads[i].join();
@@ -223,9 +229,11 @@ public class JigsawHarnessPretex
                 System.out.println("Exception while waiting for thread " + i);
             }
         }
+              
         long t2 = System.currentTimeMillis();
         System.out.println("Took " + (t2 - t1) + "ms");
-        //System.exit(0);
+        
+//        System.exit(0);
     }
 
     public static void main(String[] args){

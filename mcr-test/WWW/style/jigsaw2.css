@@ -1,0 +1,187 @@
+/**
+ * Jigsaw css for homepage
+ * Author: Benoit Mahe (bmahe@w3.org)
+ */
+
+/********** BODY ***********/
+
+body           { background-color: white;
+                 color: black;
+                 background-image: url(background.gif);
+                 background-repeat: repeat-y;
+                 font-family: Helvetica;
+                 margin-left: 0;
+                 margin-right: 20pt; }
+
+/********** H1 H2 H3 H4 ***********/
+
+h1.title       { font-family: Helvetica;
+                 margin-left: 50pt;
+                 margin-bottom: 20pt;
+                 font-size: 24pt;
+                 font-weight: bold;
+                 color: #666699; }
+
+h1             { font-family: geneva, arial, monospace;
+                 font-size: large; }
+
+h2             { font-family: Helvetica;
+                 font-size: 16pt;
+                 font-weight: bold;
+                 color: #888888;
+                 margin-top: 10pt; }
+
+h3             { font-family: Helvetica;
+                 font-size: medium;
+                 margin-top: 20pt; }
+
+h4             { font-family: Helvetica; }
+
+/********** DIV ***********/
+
+DIV.box        { font-family: Helvetica;
+                 color: #477979;
+                 margin: 2.0%; 
+                 margin-top: 1.0%;
+                 padding: 1.0%; 
+                 border: thin solid silver; 
+                 width: 100.0%;
+                 background-color: #F0F0E0; }
+
+DIV.border     { font-family: Helvetica;
+                 border: thin solid; 
+                 padding: 1.0%; 
+                 margin: 2.0% }
+
+DIV.body       { margin-left: 125px;
+                 margin-right: 20pt;
+                 margin-top: 2%;
+                 margin-bottom: 2%;
+                 text-align: justify;
+                 padding: 2%; }
+
+DIV.icons-w3c    { position: absolute;
+                   left: 23px; }
+
+DIV.icons-jigsaw { position: absolute;
+                   left: 155px; }
+
+DIV.icons-arch   { float:right; 
+                   position: absolute;
+                   margin-top: 0px; }
+
+DIV.title        { margin-top: 100px;
+                   margin-left: 140px; }
+
+DIV.footer       { position: absolute;
+                   left: 140px; }
+
+DIV.left         { position: absolute;
+                   left: 10px;
+                   padding : 0; 
+                   padding-top: 20pt; }
+
+/********** misc ***********/
+
+ul             { font-family: Helvetica; }
+
+adress         { font-family: Helvetica;
+                 font-size: 8pt; }
+
+td             { font-family: Helvetica; }
+
+DL             { font-family: Helvetica; }
+
+DD             { font-family: Helvetica; }
+
+DT             { font-family: Helvetica; }
+
+PRE            { font-family: Monospace; }
+
+
+/********** A ***********/
+
+a              { font-family: Helvetica; }
+
+a.local:link   { font-family: Helvetica;
+                 font-size: 10pt;
+                 text-decoration: none;
+                 color: white; }
+
+a.local:visited { font-family: Helvetica;
+                  font-size: 10pt;
+                  text-decoration: none;
+                  color: white; }
+
+a.local:active { font-family: Helvetica;
+                 font-size: 10pt;                 
+                 text-decoration: none;
+                 color: white; }
+
+/********** SPANS ***********/
+
+.subtitle      { margin-top: 0pt;
+                 font-size: 12pt; }
+
+.mini          { font-family: Helvetica;
+                 font-size: 8pt;
+                 color: #888888; }
+
+.sample        { white-space: pre;
+                 font-family: Helvetica;
+                 background-color:  #F0F0E0;
+                 color: rgb(0, 0, 0);
+                 padding: 1%;
+                 width: 100%;
+                 border-style: solid ;
+                 border-width: 1px; }
+
+.linktitle     { color: #666699;
+                 font-size: 10pt;
+                 font-family: helvetica;
+                 font-weight: bold; }
+
+.redtitle      { margin-top: 20pt;
+                 text-decoration: underline;
+                 color: red; 
+                 font-size: large; }
+
+.press-citation { font-family: Times;
+                  font-style: italic;
+                  margin-top: 2pt;
+                  text-align: justify; }
+
+.indent         { margin-left: 20pt;
+                  font-family: Helvetica; }
+
+.jigsaw         { font-weight: bold;
+                  font-family: Helvetica; }
+
+.dt             { font-weight: bold;
+                  margin-bottom: 5pt;
+                  margin-top: 5pt; }
+
+
+/******** P *********/
+
+P.space-line   { clear: both; 
+                 font-size: 0.1em; 
+                 margin: 0; 
+                 padding: 0; 
+                 text-align: left;
+                 width: auto; }
+p              { font-family: Helvetica;
+                 text-align: justify; }
+
+p.indent       { text-indent: 20pt; }
+
+p.policyfooter { font-family: Helvetica; }
+
+p.link         { font-family: Times;
+                 text-align: left;
+                 line-height: 15pt; }
+
+p.pintro       { text-indent: 20pt;
+                 margin-left: 30pt;
+                 margin-right: 30pt;
+                 text-align: justify; }

@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+  <TITLE>The DirectoryResource administration guide.</TITLE>
+</HEAD>
+<BODY BGCOLOR="white">
+<P>
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_"><IMG SRC="/icons/WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+<IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0"> </A> 
+  <HR>
+<A HREF="resources.html">All Resources</A> <A HREF="filters.html">All filters
+</A> 
+  <HR>
+<H1>
+  DirectoryResource
+</H1>
+<P>
+The directory resource is the basic resource to export file-system directories.
+It keeps track of all its children resources, create them dynamically if
+needed, and is also able to create negotiated resources on the fly (as needed).
+<P>
+This class should be used as the basic class to export file system directories.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.StoreContainer.html">StoreContainer</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The DirectoryResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#directory">directory</A>
+  <LI>
+    <A HREF="#icondir">icondir</A>
+  <LI>
+    <A HREF="#dirstamp">dirstamp</A>
+  <LI>
+    <A HREF="#negotiable">negotiable</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="directory">directory</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The physical directory that this resource exports.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a computed and not saved
+    <A HREF="../api/w3c.jigsaw.resources.FileAttribute.html">FileAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute value is computed by concatenating (in the appropriate file-system
+    dependent way), the parent's resource directory value, with this directory
+    identifier.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="icondir">icondir</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the directory that handles this directory's icons. Each
+    <A HREF="w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> has an
+    optional <A HREF="w3c.jigsaw.resources.HTTPResource.html#icon">icon</A>
+    attribute. When a directory resource needs to produce a listing it will
+    dereference each icons relative to its icon directory.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>,
+    giving the path of the URL to the icon directory.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>/icons</B>.
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="directory">dirstamp</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The date at which the directory resource last checked its consistency against
+    the underlying physical directory.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a non-editable, computed
+    <A HREF="../api/w3c.jigsaw.resources.DateAttribute.html">DateAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>-1</B> (meaning it is undefined).
+</DL>
+<P>
+  <HR>
+<CODE><A NAME="negotiable">negotiable</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the directory resource automatically create
+    <A HREF="w3c.jigsaw.resources.NegotiatedResource.html">NegotiatedResource</A>
+    ? When this flag is turned to <B>true</B>, the directory resource will
+    automatically create negotiable resources on top of normal resources: each
+    time a new resource is added to the directory, the resource looks up for
+    a resource having the new child name, but possibly different extensions.
+    If this succeeds, either the found resource is already a negotiated resource,
+    in which case the new child is added as one of its variant resource; otherwise
+    (the negotiated resource doesn't exist), the directory resource creates it
+    with only one variant (the new child resource).
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="../api/w3c.jigsaw.resources.BooleanAttribute.html">BooleanAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.resources.DirectoryResource.html,v 1.2 1996/04/11 20:36:40
+abaird Exp $</I>
+<P>
+</BODY></HTML>

@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+                      "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>All Frames</title>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css">
+  <meta http-equiv="Content-Type" content="text/html">
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+    <h1 class="title">Jigsaw<br>
+      <span class="subtitle">Frames Index</span>
+    </h1>
+      <hr NOSHADE width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> / 
+      <a href="../Overview.html">Documentation Overview</a> / 
+      <a href="resources.html">Resources</a> - 
+      <a href="indexers.html">Indexers</a> - 
+      <a href="client-side.html">Client Side Components</a>
+    </div>
+    <div class="body">
+<p>This index briefly describes what frames are currently available in
+the
+<b>Jigsaw</b> release.
+<p>To be more readable, the list of available frames has been split into
+six groups:
+<br>&nbsp;
+<dl><dt>
+<a href="#Standard frames">Standard frames</a></dt>
+
+<dd>
+Frames that you expect server to support.</dd>
+
+<dt>
+<a href="#Extension frames">Extension frames</a></dt>
+
+<dd>
+Frames that implements extra features.</dd>
+
+<dt>
+<a href="#Filter frames">Filter frames</a></dt>
+
+<dd>
+Frames that allow you to filter the requests and replies (authentication,
+log).</dd>
+
+<dt>
+<a href="#Proxy frames">Proxy frames</a></dt>
+
+<dd>
+Frames relative to the proxy features of <b>Jigsaw</b>.</dd>
+
+<dt>
+<a href="#Admin frames">Admin frames</a></dt>
+
+<dd>
+Frames that allow you to administer <b>Jigsaw</b>.</dd>
+
+<dt>
+<a href="#Specific frames">Specific frames</a></dt>
+
+<dd>
+Frames that can be attached only to specific resources.</dd>
+
+<dt>
+<a href="#metadata">Metadata frames</a></dt>
+    <dd>Frames used to store metadata.</dd>
+</dl>
+<hr width="100%">
+
+
+<h1><a name="Standard frames"></a>Standard frames</h1>
+<dl>
+  <dt><a
+  href="org.w3c.jigsaw.frames.HTTPFrame.html">org.w3c.jigsaw.frames.HTTPFrame</a></dt>
+    <dd>The basic frame for all HTTP accessible resources.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.NegotiatedFrame.html">org.w3c.jigsaw.frames.NegotiatedFrame</a></dt>
+    <dd>A frame that will handle negotiation among a given set of variant
+      resources.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.PostableFrame.html">org.w3c.jigsaw.frames.PostableFrame</a></dt>
+    <dd>The basic frame class for handling the HTTP POST method.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.RedirecterFrame.html">org.w3c.jigsaw.frames.RedirecterFrame</a></dt>
+    <dd>A frame that handles internal redirection.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.RelocateFrame.html">org.w3c.jigsaw.frames.RelocateFrame</a></dt>
+    <dd>A frame that handles HTTP redirection.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.SeeOtherFrame.html">org.w3c.jigsaw.frames.SeeOtherFrame</a></dt>
+    <dd>generates a 303 See Other reply on a POST</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.VirtualHostFrame.html">org.w3c.jigsaw.frames.VirtualHostFrame</a></dt>
+    <dd>A top level frame that will handle virtual hosts without consuming IP
+      addresses !</dd>
+</dl>
+<hr width="100%">
+
+
+<h1><a name="Extension frames"></a>Extension frames</h1>
+<dl>
+  <dt><a
+  href="org.w3c.jigsaw.frames.CgiFrame.html">org.w3c.jigsaw.frames.CgiFrame</a></dt>
+    <dd>A frame that allows you to run CGI/1.1 compliant scripts. This is of
+      course not the recommended way of extending Jigsaw.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.servlet.ServletDirectoryFrame.html">org.w3c.jigsaw.servlet.ServletDirectoryFrame</a></dt>
+    <dd>A context and container for servlets. All servlets should be made
+      children of a <a
+      href="org.w3c.jigsaw.resources.DirectoryResource.html">DirectoryResource</a>
+      attached to a ServletDirectoryFrame instance.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.servlet.ServletWrapperFrame.html">org.w3c.jigsaw.servlet.ServletWrapperFrame</a></dt>
+    <dd>The specific frame of <a
+      href="org.w3c.jigsaw.servlet.ServletWrapper.html">ServletWrapper</a>.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.ssi.SSIFrame.html">org.w3c.jigsaw.ssi.SSIFrame</a></dt>
+    <dd>A frame that will serve file and run any server side include
+    command.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.pagecompile.PageCompileFrame.html">org.w3c.jigsaw.pagecompile.PageCompileFrame</a></dt>
+    <dd>PageCompileFrame allows you to generate HTML pages from HTML/Java
+      pages.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.cvs.CvsFileFrame.html">org.w3c.jigsaw.cvs.CvsFileFrame</a></dt>
+    <dd>A frames that gives you CVS access to the server's files through CVS.
+      (with auto commit when modified)</dd>
+  <dt><a
+  href="org.w3c.jigsaw.cvs.CvsFrame.html">org.w3c.jigsaw.cvs.CvsFrame</a></dt>
+    <dd>A frame that gives you CVS access to the server's files through
+    CVS.</dd>
+    <!--
+  <dt><a
+  href="org.w3c.jigedit.filters.PutListFrame.html">org.w3c.jigsaw.filters.PutListFrame</a></dt>
+    <dd>The specific frame of PutListResource. Manages a list of the last put
+      documents and allows users to publish them.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.pics.LabelBureauFrame.html">org.w3c.jigsaw.pics.LabelBureauFrame</a></dt>
+    <dd>The HTTP interface of the <a
+      href="org.w3c.jigsaw.pics.LabelBureauResource.html">LabelBureauResource</a>.</dd>
+    -->
+  <dt><a
+  href="org.w3c.jigsaw.zip.ZipFrame.html">org.w3c.jigsaw.zip.ZipFrame</a></dt>
+    <dd>Allows you to browse a zip file.</dd>
+</dl>
+<hr width="100%">
+
+
+<h1><a name="Filter frames"></a>Filter frames</h1>
+<dl>
+  <dt><a
+  href="org.w3c.jigsaw.auth.GenericAuthFilter.html">org.w3c.jigsaw.auth.GenericAuthFilter</a></dt>
+    <dd>This filter provides several ways of protecting part of your
+      information space.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.AccessLimitFilter.html">org.w3c.jigsaw.filters.AccessLimitFilter</a></dt>
+    <dd>Limits the number of simultaneous accesses to a resource.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.CacheFilter.html">org.w3c.jigsaw.filters.CacheFilter</a></dt>
+    <dd>A cache filter.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.CookieFilter.html">org.w3c.jigsaw.filters.CookieFilter</a></dt>
+    <dd>A demo for how to use cookies from Jigsaw.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.CounterFilter.html">org.w3c.jigsaw.filters.CounterFilter</a></dt>
+    <dd>Counts the number of traversals or hits of its target.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.DebugFilter.html">org.w3c.jigsaw.filters.DebugFilter</a></dt>
+    <dd>Prints incoming request and outgoing replies.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.ErrorFilter.html">org.w3c.jigsaw.filters.ErrorFilter</a></dt>
+    <dd>The error filter allows you to redefine on the fly all error messages
+      emitted by <b>Jigsaw</b> by using internal redirections: all errors are
+      then emitted by some other resource (which can be any of the Jigsaw
+      supported resources).</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.GZIPFilter.html">org.w3c.jigsaw.filters.GZIPFilter</a></dt>
+    <dd>This filter will compress "on the fly" the content of replies using
+      GZIP.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.HeaderFilter.html">org.w3c.jigsaw.filters.HeaderFilter</a></dt>
+    <dd>Enforces a specific header value on all replies.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.LogFilter.html">org.w3c.jigsaw.filters.LogFilter</a></dt>
+    <dd>The log filter allows you to get very detailed logging of transactions
+      for a particular sub-space of your web server.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.ProcessFilter.html">org.w3c.jigsaw.filters.ProcessFilter</a></dt>
+    <dd>A filter that will process a reply's content through any external
+      filter program.</dd>
+    <!--
+  <dt><a
+  href="org.w3c.jigedit.filters.PutFilter.html">org.w3c.jigedit.filters.PutFilter</a></dt>
+    <dd>This filter update the PutListResource.</dd>
+    -->
+  <dt><a
+  href="org.w3c.jigedit.filters.GrepPutFilter.html">org.w3c.jigedit.filters.GrepPutFilter</a></dt>
+    <dd>This PutFilter allows you to control the content of puted
+    documents.</dd>
+  <dt><a
+  href="org.w3c.jigedit.filters.TidyPutFilter.html">org.w3c.jigedit.filters.TidyPutFilter</a></dt>
+    <dd>This Filter allows you to control the validity of HTML 
+	documents.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.PutSizeFilter.html">org.w3c.jigsaw.filters.PutSizeFilter</a></dt>
+    <dd>This filter allows you to limit the size of puted documents.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.SimpleCacheFilter.html">org.w3c.jigsaw.filters.SimpleCacheFilter</a></dt>
+    <dd>A simple cache filter.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.HourLimiterFilter.html">org.w3c.jigsaw.filters.HourLimiterFilter</a></dt>
+    <dd>Allows to access some resources in a specific period of time.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.URISizeLimiterFilter.html">org.w3c.jigsaw.filters.URISizeLimiterFilter</a></dt>
+    <dd>Limits the size of URI.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.RegexRedirectFilter.html">org.w3c.jigsaw.filters.RegexRedirectFilter</a></dt>
+    <dd>Rewrites URI.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.UseProxyFilter.html">org.w3c.jigsaw.filters.UseProxyFilter</a></dt>
+    <dd>Restricts access to a proxy, to acces the protected resource, you must
+      go to a specific proxy.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.filters.TEFilter.html">org.w3c.jigsaw.filters.TEFilter</a></dt>
+    <dd>This filter will compress the content of replies using GZIP.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.acl.AclFilter.html">org.w3c.jigsaw.acl.AclFilter</a></dt>
+    <dd>An authentication filter, must be associated to a Metadata frames
+      implementing the Acl interface.</dd>
+</dl>
+<hr width="100%">
+
+
+<h1><a name="Proxy frames"></a>Proxy frames</h1>
+<a
+href="org.w3c.jigsaw.proxy.ProxyFrame.html">org.w3c.jigsaw.proxy.ProxyFrame</a>
+<br>
+A frame that will turn Jigsaw into a fully HTTP/1.1 compliant proxy. <br>
+<a
+href="org.w3c.jigsaw.proxy.MirrorFrame.html">org.w3c.jigsaw.proxy.MirrorFrame</a>
+<br>
+A frame to mirror other web sites.
+<hr width="100%">
+
+
+<h1><a name="Admin frames"></a>Admin frames</h1>
+<dl>
+  <dt><a
+  href="org.w3c.jigsaw.status.GcStatFrame.html">org.w3c.jigsaw.status.GcStatFrame</a></dt>
+    <dd>This frame implements a GC counter.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.status.StatisticsFrame.html">org.w3c.jigsaw.status.StatisticsFrame</a></dt>
+    <dd>A frame that displays internal server statistics (such as number of
+      hits, etc).</dd>
+  <dt><a
+  href="org.w3c.jigsaw.status.ThreadStatFrame.html">org.w3c.jigsaw.status.ThreadStatFrame</a></dt>
+    <dd>A frame that will display the status of the threads running in the
+      server process, and that will refresh it at a given interval of
+    time.</dd>
+</dl>
+<hr width="100%">
+
+
+<h1><a name="Specific frames"></a>Specific frames</h1>
+<dl>
+  <dt><a
+  href="org.w3c.jigsaw.resources.DirectoryListerFrame.html">org.w3c.jigsaw.resources.DirectoryListerFrame</a></dt>
+    <dd>Specific frame of DirectoryLister.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.resources.PasswordEditorFrame.html">org.w3c.jigsaw.resources.PasswordEditorFrame</a></dt>
+    <dd>Specific frame of PasswordEditor.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.cvs.ToolsListerFrame.html">org.w3c.jigsaw.cvs.ToolsListerFrame</a></dt>
+    <dd>Specific frame of ToolsLister.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.map.MapFrame.html">org.w3c.jigsaw.map.MapFrame</a></dt>
+    <dd>Specific frame of MapResource.</dd>
+</dl>
+
+<p><br>
+</p>
+<hr width="100%">
+
+
+<h1><a name="metadata"></a>Metadata frames</h1>
+<dl>
+  <dt><a
+  href="org.w3c.jigsaw.acl.AclRealm.html">org.w3c.jigsaw.acl.AclRealm</a></dt>
+    <dd>Used to store the old realms in an ACL compliant way.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.JpegComFrame.html">org.w3c.jigsaw.frames.JpegComFrame</a></dt>
+	<dd>Used to extract comments from Jpeg images.</dd>
+  <dt><a
+  href="org.w3c.jigsaw.frames.JpegXMPFrame.html">org.w3c.jigsaw.frames.JpegXMPFrame</a></dt>
+	<dd>Used to extract XMP from Jpeg images.</dd>
+      </dl>
+    </div> <!-- body -->
+    <div class="footer">
+<hr noshade><a href="mailto:jigsaw@w3.org">Jigsaw Team</a>
+<br><span class="mini">$Id: frames.html,v 1.1 2010/06/15 12:21:12 smhuang Exp $</span>
+
+<p class="policyfooter"><font size=-1><a href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a>
+&copy; 2000 <a href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>,
+<a href="http://www.inria.fr/">INRIA</a>, <a href="http://www.keio.ac.jp/">Keio</a>
+), All Rights Reserved. W3C <a href="/Consortium/Legal/ipr-notice.html#Legal_Disclaimer">liability,
+</a><a href="/Consortium/Legal/ipr-notice.html#W3C_Trademarks">trademark
+</a>, <a href="/Consortium/Legal/copyright-documents.html">document use
+</a>and <a href="/Consortium/Legal/copyright-software.html">software licensing
+</a>rules apply. Your interactions with this site are in accordance with
+our <a href="/Consortium/Legal/privacy-statement.html#Public">public </a>and
+<a href="/Consortium/Legal/privacy-statement.html#Members">Member </a>privacy
+statements.</font>
+    </div>
+</body>
+</html>

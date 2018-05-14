@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>The NegotiatedResource reference guide.</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  NegotiatedResource
+</H1>
+<P>
+A resource that implements HTTP negotiation among a set of variant resources.
+This resource implements the HTTP/1.0 negotiation algorithm, which is known
+to be subject to some bugs.
+<P>
+It maintains the list of resources (by their names, see the
+<A HREF="#variants">variants</A> attribute) among which to negotiate. It
+uses only the standard
+<A HREF="w3c.jigsaw.resources.HTTPResource.html">HTTPResource</A> attributes
+to perform the actual negotiation, which can be done based on the variants
+types, their natural languages, their encodings, or their character sets.
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The NegotiatedResource class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The NegotiatedResource defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#variants">variants</A>
+</UL>
+<P>
+  <HR>
+<CODE><A NAME="variants">variants</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The set of variants to negotiate among. Each variant is given by its name,
+    as registered in its directory resource. The variants should provide as much
+    information as possible (e.g. their quality, their content encodings, content
+    language, etc.)
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    &nbsp;<A HREF="../api/w3c.jigsaw.resources.StringArrayAttribute.html">StringArrayAttribute</A>.
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute is undefined by default.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: w3c.jigsaw.resources.NegotiatedResource.html,v 1.1 1996/04/11 22:03:47
+abaird Exp $</I>
+</BODY></HTML>

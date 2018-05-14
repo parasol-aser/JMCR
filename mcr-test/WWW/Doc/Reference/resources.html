@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+   "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../style/doc.css">
+<title>All Resources</title>
+<!-- Changed by: Benoit Mahe, 25-Jun-1997 -->
+</head>
+<body bgcolor="#FFFFFF">
+    <div class="icons-w3c">
+      <a href="../../../">
+	<img src="/Icons/w3c_home" 
+	  border="0" 
+	  alt="W3C logo"
+	  height="48" 
+	  width="72">
+      </a>
+    </div>
+    <div class="icons-jigsaw">
+      <a href="../../">
+	<img src="/Icons/jigsaw" 
+	  border="0"
+	  alt="Jigsaw"
+	  height="49"
+	  width="212">
+      </a>
+    </div>
+
+    <div class="title">
+      <h1 class="title">Jigsaw<br>
+	<span class="subtitle">Resources Index</span>
+      </h1>
+      <hr noshade="noshade" width="70%" align="left">
+      <a href="../../Overview.html">Jigsaw Home</a> / 
+      <a href="../Overview.html">Documentation Overview</a> / 
+      <a href="frames.html">Frames</a> - 
+      <A HREF="indexers.html">Indexers</A> -
+      <a href="client-side.html">Client Side Components</a>
+   </div>
+    <div class="body">
+<p>
+This index briefly describes what resources are currently available in the
+<b>Jigsaw</b> release. See the <a href="../User/indexers.html">indexer
+documentation</a> to understand how these resources are created by
+default.
+<p>
+To be more readable, the list of available resources has been split into four
+groups:
+<p>
+<a href="#Standard resources">Standard resources</a>
+<dl>
+<dd>
+Resources that you expect any server to support.
+</dd>
+</dl>
+
+<br>
+<a href="#Extension resources">Extension resources</a>
+<dl>
+<dd>
+Basic resources, or resources that implement extra protocols.
+</dd>
+</dl>
+
+<br>
+<a href="#Admin resources">Admin resources</a>
+<dl>
+<dd>
+Resources that allow you to administer Jigsaw.
+</dd>
+</dl>
+
+<br>
+<a href="#Property resources">Property resources</a>
+<dl>
+<dd>
+Resources that wrap a sub-set of Jigsaw properties in order to make them
+editable.
+</dd>
+</dl>
+
+<br>
+
+<hr width="100%">
+
+
+<h1><a name="Standard resources"></a>Standard resources</h1>
+<dl>
+<dt><a
+href="org.w3c.tools.resources.FramedResource.html">org.w3c.tools.resources.FramedResource</a></dt>
+<dd>
+This is the most basic resource, only used to attach frame.
+</dd>
+<dt><a
+href="org.w3c.tools.resources.FileResource.html">org.w3c.tools.resources.FileResource</a></dt>
+<dd>
+The FileResource handles files within a DirectoryResource.
+</dd>
+<dt><a
+href="org.w3c.tools.resources.ContainerResource.html">org.w3c.tools.resources.ContainerResource</a></dt>
+<dd>
+The ContainerResource is the most basic container of resources.
+</dd>
+<dt><a
+href="org.w3c.tools.resources.DirectoryResource.html">org.w3c.tools.resources.DirectoryResource</a></dt>
+<dd>
+The DirectoryResource handles file system directories.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.DirectoryResource.html">org.w3c.jigsaw.resources.DirectoryResource</a></dt>
+<dd>
+This DirectoryResource provides content negotiation
+</dd>
+<dt><a
+href="org.w3c.tools.resources.PassDirectory.html">org.w3c.tools.resources.PassDirectory</a></dt>
+<dd>
+A directory resource that emulates the CERN-server PASS rule.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.PassDirectory.html">org.w3c.jigsaw.resources.PassDirectory</a></dt>
+<dd>
+This PassDirectory provides content negotiation.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.HttpDirectoryResource.html">org.w3c.jigsaw.resources.HttpDirectoryResource</a></dt>
+<dd>
+This is a DirectoryResource which has a <a
+href="org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</a> by default.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.HttpPassDirectory.html">org.w3c.jigsaw.resources.HttpPassDirectory</a></dt>
+<dd>
+This is a PassDirectory which has a <a
+href="org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</a> by default.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.HttpFileResource.html">org.w3c.jigsaw.resources.HttpFileResource</a></dt>
+<dd>
+This is a FileResource which has a <a
+href="org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</a> by default.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.VirtualHostResource.html">org.w3c.jigsaw.resources.VirtualHostResource</a></dt>
+<dd>
+This is just a base for <a
+href="org.w3c.jigsaw.frames.VirtualHostFrame.html">VirtualHostFrame</a>.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.map.MapResource.html">org.w3c.jigsaw.map.MapResource</a></dt>
+<dd>
+A resource that handles both CERN-server style and NCSA style image maps.
+</dd>
+</dl>
+
+<hr width="100%">
+
+<h1><a name="Extension resources"></a>Extension resources</h1>
+<dl>
+<dt><a
+href="org.w3c.jigsaw.resources.DirectoryLister.html">org.w3c.jigsaw.resources.DirectoryLister</a> </dt>
+<dd>
+A resource which displays the directory listing on its parent
+(DirectoryResource).
+</dd>
+<dt><a
+href="org.w3c.jigsaw.servlet.ServletWrapper.html">org.w3c.jigsaw.servlet.ServletWrapper</a></dt>
+<dd>
+Implementation of Sun's servlet API, for local classes
+</dd>
+<dt><a
+href="org.w3c.jigsaw.servlet.RemoteServletWrapper.html">org.w3c.jigsaw.servlet.RemoteServletWrapper</a></dt>
+<dd>
+A servlet wrapper for remote servlet
+</dd>
+<!--  TODO  move to a jigedit doc
+<dt><a
+href="org.w3c.jigedit.filters.PutListResource.html">org.w3c.jigsaw.filters.PutListResource</a></dt>
+<dd>
+This is the PutListFrame associated resource.
+</dd>
+-->
+<dt><a
+href="org.w3c.jigsaw.cvs.AutoLookupDirectory.html">org.w3c.jigsaw.cvs.AutoLookupDirectory</a></dt>
+<dd>
+A resource that can fetch or update files directly from CVS.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.cvs.ToolsLister.html">org.w3c.jigsaw.cvs.ToolsLister</a> </dt>
+<dd>
+A resource that allows web site users to delete some files under a
+DirectoryResource.
+</dd>
+<!--
+<dt><a
+href="org.w3c.jigsaw.pics.LabelBureauResource.html">org.w3c.jigsaw.pics.LabelBureauResource </a></dt>
+<dd>
+A Jigsaw resource to query a Label bureau.
+</dd>
+-->
+<dt><a
+href="org.w3c.jigsaw.zip.ZipDirectoryResource.html">org.w3c.jigsaw.zip.ZipDirectoryResource </a></dt>
+<dd>
+Allows you to browse a zip file.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.zip.ZipFileResource.html">org.w3c.jigsaw.zip.ZipFileResource</a> </dt>
+<dd>
+Allows you to browse a zip file.
+</dd>
+</dl>
+
+<hr width="100%">
+
+<h1><a name="Admin resources"></a>Admin resources</h1>
+<dl>
+<dt><a
+href="org.w3c.jigsaw.resources.CheckpointResource.html">org.w3c.jigsaw.resources.CheckpointResource</a></dt>
+<dd>
+A resource that will periodically make sure that <b>Jigsaw</b> configuration
+has been saved back to disk.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.resources.PasswordEditor.html">org.w3c.jigsaw.resources.PasswordEditor</a></dt>
+<dd>
+A resource that allows web site users to change their own password.
+</dd>
+</dl>
+<p>
+<br>
+
+<hr width="100%">
+
+
+<h1><a name="Property resources"></a>Property resources</h1>
+<dl>
+<dt><a
+href="org.w3c.jigsaw.http.UnixProp.html">org.w3c.jigsaw.http.UnixProp</a></dt>
+<dd>
+UNIX specific properties editor. Allows you to chroot <b>Jigsaw</b> and run it
+on port 80.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.http.ConnectionProp.html">org.w3c.jigsaw.http.ConnectionProp</a></dt>
+<dd>
+Connection properties.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.http.socket.SocketConnectionProp.html">org.w3c.jigsaw.http.socket.SocketConnectionProp</a></dt>
+<dd>
+Connection properties specific to the raw socket client and client factory.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.http.LoggingProp.html">org.w3c.jigsaw.http.LoggingProp</a></dt>
+<dd>
+Gives editable access to <b>Jigsaw</b> logging properties.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.http.GeneralProp.html">org.w3c.jigsaw.http.GeneralProp</a></dt>
+<dd>
+Gives editable access to <b>Jigsaw</b> general properties.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.proxy.ProxyProp.html">org.w3c.jigsaw.proxy.ProxyProp</a></dt>
+<dd>
+Gives editable access to <b>Jigsaw</b> client-side specific properties to
+customize it when used by the proxy. This will only appear when you use the
+<a href="org.w3c.jigsaw.proxy.ProxyFrame.html">ProxyFrame</a>.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.proxy.CacheProp.html">org.w3c.jigsaw.proxy.CacheProp</a></dt>
+<dd>
+Gives editable access to <b>Jigsaw</b> client-side cache, when the proxy
+resource is used.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.cvs.CvsProp.html">org.w3c.jigsaw.cvs.CvsProp</a></dt>
+<dd>
+Gives editable access to <b>Jigsaw</b> cvs properties, when <a
+href="org.w3c.jigsaw.cvs.CvsFrame.html">CvsFrame</a> is used somewhere.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.servlet.ServletProps.html">org.w3c.jigsaw.servlet.ServletProps</a></dt>
+<dd>
+This resource provides access to Jigsaw's servlet properties.
+</dd>
+<dt><a
+href="org.w3c.jigsaw.pagecompile.PageCompileProp.html">org.w3c.jigsaw.pagecompile.PageCompileProp</a></dt>
+<dd>
+Gives editable access to Jigsaw Page Compilation properties when <a
+href="org.w3c.jigsaw.pagecompile.PageCompileFrame.html">PageCompileFrame</a>
+is used somewhere.
+</dd>
+</dl>
+<p>
+<br>
+    </div> <!-- body -->
+    <div class="footer">
+<hr noshade="noshade">
+
+
+<a href="mailto:jigsaw@w3.org">Jigsaw Team</a><br>
+<span class="mini"> $Id: resources.html,v 1.1 2010/06/15 12:21:16 smhuang Exp $
+</span>
+<p class="policyfooter">
+<font size="-1"><a
+href="/Consortium/Legal/ipr-notice.html#Copyright">Copyright</a> © 1999 <a
+href="http://www.w3.org">W3C</a> (<a href="http://www.lcs.mit.edu">MIT</a>, <a
+href="http://www.inria.fr/">INRIA</a>, <a
+href="http://www.keio.ac.jp/">Keio</a> ), All Rights Reserved. W3C <a
+href="/Consortium/Legal/ipr-notice.html#Legal Disclaimer"> liability, </a> <a
+href="/Consortium/Legal/ipr-notice.html#W3C Trademarks"> trademark </a>, <a
+href="/Consortium/Legal/copyright-documents.html"> document use </a> and <a
+href="/Consortium/Legal/copyright-software.html"> software licensing </a>
+rules apply. Your interactions with this site are in accordance with our <a
+href="/Consortium/Legal/privacy-statement.html#Public"> public </a> and <a
+href="/Consortium/Legal/privacy-statement.html#Members"> Member </a> privacy
+statements.</font>
+    </div>
+</body>
+</html>

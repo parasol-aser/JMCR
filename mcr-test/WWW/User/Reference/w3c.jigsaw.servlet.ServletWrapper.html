@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+  <!-- Created by GNNpress -->
+  <TITLE>ServletWrapper reference manual</TITLE>
+<!-- Changed by: Anselm Baird-Smith,  4-Feb-1997 -->
+</HEAD>
+<BODY BGCOLOR="white">
+<A HREF="http://www.w3.org/pub/WWW/" TARGET="_top_">
+ <IMG SRC="/icons/WWW/w3c_home.gif"
+  ALT="W3C"
+  BORDER="0" WIDTH="72" HEIGHT="48"></A>
+<A HREF="http://www.w3.org/pub/WWW/Jigsaw/" TARGET="_top_">
+ <IMG SRC="/icons/jigsaw" ALT="Jigsaw" BORDER="0">
+</A>
+<HR>
+<A HREF="resources.html">All Resources</A>  
+<A HREF="filters.html">All filters </A>
+<HR>
+<H1>
+  ServletWrapper
+</H1>
+<P>
+This resource allows you to embed
+<A HREF="http://www.javasoft.com/products/Jeeves/" TARGET="_top">Servlets</A>
+in Jigsaw. The ServletWrapper resource works in conjunction with the
+<A HREF="w3c.jigsaw.servlet.ServletDirectory.html">ServletDirectory</A> resource,
+that acts as a <I>context</I> for &nbsp;a set of related servlets. You can
+install multiple servlet directory resources within the same <B>Jigsaw</B>
+process.
+<P>
+To install a servlet within <B>Jigsaw</B>, you need to install an instance
+of the ServletWrapper resource in the <B>Jigsaw</B> URL space, and then configure
+it and tell it what servlet class it should embed (by using the
+<A HREF="#servlet-class">servlet-class</A> parameter).
+<P>
+  <HR>
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="../api/w3c.jigsaw.servlet.ServletWrapper.html">ServletWrapper</A>
+class inherits from the following classes:
+<UL>
+  <LI>
+    <A HREF="w3c.jigsaw.resources.FilteredResource.html">FilteredResource</A>
+</UL>
+<P>
+  <HR>
+<H2>
+  Attributes description
+</H2>
+<P>
+The ServletWrapper defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#servlet-class">servlet-class</A>
+  <LI>
+    <A HREF="#servlet-parameters">servlet-parameters</A>
+</UL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="servlet-class">servlet-class</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    The name of the main class for the servlet. That name should resolve to a
+    subclass of <CODE>java.servlet.Servlet</CODE>. The servlet wrapper will only
+    run the servlet when doable, it will otherwise (when the servlet class is
+    not instantiable, or some other servlet initialization error occurs) emit
+    an error message back to the client and report the problem in <B>Jigsaw</B>'s
+    main error log.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a mandatory
+    <A HREF="../api/w3c.jigsaw.resources.StringAttribute.html">StringAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value, and is mandatory.
+</DL>
+<P>
+  <HR>
+<P>
+<CODE><A NAME="servlet-parameters">servlet-parameters</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    This attribute lists the servlet initialization parameters. Each attribute
+    has a <I>name</I> and a <I>value</I>, both of them are instances of String.
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is a
+    <A HREF="../api/w3c.jigsaw.resources.PropertiesAttribute.html">PropertiesAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute has no default value.
+</DL>
+<P>
+  <HR>
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+</I>$Id: w3c.jigsaw.servlet.ServletWrapper.html,v 1.1 1996/12/27 14:59:59
+abaird Exp $
+<P>
+<P>
+<P>
+</BODY></HTML>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+  <link rel="stylesheet" type="text/css" href="../style/doc.css"><style type="text/css">
+body { margin: 20pt; color: black; background: white; font-family: helvetica;} 
+</STYLE>
+  <TITLE>The ProxyFrame reference manual</TITLE>
+  <LINK HREF="jigsaw@w3.org" REL="made">
+</HEAD>
+<BODY>
+<P>
+<A HREF="../../.." TARGET="_top_"><IMG SRC="../../../Icons//WWW/w3c_home.gif"
+    ALT="W3C" BORDER="0" WIDTH="72" HEIGHT="48">
+</A><A HREF="../../" TARGET="_top_">
+<IMG SRC="../../../Icons//jigsaw" ALT="Jigsaw"BORDER="0"></A>
+  <hr noshade size="1">
+<A HREF="resources.html">All resources</A> <A HREF="frames.html">All frames
+</A> 
+  <hr noshade size="1">
+<H1>
+  ProxyFrame
+</H1>
+<P>
+This class implements a full blown caching-proxy module for <B>Jigsaw</B>.
+It relies on the w3c's HTTP client side API to handle both request forwarding
+and reply caching. 
+<P>
+If the handle-ftp attribute is set to <B>true</B> this resource will also
+fullfil FTP requests. It will not cache the result, however. Redirectin FTP
+traffic to an upward proxy can be done through the following (standard) Java
+properties (to be set in the config/server.props file): 
+<P>
+f<TT>tpProxyPort=8080</TT>
+<P>
+<TT>ftpProxyHost=cache-sop.inria.fr</TT>
+<P>
+<TT>ftpProxySet=true</TT>
+<P>
+<B>Warning</B>: Do not try to use this resource class in conjunction with
+the
+<A HREF="org.w3c.jigsaw.frames.VirtualHostFrame.html">VirtualHostFrame</A>
+class: HTTP specification doesn't allow to have virtual proxies. 
+<P>
+  <hr noshade size="1">
+<H2>
+  Inherits
+</H2>
+<P>
+The
+<A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/jigsaw/proxy/ProxyFrame.html">ProxyFrame</A>
+class inerits from the following classes:
+<UL>
+  <LI>
+    <A HREF="org.w3c.tools.resources.Resource.html">Resource</A>
+  <LI>
+    <A HREF="org.w3c.tools.resources.FramedResource.html">FramedResource</A>
+  <LI>
+    <A HREF="org.w3c.tools.resources.ResourceFrame.html">ResourceFrame</A>
+  <LI>
+    <A HREF="org.w3c.tools.resources.ProtocolFrame.html">ProtocolFrame</A>
+  <LI>
+    <A HREF="org.w3c.jigsaw.frames.HTTPFrame.html">HTTPFrame</A>
+  <LI>
+    <A HREF="org.w3c.jigsaw.proxy.ForwardFrame.html">ForwardFrame</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<H2>
+  Attributes description
+</H2>
+<P>
+The ProxyFrame defines the following attributes:
+<UL>
+  <LI>
+    <A HREF="#handle-ftp">handle-ftp</A>
+</UL>
+<P>
+  <hr noshade size="1">
+<CODE><A NAME="handle-ftp">handle-ftp</A></CODE>
+<DL>
+  <DT>
+    <I>semantics</I>
+  <DD>
+    Should the proxy also handle FTP urls ? If set to true the proxy will handle
+    requests targeted toward ftp servers. 
+  <DT>
+    <I>type</I>
+  <DD>
+    This attribute is an editable
+    <A HREF="http://jigsaw.w3.org/Doc/Programmer/api/org/w3c/tools/resources/BooleanAttribute.html">BooleanAttribute</A>
+  <DT>
+    <I>default value</I>
+  <DD>
+    This attribute defaults to <B>false</B>.
+</DL>
+<P>
+<P>
+  <hr noshade size="1">
+<P>
+<I><A HREF="mailto:jigsaw@w3.org">Jigsaw Team</A><BR>
+$Id: org.w3c.jigsaw.proxy.ProxyFrame.html,v 1.3 1998/03/27 08:21:14 bmahe
+Exp $</I>
+</BODY></HTML>

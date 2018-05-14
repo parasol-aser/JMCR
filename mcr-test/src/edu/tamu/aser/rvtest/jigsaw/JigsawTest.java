@@ -1,5 +1,7 @@
 package edu.tamu.aser.rvtest.jigsaw;
 
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -37,6 +39,7 @@ public class JigsawTest
 		t2.join();
 		//System.exit(0);
 		server.shutdown();
+		
 //		Set<Thread> threadSet =Thread.getAllStackTraces().keySet();
 //		for(Thread t: threadSet)
 //		{
@@ -48,9 +51,7 @@ public class JigsawTest
 //				}
 //			}
 //		}
-
-		System.out.println("Done");
-//		System.exit(0);
+		return;
 
 	}catch(Exception e)
 	{
