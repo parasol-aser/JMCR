@@ -142,35 +142,17 @@
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall">
-        <ant antfile="build.xml" dir="${derby-10.3.2.1.location}" inheritAll="false" target="clean"/>
-        <ant antfile="build.xml" dir="${jigsaw.location}" inheritAll="false" target="clean"/>
         <ant antfile="build.xml" dir="${mcr-engine.location}" inheritAll="false" target="clean"/>
         <ant antfile="build.xml" dir="${mcr-controller.location}" inheritAll="false" target="clean"/>
-        <ant antfile="build.xml" dir="${weblech.location}" inheritAll="false" target="clean"/>
     </target>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects">
-        <ant antfile="build.xml" dir="${derby-10.3.2.1.location}" inheritAll="false" target="build-project">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
-        <ant antfile="build.xml" dir="${jigsaw.location}" inheritAll="false" target="build-project">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
         <ant antfile="build.xml" dir="${mcr-engine.location}" inheritAll="false" target="build-project">
             <propertyset>
                 <propertyref name="build.compiler"/>
             </propertyset>
         </ant>
         <ant antfile="build.xml" dir="${mcr-controller.location}" inheritAll="false" target="build-project">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
-        <ant antfile="build.xml" dir="${weblech.location}" inheritAll="false" target="build-project">
             <propertyset>
                 <propertyref name="build.compiler"/>
             </propertyset>

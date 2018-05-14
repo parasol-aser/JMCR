@@ -10,10 +10,10 @@
 	<classpathentry kind="lib" path="lib/colt-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/concurrent.jar"/>
 	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="/Users/Alan/GitHub/public_repos/JMCR/mcr-test/lib/weblech.jar"/>
 	<classpathentry kind="lib" path="lib/servlet.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/derby-10.3.2.1"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jigsaw"/>
+	<classpathentry kind="lib" path="lib/jigsaw.jar"/>
+	<classpathentry kind="lib" path="lib/weblech.jar"/>
+	<classpathentry kind="lib" path="lib/derby2861.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
