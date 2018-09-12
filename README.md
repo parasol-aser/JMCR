@@ -20,8 +20,12 @@ The tool can be easily used in Eclipse. Create an Eclispe workspace and import a
 
 ### run in terminal
 
-We also support building the project in the terminal (or in Eclipse) using `ant`. Users can execute `ant ` under `mcr-controller/`, which re-compiles the source code and generates jar files into `../dist` directory. To run the tests, just run the bash script `mcr_cmd` under `mcr-test/`. 
-The usages:
+We also support building the project in the terminal (or in Eclipse) using `ant`. 
+
+To compile mcr, run `ant ` under `mcr-controller/`, it will generates two jar files into `dist` directory. 
+
+To run the tests under `mcr-test/`, run `ant ` and then the bash script `mcr_cmd`. 
+The usage of `mcr_cmd`:
 
 ```
 usage: ./mcr_cmd [options] test_class [parameters]
@@ -50,7 +54,7 @@ for more ideas about how to write the tests.
 
 ## An Example
 
-The following shows a simple example (See `Example1.java` under `mcr-test/src/edu.tamu.aser.rvtest_simple_tests/`).
+The following shows a simple example (See `Example.java` under `mcr-test/src/edu.tamu.aser.rvtest_simple_tests/`).
 
 
 ```
