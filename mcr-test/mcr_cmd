@@ -6,7 +6,7 @@
 usage() {
 	cat <<EOU
 usage: $0 [options] test_class [parameters]
-  e.g., $0 edu.tamu.aser.rvtest_simple_tests.Example
+  e.g., $0 edu.tamu.aser.rvtest_simple_tests.RVExample
   options:
   	--help -h usage
 	--debug -D print debug information
@@ -77,7 +77,7 @@ function runTests()
     echo "Running tests from: ${class_name}"    
 
     java -ea -javaagent:lib/iagent.jar \
-    	-cp 'bin:../dist/*:../lib/*:lib/*'  \
+    	-cp 'bin:../dist/*:../mcr-engine/lib/*:../mcr-controller/lib/*:lib/*'  \
      	-Ddebug=$debug \
      	-Dstatic_opt=$static_opt \
      	-Domcr=$Domcr \

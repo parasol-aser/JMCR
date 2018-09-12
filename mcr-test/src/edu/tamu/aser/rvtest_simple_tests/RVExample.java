@@ -15,8 +15,8 @@ public class RVExample {
 	private static int x;
 	private static int y;
 	private static Object lock = new Object();
-	
-	public static void main(String[] args) {	
+
+	public static void main(String[] args) {
 		Thread t1 = new Thread(new Runnable() {
 
 			@Override
@@ -40,8 +40,7 @@ public class RVExample {
 				for (int i = 0; i < 2; i++) {
 					if (x > 1) {
 						if (y == 3) {
-							System.err.println("Find the error!");
-							fail("FAIL!!!!!!!!!!!");
+							fail("Find the error");
 						} else
 							y = 2;
 					}
@@ -71,10 +70,8 @@ public class RVExample {
 		try {
 			x = 0;
 			y = 0;
-//			lock = new Object();
 			RVExample.main(null);
 		} catch (Exception e) {
-			System.out.println("here");
 			fail();
 		}
 	}

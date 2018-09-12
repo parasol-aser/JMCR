@@ -42,7 +42,7 @@ public class PaperStatsListener extends ExplorationStatsListener {
         this.testToExampleMap.put("org.apache.commons.pool.impl.TestGenericKeyedObjectPool", "PoolThree");
         this.testToExampleMap.put("TestMemoryAwareMap", "Groovy");
         this.testToExampleMap.put("boundedbuffer.BoundedBuffer", "BoundedBuffer");
-        
+
         this.testToExampleMap.clear();
         this.example = "Test";
         this.mode = "Basic";
@@ -106,42 +106,42 @@ public class PaperStatsListener extends ExplorationStatsListener {
 //        } else {
 //            printStats(FAILURE_NOT_DETECTED, CLOSE_BRAC);
 //        }
-        
+
         /**
          * write the profiling information into a file
          * @author Alan
          */
-        String fileName = "statistical results";
+        String fileName = "stats";
         File dir_fileName = new File(fileName);
         if(!dir_fileName.exists()){
             dir_fileName.mkdir();
         }
-        
+
         String c_name = null;
         if (Configuration.class_name == null) {
             c_name = Trace.appname;
         }
         else
             c_name = Configuration.class_name;
-        
-        fileName += "/" + c_name;        
+
+        fileName += "/" + c_name;
         if (Configuration.Optimize){
             fileName = fileName+ "_opt";
-        }        
+        }
         FileWriter fWriter;
-        try {           
-            System.out.println("Writing the #reads, #constraints, time to file " + fileName);            
+        try {
+            System.out.println("Writing the #reads, #constraints, time to file " + fileName);
             fWriter = new FileWriter(fileName);
-            BufferedWriter bWriter = new BufferedWriter(fWriter);           
+            BufferedWriter bWriter = new BufferedWriter(fWriter);
             bWriter.write(ExploreSeedInterleavings.output);
             bWriter.close();
-            
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("Can't open file");
             e.printStackTrace();
         }
-        
+
     }
 
 }

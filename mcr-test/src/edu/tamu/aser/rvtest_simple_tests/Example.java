@@ -11,9 +11,6 @@ import junit.framework.Assert;
 @RunWith(JUnit4MCRRunner.class)
 public class Example {
 
-//	private static int x, y;
-	//private static Object lock = new Object();
-
 	static int x, y;
 	public static void main(String[] args) {
 		Thread t1 = new Thread(new Runnable() {
@@ -44,7 +41,6 @@ public class Example {
 			y = 0;
 		Example.main(null);
 		} catch (Exception e) {
-			System.out.println("here");
 			fail();
 		}
 	}
