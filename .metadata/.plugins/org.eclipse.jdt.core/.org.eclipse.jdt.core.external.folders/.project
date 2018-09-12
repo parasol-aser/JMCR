@@ -10,9 +10,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>.link1</name>
+			<name>.link2</name>
 			<type>2</type>
-			<location>/Applications/Eclipse.app/Contents/Eclipse</location>
+			<location>/Users/jeffhuang/Documents/eclipse</location>
 		</link>
 	</linkedResources>
 </projectDescription>
