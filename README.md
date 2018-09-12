@@ -7,6 +7,7 @@ MCR is a stateless model checker powered by an efficient reduction algorithm. It
 ## Environment
 * z3 installation
 	* Follow https://github.com/Z3Prover/z3
+	* Add `z3` to your PATH
 * Eclipse (Neon 4.6) & Java 8
 	* The JDK version tested is 8u101. Higher versions should also be OK. JDK 8u65 was also tested, but it reported an exception related to the lamdba feature. We suggest the users to use JDK 8u101 or higher versions.
 
@@ -40,7 +41,7 @@ usage: ./mcr_cmd [options] test_class [parameters]
 	
 ```
 
-If `-S` is specified, the tool will first run static analysis to generate the system dependencies graph into `SDGs` and then explore the program. The number of the reads and constraitns as well as the constraints solving times are save to the file under `statistical result/`.
+If `-S` is specified, the tool will first run static analysis to generate the system dependencies graph into `SDGs` and then explore the program. The number of the reads and constraitns as well as the constraints solving times are save to the file under `stats/`.
 
 `-m` selects the executed memory model. We currently support SC/TSO/PSO, and use SC. 
 
