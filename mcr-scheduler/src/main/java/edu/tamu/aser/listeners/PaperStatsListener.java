@@ -105,7 +105,7 @@ public class PaperStatsListener extends ExplorationStatsListener {
 //            printStats(FAILURE_NOT_DETECTED, CLOSE_BRAC);
 //        }
 
-        String fileName = "ConstraitsProfile";
+        String fileName = "ConstraintsProfile";
         File dir_fileName = new File(fileName);
         if(!dir_fileName.exists()){
             dir_fileName.mkdir();
