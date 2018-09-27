@@ -14,5 +14,5 @@ before_install:
 
 script:
   - mvn package
-  - ./mcr_cmd edu.tamu.aser.paperResults.RVExample
+  - ./mcr_cmd edu.tamu.aser.results.RVExample
   

@@ -5,27 +5,16 @@ MCR is a stateless model checker powered by an efficient reduction algorithm. It
 # Getting Started
 
 ## Environment
-* z3 installation
+* Install z3 
 	* Follow https://github.com/Z3Prover/z3
 	* Add `z3` to your PATH
-* Eclipse (Neon 4.6) & Java 8
-	* The JDK version tested is 8u101. Higher versions should also be OK. JDK 8u65 was also tested, but it reported an exception related to the lamdba feature. We suggest the users to use JDK 8u101 or higher versions.
+* Install Apache Maven http://maven.apache.org/install.html
+
 
 ## How to Run
-### run in Eclipse
-The tool can be easily used in Eclipse. Create an Eclispe workspace and import all the projects cloned from the Git repository (A build path error may happen. It may need to manually change the JDK version if the error happens). We put all the benchmarks under the folder `mcr-test/`. Users can choose a benchmark and then run it as a junit test. We use java agent for the bytecode instrumentation with the ASM framework. Users need to specify the following VM parameters (click the Run Configurations and choose the JUnit):
+First git clone the project. To compile mcr, run `mvn package ` under the root directory of the project, it will generates jar files into `build` directory. 
 
-```
--Xmx1g -javaagent:lib/iagent.jar 
-```
-
-### run in terminal
-
-We also support building the project in the terminal (or in Eclipse) using `ant`. 
-
-To compile mcr, run `ant ` under `mcr-controller/`, it will generates two jar files into `dist` directory. 
-
-To run the tests under `mcr-test/`, run `ant ` and then the bash script `mcr_cmd`. 
+To run the tests under `mcr-test/`, run `the bash script `mcr_cmd`. 
 The usage of `mcr_cmd`:
 
 ```
@@ -50,45 +39,87 @@ If `-S` is specified, the tool will first run static analysis to generate the sy
 MCR works with JUnit 4. Given a JUnit 4 test class, it will explore
 each of the tests in the test class. To use MCR, you need to add the
 following annotation "@RunWith(JUnit4MCRRunner.class)" to the
-test class. Users can refer to the benchmarks we put under 'mcr-test/src' 
+test class. Users can refer to the benchmarks we put under 'mcr-test/' 
 for more ideas about how to write the tests.
 
 ## An Example
 
-The following shows a simple example (See `Example.java` under `mcr-test/src/edu.tamu.aser.rvtest_simple_tests/`).
+The following shows a simple example (See `RVExample.java` under `edu.tamu.aser.results`).
 
 
 ```
-package edu.tamu.aser.rvtest;
+package edu.tamu.aser.results;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import edu.tamu.aser.exploration.JUnit4MCRRunner;
+import edu.tamu.aser.reex.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
-public class Example {
+public class RVExample {
 
-	private static int x, y;
-	public static void main(String[] args) {
+	private static int x;
+	private static int y;
+	private static Object lock = new Object();
+	
+	public static void main(String[] args) {	
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				int b = x;
-				y = 1;
+				for (int i = 0; i < 2; i++) {
+					synchronized (lock) {
+						x = 0;
+					}
+					if (x > 0) {
+						y++;
+						x = 2;
+					}
+				}
 			}
+
 		});
 
+		Thread t2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < 2; i++) {
+					if (x > 1) {
+						if (y == 3) {
+							System.err.println("Find the error!");
+						} else
+							y = 2;
+					}
+				}
+			}
+
+		});
 		t1.start();
-		int a = y;
-		x = 1;
-		t1.join();
-		
+		t2.start();
+
+		for (int i = 0; i < 2; i++) {
+			synchronized (lock) {
+				x = 1;
+				y = 1;
+			}
+		}
+		try {
+			t1.join();
+			t2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
-	public void test() {
-		x = 0;
-		y = 0;
+	public void test() throws InterruptedException {
+		try {
+			x = 0;
+			y = 0;
+			RVExample.main(null);
+		} catch (Exception e) {
+			System.out.println("here");
+			fail();
+		}
 	}
 }
 ```
@@ -96,42 +127,15 @@ public class Example {
 After running MCR on the program above, we can generate the following output:
 
 ```
-EXPLORING: edu.tamu.aser.rvtest_collection.Example.test: 09:12:12
-
-
 =============== EXPLORATION STATS ===============
-NUMBER OF SCHEDULES: 3
-EXPLORATION TIME: 0:00:00
+NUMBER OF SCHEDULES: 107
+EXPLORATION TIME: 0:00:04  + 04 milli sec
 =================================================
+Writing the #reads, #constraints, time to file ConstraitsProfile/edu.tamu.aser.paperResults.RVExample
 
 ```
 
-### Explanation of the output
 
-
-`=============== EXPLORATION STATS ===============`
-
-shows the number of the executions explored for this progam and the time taken.
-
-When an exception is triggered by the program, the tool will print how this error is triggered and how to reproduce it. Take `TestDeadlock.java` under `mcr-test/src/edu.tamu.aser.rvtest_simple_tests/` as an example. Our tool prints out
-the buggy trace:
-
-```
-!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #2: Deadlock detected in schedule
-The following trace triggered this error:
-       Thread-1_TestDeadlock.java:67:start
-       Thread-1_TestDeadlock.java:68:start
-       Thread-6_TestDeadlock.java:63:read
-       Thread-6_TestDeadlock.java:29:read
-       Thread-6_TestDeadlock.java:29:Lock
-       Thread-6_TestDeadlock.java:35:read
-       Thread-5_TestDeadlock.java:55:read
-       Thread-5_TestDeadlock.java:19:read
-       Thread-5_TestDeadlock.java:19:Lock
-       Thread-5_TestDeadlock.java:20:write
-       Thread-5_TestDeadlock.java:21:read
-       Thread-6_TestDeadlock.java:36:read
-```
 
 
 

@@ -1,4 +1,4 @@
-package edu.tamu.aser.paperResults;
+package edu.tamu.aser.results;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
