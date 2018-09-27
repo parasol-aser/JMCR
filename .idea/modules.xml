@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mcr-constraints/mcr-constraints.iml" filepath="$PROJECT_DIR$/mcr-constraints/mcr-constraints.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcr-instrumentor/mcr-instrumentor.iml" filepath="$PROJECT_DIR$/mcr-instrumentor/mcr-instrumentor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcr-scheduler/mcr-scheduler.iml" filepath="$PROJECT_DIR$/mcr-scheduler/mcr-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcr-sdggen/mcr-sdggen.iml" filepath="$PROJECT_DIR$/mcr-sdggen/mcr-sdggen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcr-test/mcr-test.iml" filepath="$PROJECT_DIR$/mcr-test/mcr-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcrchecker.iml" filepath="$PROJECT_DIR$/mcrchecker.iml" />
+    </modules>
+  </component>
+</project>

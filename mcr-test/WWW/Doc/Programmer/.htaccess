@@ -1,3 +1,0 @@
-RewriteEngine On
-RewriteBase /Jigsaw/Doc/Programmer
-RewriteRule api/(.*)$ http://jigsaw.w3.org/Doc/Programmer/api/$1 [R]

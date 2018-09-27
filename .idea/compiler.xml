@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="engine" />
+        <module name="mcr-constraints" />
+        <module name="mcr-engine" />
+        <module name="mcr-instrumentor" />
+        <module name="mcr-scheduler" />
+        <module name="mcr-sdggen" />
+        <module name="mcr-test" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mcr-constraints" target="1.7" />
+      <module name="mcr-instrumentor" target="1.5" />
+      <module name="mcr-scheduler" target="1.6" />
+      <module name="mcr-sdggen" target="1.7" />
+      <module name="mcr-test" target="1.6" />
+      <module name="mcrchecker" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

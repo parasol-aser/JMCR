@@ -13,6 +13,6 @@ before_install:
   - ./scripts/install-z3.sh
 
 script:
-  - cd mcr-test
-  - ant
+  - mvn package
+  - ./mcr_cmd edu.tamu.aser.rvtest_simple_tests.Example
   

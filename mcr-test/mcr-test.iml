@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/.." />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../mcr-constraints/src/main/java" />
+          <root url="file://$MODULE_DIR$/../mcr-instrumentor/src/main/java" />
+          <root url="file://$MODULE_DIR$/../mcr-scheduler/src/main/java" />
+          <root url="file://$MODULE_DIR$/../mcr-sdggen/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="module" module-name="mcr-scheduler" />
+    <orderEntry type="module" module-name="mcr-constraints" />
+    <orderEntry type="library" name="Maven: org.w3c.jigsaw:jigsaw:2.2.6" level="project" />
+    <orderEntry type="library" name="Maven: com.beust:jcommander:1.69" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: uiuc:imunit:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../libs/imunit.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="mcr-instrumentor" />
+    <orderEntry type="module-library">
+      <library name="Maven: asm:asm:3.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../mcr-instrumentor/src/main/resources/libs/asm.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

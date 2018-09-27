@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry excluding="aj/SafeWriterMonitorAspect.aj|aj/CheckThenActMonitorAspect.aj|aj/UnsafeIteratorMonitorAspect.aj" kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/log4j"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>

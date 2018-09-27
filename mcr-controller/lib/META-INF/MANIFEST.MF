@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Ant-Version: Apache Ant 1.8.4
-Premain-Class: edu.tamu.aser.rvinstrumentation.RVInstrumentor
-Can-Redefine-Classes: true
-Can-Retransform-Classes: true
-

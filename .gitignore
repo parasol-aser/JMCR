@@ -39,13 +39,9 @@ Thumbs.db
 
 # folders
 ######################
-z3-osx/
-z3-ubuntu/
-z3
-bench_mcr/
-mcr-test-concurrent-tree/
-mcr-test-concurrent-linkedHashMap/
-mcr-test-concurrent-objectPool/
-concurrency-bugs-subjects/
-mcr-test/tmp/
-.recommenders
+build/
+ConstraintsProfile/
+other_libs/
+SDGs/
+tmp/
+data.properties
