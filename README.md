@@ -131,7 +131,7 @@ After running MCR on the program above, we can generate the following output:
 NUMBER OF SCHEDULES: 107
 EXPLORATION TIME: 0:00:04  + 04 milli sec
 =================================================
-Writing the #reads, #constraints, time to file ConstraitsProfile/edu.tamu.aser.paperResults.RVExample
+Writing the #reads, #constraints, time to file ConstraitsProfile/edu.tamu.aser.results.RVExample
 
 ```
 
