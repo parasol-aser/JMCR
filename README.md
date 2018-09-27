@@ -44,94 +44,66 @@ for more ideas about how to write the tests.
 
 ## An Example
 
-The following shows a simple example (See `RVExample.java` under `edu.tamu.aser.results`).
+MCR is able to detect concurrency errors caused by deadlocks, order violation, data race and so on. The following code contains a potential deadlock.  (See `TestDeadLock.java` under `edu.tamu.aser.results`).
 
 
 ```
-package edu.tamu.aser.results;
+	public void increment1() {
+        synchronized (mutex1) {
+            this.field = 1;
+            synchronized (mutex2) { }
+        }
+    }
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+    public void increment2() {
+        synchronized (mutex2) {
+            int r = this.field;
+            synchronized (mutex1) { }
+        }
+    }
 
-@RunWith(JUnit4MCRRunner.class)
-public class RVExample {
+    public int getField() {
+        return this.field;
+    }
 
-	private static int x;
-	private static int y;
-	private static Object lock = new Object();
-	
-	public static void main(String[] args) {	
-		Thread t1 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for (int i = 0; i < 2; i++) {
-					synchronized (lock) {
-						x = 0;
-					}
-					if (x > 0) {
-						y++;
-						x = 2;
-					}
-				}
-			}
+    @Test
+    public void test() throws InterruptedException {
 
-		});
+        final TestDeadLock counter = new TestDeadLock();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() { counter.increment1(); }
+        });
 
-		Thread t2 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for (int i = 0; i < 2; i++) {
-					if (x > 1) {
-						if (y == 3) {
-							System.err.println("Find the error!");
-						} else
-							y = 2;
-					}
-				}
-			}
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() { counter.increment2(); }
+        });
 
-		});
-		t1.start();
-		t2.start();
+        t1.start(); t2.start();
 
-		for (int i = 0; i < 2; i++) {
-			synchronized (lock) {
-				x = 1;
-				y = 1;
-			}
-		}
-		try {
-			t1.join();
-			t2.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void test() throws InterruptedException {
-		try {
-			x = 0;
-			y = 0;
-			RVExample.main(null);
-		} catch (Exception e) {
-			System.out.println("here");
-			fail();
-		}
-	}
-}
+        t1.join();  t2.join();
+    }
 ```
 
-After running MCR on the program above, we can generate the following output:
+After running MCR on the program above (`./mcr_cmd edu.tamu.aser.results.TestDeadLock`), MCR can generate the specific interleaving which triggers the deadlock and reproduce the failure meanwhile: 
 
 ```
-=============== EXPLORATION STATS ===============
-NUMBER OF SCHEDULES: 107
-EXPLORATION TIME: 0:00:04  + 04 milli sec
-=================================================
-Writing the #reads, #constraints, time to file ConstraitsProfile/edu.tamu.aser.results.RVExample
+!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #2: Deadlock detected in schedule
+The following trace triggered this error:
+       NewExploration_TestDeadLock.java:58:start
+       NewExploration_TestDeadLock.java:59:start
+       Thread-6_TestDeadLock.java:54:read
+       Thread-6_TestDeadLock.java:23:read
+       Thread-6_TestDeadLock.java:23:Lock
+       Thread-6_TestDeadLock.java:29:read
+       Thread-5_TestDeadLock.java:47:read
+       Thread-5_TestDeadLock.java:14:read
+       Thread-5_TestDeadLock.java:14:Lock
+       Thread-5_TestDeadLock.java:15:write
+       Thread-5_TestDeadLock.java:16:read
+       Thread-6_TestDeadLock.java:30:read
+
 
 ```
 

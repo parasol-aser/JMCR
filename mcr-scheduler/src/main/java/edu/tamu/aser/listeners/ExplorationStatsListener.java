@@ -7,6 +7,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.tamu.aser.instrumentation.MCRProperties;
+import edu.tamu.aser.runtime.RVRunTime;
 import edu.tamu.aser.scheduling.events.EventDesc;
 import edu.tamu.aser.scheduling.strategy.ChoiceType;
 import edu.tamu.aser.scheduling.strategy.ThreadInfo;
@@ -153,7 +154,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
         System.out.flush();
         System.err.flush();
         System.err.println("\n!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #" + numSchedules + ": " + ((errorMsg == null) ? "" : errorMsg));
-//        System.err.println("The following trace triggered this error:");
+        System.err.println("The following trace triggered this error:");
         
 //        completedExploration();
 //        System.exit(-1);
@@ -161,9 +162,9 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
 //        System.err.println(MCRProperties.SCHEDULING_STRATEGY_KEY + "=" + ReproScheduleStrategy.class.getName());
 //        System.err.println(MCRProperties.SCHEDULING_REPRO_CHOICES_KEY + "=" + choicesMade + "\n");
         
-//        for (int i = 0; i < RVRunTime.failure_trace.size() ; i++) {
-//                System.err.println("       " + RVRunTime.failure_trace.get(i));
-//        }
+        for (int i = 0; i < RVRunTime.failure_trace.size() ; i++) {
+                System.err.println("       " + RVRunTime.failure_trace.get(i));
+        }
         
         
         System.err.flush();
