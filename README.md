@@ -14,7 +14,7 @@ MCR is a stateless model checker powered by an efficient reduction algorithm. It
 ## How to Run
 First git clone the project. To compile mcr, run `mvn package ` under the root directory of the project, it will generates jar files into `build` directory. 
 
-To run the tests under `mcr-test/`, run `the bash script `mcr_cmd`. 
+To run the tests under `mcr-test/`, run the bash script `mcr_cmd`. 
 The usage of `mcr_cmd`:
 
 ```
