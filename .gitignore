@@ -44,4 +44,8 @@ ConstraintsProfile/
 other_libs/
 SDGs/
 tmp/
+testTSO/
+testPSO/
+testOMCR/
+testStaticDependency/
 data.properties

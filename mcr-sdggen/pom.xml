@@ -37,49 +37,49 @@
             <artifactId>joana1</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.api.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.api.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kit</groupId>
             <artifactId>joana2</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.ifc.sdg.core.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.ifc.sdg.core.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kit</groupId>
             <artifactId>joana3</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.ui.ifc.sdg.graphviewer.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.ui.ifc.sdg.graphviewer.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kit</groupId>
             <artifactId>joana4</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.ui.ifc.wala.console.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.ui.ifc.wala.console.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kit</groupId>
             <artifactId>joana5</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.wala.core.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.wala.core.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kit</groupId>
             <artifactId>joana6</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.wala.dictionary.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.wala.dictionary.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>kit</groupId>
             <artifactId>joana7</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/resources/libs/joana.wala.jodroid.jar</systemPath>
+            <systemPath>${pom.basedir}/../libs/joana/joana.wala.jodroid.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

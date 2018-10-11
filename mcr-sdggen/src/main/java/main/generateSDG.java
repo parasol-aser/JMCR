@@ -300,7 +300,7 @@ public class generateSDG {
 			return sdg;
 		}
 		
-		private static Pair<Long, SDGBuilder.SDGBuilderConfig> prepareBuild(PrintStream out, Config cfg, boolean computeInterference, IProgressMonitor progress) throws IOException, ClassHierarchyException {
+		private static Pair<Long, SDGBuilder.SDGBuilderConfig>  prepareBuild(PrintStream out, Config cfg, boolean computeInterference, IProgressMonitor progress) throws IOException, ClassHierarchyException {
 			if (!checkOrCreateOutputDir(cfg.outputDir)) {
 				out.println("Could not access/create diretory '" + cfg.outputDir +"'");
 				return null;

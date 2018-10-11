@@ -91,7 +91,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana1:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.api.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.api.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -100,7 +100,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana2:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.ifc.sdg.core.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.ifc.sdg.core.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -109,7 +109,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana3:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.ui.ifc.sdg.graphviewer.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.ui.ifc.sdg.graphviewer.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -118,7 +118,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana4:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.ui.ifc.wala.console.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.ui.ifc.wala.console.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -127,7 +127,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana5:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.wala.core.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.wala.core.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -136,7 +136,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana6:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.wala.dictionary.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.wala.dictionary.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -145,7 +145,7 @@
     <orderEntry type="module-library">
       <library name="Maven: kit:joana7:1.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/libs/joana.wala.jodroid.jar!/" />
+          <root url="jar://$MODULE_DIR$/../libs/joana/joana.wala.jodroid.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
