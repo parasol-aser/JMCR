@@ -41,6 +41,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
     <orderEntry type="module" module-name="mcr-instrumentor" />
     <orderEntry type="module-library">
       <library name="Maven: asm:asm:3.0">
