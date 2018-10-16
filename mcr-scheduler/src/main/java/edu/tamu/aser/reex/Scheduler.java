@@ -14,6 +14,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import edu.tamu.aser.runtime.RVRunTime;
+import edu.tamu.aser.scheduling.MCRProperties;
+import edu.tamu.aser.scheduling.strategy.DefaultStrategy;
 import sun.misc.Unsafe;
 import edu.illinois.imunit.internal.parsing.BlockEvent;
 import edu.illinois.imunit.internal.parsing.Event;
@@ -146,23 +148,26 @@ public class Scheduler {
 
 //        MCRProperties mcrProps = MCRProperties.getInstance();
         /* Set the scheduling strategy to be used */
-        String schedulingStrategyClassName = "edu.tamu.aser.scheduling.strategy.MCRStrategy";
+
+        MCRProperties prop = MCRProperties.getInstance();
+        String schedulingStrategyClassName = prop.getProperty(MCRProperties.SCHEDULING_STRATEGY_KEY);
+//        "edu.tamu.aser.scheduling.strategy.MCRStrategy";
         if (schedulingStrategyClassName != null) {
             try {
                 schedulingStrategy = (SchedulingStrategy) Class.forName(schedulingStrategyClassName).newInstance();
-                //System.out.println("\nUsing the following scheduling strategy for exploration: " + schedulingStrategy.getClass().getName());
+                System.out.println("\nUsing the following scheduling strategy for exploration: " + schedulingStrategy.getClass().getName());
             } catch (Exception e) {
                 System.err.println(UNABLE_TO_OBTAIN_INSTANCE_OF + schedulingStrategyClassName + BANG);
                 e.printStackTrace();
                 System.exit(2);
             }
         } 
-//        else {
-//            System.out.println("\nWARNING: no value specified for property \"" + MCRProperties.SCHEDULING_STRATEGY_KEY + "\"");
-//            System.out.println("WARNING: using \"" + DefaultStrategy.class.getName() + "\", which will choose only one possible schedule");
-//            System.out.println("NOTE: See the \"edu.tamu.aser.scheduling.strategy\" package for a list of provided strategies\n");
-//            schedulingStrategy = new DefaultStrategy();
-//        }
+        else {
+            System.out.println("\nWARNING: no value specified for property \"" + MCRProperties.SCHEDULING_STRATEGY_KEY + "\"");
+            System.out.println("WARNING: using \"" + DefaultStrategy.class.getName() + "\", which will choose only one possible schedule");
+            System.out.println("NOTE: See the \"edu.tamu.aser.scheduling.strategy\" package for a list of provided strategies\n");
+            schedulingStrategy = new DefaultStrategy();
+        }
 
         /* Set the scheduling filter to be used */
 //        String schedulingFilterClassName = mcrProps.getProperty(MCRProperties.SCHEDULING_FILTER_KEY);
@@ -215,7 +220,7 @@ public class Scheduler {
                                 //something wrong
                                 //just release the lock, wait for the thread to be added to the paused thread
                             }
-                            else if(timeout&&!pausedThreadInfos.isEmpty())//JEFF
+                            else if(timeout && !pausedThreadInfos.isEmpty())//JEFF
                             {
                                 ThreadInfo chosenPausedThreadInfo = (ThreadInfo) choose(pausedThreadInfos, ChoiceType.THREAD_TO_FAIR);
                                 if(chosenPausedThreadInfo!=null)
@@ -462,9 +467,6 @@ public class Scheduler {
             schedulerStateLock.unlock();
         }
     }
-
-    
-    //HOOKS ?
     
     /******************************************************************
      ****************************************************************** 

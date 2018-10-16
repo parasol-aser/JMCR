@@ -13,34 +13,34 @@ import java.util.Properties;
 public class MCRProperties extends Properties {
 
     /* Instrumentation related properties */
-    public static final String INSTRUMENTATION_PACKAGES_IGNORE_PREFIXES_KEY = "reex.instrumentation.packages.ignore.prefixes";
-    public static final String INSTRUMENTATION_PACKAGES_IGNORE_KEY = "reex.instrumentation.packages.ignore";
-    public static final String INSTRUMENTATION_CLASSES_IGNORE_PREFIXES_KEY = "reex.instrumentation.classes.ignore.prefixes";
-    public static final String INSTRUMENTATION_CLASSES_IGNORE_KEY = "reex.instrumentation.classes.ignore";
-    public static final String INSTRUMENTATION_PACKAGES_ALLOW_PREFIXES_KEY = "reex.instrumentation.packages.allow.prefixes";
-    public static final String INSTRUMENTATION_PACKAGES_ALLOW_KEY = "reex.instrumentation.packages.allow";
-    public static final String INSTRUMENTATION_CLASSES_ALLOW_PREFIXES_KEY = "reex.instrumentation.classes.allow.prefixes";
-    public static final String INSTRUMENTATION_CLASSES_ALLOW_KEY = "reex.instrumentation.classes.allow";
+//    public static final String INSTRUMENTATION_PACKAGES_IGNORE_PREFIXES_KEY = "reex.instrumentation.packages.ignore.prefixes";
+//    public static final String INSTRUMENTATION_PACKAGES_IGNORE_KEY = "reex.instrumentation.packages.ignore";
+//    public static final String INSTRUMENTATION_CLASSES_IGNORE_PREFIXES_KEY = "reex.instrumentation.classes.ignore.prefixes";
+//    public static final String INSTRUMENTATION_CLASSES_IGNORE_KEY = "reex.instrumentation.classes.ignore";
+//    public static final String INSTRUMENTATION_PACKAGES_ALLOW_PREFIXES_KEY = "reex.instrumentation.packages.allow.prefixes";
+//    public static final String INSTRUMENTATION_PACKAGES_ALLOW_KEY = "reex.instrumentation.packages.allow";
+//    public static final String INSTRUMENTATION_CLASSES_ALLOW_PREFIXES_KEY = "reex.instrumentation.classes.allow.prefixes";
+//    public static final String INSTRUMENTATION_CLASSES_ALLOW_KEY = "reex.instrumentation.classes.allow";
 
     /* Scheduling related properties */
-    public static final String SCHEDULING_STRATEGY_KEY = "reex.exploration.schedulingstrategy";
-    public static final String SCHEDULING_REPRO_CHOICES_KEY = "reex.exploration.reprochoices";
-    public static final String PREEMPTION_BOUND_KEY = "reex.exploration.preemptionbound";
-    public static final String SEED_KEY = "reex.exploration.randomseed";
-    public static final String MODE_KEY = "reex.locfiltering.mode";
-    public static final String ALLOWED_LOCS_FILE_KEY = "reex.locfiltering.allowedfile";
-    public static final String SCHEDULING_FILTER_KEY = "reex.exploration.schedulingfilter";
-    public static final String STOP_ON_FIRST_ERROR_KEY = "reex.exploration.stoponfirsterror";
-    public static final String RV_CAUSAL_FULL_TRACE = "reex.exploration.rvcausal.fulltrace";
+    public static final String SCHEDULING_STRATEGY_KEY = "mcr.exploration.scheduling.strategy";
+    public static final String SCHEDULING_REPRO_CHOICES_KEY = "mcr.exploration.reprochoices";
+    public static final String PREEMPTION_BOUND_KEY = "mcr.exploration.preemptionbound";
+    public static final String SEED_KEY = "mcr.exploration.randomseed";
+    public static final String MODE_KEY = "mcr.locfiltering.mode";
+    public static final String ALLOWED_LOCS_FILE_KEY = "mcr.locfiltering.allowedfile";
+    public static final String SCHEDULING_FILTER_KEY = "mcr.exploration.schedulingfilter";
+    public static final String STOP_ON_FIRST_ERROR_KEY = "mcr.exploration.stoponfirsterror";
+    public static final String RV_CAUSAL_FULL_TRACE = "mcr.exploration.rvcausal.fulltrace";
     
     /* Listeners/Debugging related properties */
-    public static final String LISTENERS_KEY = "reex.exploration.listeners";
-    public static final String EXPLORATION_DEBUG_KEY = "reex.exploration.debug";
-    public static final String INSTRUMENTATION_DEBUG_KEY = "reex.instrumentation.debug";
-    public static final String EXPLORATION_TIMEOUT_KEY = "reex.exploration.timeout";
+    public static final String LISTENERS_KEY = "mcr.exploration.listeners";
+    public static final String EXPLORATION_DEBUG_KEY = "mcr.exploration.debug";
+    public static final String INSTRUMENTATION_DEBUG_KEY = "mcr.instrumentation.debug";
+    public static final String EXPLORATION_TIMEOUT_KEY = "mcr.exploration.timeout";
 
     /* Properties related property */
-    public static final String PROPERTIES_KEY = "reex.properties";
+    public static final String PROPERTIES_KEY = "mcr.properties";
     public static final String DEFAULT_PROPERTIES = "/default.properties";
 
     private static MCRProperties instance;

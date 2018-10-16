@@ -22,6 +22,7 @@ public class MCRProperties extends Properties {
     public static final String INSTRUMENTATION_CLASSES_ALLOW_KEY = "mcr.instrumentation.classes.allow";
 
     public static final String SCHEDULING_REPRO_CHOICES_KEY = "mcr.exploration.reprochoices";
+    public static final String SCHEDULING_STRATEGY_KEY = "mcr.exploration.scheduling.strategy";
 
     //memory model, whether using static dependency analysis
     public static final String memModel_KEY = "mm";

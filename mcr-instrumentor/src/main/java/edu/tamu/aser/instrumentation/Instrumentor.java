@@ -27,6 +27,7 @@ public class Instrumentor {
 
     private static final String INSTRUMENTATION_PACKAGES_DEFAULT = "default";
     static final String INSTR_EVENTS_RECEIVER = "edu.tamu.aser.reex.Scheduler".replace(DOT, SLASH);
+    static final String MCR_STRATEGY = "edu.tamu.aser.scheduling.strategy.MCRStrategy";
 
 
     private static Set<String> packagesThatWereInstrumented = new HashSet<String>();
@@ -61,6 +62,8 @@ public class Instrumentor {
 
         memModel = mcrProps.getProperty(MCRProperties.memModel_KEY);
         debug = Boolean.parseBoolean(mcrProps.getProperty("debug"));
+
+        final String strategy = mcrProps.getProperty(MCRProperties.SCHEDULING_STRATEGY_KEY);
         /*
          * choose the runtime instrumentation based on the model checker specified
          */
@@ -84,13 +87,42 @@ public class Instrumentor {
                         {
                             System.out.println("Instrumenting " + className);
                         }
-                        ClassReader classReader = new ClassReader(classfileBuffer); //bytes is the .class we are going to read
-                        ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
-                        ClassAdapter classVisitor = new ClassAdapter(classWriter);
 
-                        //in the accept method, it calls visitor.visit()
-                        classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
-                        classfileBuffer = classWriter.toByteArray();
+                        ClassReader classReader = new ClassReader(classfileBuffer);
+                        ClassWriter classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+
+                        if (MCR_STRATEGY.equals(strategy)) {
+                            ClassAdapter classVisitor = new ClassAdapter(classWriter);
+
+                            //in the accept method, it calls visitor.visit()
+                            classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
+                            classfileBuffer = classWriter.toByteArray();
+                        } else {
+                            ThreadEventsClassTransformer threadEventsTransformer = new ThreadEventsClassTransformer(classWriter);
+
+                            classReader.accept(threadEventsTransformer, ClassReader.EXPAND_FRAMES);
+                            classReader = new ClassReader(classWriter.toByteArray());
+                            classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+
+                            SharedAccessEventsClassTransformer sharedAccessEventsTransformer = new SharedAccessEventsClassTransformer(classWriter);
+
+                            classReader.accept(sharedAccessEventsTransformer, ClassReader.EXPAND_FRAMES);
+                            classReader = new ClassReader(classWriter.toByteArray());
+                            classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                            JUCEventsClassTransformer jucEventsTransformer = new JUCEventsClassTransformer(classWriter);
+
+                            classReader.accept(jucEventsTransformer, ClassReader.EXPAND_FRAMES);
+
+                            classReader = new ClassReader(classWriter.toByteArray());
+                            classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                            FireEventsClassTransformer fireEventsTransformer = new FireEventsClassTransformer(classWriter);
+
+                            classReader.accept(fireEventsTransformer, ClassReader.EXPAND_FRAMES);
+
+                            classfileBuffer = classWriter.toByteArray();
+
+                        }
+
                     }
                 } catch (Throwable th) {
                     th.printStackTrace();

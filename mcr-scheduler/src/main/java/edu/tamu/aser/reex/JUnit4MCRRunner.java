@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import edu.tamu.aser.reex.JUnit4WrappedRunNotifier;
 import edu.tamu.aser.reex.Scheduler;
+import edu.tamu.aser.scheduling.MCRProperties;
 import edu.tamu.aser.trace.Trace;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
@@ -32,9 +33,10 @@ import edu.tamu.aser.ExploreSeedInterleavings;
 public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
 
     private static final String DOT = ".";
-    private static final String INVALID_SYNTAX_MESSAGE = "Ignoring schedule because of invalid syntax: name = %s value = %s .\nCaused by: %s";
+    private static final String INVALID_SYNTAX_MESSAGE = "Ignoring schedule because of invalid syntax: name = %s value = %s ." +
+            "\nCaused by: %s";
     private static final String EXPECT_DEADLOCK_MSG = "Expecting deadlock!";
-    private static final String stopOnFirstErrorString = "false";
+//    private static final String stopOnFirstErrorString = "false";
    
 
     /**
@@ -135,8 +137,8 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
      */
     private void exploreTest(FrameworkMethod method, RunNotifier notifier) {
 
-        stopOnFirstError = false;
-//        String stopOnFirstErrorString = MCRProperties.getInstance().getProperty(MCRProperties.STOP_ON_FIRST_ERROR_KEY);
+        stopOnFirstError = true;
+        String stopOnFirstErrorString = MCRProperties.getInstance().getProperty(MCRProperties.STOP_ON_FIRST_ERROR_KEY);
         if (stopOnFirstErrorString.equalsIgnoreCase("false")) {
             stopOnFirstError = false;
         }
