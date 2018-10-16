@@ -2,7 +2,6 @@ package edu.tamu.aser.scheduling.strategy;
 
 import com.google.common.collect.ImmutableSortedSet;
 import edu.tamu.aser.runtime.RVPORRunTime;
-import edu.tamu.aser.scheduling.ThreadInfo;
 import edu.tamu.aser.scheduling.MCRProperties;
 
 import java.util.*;

@@ -6,13 +6,14 @@
 usage() {
 	cat <<EOU
 usage: $0 [options] test_class [parameters]
-  e.g., $0 edu.tamu.aser.rvtest_simple_tests.Example
+  e.g., $0 edu.tamu.aser.results.RVExample
   options:
   	--help -h usage
 	--debug -D print debug information
 	--static -S using static dependency analysis
 	--optimal -O using optimal MCR
-	--class_path absolute_dir -c absolute_dir (Default: bin/)
+	--explorer -E choosing the exploring method (mcr or icb)
+	--class_path classpath -c classpath (Default: bin/)
 	--memmory-model MM -m MM selecting the memory model SC/TSO/PSO (Dedault: SC)
 EOU
 	exit 1
@@ -32,6 +33,7 @@ for ((j = 0; j < $#; j++)) ; do
 		--debug) ARGS[$j]=-D ;;
 		--static) ARGS[$j]=-S ;;
 		--optimal) ARGS[$j]=-O ;;
+		--explorer) ARGS[$j]=-E ;;
 		--memmory-model) ARGS[$j]=-m ;;
 		--class_path) ARGS[$j]=-c ;;
 		--*) usage ; exit 1 ;;
@@ -48,17 +50,32 @@ class_path=./mcr-test/target/classes/
 class_name=""
 params=""
 
-while getopts "ODSm:hc:" opt ; do
+while getopts "ODSE:m:hc:" opt ; do
 	case "$opt" in
 		D) debug="true" ;;
 		S) static_opt="true" ;;
 		O) opt_mcr="true" ;;
+		E) strategy="$OPTARG" ;;
 		m) model="$OPTARG" ;;
 		c) class_path="$OPTARG" ;;
 		h) usage ; exit 1 ;;
 		*) break ;;
 	esac
 done
+
+
+#default explorer
+explorer="edu.tamu.aser.scheduling.strategy.MCRStrategy"
+
+if [ "$strategy" == "mcr" ]; then
+    explorer="edu.tamu.aser.scheduling.strategy.MCRStrategy"
+elif [ "$strategy" == "icb" ]
+then
+    explorer="edu.tamu.aser.scheduling.strategy.IterativeContextBoundingStrategy"
+fi
+
+#echo $model
+#echo $explorer
 
 shift "$((OPTIND-1))"
 
@@ -81,6 +98,7 @@ function runTests()
      	-Ddebug=$debug \
      	-Ddep_mcr=$static_opt \
      	-Dopt_mcr=$opt_mcr \
+     	-Dmcr.exploration.scheduling.strategy=$explorer \
      	-Dmemory_model=$model  \
      	-Dclass_path=$class_path  -Dclass_name=$class_name \
      	org.junit.runner.JUnitCore $class_name $params

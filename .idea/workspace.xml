@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6610d556-9153-42f9-93d4-3d1acf0939ec" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ClassAdapter.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsClassTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsClassTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsMethodTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/LocationAwareLocalVariablesSorter.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MethodAdapter.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsClassTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsClassTransformer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/ThreadInfo.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default.properties" afterPath="$PROJECT_DIR$/default.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr_cmd" afterPath="$PROJECT_DIR$/mcr_cmd" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,23 +46,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FireEventsMethodTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FireEventsClassTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsClassTransformer.java">
+      <file leaf-file-name="IterativeContextBoundingStrategy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,14 +58,64 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MethodAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java">
+      <file leaf-file-name="RVPORStrategy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="100" column="61" lean-forward="false" selection-start-line="100" selection-start-column="61" selection-end-line="100" selection-end-column="61" />
+            <state relative-caret-position="57">
+              <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Scheduler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="268" column="42" lean-forward="false" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Instrumentor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-646">
+              <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SharedAccessEventsMethodTransformer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="50" lean-forward="false" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Airline.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/Airline.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/default.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="104" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="104" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,74 +123,28 @@
       <file leaf-file-name="mcr_cmd" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcr_cmd">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="152">
+              <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+            <state relative-caret-position="323">
+              <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java">
+      <file leaf-file-name="AirlineTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/AirlineTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JUCEventsMethodTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsMethodTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-668">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LocationAwareLocalVariablesSorter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/default.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThreadEventsMethodTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="323">
+              <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -190,6 +178,8 @@
       <find>main</find>
       <find>mcr.exploration.schedulingstrategy</find>
       <find>edu.tamu.aser.scheduling.strategy.MCRStrategy</find>
+      <find>beforeFieldAccess</find>
+      <find>beforeArrayAccess</find>
     </findStrings>
     <replaceStrings>
       <replace>reex</replace>
@@ -209,9 +199,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mcr-sdggen/pom.xml" />
         <option value="$PROJECT_DIR$/mcr-sdggen/src/main/java/main/generateSDG.java" />
-        <option value="$PROJECT_DIR$/mcr_cmd" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testPSO/bakery.java" />
         <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testTSO/spinlock.java" />
@@ -234,17 +222,14 @@
         <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testStaticDependency/MyCounter.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/ReExProperties.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/MCRProperties.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/PORVectorClock.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RVPORRunTime.java" />
         <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/race/Race.java" />
         <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/race/RVCausalTest.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RaceDetect.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/DefaultStrategy.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/MCRProperties.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MCRProperties.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileInstrumentor.java" />
@@ -258,8 +243,13 @@
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" />
+        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java" />
+        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java" />
+        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java" />
         <option value="$PROJECT_DIR$/default.properties" />
+        <option value="$PROJECT_DIR$/mcr_cmd" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -470,6 +460,124 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mcr-scheduler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -560,7 +668,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="runtime" />
+              <option name="myItemId" value="scheduling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strategy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -594,7 +706,49 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="reex" />
+              <option name="myItemId" value="scheduling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filtering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-scheduler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scheduling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -670,203 +824,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="profile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="instrumentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="icb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcrchecker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-instrumentor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="mcr-constraints" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -977,11 +935,11 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="edu.tamu.aser.results.airline" />
       <option name="MAIN_CLASS_NAME" value="edu.tamu.aser.results.airline.AirlineTest" />
-      <option name="METHOD_NAME" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="VM_PARAMETERS" value="-ea -javaagent:./libs/agent.jar -Ddebug=&quot;true&quot;" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -1003,11 +961,11 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="edu.tamu.aser.results.account" />
       <option name="MAIN_CLASS_NAME" value="edu.tamu.aser.results.account.AccountTest" />
-      <option name="METHOD_NAME" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -1666,8 +1624,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.RVExample" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AccountTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.AccountTest" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.MyCounter" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.testSDG" />
       </list>
@@ -1695,44 +1653,44 @@
       <workItem from="1533834491428" duration="2960000" />
       <workItem from="1538062077584" duration="19627000" />
       <workItem from="1539032358866" duration="9815000" />
-      <workItem from="1539367506093" duration="15486000" />
+      <workItem from="1539367506093" duration="24559000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RVExample - 2018.10.16 at 10h 00m 41s.xml">
+    <history-entry file="AirlineTest - 2018.10.16 at 17h 28m 29s.xml">
+      <configuration name="AirlineTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AirlineTest - 2018.10.16 at 17h 29m 26s.xml">
+      <configuration name="AirlineTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AirlineTest - 2018.10.16 at 17h 30m 11s.xml">
+      <configuration name="AirlineTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AirlineTest - 2018.10.16 at 17h 31m 04s.xml">
+      <configuration name="AirlineTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AirlineTest - 2018.10.16 at 17h 37m 27s.xml">
+      <configuration name="AirlineTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AirlineTest - 2018.10.16 at 18h 04m 44s.xml">
+      <configuration name="AirlineTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RVExample - 2018.10.16 at 17h 25m 19s.xml">
       <configuration name="RVExample" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 10h 43m 42s.xml">
+    <history-entry file="RVExample - 2018.10.16 at 17h 27m 06s.xml">
       <configuration name="RVExample" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 10h 44m 09s.xml">
+    <history-entry file="RVExample - 2018.10.16 at 18h 05m 28s.xml">
       <configuration name="RVExample" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 10h 49m 19s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 10h 50m 06s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 10h 51m 06s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 10h 51m 19s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 14h 36m 21s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 14h 37m 48s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RVExample - 2018.10.16 at 14h 40m 53s.xml">
+    <history-entry file="RVExample - 2018.10.16 at 18h 05m 40s.xml">
       <configuration name="RVExample" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156894000" />
+    <option name="totallyTimeSpent" value="165967000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
@@ -1742,24 +1700,24 @@
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55397725" sideWeight="0.5048465" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09744409" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09744409" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10543131" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14589989" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36178863" sideWeight="0.4951535" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48882115" sideWeight="0.4951535" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5538618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5589431" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42784554" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25346112" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2028754" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -1818,12 +1776,6 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java</url>
-          <line>95</line>
-          <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mcr-sdggen/src/main/java/main/generateSDG.java</url>
           <line>151</line>
           <properties />
@@ -1836,42 +1788,56 @@
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java</url>
-          <line>202</line>
-          <properties />
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java</url>
           <line>46</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java</url>
+          <line>446</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java</url>
+          <line>201</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java</url>
+          <line>579</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java</url>
+          <line>138</line>
+          <properties />
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java</url>
+          <line>12</line>
+          <properties field="lock" class="edu.tamu.aser.results.RVExample" />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="51" />
+      <option name="time" value="60" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/AirlineTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1257">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/ChoiceType.java" />
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/Scheduler.java" />
-    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/ConstraintsProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/MCRProperties.java" />
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/SchedulingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1933,17 +1899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
-          <folding>
-            <element signature="e#9474#9475#0" expanded="false" />
-            <element signature="e#9504#9505#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/ChoiceType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -1960,16 +1915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/ThreadInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1257">
-          <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/DefaultStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -1980,44 +1925,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-516">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/listeners/PaperStatsListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="32" column="62" lean-forward="true" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RVRunTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2529">
-          <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="202" column="0" lean-forward="false" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2072,14 +1983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -2114,41 +2017,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ExtendedClassWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2379">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsClassTransformer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4107">
-          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1186#1203#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1158">
-          <caret line="31" column="77" lean-forward="false" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2161,38 +2035,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2202,7 +2050,7 @@
         <state relative-caret-position="-668">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2212,7 +2060,7 @@
         <state relative-caret-position="475">
           <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2222,7 +2070,7 @@
         <state relative-caret-position="228">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2247,26 +2095,176 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ExtendedClassWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#362#363#0" expanded="false" />
+            <element signature="e#403#404#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/mcr-instrumentor/src/main/resources/libs/asm.jar!/org/objectweb/asm/ClassReader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="1041" column="0" lean-forward="false" selection-start-line="1041" selection-start-column="0" selection-end-line="1041" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsClassTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RVRunTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="95" column="23" lean-forward="false" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1186#1203#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/ThreadInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1271">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/ThreadInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1785">
+          <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3496">
+          <caret line="210" column="5" lean-forward="true" selection-start-line="210" selection-start-column="5" selection-end-line="210" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="268" column="42" lean-forward="false" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="50" lean-forward="false" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/Airline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/AirlineTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/RVPORStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/IterativeContextBoundingStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/default.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="104" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mcr_cmd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="152">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/default.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding />
         </state>
       </provider>

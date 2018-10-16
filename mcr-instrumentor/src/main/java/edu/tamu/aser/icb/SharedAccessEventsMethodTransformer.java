@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Set;
 
 import edu.tamu.aser.instrumentation.Instrumentor;
-import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -133,8 +132,8 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
             }
             String sig_var = (owner + "." + name).replace("/", ".");
 
-            if(RVGlobalStateForInstrumentation.instance.isVariableShared(sig_var))
-             instrumentFieldAccess(opcode,owner,name,desc);
+//            if(RVGlobalStateForInstrumentation.instance.isVariableShared(sig_var))
+//             instrumentFieldAccess(opcode,owner,name,desc);
             
             super.updateThreadLocation();
             this.informSchedulerAboutFieldAccess(true, isRead, owner, name, desc);
@@ -142,6 +141,7 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
             this.informSchedulerAboutFieldAccess(false, isRead, owner, name, desc);
         }
     }
+
     public int getVariableId(String sig) {
         if (!variableIdSigMap.containsValue(sig)) {
             variableIdSigMap.put(variableIdSigMap.size() + 1, sig);
@@ -168,6 +168,7 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
         }
         return 0;
     }
+
     private void addBipushInsn(MethodVisitor mv, int val) {
         switch (val) {
         case 0:
@@ -193,6 +194,7 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
             break;
         }
     }
+
     private void instrumentFieldAccess(int opcode,String owner, String name,
             String desc)
     {
@@ -322,6 +324,7 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
         default: return ISTORE; 
         }
     }
+
     private int arrayLoadOpcode(int opcode)
     {
         switch (opcode) {
@@ -336,6 +339,7 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
         default: return ILOAD; 
         }
     }
+
     private void instrumentArrayAccess(int opcode, boolean isLoad)
     {
         String sig_loc = (className + "|" + methodSignature + "|" + line_cur)
@@ -389,6 +393,7 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
          
         }
     }
+
     @Override
     public void visitInsn(int opcode) {
         boolean arrayRead = false;
@@ -401,8 +406,8 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
             
             String sig_loc = (className + "|" + methodSignature + "|" + line_cur)
                     .replace("/", ".");
-            if(RVGlobalStateForInstrumentation.instance.shouldInstrumentArray(sig_loc))
-                    instrumentArrayAccess(opcode,true);            
+//            if(RVGlobalStateForInstrumentation.instance.shouldInstrumentArray(sig_loc))
+//                    instrumentArrayAccess(opcode,true);
             
         } else if (opcode == Opcodes.AASTORE || opcode == Opcodes.IASTORE || opcode == Opcodes.LASTORE 
                 || opcode == Opcodes.SASTORE || opcode == Opcodes.CASTORE || opcode == Opcodes.DASTORE 
@@ -411,8 +416,8 @@ public class SharedAccessEventsMethodTransformer extends LocationAwareLocalVaria
             
             String sig_loc = (className + "|" + methodSignature + "|" + line_cur)
                     .replace("/", ".");
-            if(RVGlobalStateForInstrumentation.instance.shouldInstrumentArray(sig_loc))
-                    instrumentArrayAccess(opcode,false);            
+//            if(RVGlobalStateForInstrumentation.instance.shouldInstrumentArray(sig_loc))
+//                    instrumentArrayAccess(opcode,false);
 
         }
         boolean arrayAccess = (arrayRead || arrayWrite);

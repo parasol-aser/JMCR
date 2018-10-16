@@ -9,7 +9,6 @@ import java.util.SortedSet;
 
 //import edu.tamu.aser.scheduling.strategy.ChoiceType;
 import edu.tamu.aser.scheduling.MCRProperties;
-import edu.tamu.aser.scheduling.ThreadInfo;
 
 /**
  * Performs iterative context bounding as described in the original CHESS paper.
@@ -145,10 +144,10 @@ public class IterativeContextBoundingStrategy extends SchedulingStrategy {
             }
         }
         
-        while(chosenObject==null)
-        {
-            chosenObject = getChosenObject(--chosenIndex, objectChoices);
-        }
+//        while(chosenObject==null)
+//        {
+//            chosenObject = getChosenObject(--chosenIndex, objectChoices);
+//        }
         
         
         /*

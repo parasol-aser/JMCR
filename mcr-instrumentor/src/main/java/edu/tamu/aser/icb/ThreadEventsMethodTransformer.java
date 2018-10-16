@@ -1,6 +1,5 @@
 package edu.tamu.aser.icb;
 
-import edu.tamu.aser.icb.LocationAwareLocalVariablesSorter;
 import edu.tamu.aser.instrumentation.Instrumentor;
 import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
 import org.objectweb.asm.Label;
@@ -54,7 +53,7 @@ public class ThreadEventsMethodTransformer extends LocationAwareLocalVariablesSo
         }
     }
 
-    //@Override
+    @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
         
         if(RVGlobalStateForInstrumentation.instance.isThreadClass(owner))

@@ -109,18 +109,17 @@ public class Instrumentor {
                             classfileBuffer = classWriter.toByteArray();
                         } else {
                             ThreadEventsClassTransformer threadEventsTransformer = new ThreadEventsClassTransformer(classWriter);
-
                             classReader.accept(threadEventsTransformer, ClassReader.EXPAND_FRAMES);
+
                             classReader = new ClassReader(classWriter.toByteArray());
                             classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
-
                             SharedAccessEventsClassTransformer sharedAccessEventsTransformer = new SharedAccessEventsClassTransformer(classWriter);
 
                             classReader.accept(sharedAccessEventsTransformer, ClassReader.EXPAND_FRAMES);
+
                             classReader = new ClassReader(classWriter.toByteArray());
                             classWriter = new ExtendedClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
                             JUCEventsClassTransformer jucEventsTransformer = new JUCEventsClassTransformer(classWriter);
-
                             classReader.accept(jucEventsTransformer, ClassReader.EXPAND_FRAMES);
 
                             classReader = new ClassReader(classWriter.toByteArray());

@@ -207,7 +207,7 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
             e.printStackTrace();
         }
         
-        System.err.println("\n\n memory used: " + ExploreSeedInterleavings.memUsed + "bytes.");
+//        System.err.println("\n\n memory used: " + ExploreSeedInterleavings.memUsed + "bytes.");
     }
 
 
