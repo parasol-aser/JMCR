@@ -1,8 +1,5 @@
 package edu.tamu.aser.profile;
 
-//import edu.tamu.aser.rvinstrumentation.RVConfig;
-//import edu.tamu.aser.rvinstrumentation.RVGlobalStateForInstrumentation;
-
 import edu.tamu.aser.instrumentation.RVConfig;
 import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
 
@@ -35,31 +32,25 @@ public class ProfileRunTime {
         writeThreadArrayMap = new HashMap<Integer,Long>();
         readThreadArrayMap = new HashMap<Integer,long[]>();
         
-        threadLocalIDSet = new ThreadLocal<HashSet<Integer>>()
-                {
-                    protected HashSet<Integer> initialValue() {
+        threadLocalIDSet = new ThreadLocal<HashSet<Integer>>() {
+			protected HashSet<Integer> initialValue() {
+				return new HashSet<Integer>();
     
-                        return new HashSet<Integer>();
-    
-                    }
-                };
-            threadLocalIDSet2 = new ThreadLocal<HashSet<Integer>>()
-                    {
-                        protected HashSet<Integer> initialValue() {
-        
-                            return new HashSet<Integer>();
-        
-                        }
-                    };
-                    
-                    
-                    //add shutdown hook
+			}
+		};
 
-                    Runtime.getRuntime().addShutdownHook(new Thread() {
-                        public void run() {
-                            RVGlobalStateForInstrumentation.instance.saveMetaData();
-                        }
-                    });
+        threadLocalIDSet2 = new ThreadLocal<HashSet<Integer>>() {
+			protected HashSet<Integer> initialValue() {
+				return new HashSet<Integer>();
+			}
+		};
+
+		//add shutdown hook
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			public void run() {
+				RVGlobalStateForInstrumentation.instance.saveMetaData();
+			}
+		});
 
 	}
 
@@ -71,79 +62,78 @@ public class ProfileRunTime {
 	   * @param SID -- field id
 	   * @param write or read
 	   */
-	  public static  void logFieldAcc(int ID, int SID, final boolean write) {
-	      long tid = Thread.currentThread().getId();
+	public static  void logFieldAcc(int ID, int SID, final boolean write) {
+		long tid = Thread.currentThread().getId();
 	      
-	      {
-	          if(!threadLocalIDSet.get().contains(ID))
-	          {
-	              if(threadLocalIDSet2.get().contains(ID))
-	                  threadLocalIDSet.get().add(ID);
-	              else
-	                  threadLocalIDSet2.get().add(ID);
+		{
+			if(!threadLocalIDSet.get().contains(ID))
+			{
+				if(threadLocalIDSet2.get().contains(ID))
+					threadLocalIDSet.get().add(ID);
+				else
+					threadLocalIDSet2.get().add(ID);
 	              
 	              
-	              //o is not used...
+				//o is not used...
 	              
-	              //instance-based approach consumes too much memory
+				//instance-based approach consumes too much memory
 	              
-	              //String sig = o==null?"."+SID:System.identityHashCode(o)+"."+SID;
+				//String sig = o==null?"."+SID:System.identityHashCode(o)+"."+SID;
 	    
-	              if(RVConfig.instance.verbose)
-	              {
-	              String readOrWrite = (write?" write":" read");
-	              //System.out.println("Thread "+tid+" "+readOrWrite+" variable "+SID);         
-	              }
-	             if(!sharedVariableIds.contains(SID))
-	             {
-	                 if(writeThreadMap.containsKey(SID))
-	                 {
-	                     if(writeThreadMap.get(SID)!=tid)
-	                     {
-	                         sharedVariableIds.add(SID);
-	                         return;
-	                     }
-	                 }
+				if(RVConfig.instance.verbose)
+				{
+					String readOrWrite = (write?" write":" read");
+					//System.out.println("Thread "+tid+" "+readOrWrite+" variable "+SID);
+				}
+				if(!sharedVariableIds.contains(SID))
+				{
+					if(writeThreadMap.containsKey(SID))
+					{
+						if(writeThreadMap.get(SID)!=tid)
+						{
+							sharedVariableIds.add(SID);
+							return;
+						}
+					}
 	                 
-	                 if(write)//write
-	                 {
-	                     if(readThreadMap.containsKey(SID))
-	                     {
-	                         long[] readThreads = readThreadMap.get(SID);
-	                         if(readThreads!=null
-	                                 &&(readThreads[0]!=tid||
-	                                 (readThreads[1]>0&&readThreads[1]!=tid)))
-	                         {
-	                             sharedVariableIds.add(SID);
-	                             return;
-	                         }
-	                     }
+					if(write)//write
+					{
+						if(readThreadMap.containsKey(SID))
+						{
+							long[] readThreads = readThreadMap.get(SID);
+							if(readThreads!=null
+									&&(readThreads[0]!=tid||
+									(readThreads[1]>0&&readThreads[1]!=tid)))
+							{
+								sharedVariableIds.add(SID);
+								return;
+							}
+						}
 	                     
-	                     writeThreadMap.put(SID, tid);
+						writeThreadMap.put(SID, tid);
 	                }
-	                 else//read
-	                 {
-	                     long[] readThreads = readThreadMap.get(SID);
-	                     
-	                     if(readThreads==null)
-	                     {
-	                         readThreads = new long[2];
-	                         readThreads[0]= tid;
-	                         readThreadMap.put(SID, readThreads); 
-	                     }   
-	                     else
-	                     {
-	                         if(readThreads[0]!=tid)
-	                             readThreads[1]= tid;
+					else//read
+					{
+						long[] readThreads = readThreadMap.get(SID);
+						if(readThreads==null)
+						{
+							readThreads = new long[2];
+							readThreads[0]= tid;
+							readThreadMap.put(SID, readThreads);
+						}
+						else
+						{
+							if(readThreads[0]!=tid)
+								readThreads[1]= tid;
 	    
-	                     }
-	                 }
-	             }
-	          }
-	      }
-	  }
-	  public static  void logArrayAcc(int ID, final Object o, int index, final boolean write) {
-	      long tid = Thread.currentThread().getId();
+						}
+					}
+				}
+			}
+		}
+	}
+	public static  void logArrayAcc(int ID, final Object o, int index, final boolean write) {
+		long tid = Thread.currentThread().getId();
 	      
 //	    StringBuilder builder = new StringBuilder(20);
 //	    builder.append(ID).append('.').append(sig);
@@ -151,73 +141,74 @@ public class ProfileRunTime {
 	      
 	      //String identifier = ID+"."+sig;
 	      //System.out.println(identifier);
-	      if(!threadLocalIDSet.get().contains(ID))
-	      {
-	          if(threadLocalIDSet2.get().contains(ID))
-	              threadLocalIDSet.get().add(ID);
-	          else
-	              threadLocalIDSet2.get().add(ID);
-	          
-	          Integer sig = System.identityHashCode(o);//+"_"+index;//array
+		if(!threadLocalIDSet.get().contains(ID))
+	  	{
+		  	if(threadLocalIDSet2.get().contains(ID))
+			  	threadLocalIDSet.get().add(ID);
+		  	else
+			  	threadLocalIDSet2.get().add(ID);
 
-	          HashSet<Integer> ids = arrayIdsMap.get(sig);
-	          if(ids==null){
-	              ids = new HashSet<Integer>();
-	              arrayIdsMap.put(sig, ids);
-	          }
-	          ids.add(ID);
-	          if(RVConfig.instance.verbose)
-	          {   
-	              String readOrWrite = (write?" write":" read");
-	            //System.out.println("Thread "+tid+" "+readOrWrite+" array "+RVGlobalStateForInstrumentation.instance.getArrayLocationSig(ID));       
-	          }
-	         if(!sharedArrayIds.contains(sig))
-	         {
-	             if(writeThreadArrayMap.containsKey(sig))
-	             {
-	                 if(writeThreadArrayMap.get(sig)!=tid)
-	                 {
-	                     sharedArrayIds.add(sig);
-	                     return;
-	                 }
-	             }
-	             
-	             if(write)//write
-	             {
-	                 if(readThreadArrayMap.containsKey(sig))
-	                 {
-	                     long[] readThreads = readThreadArrayMap.get(sig);
-	                     if(readThreads!=null
-	                             &&(readThreads[0]!=tid||
-	                             (readThreads[1]>0&&readThreads[1]!=tid)))
-	                     {
-	                         sharedArrayIds.add(sig);
-	                         return;
-	                     }
-	                 }
-	                 
-	                 writeThreadArrayMap.put(sig, tid);
-	            }
-	             else//read
-	             {
-	                 long[] readThreads = readThreadArrayMap.get(sig);
-	                 
-	                 if(readThreads==null)
-	                 {
-	                     readThreads = new long[2];
-	                     readThreads[0]= tid;
-	                     readThreadArrayMap.put(sig, readThreads); 
-	                 }   
-	                 else
-	                 {
-	                     if(readThreads[0]!=tid)
-	                         readThreads[1]= tid;
-	    
-	                 }
-	             }
-	         }
-	     }
-	  }
+		  	Integer sig = System.identityHashCode(o);//+"_"+index;//array
+
+		  	HashSet<Integer> ids = arrayIdsMap.get(sig);
+		  	if(ids==null){
+			  	ids = new HashSet<Integer>();
+			  	arrayIdsMap.put(sig, ids);
+		  	}
+		  	ids.add(ID);
+		  	if(RVConfig.instance.verbose)
+		  	{
+			  	String readOrWrite = (write?" write":" read");
+				//System.out.println("Thread "+tid+" "+readOrWrite+" array "+RVGlobalStateForInstrumentation.instance.getArrayLocationSig(ID));
+		  	}
+		 	if(!sharedArrayIds.contains(sig))
+		 	{
+			 	if(writeThreadArrayMap.containsKey(sig))
+			 	{
+				 	if(writeThreadArrayMap.get(sig)!=tid)
+				 	{
+					 	sharedArrayIds.add(sig);
+					 	return;
+				 	}
+			 	}
+
+			 	if(write)//write
+			 	{
+				 	if(readThreadArrayMap.containsKey(sig))
+				 	{
+					 	long[] readThreads = readThreadArrayMap.get(sig);
+					 	if(readThreads!=null
+							 &&(readThreads[0]!=tid||
+							 (readThreads[1]>0&&readThreads[1]!=tid)))
+					 	{
+						 	sharedArrayIds.add(sig);
+						 	return;
+					 	}
+				 	}
+
+				 	writeThreadArrayMap.put(sig, tid);
+				}
+			 	else//read
+			 	{
+				 	long[] readThreads = readThreadArrayMap.get(sig);
+
+				 	if(readThreads==null)
+				 	{
+					 	readThreads = new long[2];
+					 	readThreads[0]= tid;
+					 	readThreadArrayMap.put(sig, readThreads);
+				 	}
+				 	else
+				 	{
+					 	if(readThreads[0]!=tid)
+						 	readThreads[1]= tid;
+
+				 	}
+			 	}
+		 	}
+	 	}
+  	}
+
 	private static boolean isPrim(Object o) {
 		if (o instanceof Integer || o instanceof Long || o instanceof Byte
 				|| o instanceof Boolean || o instanceof Float

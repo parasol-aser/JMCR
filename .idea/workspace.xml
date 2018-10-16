@@ -5,27 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6610d556-9153-42f9-93d4-3d1acf0939ec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsClassTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsMethodTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsClassTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsMethodTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/LocationAwareLocalVariablesSorter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsClassTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsClassTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsMethodTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileClassTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileMethodTransformer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/DefaultStrategy.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ClassAdapter.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsClassTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsClassTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsMethodTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/LocationAwareLocalVariablesSorter.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MethodAdapter.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsClassTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsClassTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsClassTransformer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsMethodTransformer.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/default.properties" afterPath="$PROJECT_DIR$/default.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MCRProperties.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MCRProperties.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/MCRProperties.java" afterPath="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/MCRProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" afterPath="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -56,25 +50,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Instrumentor.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java">
+      <file leaf-file-name="FireEventsMethodTransformer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3777#6966#0" expanded="true" />
-                <element signature="e#6965#6966#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JUCEventsClassTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsClassTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="475">
+              <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,70 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SharedAccessEventsMethodTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java">
+      <file leaf-file-name="FireEventsClassTransformer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsClassTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="44" column="11" lean-forward="false" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RVGlobalStateForInstrumentation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1186#1203#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MCRStrategy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/MCRStrategy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="100" column="56" lean-forward="false" selection-start-line="100" selection-start-column="56" selection-end-line="100" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileMethodTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileMethodTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6118">
-              <caret line="322" column="45" lean-forward="false" selection-start-line="322" selection-start-column="45" selection-end-line="322" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileClassTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileClassTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
+            <state relative-caret-position="228">
               <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileRunTime.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,24 +74,90 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SharedAccessEventsClassTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsClassTransformer.java">
+      <file leaf-file-name="MethodAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="719">
-              <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+            <state relative-caret-position="290">
+              <caret line="100" column="61" lean-forward="false" selection-start-line="100" selection-start-column="61" selection-end-line="100" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mcr_cmd" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr_cmd">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="JUCEventsMethodTransformer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsMethodTransformer.java">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsMethodTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="-668">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocationAwareLocalVariablesSorter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/default.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThreadEventsMethodTransformer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -222,12 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/TestDeadLock.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/listeners/ExplorationStatsListener.java" />
-        <option value="$PROJECT_DIR$/mcr-test/src/main/java/Airline.java" />
-        <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/AirlineTest.java" />
-        <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/account/Account.java" />
-        <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/account/AccountTest.java" />
         <option value="$PROJECT_DIR$/mcr-sdggen/pom.xml" />
         <option value="$PROJECT_DIR$/mcr-sdggen/src/main/java/main/generateSDG.java" />
         <option value="$PROJECT_DIR$/mcr_cmd" />
@@ -264,15 +245,21 @@
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/MCRProperties.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java" />
-        <option value="$PROJECT_DIR$/default.properties" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MCRProperties.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileInstrumentor.java" />
-        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/ProfileRunTime.java" />
-        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileMethodTransformer.java" />
         <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java" />
+        <option value="$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java" />
+        <option value="$PROJECT_DIR$/default.properties" />
       </list>
     </option>
   </component>
@@ -606,6 +593,40 @@
               <option name="myItemId" value="aser" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-scheduler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -658,6 +679,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="META-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-instrumentor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -725,7 +780,75 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="mcr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-instrumentor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="instrumentation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcrchecker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr-instrumentor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="icb" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1572,14 +1695,11 @@
       <workItem from="1533834491428" duration="2960000" />
       <workItem from="1538062077584" duration="19627000" />
       <workItem from="1539032358866" duration="9815000" />
-      <workItem from="1539367506093" duration="13474000" />
+      <workItem from="1539367506093" duration="15486000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RVExample - 2018.10.15 at 22h 00m 52s.xml">
-      <configuration name="RVExample" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="RVExample - 2018.10.16 at 10h 00m 41s.xml">
       <configuration name="RVExample" configurationId="JUnit" />
     </history-entry>
@@ -1607,38 +1727,42 @@
     <history-entry file="RVExample - 2018.10.16 at 14h 37m 48s.xml">
       <configuration name="RVExample" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="RVExample - 2018.10.16 at 14h 40m 53s.xml">
+      <configuration name="RVExample" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154882000" />
+    <option name="totallyTimeSpent" value="156894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5538618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55397725" sideWeight="0.5048465" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13312034" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5589431" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09744409" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21884984" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10543131" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36178863" sideWeight="0.4951535" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5538618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5589431" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25346112" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36178863" sideWeight="0.4951535" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1646,42 +1770,7 @@
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55397725" sideWeight="0.5048465" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13312034" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10543131" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36178863" sideWeight="0.4951535" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5538618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5589431" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21884984" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1693,14 +1782,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ClassAdapter.java</url>
-          <line>65</line>
+          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java</url>
+          <line>66</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ClassAdapter.java</url>
-          <line>28</line>
+          <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java</url>
+          <line>29</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -1730,7 +1819,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java</url>
-          <line>85</line>
+          <line>95</line>
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
@@ -1767,34 +1856,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testStaticDependency/testSDG3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testStaticDependency/testSDG.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testStaticDependency/MyCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/account/ManageAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/airline/AirlineTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1257">
@@ -1937,14 +1998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/JUnit4MCRRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
@@ -1957,76 +2010,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2529">
           <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/LocationAwareLocalVariablesSorter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ThreadEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ExtendedClassWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-          <folding>
-            <element signature="e#362#363#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ClassAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding>
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/MethodAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/default.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="84" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="84" />
           <folding />
         </state>
       </provider>
@@ -2055,69 +2038,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/FireEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/SharedAccessEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="44" column="11" lean-forward="false" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/JUCEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2137,27 +2062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6118">
-          <caret line="322" column="45" lean-forward="false" selection-start-line="322" selection-start-column="45" selection-end-line="322" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1186#1203#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/MCRStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
@@ -2168,15 +2072,202 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java">
+    <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="171">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileRunTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3777#6966#0" expanded="true" />
-            <element signature="e#6965#6966#0" expanded="true" />
+            <element signature="e#1203#1336#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+            <element signature="e#1367#1495#0" expanded="true" />
+            <element signature="e#1494#1495#0" expanded="true" />
+            <element signature="e#1559#1666#0" expanded="true" />
+            <element signature="e#1665#1666#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/profile/ProfileMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5016">
+          <caret line="322" column="45" lean-forward="false" selection-start-line="322" selection-start-column="45" selection-end-line="322" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/resources/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ExtendedClassWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2379">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsClassTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4107">
+          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1186#1203#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/Instrumentor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1158">
+          <caret line="31" column="77" lean-forward="false" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsClassTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsClassTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-668">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsClassTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="100" column="61" lean-forward="false" selection-start-line="100" selection-start-column="61" selection-end-line="100" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr_cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/default.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

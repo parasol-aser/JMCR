@@ -10,9 +10,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import edu.tamu.aser.icb.FireEventsClassTransformer;
+import edu.tamu.aser.icb.JUCEventsClassTransformer;
+import edu.tamu.aser.icb.SharedAccessEventsClassTransformer;
+import edu.tamu.aser.icb.ThreadEventsClassTransformer;
+import edu.tamu.aser.mcr.ClassAdapter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.ClassVisitor;
 
 public class Instrumentor {
     private static final String SLASH = "/";
@@ -22,16 +26,22 @@ public class Instrumentor {
     //
     public static String bufferClass;
 
-    static final String logClass = "edu/tamu/aser/runtime/RVRunTime";
+    public static final String logClass = "edu/tamu/aser/runtime/RVRunTime";
     private static final String JUC_DOTS = "java.util.concurrent";
 
     private static final String INSTRUMENTATION_PACKAGES_DEFAULT = "default";
-    static final String INSTR_EVENTS_RECEIVER = "edu.tamu.aser.reex.Scheduler".replace(DOT, SLASH);
-    static final String MCR_STRATEGY = "edu.tamu.aser.scheduling.strategy.MCRStrategy";
+    public static final String INSTR_EVENTS_RECEIVER;
 
+    private static Set<String> packagesThatWereInstrumented;
+    private static Set<String> packagesThatWereNOTInstrumented;
 
-    private static Set<String> packagesThatWereInstrumented = new HashSet<String>();
-    private static Set<String> packagesThatWereNOTInstrumented = new HashSet<String>();
+    static {
+        INSTR_EVENTS_RECEIVER = "edu.tamu.aser.reex.Scheduler".replace(DOT, SLASH);
+        packagesThatWereInstrumented = new HashSet<String>();
+        packagesThatWereNOTInstrumented = new HashSet<String>();
+    }
+
+    private static final String MCR_STRATEGY = "edu.tamu.aser.scheduling.strategy.MCRStrategy";
 
     //classes not instrumented
     private static final Set<String> pckgPrefixesToIgnore = new HashSet<String>();
