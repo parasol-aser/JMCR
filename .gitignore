@@ -36,6 +36,7 @@ mcr-*/bin
 .Trashes
 ehthumbs.db
 Thumbs.db
+output.txt
 
 # folders
 ######################
@@ -49,4 +50,6 @@ testPSO/
 testOMCR/
 testStaticDependency/
 data.properties/
-.metadata
+.metadata/
+
+
