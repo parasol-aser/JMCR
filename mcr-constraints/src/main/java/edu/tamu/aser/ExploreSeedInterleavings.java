@@ -3,17 +3,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Queue;
-import java.util.Vector;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import edu.tamu.aser.config.Configuration;
@@ -77,9 +68,10 @@ public class ExploreSeedInterleavings {
 	 * The method for generating causally different schedules. 
 	 * Each schedule enforces a read to be matched with a write that writes
 	 * a different value.
-	 * @param engine
-	 * @param trace
-	 * @param schedule_prefix
+	 * @param engine : the engine is for building the constraints and call the solver to solve them
+	 * @param trace  : trace collected from the current execution, which only contains the events which appear after the
+	 *               prior prefix
+	 * @param schedule_prefix : the prefix that leads to this execution
 	 */
 	private static void genereteCausallyDifferentSchedules(ConstraintsBuildEngine engine, Trace trace, Vector<String> schedule_prefix)
 	{
@@ -118,57 +110,49 @@ public class ExploreSeedInterleavings {
 							
 			HashMap<String,ArrayList<WriteNode>> valueMap = new HashMap<String,ArrayList<WriteNode>>();
 			//group writes by their value
-			for(int i=0;i<writenodes.size();i++)
-			{
-				WriteNode wnode = writenodes.get(i);//write
-				String v = wnode.getValue();
-				ArrayList<WriteNode> list = valueMap.get(v);
-				if(list==null){
-					list = new ArrayList<WriteNode>();
-					valueMap.put(v, list);
-				}
-				list.add(wnode);
-			}
+            for (WriteNode wnode : writenodes) {
+                String v = wnode.getValue();
+                ArrayList<WriteNode> list = valueMap.get(v);
+                if (list == null) {
+                    list = new ArrayList<WriteNode>();
+                    valueMap.put(v, list);
+                }
+                list.add(wnode);
+            }
 				
 			//check read-write
    			if(readnodes!=null){
-				for(int i=0;i<readnodes.size();i++)
-				{
-					
-					HashMap<String, Set<Vector<String>>> mValuesPrefixes= new HashMap<>();
-					ReadNode rnode = readnodes.get(i);
-					//if isfulltrace, only consider the read nodes that happen after the prefix
-					if(isfulltrace && rnode.getGID()<=schedule_prefix.size())
-						continue;
-			
-					String rValue = rnode.getValue();
-					//1. first check if the rnode can read from the initial value which is different from rValue
-					boolean success = false;
-					if(initVal==null && !rValue.equals("0") 
-							||initVal!=null && !initVal.equals(rValue))
-					{
-						success = checkInitial(engine, trace, schedule_prefix, writenodes,
-								rnode, initVal, mValuesPrefixes);			
-					}
-					
-					//2. then check if it can read from a particular write
-					for(Iterator<String> valueIter=valueMap.keySet().iterator();valueIter.hasNext();)
-					{
-						final String wValue = valueIter.next();
-						if( !wValue.equals(rValue))  
-						{		
-							//if it already reads from the initial value, then skip it
-							if (wValue.equals(initVal) && success) {
-								continue;
-							}
-							checkReadWrite(engine, trace, schedule_prefix,valueMap, rnode, wValue, mValuesPrefixes);
-						}
-					}
-					//for each read, add the values and the corresponding prefixes to the vector
-					if (!mValuesPrefixes.isEmpty()) {
-						vReadValuePrefixes.add(mValuesPrefixes);
-					}					
-				} //end for check read write
+                for (ReadNode readnode : readnodes) {
+
+                    HashMap<String, Set<Vector<String>>> mValuesPrefixes = new HashMap<>();
+                    //if isfulltrace, only consider the read nodes that happen after the prefix
+                    if (isfulltrace && readnode.getGID() <= schedule_prefix.size())
+                        continue;
+
+                    String rValue = readnode.getValue();
+                    //1. first check if the rnode can read from the initial value which is different from rValue
+                    boolean success = false;
+                    if (initVal == null && !rValue.equals("0")
+                            || initVal != null && !initVal.equals(rValue)) {
+                        success = checkInitial(engine, trace, schedule_prefix, writenodes,
+                                readnode, initVal, mValuesPrefixes);
+                    }
+
+                    //2. then check if it can read from a particular write
+                    for (final String wValue : valueMap.keySet()) {
+                        if (!wValue.equals(rValue)) {
+                            //if it already reads from the initial value, then skip it
+                            if (wValue.equals(initVal) && success) {
+                                continue;
+                            }
+                            checkReadWrite(engine, trace, schedule_prefix, valueMap, readnode, wValue, mValuesPrefixes);
+                        }
+                    }
+                    //for each read, add the values and the corresponding prefixes to the vector
+                    if (!mValuesPrefixes.isEmpty()) {
+                        vReadValuePrefixes.add(mValuesPrefixes);
+                    }
+                } //end for check read write
 			}
 		}  //end while
 		
@@ -188,68 +172,63 @@ public class ExploreSeedInterleavings {
 			}		
 			//check each new prefix
 			//for each read
-			for (int i=0; i<vReadValuePrefixes.size(); ++i){
-				HashMap<String, Set<Vector<String>>> valuePrefixes = 
-						vReadValuePrefixes.get(i);
-				//for each value
-				for ( Set<Vector<String>> setPrefixes : valuePrefixes.values()) 
-				{
-					//choose the prefix with max equivalent prefixes
-					int num = 0;
-					Iterator<Vector<String>> itPrefix = setPrefixes.iterator();
-					Vector<String> prefix = null;
-				
-					//for each prefix that make the read return the value
-					while (itPrefix.hasNext()) {						
-						Vector<String> tmp = itPrefix.next();
-						Vector<String> prefix1 = new Vector<>();
-						for (int j = 0; j < tmp.size(); j++) {
-							String xi = tmp.get(j);
-							long gid = Long.valueOf(xi.substring(1));
-							long tid = trace.getNodeGIDTIdMap().get(gid);
-							String name = trace.getThreadIdNameMap().get(tid);	
-							prefix1.add(name);
-						}
-						
-						int flag = 0;
-						if (equPrefixes != null) {
-							//it may not in the same order
-							for (Vector<String> p : equPrefixes){
-								Vector<String> copy = new Vector<>(p);
-								Collections.sort(copy);
-								Collections.sort(prefix1);
-								if ( copy.equals(prefix1)) {
-//									System.err.println("test");
-									flag = 1;
-									break;
-								}
-							}					
-						}
-						
-						if (flag ==1) {
-							continue;
-						}
+            for (HashMap<String, Set<Vector<String>>> valuePrefixes : vReadValuePrefixes) {
+                //for each value
+                for (Set<Vector<String>> setPrefixes : valuePrefixes.values()) {
+                    //choose the prefix with max equivalent prefixes
+                    int num = 0;
+                    Iterator<Vector<String>> itPrefix = setPrefixes.iterator();
+                    Vector<String> prefix = null;
 
-						if (localMapPrefixEquClass.containsKey(tmp)) {
-							if (localMapPrefixEquClass.get(tmp).size() > num) {
-								num = localMapPrefixEquClass.get(tmp).size();
-								prefix = tmp;
-							}
-						} 
-						else if (prefix == null) {
-							prefix = tmp;
-						}
+                    //for each prefix that make the read return the value
+                    while (itPrefix.hasNext()) {
+                        Vector<String> tmp = itPrefix.next();
+                        Vector<String> prefix1 = new Vector<>();
+                        for (String xi : tmp) {
+                            long gid = Long.valueOf(xi.substring(1));
+                            long tid = trace.getNodeGIDTIdMap().get(gid);
+                            String name = trace.getThreadIdNameMap().get(tid);
+                            prefix1.add(name);
+                        }
+
+                        int flag = 0;
+                        if (equPrefixes != null) {
+                            //it may not in the same order
+                            for (Vector<String> p : equPrefixes) {
+                                Vector<String> copy = new Vector<>(p);
+                                Collections.sort(copy);
+                                Collections.sort(prefix1);
+                                if (copy.equals(prefix1)) {
+//									System.err.println("test");
+                                    flag = 1;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (flag == 1) {
+                            continue;
+                        }
+
+                        if (localMapPrefixEquClass.containsKey(tmp)) {
+                            if (localMapPrefixEquClass.get(tmp).size() > num) {
+                                num = localMapPrefixEquClass.get(tmp).size();
+                                prefix = tmp;
+                            }
+                        } else if (prefix == null) {
+                            prefix = tmp;
+                        }
 //						else if (num == 0){
 //							prefix = tmp;
 //						}
-					}
-					////
-					//
-					if (prefix != null) {
-						omcrGenSchedule(trace, prefix, schedule_prefix, localMapPrefixEquClass);
-					}
-				}
-			}
+                    }
+                    ////
+                    //
+                    if (prefix != null) {
+                        omcrGenSchedule(trace, prefix, schedule_prefix, localMapPrefixEquClass);
+                    }
+                }
+            }
 		}
 	}
 	
@@ -273,11 +252,12 @@ public class ExploreSeedInterleavings {
 		depNodes.add(rnode);
 		readDepNodes.add(rnode);
 
-		WriteNode wnode = null;
-		StringBuilder sb = engine.constructFeasibilityConstraints(trace,depNodes,readDepNodes, rnode, wnode);
-		StringBuilder sb2 = engine.constructReadInitWriteConstraints(rnode,depNodes, writenodes);
+        StringBuilder sb;
+        sb = engine.constructFeasibilityConstraints(trace,depNodes,readDepNodes, rnode, null);
+        StringBuilder sb2;
+        sb2 = engine.constructReadInitWriteConstraints(rnode,depNodes, writenodes);
 
-		sb.append(sb2);		
+        sb.append(sb2);
 		//@alan
 		//adding rnode.getGid() as a parameter
 		Vector<String> schedule = engine.generateSchedule(sb,rnode.getGID(),rnode.getGID(),isfulltrace?schedule_prefix.size():0);
@@ -304,12 +284,6 @@ public class ExploreSeedInterleavings {
 
 	/**
 	 * check if a read can read from a particular write
-	 * @param engine
-	 * @param trace
-	 * @param schedule_prefix: the prefix that guides this execution
-	 * @param valueMap
-	 * @param rnode: the target read
-	 * @param wValue: the value the read expects to see
 	 */
 	private static void checkReadWrite(
 			ConstraintsBuildEngine engine, 
@@ -325,95 +299,88 @@ public class ExploreSeedInterleavings {
 		//OMCR
 		
 		Set<Vector<String>> prefix = new HashSet<Vector<String>>();
-		
-		Iterator<Entry<String, ArrayList<WriteNode>>> entryIt = valueMap.entrySet().iterator();
-		while(entryIt.hasNext())
-		{
-			Entry<String, ArrayList<WriteNode>> entry= entryIt.next();
-			if(!entry.getKey().equals(wValue))
-				otherWriteNodes.addAll(entry.getValue());
-		}
+
+        for (Entry<String, ArrayList<WriteNode>> entry : valueMap.entrySet()) {
+            if (!entry.getKey().equals(wValue))
+                otherWriteNodes.addAll(entry.getValue());
+        }
 
 		ArrayList<WriteNode> wnodes = valueMap.get(wValue);
 		Vector<Long> tids = new Vector<>();
-		for(int j=0;j<wnodes.size();j++)
-		{
-			WriteNode wnode = wnodes.get(j);
-			if (tids.contains(wnode.getTid())) {
-				continue;
-			}
-			if(rnode.getTid() != wnode.getTid())
-			{
-				//check whether possible for read to match with write
-				//can reach means a happens before relation
-				//the first if-condition is a little strange
-				if(rnode.getGID() > wnode.getGID() || !engine.canReach(rnode, wnode))
-				{
-					
-					//for all the events that happen before the target read and chosen write
-					HashSet<AbstractNode> depNodes = new HashSet<AbstractNode>();
-					
-					//only for all the events that happen before the target read
-					HashSet<AbstractNode> readDepNodes = new HashSet<AbstractNode>();
-					
-					if(isfulltrace&&schedule_prefix.size()>0)
-						depNodes.addAll(trace.getFullTrace().subList(0, schedule_prefix.size()));
-					
-					//1. first find all the dependent nodes
-					depNodes.add(rnode);
-					depNodes.add(wnode);
-					
-					readDepNodes.add(rnode);		
-					
+
+        for (WriteNode wnode : wnodes) {
+            if (tids.contains(wnode.getTid())) {
+                continue;
+            }
+            if (rnode.getTid() != wnode.getTid()) {
+                //check whether possible for read to match with write
+                //can reach means a happens before relation
+                //the first if-condition is a little strange
+                if (rnode.getGID() > wnode.getGID() || !engine.canReach(rnode, wnode)) {
+
+                    //for all the events that happen before the target read and chosen write
+                    HashSet<AbstractNode> depNodes = new HashSet<AbstractNode>();
+
+                    //only for all the events that happen before the target read
+                    HashSet<AbstractNode> readDepNodes = new HashSet<AbstractNode>();
+
+                    if (isfulltrace && schedule_prefix.size() > 0)
+                        depNodes.addAll(trace.getFullTrace().subList(0, schedule_prefix.size()));
+
+                    //1. first find all the dependent nodes
+                    depNodes.add(rnode);
+                    depNodes.add(wnode);
+
+                    readDepNodes.add(rnode);
+
 					/*
 					 * After using static analysis, some reads can be removed
 					 * but they cannot be removed, otherwise the order calculated will be wrong
 					 * it just needs to ignore the feasibility constraints of these reads
 					 * @author Alan
 					 */
-					HashSet<AbstractNode> nodes1 = engine.getDependentNodes(trace,rnode);
-					HashSet<AbstractNode> nodes2 = engine.getDependentNodes(trace,wnode);
-										
-					depNodes.addAll(nodes1); 
-					depNodes.addAll(nodes2);
-					
-					readDepNodes.addAll(nodes1);
-					
-					//construct feasibility constraints
-					StringBuilder sb = 
-							engine.constructFeasibilityConstraints(trace,depNodes,readDepNodes, rnode, wnode);
-					
-					//construct read write constraints, namely, all other writes either happen before the Write
-					//or after the Read.
-					StringBuilder sb3 = 
-							engine.constructReadWriteConstraints(engine,trace,depNodes, rnode, wnode, otherWriteNodes);
-					
-					sb.append(sb3);
+                    HashSet<AbstractNode> nodes1 = engine.getDependentNodes(trace, rnode);
+                    HashSet<AbstractNode> nodes2 = engine.getDependentNodes(trace, wnode);
 
-					Vector<String> schedule = 
-							engine.generateSchedule(sb,rnode.getGID(), wnode.getGID(),isfulltrace?schedule_prefix.size():0);
-					
-					//each time compute a causal schedule, record the information of #read, #constraints, time
-					output = output + Long.toString(Configuration.numReads) + " " +
-							Long.toString(Configuration.rwConstraints) + " " +
-							Long.toString(Configuration.solveTime) + "\n";
-					
-					if(schedule!=null)
-					{						
-						if (Configuration.OMCR) {
-							//TODO: compute the equivalent class of prefixes
-							prefix.add(schedule);
-							tids.add(wnode.getTid());
-														
-						} else {
-							//rnode.getID or GID??
-							generateSchedule(schedule,trace,schedule_prefix,rnode.getID(),rnode.getValue(),wValue,wnode.getID());
-							break;
-						}						
-					}
-				}
-			}
-		}// end for_writes	
+                    depNodes.addAll(nodes1);
+                    depNodes.addAll(nodes2);
+
+                    readDepNodes.addAll(nodes1);
+
+                    //construct feasibility constraints
+                    StringBuilder sb =
+                            engine.constructFeasibilityConstraints(trace, depNodes, readDepNodes, rnode, wnode);
+
+                    //construct read write constraints, namely, all other writes either happen before the Write
+                    //or after the Read.
+                    StringBuilder sb3 =
+                            engine.constructReadWriteConstraints(engine, trace, depNodes, rnode, wnode, otherWriteNodes);
+
+                    sb.append(sb3);
+
+                    Vector<String> schedule =
+                            engine.generateSchedule(sb, rnode.getGID(), wnode.getGID(), isfulltrace ? schedule_prefix.size() : 0);
+
+                    //each time compute a causal schedule, record the information of #read, #constraints, time
+                    output = output + Long.toString(Configuration.numReads) + " " +
+                            Long.toString(Configuration.rwConstraints) + " " +
+                            Long.toString(Configuration.solveTime) + "\n";
+
+                    if (schedule != null) {
+                        if (Configuration.OMCR) {
+                            //TODO: compute the equivalent class of prefixes
+                            prefix.add(schedule);
+                            tids.add(wnode.getTid());
+
+                        } else {
+                            //rnode.getID or GID??
+                            generateSchedule(schedule, trace, schedule_prefix, rnode.getID(), rnode.getValue(), wValue, wnode.getID());
+                            break;
+                        }
+                    }
+                }
+            }
+        }// end for_writes
 		
 		//add the equivalent class to the whole vector
 		if (Configuration.OMCR && !prefix.isEmpty()) {
@@ -428,7 +395,13 @@ public class ExploreSeedInterleavings {
 //			}			
 		}		
 	}
-	private static void computeEquPrefixes(Vector<HashMap<String, Set<Vector<String>>>> schedules, 
+
+
+    /**
+     * Among the new prefix generated, check if any two of them could lead to redundant executions
+     */
+	private static void computeEquPrefixes(
+	        Vector<HashMap<String, Set<Vector<String>>>> schedules,
 			Trace trace,
 			Vector<String> schedule_prefix,
 			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass)
@@ -472,20 +445,17 @@ public class ExploreSeedInterleavings {
 	}
 	
 	private static boolean checkEquivalence(Trace trace, Vector<String> pAB, 
-			Vector<String> pA, String vA, Vector<String> pB, String vB) {		
+			Vector<String> pA, String vA, Vector<String> pB, String vB) {
 		Vector<String> pBA = new Vector<>();
 		String rA = pA.lastElement();
 		String rB = pB.lastElement();
 		if (pA.contains(rB) || pB.contains(rA)) {
 			return false;
 		}
-		
-		if (combineTwoPrefixes(trace, pAB, pA, pB, rB, vB) &&
-				combineTwoPrefixes(trace, pBA, pB, pA, rA, vA) ) {
-			return true;			
-		}	
-		return false;
-	}
+
+        return combineTwoPrefixes(trace, pAB, pA, pB, rB, vB) &&
+                combineTwoPrefixes(trace, pBA, pB, pA, rA, vA);
+    }
 	
 	private static boolean combineTwoPrefixes(Trace trace, Vector<String> pAB, Vector<String> pA, Vector<String> pB, 
 			String rB, String vB){
@@ -502,17 +472,17 @@ public class ExploreSeedInterleavings {
 		
 		Stack<AbstractNode> stLocks = new Stack<AbstractNode>();
 		Vector<AbstractNode> aTrace = trace.getFullTrace();
-		for (int i=0; i<pA.size(); i++){
-			long index = Long.valueOf(pA.get(i).substring(1)) - 1;
-			AbstractNode aNode = aTrace.get((int) index);
-			if (aNode instanceof LockNode) {
-				stLocks.push(aNode);
-			} else if (aNode instanceof UnlockNode) {
-				if (!stLocks.isEmpty()) {
-					stLocks.pop();
-				}
-			}
-		}
+        for (String aPA : pA) {
+            long index = Long.valueOf(aPA.substring(1)) - 1;
+            AbstractNode aNode = aTrace.get((int) index);
+            if (aNode instanceof LockNode) {
+                stLocks.push(aNode);
+            } else if (aNode instanceof UnlockNode) {
+                if (!stLocks.isEmpty()) {
+                    stLocks.pop();
+                }
+            }
+        }
 		
 		//if stLock is not empty, it means that the unlocks do not appear in the prefix
 		if (!stLocks.isEmpty()) {
@@ -522,38 +492,38 @@ public class ExploreSeedInterleavings {
 				String addr = l.getAddr();
 				mAddrTid.put(addr, l);
 			}
-			
-			for (int i = 0; i < pB.size(); i++) {
-				long index = Long.valueOf(pB.get(i).substring(1)) - 1;
-				AbstractNode aNode = aTrace.get((int) index);
-				if (aNode instanceof LockNode) {
-					String addr = ((LockNode) aNode).getAddr();
-					if (mAddrTid.containsKey(addr)) {
-						LockNode l = mAddrTid.get(addr);
-						Vector<AbstractNode> tidTrace = trace.getThreadNodesMap().get(l.getTid());
-						int index1 = tidTrace.indexOf(l);
-						if (index1 != -1) {
-							for (int j = index1+1; j < tidTrace.size(); j++) {
-								AbstractNode absNode = tidTrace.get(j);
-								String choice = "x" + absNode.getGID();
-								if (!pA.contains(choice)) {
-									pAB.add(choice);
-									if (absNode instanceof UnlockNode) {
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+
+            for (String aPB : pB) {
+                long index = Long.valueOf(aPB.substring(1)) - 1;
+                AbstractNode aNode = aTrace.get((int) index);
+                if (aNode instanceof LockNode) {
+                    String addr = ((LockNode) aNode).getAddr();
+                    if (mAddrTid.containsKey(addr)) {
+                        LockNode l = mAddrTid.get(addr);
+                        Vector<AbstractNode> tidTrace = trace.getThreadNodesMap().get(l.getTid());
+                        int index1 = tidTrace.indexOf(l);
+                        if (index1 != -1) {
+                            for (int j = index1 + 1; j < tidTrace.size(); j++) {
+                                AbstractNode absNode = tidTrace.get(j);
+                                String choice = "x" + absNode.getGID();
+                                if (!pA.contains(choice)) {
+                                    pAB.add(choice);
+                                    if (absNode instanceof UnlockNode) {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 		}
-		
-		for (int i = 0; i < pB.size(); i++) {
-			if (!pA.contains(pB.get(i))) {
-				pAB.add(pB.get(i));
-			}
-		}
+
+        for (String aPB : pB) {
+            if (!pA.contains(aPB)) {
+                pAB.add(aPB);
+            }
+        }
 		long gid = Long.valueOf(rB.substring(1));
 //		Vector<AbstractNode> tAbstractNodes = trace.getFullTrace();
 //		AbstractNode node1 = tAbstractNodes.get((int) gid);
@@ -565,11 +535,7 @@ public class ExploreSeedInterleavings {
 			if (node instanceof WriteNode) {
 				if (((WriteNode) node).getAddr().equals(addr)) {
 					//write to the same address
-					if (((WriteNode) node).getValue().equals(vB)) {
-						return true;
-					}
-					else
-						return false;
+                    return ((WriteNode) node).getValue().equals(vB);
 				}
 			}
 		}
@@ -580,21 +546,14 @@ public class ExploreSeedInterleavings {
 			if (node instanceof WriteNode) {
 				if (((WriteNode) node).getAddr().equals(addr)) {
 					//write to the same address
-					if (((WriteNode) node).getValue().equals(vB)) {
-						return true;
-					}
-					else
-						return false;
+                    return ((WriteNode) node).getValue().equals(vB);
 				}
 			}
 		}
-		
-		if (k < 0) {
-			return true;
-		}
-		
-		return false;
-	}
+
+        return k < 0;
+
+    }
 	
 	private static void omcrGenSchedule(Trace trace, Vector<String> schedule, 
 			Vector<String> schedule_prefix, 
@@ -626,13 +585,12 @@ public class ExploreSeedInterleavings {
 			Set<Vector<String>> valuePrefixes = new HashSet<>();
 			for (Vector<String> p : equPrefixes){
 				Vector<String> v = new Vector<>();
-				for (int i = 0; i < p.size(); i++) {
-					String xi = p.get(i);
-					long gid = Long.valueOf(xi.substring(1));
-					long tid = trace.getNodeGIDTIdMap().get(gid);
-					String name = trace.getThreadIdNameMap().get(tid);	
-					v.add(name);
-				}
+                for (String xi : p) {
+                    long gid = Long.valueOf(xi.substring(1));
+                    long tid = trace.getNodeGIDTIdMap().get(gid);
+                    String name = trace.getThreadIdNameMap().get(tid);
+                    v.add(name);
+                }
 				valuePrefixes.add(v);
 			}
 			mapPrefixEquivalent.put(schedule_a, valuePrefixes);
@@ -642,16 +600,15 @@ public class ExploreSeedInterleavings {
 
 	/**
 	 * Generate the causal schedule
-	 * @param schedule: constructed from the solution
-	 * @param trace:    the given trace
-	 * @param schedule_prefix  
-	 * @param rGid: the global ID of the read event
-	 * @param rValue : old value
-	 * @param wValue : new value
-	 * @param wID : the global ID of the write event
 	 */
-	private static void generateSchedule(Vector<String> schedule, Trace trace,
-			Vector<String> schedule_prefix, int rGid, String rValue, String wValue, int wID)
+	private static void generateSchedule(
+	        Vector<String> schedule,
+            Trace trace,
+			Vector<String> schedule_prefix,
+            int rGid,
+            String rValue,
+            String wValue,
+            int wID)
 	{
 		{	
 			Vector<String> schedule_a = new Vector<String>();
@@ -674,16 +631,16 @@ public class ExploreSeedInterleavings {
 				
 				//add addr info to the schedule 
 				//the addr information is needed when replay yhe TSO/PSO schedule
-				if (Configuration.mode=="TSO" || Configuration.mode=="PSO") 
+				if (Objects.equals(Configuration.mode, "TSO") || Objects.equals(Configuration.mode, "PSO"))
 				{
 					String addr="";
 					AbstractNode node = trace.getFullTrace().get((int) (gid-1));
 					if(node instanceof ReadNode || node instanceof WriteNode){
 						addr = ((IMemNode) node).getAddr();
-						if(addr.split("\\.") [0] != addr )
+						if(!Objects.equals(addr.split("\\.")[0], addr))
 							addr = addr.split("\\.")[1];					
 					}			
-					if(addr==""){
+					if(Objects.equals(addr, "")){
 						addr=""+node.getType();
 					}
 					name = name + "_" + addr;
@@ -698,9 +655,10 @@ public class ExploreSeedInterleavings {
 			if(!isfulltrace) {
 			    //add the schedule prefix to the head of the new schedule to make it a complete schedule
 				schedule_a.addAll(0, schedule_prefix);
-			} else {
-				//System.out.println(" USING FULL TRACE************");
 			}
+//			else {
+//				System.out.println(" USING FULL TRACE************");
+//			}
 //			System.out.println("causal schedule: " + schedule_a);
 			schedules.add(schedule_a);
 			
@@ -720,10 +678,10 @@ public class ExploreSeedInterleavings {
 	
 	private static PrintWriter out;
 	private static ConstraintsBuildEngine iEngine;
+
 	/**
 	 * Initialize the file printer. All race detection statistics are stored
 	 * into the file result."window_size".
-	 * @param appname
 	 */
 	private static void initPrinter(String appname)
 	{
@@ -777,7 +735,7 @@ public class ExploreSeedInterleavings {
 	 * @param trace
 	 * @param schedule_prefix
 	 */
-	public static void execute(Trace trace, Vector<String> schedule_prefix) {
+	static void execute(Trace trace, Vector<String> schedule_prefix) {
 		
 //		System.err.println(schedule_prefix);
 		
@@ -806,7 +764,7 @@ public class ExploreSeedInterleavings {
 	}
 	
 	//compute the memory used
-	public static int memSize(Object o){
+	static int memSize(Object o){
         try{
 //            System.out.println("Index Size: " + ((ByteArrayOutputStream) o).size());
             ByteArrayOutputStream baos=new ByteArrayOutputStream();

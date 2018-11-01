@@ -44,7 +44,7 @@ import java.util.HashMap;
  */
 public class Model
 {
-	Map<String,Object> vals = new HashMap();
+	Map<String,Object> vals = new HashMap<>();
 	
 	void put(String varName, Object value)
 	{
@@ -68,7 +68,7 @@ public class Model
 
 	public static class Array
 	{
-		private Map<Integer,Number> vals = new HashMap();
+		private Map<Integer,Number> vals = new HashMap<>();
 		private Number defaultVal;
 		
 		void put(Integer index, Number value)

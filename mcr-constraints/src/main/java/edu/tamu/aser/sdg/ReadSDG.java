@@ -14,11 +14,8 @@ import edu.tamu.aser.graph.ReachabilityEngine;
 
 public class ReadSDG {
 	
-//	public static ReadSDG instance = new ReadSDG();
-	
 	public static Map<Integer, Set<Integer>> readSDG(){
-		
-//		System.out.println("Reading SDG...");
+
 		Map<Integer, Set<Integer>> sdg = new HashMap<Integer, Set<Integer>>();
 		FileInputStream fis;
 		try {
@@ -29,31 +26,11 @@ public class ReadSDG {
 	        sdg = (HashMap) ois.readObject();
 	        ois.close();
 	        fis.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Reading SDG... Done!");
-		
-		
-		
-//		Properties p = new Properties();
-//		try {
-//			p.load(new FileInputStream("/Users/Alan/workspace_java/aser-engine/SDG"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		for (String key : p.stringPropertyNames()) {
-//			   sdg.put(key, (Set<String>) p.get(key));
-//			}
 		
 		return sdg;
 	}
@@ -64,10 +41,8 @@ public class ReadSDG {
 		for (Map.Entry<Integer, Set<Integer>> entry:sdg.entrySet()){
 			Integer key = entry.getKey();
 			Set<Integer> valueSet = entry.getValue();
-			
-			Iterator<Integer> itr = valueSet.iterator();
-			while(itr.hasNext()){
-				Integer value = itr.next();
+
+			for (Integer value : valueSet) {
 				reachSDG.addEdge(key, value);
 			}
 		}
@@ -93,17 +68,11 @@ public static Map<String, Integer> NodeToId(){
 			nodeToId = (HashMap) ois.readObject();
 	        ois.close();
 	        fis.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Reading label_id... Done!");
+	System.out.println("Reading label_id... Done!");
 		
 		return nodeToId;
 	}

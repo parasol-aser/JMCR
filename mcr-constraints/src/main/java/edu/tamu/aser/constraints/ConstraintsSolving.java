@@ -23,21 +23,19 @@ import edu.tamu.aser.config.Util;
  */
 public class ConstraintsSolving
 {
-	protected static String SMT = ".smt";
 	protected static String OUT = ".smtout";
-	protected static String Z3_PATH = "z3";       //the path of z3
-	
+
 	private String OS = System.getProperty("os.name").toLowerCase();
 
-	File outFile,smtFile;
-	protected List<String> CMD;
+	private File outFile,smtFile;
+	private List<String> CMD;
 	
-	public Model model;
+	private Model model;
 	public Vector<String> schedule;
 		
-	boolean sat;
+	private boolean sat;
 
-    long timeout;
+    private long timeout;
 	
 	public ConstraintsSolving(Configuration config, int id)
 	{				
@@ -56,14 +54,15 @@ public class ConstraintsSolving
 	 * @throws IOException
 	 */
 	public void init(Configuration config, int id) throws IOException
-	{		
+	{
+		String SMT = ".smt";
 		if(Configuration.Optimize){
-			smtFile = Util.newOutFile(config.constraint_outdir,config.tableName +"_opt" +"_"+id+SMT);
+			smtFile = Util.newOutFile(config.constraint_outdir,config.tableName +"_opt" +"_"+id+ SMT);
 	        
 			outFile = Util.newOutFile(config.constraint_outdir,config.tableName +"_opt" +"_"+id+OUT);
 		}
 		else{
-			smtFile = Util.newOutFile(config.constraint_outdir,config.tableName +"_"+id+SMT);
+			smtFile = Util.newOutFile(config.constraint_outdir,config.tableName +"_"+id+ SMT);
 	        
 			outFile = Util.newOutFile(config.constraint_outdir,config.tableName +"_"+id+OUT);
 		}
@@ -79,9 +78,9 @@ public class ConstraintsSolving
 //			Z3_PATH = "../z3-ubuntu/bin/z3";
 //		}
 		//let the users to install z3
-		Z3_PATH="z3";
+		String z3_PATH = "z3";
         
-        CMD.add(Z3_PATH);
+        CMD.add(z3_PATH);
         for(String arg: quotes){
         	CMD.add(arg);
         }
@@ -160,18 +159,13 @@ public class ConstraintsSolving
 		
 		return false;
 	}
-	/**
-	 * solve constraint "msg"
-	 * @param msg
-	 * @param endVar 
-	 */
-	
+
 	/**
 	 * add reachEngine and causalConstraint to the parameter
 	 * @author Alan
 	 */
-	public void sendMessage(String msg, String endVar, String wVar, String endVar_prefix,
-                            ReachabilityEngine reachEngine, String causalConstraint, Configuration config)
+    void sendMessage(String msg, String endVar, String wVar, String endVar_prefix,
+                     ReachabilityEngine reachEngine, String causalConstraint, Configuration config)
 	{
 		PrintWriter smtWriter = null;
 		try{
@@ -187,7 +181,7 @@ public class ConstraintsSolving
 	        if(model!=null)
 	        {
 	        	sat = true;
-	        	schedule = computeSchedule(model,endVar, wVar, endVar_prefix, reachEngine, causalConstraint, config);
+	        	schedule = computeSchedule(model,endVar, wVar, endVar_prefix, reachEngine, causalConstraint);
 	        }
 	        //String z3OutFileName = z3OutFile.getAbsolutePath();
 	        //retrieveResult(z3OutFileName);
@@ -209,9 +203,13 @@ public class ConstraintsSolving
 	 * @param endVar_prefix: the last schedule point that must be included
 	 * @return
 	 */
-	public Vector<String> computeSchedule(Model model,String endVar, String wVar, String endVar_prefix, 
-			ReachabilityEngine reachEngine, String causalConstraint,
-			Configuration config) {
+    private Vector<String> computeSchedule(
+            Model model,
+            String endVar,
+            String wVar,
+            String endVar_prefix,
+            ReachabilityEngine reachEngine,
+            String causalConstraint) {
 		
 		//Alan
 		String constraint[] = causalConstraint.split("\n");
@@ -266,68 +264,60 @@ public class ConstraintsSolving
 //		Iterator<Entry<String,Object>> setIt = model.getMap().entrySet().iterator();
 		
 		Set<Entry<String, Integer>> entrySet = sortedMap.entrySet();
-		
-		Iterator<Entry<String,Integer>> setIt = entrySet.iterator();
-		
-		while(setIt.hasNext())
-		{
-			Entry<String,Integer> entryModel = setIt.next();
-			String op = entryModel.getKey();
-			int order = entryModel.getValue();
-			
-			{
-				if(order<VALUE)//only add var that value smaller than endValue
-				{
-					
-					/**
-					 * besides value should be smaller, 
-					 * 1. there should be a reachability  p to this endVar
-					 * 2. the nodes reach p
-					 */
-					
-					if (Configuration.mode=="TSO" || Configuration.mode=="PSO") {
-						boolean flag = false;
-						for (int i = 0; i < schedule.size(); i++) {
-							String var = schedule.get(i);
-							if(var == endVar){
-								long gidFirst = Integer.parseInt(op.substring(1));
-								long gidSecond = Integer.parseInt(var.substring(1));
-								if (reachEngine.canReach(gidFirst, gidSecond)) {
-									flag = true;
-									break;
-								}
-							}
-							else if (var == wVar) {
-								long gidFirst = Integer.parseInt(op.substring(1));
-								long gidSecond = Integer.parseInt(var.substring(1));
-								if (reachEngine.canReach(gidFirst, gidSecond)) {
-									flag = true;
-									break;
-								}
-							}
-						}
-						
-						if(!flag)continue;
-					}
-					
-					
-					for(int i=0;i<schedule.size();i++)
-					{
-						if(order<(Integer)model.getMap().get(schedule.get(i)))
-						{
-							if(!schedule.contains(op))
-							schedule.insertElementAt(op, i);
-							break;
-						}
-						
-					}
-				}
-			}		
-		}	
+
+        for (Entry<String, Integer> entryModel : entrySet) {
+            String op = entryModel.getKey();
+            int order = entryModel.getValue();
+
+            {
+                if (order < VALUE)//only add var that value smaller than endValue
+                {
+
+                    /*
+                     * besides value should be smaller,
+                     * 1. there should be a reachability  p to this endVar
+                     * 2. the nodes reach p
+                     */
+
+                    if (Objects.equals(Configuration.mode, "TSO") || Objects.equals(Configuration.mode, "PSO")) {
+                        boolean flag = false;
+                        for (String var : schedule) {
+                            if (Objects.equals(var, endVar)) {
+                                long gidFirst = Integer.parseInt(op.substring(1));
+                                long gidSecond = Integer.parseInt(var.substring(1));
+                                if (reachEngine.canReach(gidFirst, gidSecond)) {
+                                    flag = true;
+                                    break;
+                                }
+                            } else if (Objects.equals(var, wVar)) {
+                                long gidFirst = Integer.parseInt(op.substring(1));
+                                long gidSecond = Integer.parseInt(var.substring(1));
+                                if (reachEngine.canReach(gidFirst, gidSecond)) {
+                                    flag = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!flag) continue;
+                    }
+
+
+                    for (int i = 0; i < schedule.size(); i++) {
+                        if (order < (Integer) model.getMap().get(schedule.get(i))) {
+                            if (!schedule.contains(op))
+                                schedule.insertElementAt(op, i);
+                            break;
+                        }
+
+                    }
+                }
+            }
+        }
 		return schedule;
 	}
 	
-	public void exec(final File outFile, String file) throws IOException
+	private void exec(final File outFile, String file) throws IOException
 	{
 
 		//CMD = "ls";
@@ -362,10 +352,10 @@ public class ConstraintsSolving
     }
 	
 	/**
-	 *  //sort the map by the value
+	 *  sort the map by the value
 	 */
-	public static <K, V extends Comparable<? super V>> Map<K, V> 
-    sortByValue( Map<K, V> map )
+	private static <K, V extends Comparable<? super V>> Map<K, V>
+    sortByValue(Map<K, V> map)
 	{
 	    List<Map.Entry<K, V>> list =
 	        new LinkedList<>( map.entrySet() );

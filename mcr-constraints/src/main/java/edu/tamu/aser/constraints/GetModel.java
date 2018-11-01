@@ -109,22 +109,17 @@ public class GetModel
 					line = reader.readLine();
 				}
 			}
-			else if(result!=null)
-				System.err.println("Solver error: "+result);			
+			else
+				System.err.println("Solver error: "+result);
 			
 			fis.close();
 			return null;
-		}catch(Exception e){
+		}catch(Exception | Error e){
 			//throw new Error(e);
 			e.printStackTrace();
 			return null;
 		}
-		catch(Error e){  
-			//throw new Error(e);
-			e.printStackTrace();//don't throw it if it is a NPE
-			return null;
-		}
-	}
+    }
 
 	static String readResult(SimpleSExprStream p) throws IOException
 	{
@@ -279,10 +274,10 @@ public class GetModel
 					Number mag = (Number) v;
 					//System.out.println("**"+type);
 					if("Int".equals(t)){
-						return new Integer(0 - mag.intValue());
+						return 0 - mag.intValue();
 					}
 					else if("Real".equals(t)){
-						return new Double( 0 - mag.doubleValue());
+						return 0 - mag.doubleValue();
 					}
 					else 
 						assert false;
@@ -299,13 +294,13 @@ public class GetModel
 		throw new RuntimeException("");
 	}
 
-	static Double fromRational(boolean sign, Number numerator, Number denominator)
+	private static Double fromRational(boolean sign, Number numerator, Number denominator)
 	{
 		DecimalFormat oneDForm = new DecimalFormat("#.#");
 		double d = numerator.doubleValue()/denominator.doubleValue();
 		d = Double.valueOf(oneDForm.format(d));
 		d = sign ? d : -d;
-        return new Double(d);
+        return d;
 	}
 
 	//for testing
@@ -328,8 +323,9 @@ public class GetModel
 					}
 				});
 		}
-		
-		for(File f : z3OutFiles) {
+
+        assert z3OutFiles != null;
+        for(File f : z3OutFiles) {
 			System.out.println("reading " + f.getName());
 			read(f);
 		}

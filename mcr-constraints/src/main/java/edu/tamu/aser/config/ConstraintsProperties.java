@@ -5,6 +5,7 @@ import java.util.Properties;
 /**
  * Created by Alan on 7/18/18.
  */
+
 public class ConstraintsProperties extends Properties {
     private static ConstraintsProperties instance = new ConstraintsProperties();
 

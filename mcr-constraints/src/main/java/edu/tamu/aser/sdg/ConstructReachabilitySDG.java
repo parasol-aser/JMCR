@@ -13,10 +13,8 @@ public class ConstructReachabilitySDG {
 		for (Map.Entry<Integer, Set<Integer>> entry:sdg.entrySet()){
 			Integer key = entry.getKey();
 			Set<Integer> valueSet = entry.getValue();
-			
-			Iterator<Integer> itr = valueSet.iterator();
-			while(itr.hasNext()){
-				Integer value = itr.next();
+
+			for (Integer value : valueSet) {
 				reachSDG.addEdge(key, value);
 			}
 		}

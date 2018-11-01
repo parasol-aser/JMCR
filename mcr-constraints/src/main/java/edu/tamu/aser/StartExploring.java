@@ -64,8 +64,11 @@ public class StartExploring implements Runnable {
 	public void run() {
 		try {
 			ExploreSeedInterleavings.setQueue(exploreQueue);
+			//load the trace
 			traceObj.finishedLoading(true);
+			//build SMT constraints over the trace and search alternative prefixes
 			ExploreSeedInterleavings.execute(traceObj, schedule_prefix);
+
 			ExploreSeedInterleavings.memUsed += ExploreSeedInterleavings.memSize(ExploreSeedInterleavings.mapPrefixEquivalent);
 		} catch (Exception e) {
 			e.printStackTrace();

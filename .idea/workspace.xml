@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6610d556-9153-42f9-93d4-3d1acf0939ec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/ExploreSeedInterleavings.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/ExploreSeedInterleavings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/StartExploring.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/StartExploring.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/ConstraintsProperties.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/ConstraintsProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Util.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Util.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsBuildEngine.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsBuildEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsSolving.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsSolving.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/GetModel.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/GetModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/Model.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/Model.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ConstructReachabilitySDG.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ConstructReachabilitySDG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ReadSDG.java" afterPath="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ReadSDG.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,31 +47,30 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="ConstraintsBuildEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsBuildEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="1278">
+              <caret line="245" column="0" lean-forward="true" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1183#1210#0" expanded="true" />
+                <element signature="e#1282#1307#0" expanded="true" />
+                <element signature="e#1380#1403#0" expanded="true" />
+                <element signature="e#1500#1536#0" expanded="true" />
+                <element signature="e#17791#17801#0" expanded="true" />
+                <element signature="e#19075#19091#0" expanded="true" />
+                <element signature="e#19723#19733#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OneBubble.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/bubblesort/OneBubble.java">
+      <file leaf-file-name="ConstraintsSolving.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsSolving.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BubbleSortTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/bubblesort/BubbleSortTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+            <state relative-caret-position="6726">
+              <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,31 +78,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BubbleSort.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/bubblesort/BubbleSort.java">
+      <file leaf-file-name="GetModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/GetModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="5947">
+              <caret line="313" column="26" lean-forward="true" selection-start-line="313" selection-start-column="26" selection-end-line="313" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#8819#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StringBuffer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/stringbuffer/StringBuffer.java">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pool107.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/pooltest/pool107.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-171">
-              <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+            <state relative-caret-position="-41">
+              <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,44 +103,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="123" lean-forward="false" selection-start-line="0" selection-start-column="123" selection-end-line="0" selection-end-column="123" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/pooltest/SimpleFactory.java">
+      <file leaf-file-name="ConstraintsProperties.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/ConstraintsProperties.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+            <state relative-caret-position="114">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/pool107/org/apache/commons/pool/impl/package.html">
+      <file leaf-file-name="PackageValidator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/PackageValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="75" lean-forward="false" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+            <state relative-caret-position="95">
+              <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Util.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Util.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="665">
+              <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Configuration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2378">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StringBufferTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/stringbuffer/StringBufferTest.java">
+      <file leaf-file-name="ReadSDG.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ReadSDG.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-364">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="1064">
+              <caret line="56" column="4" lean-forward="true" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConstructReachabilitySDG.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ConstructReachabilitySDG.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -192,16 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ConstraintsProfile/process.py" />
-        <option value="$PROJECT_DIR$/ConstraintsProfile/edu.tamu.aser.testStaticDependency.testSDG" />
-        <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/testStaticDependency/MyCounter.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/ReExProperties.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/MCRProperties.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/PORVectorClock.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RVPORRunTime.java" />
-        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/race/Race.java" />
-        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/race/RVCausalTest.java" />
-        <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RaceDetect.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/strategy/DefaultStrategy.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/reex/Scheduler.java" />
         <option value="$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/scheduling/MCRProperties.java" />
@@ -243,6 +259,16 @@
         <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/pool107/pool107.java" />
         <option value="$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/pooltest/pool107.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/StartExploring.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/ExploreSeedInterleavings.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsBuildEngine.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsSolving.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/GetModel.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/Model.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/ConstraintsProperties.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Util.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ReadSDG.java" />
+        <option value="$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ConstructReachabilitySDG.java" />
       </list>
     </option>
   </component>
@@ -353,62 +379,42 @@
             <id />
           </State>
           <State>
+            <id>Abstraction issuesJava</id>
+          </State>
+          <State>
             <id>Android &gt; Lint &gt; Correctness</id>
           </State>
           <State>
             <id>Android &gt; Lint &gt; Performance</id>
           </State>
           <State>
-            <id>Android &gt; Lint &gt; Security</id>
+            <id>Assignment issuesGroovy</id>
           </State>
           <State>
-            <id>Android Lint for Kotlin</id>
+            <id>Assignment issuesJava</id>
           </State>
           <State>
-            <id>Cucumber</id>
+            <id>Assignment issuesJavaScript</id>
           </State>
           <State>
-            <id>GPath inspectionsGroovy</id>
-          </State>
-          <State>
-            <id>Google Web Toolkit issues</id>
-          </State>
-          <State>
-            <id>GrailsGroovy</id>
+            <id>Code style issuesJava</id>
           </State>
           <State>
             <id>Groovy</id>
           </State>
           <State>
-            <id>JPA issues</id>
+            <id>Java</id>
           </State>
           <State>
-            <id>JSON</id>
+            <id>JavaScript</id>
           </State>
           <State>
             <id>Kotlin</id>
           </State>
           <State>
-            <id>Play</id>
-          </State>
-          <State>
-            <id>Properties Files</id>
-          </State>
-          <State>
-            <id>Spring</id>
-          </State>
-          <State>
-            <id>Spring BootSpring</id>
-          </State>
-          <State>
-            <id>Thymeleaf</id>
+            <id>Python</id>
           </State>
         </expanded-state>
-        <selected-state>
-          <State>
-            <id>Java</id>
-          </State>
-        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -453,7 +459,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-test" />
+              <option name="myItemId" value="mcr-constraints" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -467,7 +473,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-test" />
+              <option name="myItemId" value="mcr-constraints" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -489,7 +495,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-test" />
+              <option name="myItemId" value="mcr-constraints" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -504,6 +510,10 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -515,7 +525,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcr-test" />
+              <option name="myItemId" value="mcr-constraints" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -530,7 +540,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
@@ -1350,7 +1360,7 @@
       <workItem from="1538062077584" duration="19627000" />
       <workItem from="1539032358866" duration="9815000" />
       <workItem from="1539367506093" duration="26085000" />
-      <workItem from="1540504606041" duration="7956000" />
+      <workItem from="1540504606041" duration="12664000" />
     </task>
     <servers />
   </component>
@@ -1387,11 +1397,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175449000" />
+    <option name="totallyTimeSpent" value="180157000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1409,7 +1419,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26996806" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26996806" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14589989" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1468,7 +1478,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/ExploreSeedInterleavings.java</url>
-          <line>783</line>
+          <line>741</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
@@ -1520,6 +1530,12 @@
           <properties />
           <option name="timeStamp" value="59" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsBuildEngine.java</url>
+          <line>1563</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/mcr-test/src/main/java/edu/tamu/aser/results/RVExample.java</url>
           <line>12</line>
@@ -1530,99 +1546,11 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="60" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/SharedAccessEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/LocationAwareLocalVariablesSorter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/JUCEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-668">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="76" lean-forward="false" selection-start-line="25" selection-start-column="76" selection-end-line="25" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/FireEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/ClassAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/mcr/MethodAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="100" column="61" lean-forward="false" selection-start-line="100" selection-start-column="61" selection-end-line="100" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/ExtendedClassWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/mcr-instrumentor/src/main/resources/libs/asm.jar!/org/objectweb/asm/ClassReader.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="1041" column="0" lean-forward="false" selection-start-line="1041" selection-start-column="0" selection-end-line="1041" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsClassTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/icb/ThreadEventsMethodTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcr-scheduler/src/main/java/edu/tamu/aser/runtime/RVRunTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcr-instrumentor/src/main/java/edu/tamu/aser/instrumentation/RVGlobalStateForInstrumentation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1642,6 +1570,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3496">
           <caret line="210" column="5" lean-forward="true" selection-start-line="210" selection-start-column="5" selection-end-line="210" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1753,7 +1682,7 @@
         <state relative-caret-position="-1067">
           <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1787,7 +1716,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1797,7 +1726,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1807,7 +1736,7 @@
         <state relative-caret-position="-1903">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1825,7 +1754,7 @@
         <state relative-caret-position="95">
           <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1867,7 +1796,7 @@
         <state relative-caret-position="-304">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1877,7 +1806,7 @@
         <state relative-caret-position="-1637">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1895,7 +1824,7 @@
         <state relative-caret-position="472">
           <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1966,6 +1895,126 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/StartExploring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="68" column="82" lean-forward="false" selection-start-line="68" selection-start-column="82" selection-end-line="68" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/ExploreSeedInterleavings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14554">
+          <caret line="766" column="4" lean-forward="false" selection-start-line="766" selection-start-column="4" selection-end-line="766" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsBuildEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1278">
+          <caret line="245" column="0" lean-forward="true" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1183#1210#0" expanded="true" />
+            <element signature="e#1282#1307#0" expanded="true" />
+            <element signature="e#1380#1403#0" expanded="true" />
+            <element signature="e#1500#1536#0" expanded="true" />
+            <element signature="e#17791#17801#0" expanded="true" />
+            <element signature="e#19075#19091#0" expanded="true" />
+            <element signature="e#19723#19733#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/ConstraintsSolving.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6726">
+          <caret line="354" column="8" lean-forward="false" selection-start-line="354" selection-start-column="8" selection-end-line="354" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/GetModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5947">
+          <caret line="313" column="26" lean-forward="true" selection-start-line="313" selection-start-column="26" selection-end-line="313" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#8819#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/constraints/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41">
+          <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/ConstraintsProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/PackageValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/config/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2378">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ReadSDG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1064">
+          <caret line="56" column="4" lean-forward="true" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcr-constraints/src/main/java/edu/tamu/aser/sdg/ConstructReachabilitySDG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
