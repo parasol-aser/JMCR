@@ -48,4 +48,5 @@ testTSO/
 testPSO/
 testOMCR/
 testStaticDependency/
-data.properties
+data.properties/
+.metadata

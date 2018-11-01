@@ -35,7 +35,7 @@ public class RVExample {
 				for (int i = 0; i < 2; i++) {
 					if (x > 1) {
 						if (y == 3) {
-							System.err.println("Find the error!");
+//							System.err.println("Find the error!");
 //							fail("FAIL!!!!!!!!!!!");
 						} else
 							y = 2;
@@ -47,7 +47,7 @@ public class RVExample {
 		t1.start();
 		t2.start();
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 10; i++) {
 			synchronized (lock) {
 				x = 1;
 				y = 1;

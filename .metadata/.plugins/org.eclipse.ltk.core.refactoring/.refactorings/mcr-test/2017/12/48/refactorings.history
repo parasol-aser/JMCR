@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;mcr-test&apos;&#x0A;- Original project: &apos;mcr-test&apos;&#x0A;- Original element: &apos;mcr-test/src/omcr&apos;&#x0A;- Delete subpackages" description="Delete element" element1="/src&lt;omcr.ticketorder" element2="/src&lt;omcr.manager" element3="/src&lt;omcr.loader" element4="/src&lt;omcr.garage" element5="/src&lt;omcr.airline" element6="/src&lt;omcr.account" element7="/src&lt;omcr" elements="7" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1512166231174" subPackages="true" version="1.0"/>
-</session>
