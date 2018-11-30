@@ -47,7 +47,7 @@ public class RVExample {
 		t1.start();
 		t2.start();
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 2; i++) {
 			synchronized (lock) {
 				x = 1;
 				y = 1;

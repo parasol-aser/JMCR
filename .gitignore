@@ -51,5 +51,6 @@ testOMCR/
 testStaticDependency/
 data.properties/
 .metadata/
+.idea/
 
 
