@@ -49,6 +49,33 @@
             <artifactId>mcr-instrumentor</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.12</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>weblech</groupId>
+            <artifactId>weblech</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/weblech.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/derby2861.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
 
