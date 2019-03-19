@@ -6,7 +6,7 @@
 usage() {
 	cat <<EOU
 usage: $0 [options] test_class [parameters]
-  e.g., $0 edu.tamu.aser.results.RVExample
+  e.g., $0 edu.tamu.aser.RVExample.RVExample
   options:
   	--help -h usage
 	--debug -D print debug information

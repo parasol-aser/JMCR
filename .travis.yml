@@ -14,7 +14,7 @@ before_install:
 
 script:
   - mvn package
-  - ./mcr_cmd -E mcr edu.tamu.aser.tests.RVExample.RVExample
-  - ./mcr_cmd -E mcr edu.tamu.aser.tests.account.AccountTest
-  - ./mcr_cmd -E icb edu.tamu.aser.tests.RVExample.RVExample
+  - ./mcr_cmd -E mcr edu.tamu.aser.RVExample.RVExample
+  - ./mcr_cmd -E mcr edu.tamu.aser.account.AccountTest
+  - ./mcr_cmd -E icb edu.tamu.aser.RVExample.RVExample
   
