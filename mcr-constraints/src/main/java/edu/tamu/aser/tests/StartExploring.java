@@ -1,11 +1,11 @@
-package edu.tamu.aser;
+package edu.tamu.aser.tests;
 
 import java.util.List;
 import java.util.Queue;
 import java.util.Vector;
 
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.trace.Trace;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.trace.Trace;
 
 public class StartExploring implements Runnable {
 

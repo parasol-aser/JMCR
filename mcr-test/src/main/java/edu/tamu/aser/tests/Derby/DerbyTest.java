@@ -1,9 +1,9 @@
-package edu.tamu.aser.Derby;
+package edu.tamu.aser.tests.Derby;
 
 import static org.junit.Assert.fail;
 
 import derby2861.ViewCreatorDropper;
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.apache.derby.jdbc.EmbeddedDriver;
 import org.junit.Test;
 import org.junit.runner.RunWith;

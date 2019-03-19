@@ -1,4 +1,4 @@
-package edu.tamu.aser.reex;
+package edu.tamu.aser.tests.reex;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Collections;
@@ -13,9 +13,18 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import edu.tamu.aser.runtime.RVRunTime;
-import edu.tamu.aser.scheduling.MCRProperties;
-import edu.tamu.aser.scheduling.strategy.DefaultStrategy;
+import edu.tamu.aser.tests.runtime.RVRunTime;
+import edu.tamu.aser.tests.scheduling.MCRProperties;
+import edu.tamu.aser.tests.scheduling.strategy.DefaultStrategy;
+import edu.tamu.aser.tests.internaljuc.MyUnsafe;
+import edu.tamu.aser.tests.internaljuc.Reex_Condition;
+import edu.tamu.aser.tests.internaljuc.Reex_Semaphore;
+import edu.tamu.aser.tests.listeners.Listeners;
+import edu.tamu.aser.tests.scheduling.filtering.DefaultFilter;
+import edu.tamu.aser.tests.scheduling.filtering.SchedulingFilter;
+import edu.tamu.aser.tests.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.tests.scheduling.strategy.SchedulingStrategy;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 import sun.misc.Unsafe;
 import edu.illinois.imunit.internal.parsing.BlockEvent;
 import edu.illinois.imunit.internal.parsing.Event;
@@ -23,29 +32,20 @@ import edu.illinois.imunit.internal.parsing.Name;
 import edu.illinois.imunit.internal.parsing.Ordering;
 import edu.illinois.imunit.internal.parsing.Orderings;
 import edu.illinois.imunit.internal.parsing.SimpleEvent;
-import edu.tamu.aser.internaljuc.MyUnsafe;
-import edu.tamu.aser.internaljuc.Reex_Condition;
-import edu.tamu.aser.internaljuc.Reex_ReentrantLock;
-import edu.tamu.aser.internaljuc.Reex_Semaphore;
-import edu.tamu.aser.internaljuc.Reex_TimeUnit;
-import edu.tamu.aser.listeners.Listeners;
-import edu.tamu.aser.scheduling.events.ArrayAccessEventDesc;
-import edu.tamu.aser.scheduling.events.BlockedForIMUnitEventDesc;
-import edu.tamu.aser.scheduling.events.BlockedForThreadBlockDesc;
-import edu.tamu.aser.scheduling.events.EventDesc;
-import edu.tamu.aser.scheduling.events.EventType;
-import edu.tamu.aser.scheduling.events.FieldAccessEventDesc;
-import edu.tamu.aser.scheduling.events.JoinEventDesc;
-import edu.tamu.aser.scheduling.events.LocationDesc;
-import edu.tamu.aser.scheduling.events.LockEventDesc;
-import edu.tamu.aser.scheduling.events.ParkUnparkEventDesc;
-import edu.tamu.aser.scheduling.events.ThreadLifeEventDesc;
-import edu.tamu.aser.scheduling.events.WaitNotifyEventDesc;
-import edu.tamu.aser.scheduling.filtering.DefaultFilter;
-import edu.tamu.aser.scheduling.filtering.SchedulingFilter;
-import edu.tamu.aser.scheduling.strategy.ChoiceType;
-import edu.tamu.aser.scheduling.strategy.SchedulingStrategy;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.internaljuc.Reex_ReentrantLock;
+import edu.tamu.aser.tests.internaljuc.Reex_TimeUnit;
+import edu.tamu.aser.tests.scheduling.events.ArrayAccessEventDesc;
+import edu.tamu.aser.tests.scheduling.events.BlockedForIMUnitEventDesc;
+import edu.tamu.aser.tests.scheduling.events.BlockedForThreadBlockDesc;
+import edu.tamu.aser.tests.scheduling.events.EventDesc;
+import edu.tamu.aser.tests.scheduling.events.EventType;
+import edu.tamu.aser.tests.scheduling.events.FieldAccessEventDesc;
+import edu.tamu.aser.tests.scheduling.events.JoinEventDesc;
+import edu.tamu.aser.tests.scheduling.events.LocationDesc;
+import edu.tamu.aser.tests.scheduling.events.LockEventDesc;
+import edu.tamu.aser.tests.scheduling.events.ParkUnparkEventDesc;
+import edu.tamu.aser.tests.scheduling.events.ThreadLifeEventDesc;
+import edu.tamu.aser.tests.scheduling.events.WaitNotifyEventDesc;
 
 /**
  * Class that orchestrates threads so that they can be scheduled using custom
@@ -119,7 +119,7 @@ public class Scheduler {
                         System.out.println("DEBUG");
                     }
                     
-                    edu.tamu.aser.reex.JUnit4MCRRunner.npes.add(message);
+                    JUnit4MCRRunner.npes.add(message);
                     failureDetected(null);
                     Listeners.fireCompletedExploration();
                     Scheduler.endThread();
@@ -134,7 +134,7 @@ public class Scheduler {
                         System.out.println("DEBUG");
                     }
                  
-                     edu.tamu.aser.reex.JUnit4MCRRunner.npes.add(message);
+                     JUnit4MCRRunner.npes.add(message);
                      failureDetected(null);
                      Listeners.fireCompletedExploration();
                      Scheduler.endThread();
@@ -151,7 +151,7 @@ public class Scheduler {
 
         MCRProperties prop = MCRProperties.getInstance();
         String schedulingStrategyClassName = prop.getProperty(MCRProperties.SCHEDULING_STRATEGY_KEY);
-//        "edu.tamu.aser.scheduling.strategy.MCRStrategy";
+//        "MCRStrategy";
         if (schedulingStrategyClassName != null) {
             try {
                 schedulingStrategy = (SchedulingStrategy) Class.forName(schedulingStrategyClassName).newInstance();

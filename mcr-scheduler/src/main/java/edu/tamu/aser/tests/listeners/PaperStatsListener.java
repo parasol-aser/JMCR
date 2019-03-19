@@ -1,4 +1,4 @@
-package edu.tamu.aser.listeners;
+package edu.tamu.aser.tests.listeners;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,12 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-import edu.tamu.aser.ExploreSeedInterleavings;
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.trace.Trace;
-import edu.tamu.aser.reex.Scheduler;
-import edu.tamu.aser.scheduling.filtering.LocationBasedPreemptionFilter;
-import edu.tamu.aser.scheduling.filtering.SchedulingFilter;
+import edu.tamu.aser.tests.ExploreSeedInterleavings;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.scheduling.filtering.LocationBasedPreemptionFilter;
+import edu.tamu.aser.tests.scheduling.filtering.SchedulingFilter;
+import edu.tamu.aser.tests.trace.Trace;
+import edu.tamu.aser.tests.reex.Scheduler;
 
 /**
  * Listener for collecting stats for the ISSTA 2011 paper on Change-Aware

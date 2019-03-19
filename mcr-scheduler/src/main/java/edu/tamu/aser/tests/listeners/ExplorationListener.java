@@ -1,12 +1,12 @@
-package edu.tamu.aser.listeners;
+package edu.tamu.aser.tests.listeners;
 
 import java.util.List;
 import java.util.SortedSet;
 
-import edu.tamu.aser.scheduling.events.EventDesc;
-import edu.tamu.aser.scheduling.events.EventType;
-import edu.tamu.aser.scheduling.strategy.ChoiceType;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.scheduling.events.EventDesc;
+import edu.tamu.aser.tests.scheduling.events.EventType;
+import edu.tamu.aser.tests.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 
 /**
  * Interface for listeners that want to observe various stages of the

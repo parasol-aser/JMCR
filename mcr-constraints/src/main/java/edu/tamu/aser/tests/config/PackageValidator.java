@@ -1,4 +1,4 @@
-package edu.tamu.aser.config;
+package edu.tamu.aser.tests.config;
 
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.ParameterException;

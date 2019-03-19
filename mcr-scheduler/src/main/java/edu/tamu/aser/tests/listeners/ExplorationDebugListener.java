@@ -1,13 +1,13 @@
-package edu.tamu.aser.listeners;
+package edu.tamu.aser.tests.listeners;
 
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.SortedSet;
 
-import edu.tamu.aser.reex.Scheduler;
-import edu.tamu.aser.scheduling.events.EventDesc;
-import edu.tamu.aser.scheduling.strategy.ChoiceType;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.reex.Scheduler;
+import edu.tamu.aser.tests.scheduling.events.EventDesc;
+import edu.tamu.aser.tests.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 
 public class ExplorationDebugListener extends ExplorationListenerAdapter {
 

@@ -1,4 +1,4 @@
-package edu.tamu.aser.scheduling.filtering;
+package edu.tamu.aser.tests.scheduling.filtering;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,8 +10,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 //import edu.tamu.aser.rvinstrumentation.MCRProperties;
-import edu.tamu.aser.scheduling.events.LocationDesc;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.scheduling.events.LocationDesc;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 
 public enum LocationFilterMode {
 

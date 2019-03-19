@@ -1,4 +1,4 @@
-package edu.tamu.aser.reex;
+package edu.tamu.aser.tests.reex;
 
 import java.io.StringReader;
 import java.util.HashMap;
@@ -6,10 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import edu.tamu.aser.reex.JUnit4WrappedRunNotifier;
-import edu.tamu.aser.reex.Scheduler;
-import edu.tamu.aser.scheduling.MCRProperties;
-import edu.tamu.aser.trace.Trace;
+import edu.tamu.aser.tests.scheduling.MCRProperties;
+import edu.tamu.aser.tests.trace.Trace;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
@@ -24,7 +22,6 @@ import edu.illinois.imunit.internal.parsing.Orderings;
 import edu.illinois.imunit.internal.parsing.ParseException;
 import edu.illinois.imunit.internal.parsing.ScheduleParser;
 import edu.illinois.imunit.internal.parsing.TokenMgrError;
-import edu.tamu.aser.ExploreSeedInterleavings;
 
 /**
  * MCR runner for JUnit4 tests.

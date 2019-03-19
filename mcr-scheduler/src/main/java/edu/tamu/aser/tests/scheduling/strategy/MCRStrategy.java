@@ -1,4 +1,4 @@
-package edu.tamu.aser.scheduling.strategy;
+package edu.tamu.aser.tests.scheduling.strategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,14 +12,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import edu.tamu.aser.StartExploring;
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
-import edu.tamu.aser.trace.Trace;
-import edu.tamu.aser.trace.TraceInfo;
-//import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
-import edu.tamu.aser.runtime.RVRunTime;
-import edu.tamu.aser.scheduling.events.EventType;
+import edu.tamu.aser.tests.StartExploring;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.instrumentation.RVGlobalStateForInstrumentation;
+import edu.tamu.aser.tests.trace.Trace;
+import edu.tamu.aser.tests.trace.TraceInfo;
+//import RVGlobalStateForInstrumentation;
+import edu.tamu.aser.tests.runtime.RVRunTime;
+import edu.tamu.aser.tests.scheduling.events.EventType;
 
 public class MCRStrategy extends SchedulingStrategy {
 

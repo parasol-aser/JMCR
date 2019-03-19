@@ -1,4 +1,4 @@
-package edu.tamu.aser.pingpong;
+package edu.tamu.aser.tests.pingpong;
 
 /**
  *@author Golan

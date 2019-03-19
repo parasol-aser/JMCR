@@ -1,4 +1,4 @@
-package edu.tamu.aser.MTList;
+package edu.tamu.aser.tests.MTList;
 
 /**
  * Created by IntelliJ IDEA.

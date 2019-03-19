@@ -26,7 +26,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ******************************************************************************/
-package edu.tamu.aser.graph;
+package edu.tamu.aser.tests.graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,8 +34,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
-import edu.tamu.aser.trace.LockNode;
-import edu.tamu.aser.trace.LockPair;
+import edu.tamu.aser.tests.trace.LockNode;
+import edu.tamu.aser.tests.trace.LockPair;
 
 /**
  * Engine for computing the Lockset algorithm 

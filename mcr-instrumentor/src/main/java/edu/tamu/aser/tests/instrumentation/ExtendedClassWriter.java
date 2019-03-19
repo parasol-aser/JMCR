@@ -1,4 +1,4 @@
-package edu.tamu.aser.instrumentation;
+package edu.tamu.aser.tests.instrumentation;
 
 import java.io.IOException;
 import java.io.InputStream;

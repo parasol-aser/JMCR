@@ -1,4 +1,4 @@
-package edu.tamu.aser.account;
+package edu.tamu.aser.tests.account;
 
 /**
  * Title: Software Testing course Description: The goal of the exercise is

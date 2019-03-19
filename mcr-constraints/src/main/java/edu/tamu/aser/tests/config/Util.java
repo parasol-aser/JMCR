@@ -1,5 +1,5 @@
 
-package edu.tamu.aser.config;
+package edu.tamu.aser.tests.config;
 
 import java.io.*;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package edu.tamu.aser.scheduling.strategy;
+package edu.tamu.aser.tests.scheduling.strategy;
 
 import java.util.Iterator;
 import java.util.List;

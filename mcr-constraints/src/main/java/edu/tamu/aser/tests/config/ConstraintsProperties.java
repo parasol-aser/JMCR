@@ -1,4 +1,4 @@
-package edu.tamu.aser.config;
+package edu.tamu.aser.tests.config;
 import java.io.InputStream;
 import java.util.Properties;
 

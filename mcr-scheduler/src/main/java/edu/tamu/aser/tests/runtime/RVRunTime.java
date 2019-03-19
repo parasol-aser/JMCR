@@ -1,4 +1,4 @@
-package edu.tamu.aser.runtime;
+package edu.tamu.aser.tests.runtime;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -6,21 +6,21 @@ import java.util.Vector;
 //import com.sun.java.util.jar.pack.Package.Class.Field;
 import java.lang.reflect.Field;
 
-//import edu.tamu.aser.instrumentation.RVConfig;
-import edu.tamu.aser.graph.Queue;
-import edu.tamu.aser.instrumentation.Instrumentor;
-import edu.tamu.aser.trace.AbstractNode;
-import edu.tamu.aser.trace.JoinNode;
-import edu.tamu.aser.trace.LockNode;
-import edu.tamu.aser.trace.NotifyNode;
-import edu.tamu.aser.trace.ReadNode;
-import edu.tamu.aser.trace.StartNode;
-import edu.tamu.aser.trace.Trace;
-import edu.tamu.aser.trace.UnlockNode;
-import edu.tamu.aser.trace.WaitNode;
-import edu.tamu.aser.trace.WriteNode;
-import edu.tamu.aser.reex.Scheduler;
-import edu.tamu.aser.scheduling.strategy.MCRStrategy;
+//import RVConfig;
+import edu.tamu.aser.tests.graph.Queue;
+import edu.tamu.aser.tests.instrumentation.Instrumentor;
+import edu.tamu.aser.tests.scheduling.strategy.MCRStrategy;
+import edu.tamu.aser.tests.trace.AbstractNode;
+import edu.tamu.aser.tests.trace.JoinNode;
+import edu.tamu.aser.tests.trace.LockNode;
+import edu.tamu.aser.tests.trace.NotifyNode;
+import edu.tamu.aser.tests.trace.ReadNode;
+import edu.tamu.aser.tests.trace.StartNode;
+import edu.tamu.aser.tests.trace.Trace;
+import edu.tamu.aser.tests.trace.UnlockNode;
+import edu.tamu.aser.tests.trace.WaitNode;
+import edu.tamu.aser.tests.trace.WriteNode;
+import edu.tamu.aser.tests.reex.Scheduler;
 
 public class  RVRunTime {
 
@@ -30,7 +30,7 @@ public class  RVRunTime {
 	 * createing hashmap to use as a buffer 
 	 * @Alan
 	 */
-    public static HashMap<Long, Queue<Vector<String>>> 
+    public static HashMap<Long, Queue<Vector<String>>>
             storeBuffer = new HashMap<Long, Queue<Vector<String>>>();
     
     public static HashMap<Long, Long>

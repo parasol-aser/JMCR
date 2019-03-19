@@ -1,4 +1,4 @@
-package edu.tamu.aser.instrumentation;
+package edu.tamu.aser.tests.instrumentation;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,11 +10,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-//import edu.tamu.aser.profile.ProfileRunTime;
-import edu.tamu.aser.profile.ProfileRunTime;
+//import ProfileRunTime;
+import edu.tamu.aser.tests.profile.ProfileRunTime;
 import org.objectweb.asm.ClassReader;
 
-//import edu.tamu.aser.profile.ProfileRunTime;
+//import ProfileRunTime;
 //import edu.tamu.aser.trace.Trace;
 //import edu.tamu.aser.trace.TraceInfo;
 

@@ -33,7 +33,7 @@
  * http://creativecommons.org/licenses/publicdomain
  */
 
-package edu.tamu.aser.internaljuc;
+package edu.tamu.aser.tests.internaljuc;
 import sun.misc.Unsafe;
 
 

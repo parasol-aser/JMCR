@@ -1,10 +1,10 @@
-package edu.tamu.aser.scheduling.strategy;
+package edu.tamu.aser.tests.scheduling.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 
-import edu.tamu.aser.instrumentation.MCRProperties;
+import edu.tamu.aser.tests.instrumentation.MCRProperties;
 
 /**
  * Reproduces a given schedule.

@@ -1,8 +1,7 @@
-package edu.tamu.aser.icb;
+package edu.tamu.aser.tests.icb;
 
-import edu.tamu.aser.instrumentation.Instrumentor;
+import edu.tamu.aser.tests.instrumentation.Instrumentor;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 /**
  * 
@@ -28,7 +27,7 @@ public class JUCEventsMethodTransformer extends LocationAwareLocalVariablesSorte
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
-        if (owner.equals(UNSAFE_CLASS_NAME) && opcode == Opcodes.INVOKEVIRTUAL && !(name.equals("getUnsafe"))) {
+        if (owner.equals(UNSAFE_CLASS_NAME) && opcode == INVOKEVIRTUAL && !(name.equals("getUnsafe"))) {
             if (name.equals(PARK_METHOD_NAME) && desc.equals(BOOL_LONG_VOID)) {
                 visitParkMethod(opcode, owner, name, desc);
                 return;
@@ -59,32 +58,32 @@ public class JUCEventsMethodTransformer extends LocationAwareLocalVariablesSorte
         super.mv.visitLdcInsn(owner);
         super.mv.visitLdcInsn(name);
         super.mv.visitLdcInsn(desc);
-        super.mv.visitMethodInsn(Opcodes.INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, "beforeUnsafeOther",
+        super.mv.visitMethodInsn(INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, "beforeUnsafeOther",
                 "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
     }
 
     private void visitUnsafeScheduleRelevantMethod(boolean isBefore, boolean isRead, int opcode, String owner, String name, String desc) {
-        super.mv.visitInsn(isRead ? Opcodes.ICONST_1 : Opcodes.ICONST_0);
+        super.mv.visitInsn(isRead ? ICONST_1 : ICONST_0);
         super.mv.visitLdcInsn(owner);
         super.mv.visitLdcInsn(name);
         super.mv.visitLdcInsn(desc);
         if (isBefore) {
-            super.mv.visitMethodInsn(Opcodes.INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, BEFORE_FIELD_ACCESS, BOOL_3STRINGS_VOID);
+            super.mv.visitMethodInsn(INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, BEFORE_FIELD_ACCESS, BOOL_3STRINGS_VOID);
         } else {
-            super.mv.visitMethodInsn(Opcodes.INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, AFTER_FIELD_ACCESS, BOOL_3STRINGS_VOID);
+            super.mv.visitMethodInsn(INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, AFTER_FIELD_ACCESS, BOOL_3STRINGS_VOID);
         }
     }
 
     private void visitUnparkMethod(int opcode, String owner, String name, String desc) {
         super.updateThreadLocation();
-        super.mv.visitMethodInsn(Opcodes.INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, "performUnpark", OBJECT_VOID);
-        super.mv.visitInsn(Opcodes.POP);
+        super.mv.visitMethodInsn(INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, "performUnpark", OBJECT_VOID);
+        super.mv.visitInsn(POP);
     }
 
     private void visitParkMethod(int opcode, String owner, String name, String desc) {
         super.updateThreadLocation();
-        super.mv.visitMethodInsn(Opcodes.INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, "performPark", BOOL_LONG_VOID);
-        super.mv.visitInsn(Opcodes.POP);
+        super.mv.visitMethodInsn(INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, "performPark", BOOL_LONG_VOID);
+        super.mv.visitInsn(POP);
     }
 
 }

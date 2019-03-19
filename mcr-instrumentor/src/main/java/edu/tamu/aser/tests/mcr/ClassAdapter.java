@@ -1,6 +1,6 @@
-package edu.tamu.aser.mcr;
+package edu.tamu.aser.tests.mcr;
 
-import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
+import edu.tamu.aser.tests.instrumentation.RVGlobalStateForInstrumentation;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;

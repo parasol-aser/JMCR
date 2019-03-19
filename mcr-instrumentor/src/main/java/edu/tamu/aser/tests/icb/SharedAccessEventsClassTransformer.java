@@ -1,4 +1,4 @@
-package edu.tamu.aser.icb;
+package edu.tamu.aser.tests.icb;
 
 import java.util.HashSet;
 import java.util.Set;

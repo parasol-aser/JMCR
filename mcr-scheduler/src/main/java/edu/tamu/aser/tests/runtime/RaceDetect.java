@@ -1,7 +1,7 @@
-package edu.tamu.aser.runtime;
+package edu.tamu.aser.tests.runtime;
 
-import edu.tamu.aser.ExploreSeedInterleavings;
-import edu.tamu.aser.race.Race;
+import edu.tamu.aser.tests.ExploreSeedInterleavings;
+import edu.tamu.aser.tests.race.Race;
 
 import java.util.HashMap;
 import java.util.Map;

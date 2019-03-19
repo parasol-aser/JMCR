@@ -30,12 +30,12 @@
 */
 
 
-package edu.tamu.aser.constraints;
+package edu.tamu.aser.tests.constraints;
 
 import java.util.Vector;
 import java.text.DecimalFormat;
 
-import edu.tamu.aser.config.Configuration;
+import edu.tamu.aser.tests.config.Configuration;
 import org.w3c.tools.sexpr.Symbol;
 
 import org.w3c.tools.sexpr.SimpleSExprStream;

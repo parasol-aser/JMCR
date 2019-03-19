@@ -1,4 +1,4 @@
-package edu.tamu.aser.MTSet;
+package edu.tamu.aser.tests.MTSet;
 
 /**
  * Created by IntelliJ IDEA.

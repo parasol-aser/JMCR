@@ -1,4 +1,4 @@
-package edu.tamu.aser.util;
+package edu.tamu.aser.tests.util;
 
 import java.net.URLClassLoader;
 import java.net.URL;

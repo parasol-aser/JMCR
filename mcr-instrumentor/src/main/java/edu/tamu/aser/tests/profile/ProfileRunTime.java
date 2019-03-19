@@ -1,7 +1,7 @@
-package edu.tamu.aser.profile;
+package edu.tamu.aser.tests.profile;
 
-import edu.tamu.aser.instrumentation.RVConfig;
-import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
+import edu.tamu.aser.tests.instrumentation.RVConfig;
+import edu.tamu.aser.tests.instrumentation.RVGlobalStateForInstrumentation;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -33,11 +33,9 @@
  * http://creativecommons.org/licenses/publicdomain
  */
 
-package edu.tamu.aser.internaljuc;
-import java.lang.reflect.Field;
+package edu.tamu.aser.tests.internaljuc;
 import java.util.*;
 
-import edu.tamu.aser.internaljuc.Reex_AbstractOwnableSynchronizer;
 import sun.misc.Unsafe;
 
 /**

@@ -1,15 +1,13 @@
-package edu.tamu.aser.mcr;
+package edu.tamu.aser.tests.mcr;
 
-import edu.tamu.aser.instrumentation.Instrumentor;
-import edu.tamu.aser.instrumentation.RVConfig;
-import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
+import edu.tamu.aser.tests.instrumentation.Instrumentor;
+import edu.tamu.aser.tests.instrumentation.RVConfig;
+import edu.tamu.aser.tests.instrumentation.RVGlobalStateForInstrumentation;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
-
-import static edu.tamu.aser.instrumentation.Instrumentor.logClass;
 
 public class MethodAdapter extends AdviceAdapter implements Opcodes {
     private final static String CLASS_INTEGER = "java/lang/Integer";
@@ -98,7 +96,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                      * 
                      */
                     if(Instrumentor.memModel.equals("TSO") || Instrumentor.memModel.equals("PSO")){
-                        mv.visitMethodInsn(INVOKESTATIC, logClass,
+                        mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                                 RVConfig.instance.MEM_BARRIER,
                                 RVConfig.instance.DESC_MEM_BARRIER);
                     }
@@ -113,7 +111,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                     
                    
                     
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_THREAD_BEFORE_START,
                             RVConfig.instance.DESC_LOG_THREAD_START);
 
@@ -130,7 +128,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
                     addBipushInsn(mv,ID);
                     mv.visitVarInsn(ALOAD, index);
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_THREAD_JOIN,
                             RVConfig.instance.DESC_LOG_THREAD_JOIN);
 
@@ -152,7 +150,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
                 addBipushInsn(mv,ID);
                 mv.visitVarInsn(ALOAD, index);
-                mv.visitMethodInsn(INVOKESTATIC, logClass,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                         RVConfig.instance.LOG_WAIT,
                         RVConfig.instance.DESC_LOG_WAIT);
 
@@ -167,7 +165,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
                     addBipushInsn(mv, ID);
                     mv.visitVarInsn(ALOAD, index);
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_NOTIFY,
                             RVConfig.instance.DESC_LOG_NOTIFY);
 
@@ -181,7 +179,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
                     addBipushInsn(mv, ID);
                     mv.visitVarInsn(ALOAD, index);
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_NOTIFY_ALL,
                             RVConfig.instance.DESC_LOG_NOTIFY);
 
@@ -196,7 +194,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                     addBipushInsn(mv, ID);
                     mv.visitVarInsn(ALOAD, index);
 
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_LOCK_INSTANCE,
                             RVConfig.instance.DESC_LOG_LOCK_INSTANCE);
                 }
@@ -209,7 +207,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                     mv.visitVarInsn(ALOAD, index);
 
 
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_UNLOCK_INSTANCE,
                             RVConfig.instance.DESC_LOG_UNLOCK_INSTANCE);
                 }
@@ -223,7 +221,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                     addBipushInsn(mv, ID);
                     mv.visitVarInsn(ALOAD, index);
 
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_LOCK_INSTANCE,
                             RVConfig.instance.DESC_LOG_LOCK_INSTANCE);
                 }
@@ -235,7 +233,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
         case INVOKESTATIC:
             if ((RVGlobalStateForInstrumentation.instance.isThreadClass(owner))
                 &&name.equals("sleep") && (desc.equals(("(J)V")) || desc.equals("(JI)V"))) {
-               mv.visitMethodInsn(INVOKESTATIC, logClass,
+               mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                        RVConfig.instance.LOG_THREAD_SLEEP,
                        RVConfig.instance.DESC_LOG_THREAD_SLEEP);
             }
@@ -253,7 +251,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                 addBipushInsn(mv, ID);
                 mv.visitVarInsn(ALOAD, index);
 
-                mv.visitMethodInsn(INVOKESTATIC, logClass,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                         RVConfig.instance.LOG_LOCK_INSTANCE,
                         RVConfig.instance.DESC_LOG_LOCK_INSTANCE);
             }
@@ -266,7 +264,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                 mv.visitVarInsn(ALOAD, index);
 
 
-                mv.visitMethodInsn(INVOKESTATIC, logClass,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                         RVConfig.instance.LOG_UNLOCK_INSTANCE,
                         RVConfig.instance.DESC_LOG_UNLOCK_INSTANCE);
             }
@@ -363,7 +361,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 		     */
 		    
 		    if(Instrumentor.memModel.equals("TSO") || Instrumentor.memModel.equals("PSO")){
-		        mv.visitMethodInsn(INVOKESTATIC, logClass,
+		        mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                         RVConfig.instance.MEM_BARRIER, 
                         RVConfig.instance.DESC_MEM_BARRIER);
 		    }
@@ -384,19 +382,19 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 				loadValue(desc, index);
 				addBipushInsn(mv, 0);
 
-				mv.visitMethodInsn(INVOKESTATIC, logClass,
+				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
 						RVConfig.instance.LOG_FIELD_ACCESS,
 						RVConfig.instance.DESC_LOG_FIELD_ACCESS);
 				
 				//judge whether or not to do an updating operation @Alan
 				if(Instrumentor.memModel.equals("TSO")){
-    	            mv.visitMethodInsn(INVOKESTATIC, logClass,
+    	            mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     	                    RVConfig.instance.UPDATE_STORE, 
     	                    RVConfig.instance.DESC_UPDATE_STORE);
 
 				}
 				else if (Instrumentor.memModel.equals("PSO")) {
-				    mv.visitMethodInsn(INVOKESTATIC, logClass,
+				    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.UPDATE_STORE_PSO, 
                             RVConfig.instance.DESC_UPDATE_STORE_PSO);
                 }
@@ -440,12 +438,12 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                      * to decide whether or not it needs to be buffered
                      */
                     if (Instrumentor.memModel.equals("TSO")){
-                        mv.visitMethodInsn(INVOKESTATIC, logClass,
+                        mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                                 RVConfig.instance.BUFFER_STORE, 
                                 RVConfig.instance.DESC_BUFFER_STORE);
                     }
                     else{
-                        mv.visitMethodInsn(INVOKESTATIC, logClass,
+                        mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                                 RVConfig.instance.BUFFER_STORE_PSO, 
                                 RVConfig.instance.DESC_BUFFER_STORE_PSO);
                     }           
@@ -478,7 +476,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
 				addBipushInsn(mv, 0);
 
-				mv.visitMethodInsn(INVOKESTATIC, logClass,
+				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
 						RVConfig.instance.LOG_FIELD_ACCESS,
 						RVConfig.instance.DESC_LOG_FIELD_ACCESS);
 			} else {
@@ -554,12 +552,12 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
             loadValue(desc, index1);
 
             if (isInit) {
-                mv.visitMethodInsn(INVOKESTATIC, logClass,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                         RVConfig.instance.LOG_INIT_WRITE_ACCESS,
                         RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);//
             } else {
                 addBipushInsn(mv, 1);
-                mv.visitMethodInsn(INVOKESTATIC, logClass,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                         RVConfig.instance.LOG_FIELD_ACCESS,
                         RVConfig.instance.DESC_LOG_FIELD_ACCESS);
             }
@@ -592,12 +590,12 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
          * invoke the fieldlog
          */
         if (isInit) {
-            mv.visitMethodInsn(INVOKESTATIC, logClass,
+            mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                     RVConfig.instance.LOG_INIT_WRITE_ACCESS,
                     RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);//
         } else {
             addBipushInsn(mv, 1);
-            mv.visitMethodInsn(INVOKESTATIC, logClass,
+            mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                     RVConfig.instance.LOG_FIELD_ACCESS,
                     RVConfig.instance.DESC_LOG_FIELD_ACCESS);//
         }
@@ -690,7 +688,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
     				addBipushInsn(mv, 0);
 
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			} else
@@ -727,7 +725,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
     				addBipushInsn(mv, 0);
 
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			} else
@@ -759,7 +757,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
     				addBipushInsn(mv, 0);
 
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			} else
@@ -793,7 +791,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
     				addBipushInsn(mv, 0);
 
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			} else
@@ -825,7 +823,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
 
     				addBipushInsn(mv, 0);
 
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			} else
@@ -855,13 +853,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
     			mv.visitVarInsn(ALOAD, index1);
 
     			if (isInit) {
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_INIT_WRITE_ACCESS,
     						RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);
 
     			} else {
     				addBipushInsn(mv, 1);
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			}
@@ -894,13 +892,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
     			convertPrimitiveToObject(opcode);
 
     			if (isInit) {
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_INIT_WRITE_ACCESS,
     						RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);
 
     			} else {
     				addBipushInsn(mv, 1);
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			}
@@ -931,13 +929,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
     			convertPrimitiveToObject(opcode);
 
     			if (isInit) {
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_INIT_WRITE_ACCESS,
     						RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);
 
     			} else {
     				addBipushInsn(mv, 1);
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			}
@@ -967,13 +965,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
     			convertPrimitiveToObject(opcode);
 
     			if (isInit) {
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_INIT_WRITE_ACCESS,
     						RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);
 
     			} else {
     				addBipushInsn(mv, 1);
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			}
@@ -1003,13 +1001,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
     			convertPrimitiveToObject(opcode);
 
     			if (isInit) {
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_INIT_WRITE_ACCESS,
     						RVConfig.instance.DESC_LOG_INIT_WRITE_ACCESS);
 
     			} else {
     				addBipushInsn(mv, 1);
-    				mv.visitMethodInsn(INVOKESTATIC, logClass,
+    				mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
     						RVConfig.instance.LOG_ARRAY_ACCESS,
     						RVConfig.instance.DESC_LOG_ARRAY_ACCESS);
     			}
@@ -1028,7 +1026,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                      * membar
                      */
                    if(Instrumentor.memModel == "TSO" || Instrumentor.memModel == "PSO"){
-                        mv.visitMethodInsn(INVOKESTATIC, logClass,
+                        mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                                 RVConfig.instance.MEM_BARRIER, 
                                 RVConfig.instance.DESC_MEM_BARRIER);
                     }
@@ -1041,7 +1039,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                     addBipushInsn(mv, ID);
                     mv.visitVarInsn(ALOAD, index);
 
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_LOCK_INSTANCE,
                             RVConfig.instance.DESC_LOG_LOCK_INSTANCE);
                     break;
@@ -1051,7 +1049,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                      * membar
                      */
                    if(Instrumentor.memModel == "TSO" || Instrumentor.memModel == "PSO"){
-                        mv.visitMethodInsn(INVOKESTATIC, logClass,
+                        mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                                 RVConfig.instance.MEM_BARRIER, 
                                 RVConfig.instance.DESC_MEM_BARRIER);
                     }
@@ -1064,7 +1062,7 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                     mv.visitVarInsn(ALOAD, index);
 
 
-                    mv.visitMethodInsn(INVOKESTATIC, logClass,
+                    mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass,
                             RVConfig.instance.LOG_UNLOCK_INSTANCE,
                             RVConfig.instance.DESC_LOG_UNLOCK_INSTANCE);
                     // Comment out because of MCR unlock
@@ -1147,13 +1145,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                 String sig_var = (className+".0").replace("/", ".");
                 int SID = RVGlobalStateForInstrumentation.instance.getVariableId(sig_var);
                 addBipushInsn(mv,SID);
-                mv.visitMethodInsn(INVOKESTATIC, logClass, RVConfig.instance.LOG_LOCK_STATIC,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass, RVConfig.instance.LOG_LOCK_STATIC,
                         RVConfig.instance.DESC_LOG_LOCK_STATIC);
             }
             else
             {
                 mv.visitVarInsn(ALOAD, 0); //the this objectref
-                mv.visitMethodInsn(INVOKESTATIC, logClass, RVConfig.instance.LOG_LOCK_INSTANCE,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass, RVConfig.instance.LOG_LOCK_INSTANCE,
                         RVConfig.instance.DESC_LOG_LOCK_INSTANCE);
             }
         }
@@ -1177,13 +1175,13 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
                 String sig_var = (className+".0").replace("/", ".");
                 int SID = RVGlobalStateForInstrumentation.instance.getVariableId(sig_var);
                 addBipushInsn(mv,SID);
-                mv.visitMethodInsn(INVOKESTATIC, logClass, RVConfig.instance.LOG_UNLOCK_STATIC,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass, RVConfig.instance.LOG_UNLOCK_STATIC,
                         RVConfig.instance.DESC_LOG_UNLOCK_STATIC);
             }
             else
             {
                 mv.visitVarInsn(ALOAD, 0);//the this objectref
-                mv.visitMethodInsn(INVOKESTATIC, logClass, RVConfig.instance.LOG_UNLOCK_INSTANCE,
+                mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass, RVConfig.instance.LOG_UNLOCK_INSTANCE,
                         RVConfig.instance.DESC_LOG_UNLOCK_INSTANCE);
             }
         }
@@ -1200,9 +1198,9 @@ public class MethodAdapter extends AdviceAdapter implements Opcodes {
         super.mv.visitJumpInsn(Opcodes.IFEQ, l1);
         //super.updateThreadLocation();
         if (threadBegin) {
-            mv.visitMethodInsn(INVOKESTATIC, logClass, RVConfig.instance.LOG_THREAD_BEGIN, RVConfig.instance.DESC_LOG_THREAD_BEGIN);
+            mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass, RVConfig.instance.LOG_THREAD_BEGIN, RVConfig.instance.DESC_LOG_THREAD_BEGIN);
         } else {
-            mv.visitMethodInsn(INVOKESTATIC, logClass, RVConfig.instance.LOG_THREAD_END, RVConfig.instance.DESC_LOG_THREAD_END);        }
+            mv.visitMethodInsn(INVOKESTATIC, Instrumentor.logClass, RVConfig.instance.LOG_THREAD_END, RVConfig.instance.DESC_LOG_THREAD_END);        }
         super.mv.visitLabel(l1);
     }
     

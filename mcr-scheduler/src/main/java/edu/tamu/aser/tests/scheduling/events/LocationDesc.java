@@ -1,4 +1,4 @@
-package edu.tamu.aser.scheduling.events;
+package edu.tamu.aser.tests.scheduling.events;
 
 import java.io.File;
 import java.io.FileNotFoundException;

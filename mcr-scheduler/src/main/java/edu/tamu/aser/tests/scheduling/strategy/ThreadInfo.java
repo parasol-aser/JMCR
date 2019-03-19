@@ -1,10 +1,10 @@
-package edu.tamu.aser.scheduling.strategy;
+package edu.tamu.aser.tests.scheduling.strategy;
 
 import java.util.IdentityHashMap;
 
-import edu.tamu.aser.internaljuc.Reex_Semaphore;
-import edu.tamu.aser.scheduling.events.EventDesc;
-import edu.tamu.aser.scheduling.events.LocationDesc;
+import edu.tamu.aser.tests.internaljuc.Reex_Semaphore;
+import edu.tamu.aser.tests.scheduling.events.EventDesc;
+import edu.tamu.aser.tests.scheduling.events.LocationDesc;
 
 
 public class ThreadInfo implements Comparable<ThreadInfo> {

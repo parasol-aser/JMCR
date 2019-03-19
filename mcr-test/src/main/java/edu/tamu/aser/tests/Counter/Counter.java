@@ -1,7 +1,7 @@
-package edu.tamu.aser.Counter;
+package edu.tamu.aser.tests.Counter;
 import static org.junit.Assert.fail;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

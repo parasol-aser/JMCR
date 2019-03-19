@@ -1,10 +1,10 @@
-package edu.tamu.aser.MTList;
+package edu.tamu.aser.tests.MTList;
 
 import external.instrumented.java.util.Collections;
 import external.instrumented.java.util.LinkedList;
 import external.instrumented.java.util.List;
 import external.jpf_test_cases.MyRandom;
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

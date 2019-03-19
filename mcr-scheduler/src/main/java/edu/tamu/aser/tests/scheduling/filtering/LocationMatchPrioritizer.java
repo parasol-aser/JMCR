@@ -1,10 +1,10 @@
-package edu.tamu.aser.scheduling.filtering;
+package edu.tamu.aser.tests.scheduling.filtering;
 
 import java.util.Comparator;
 import java.util.Set;
 
-import edu.tamu.aser.scheduling.events.LocationDesc;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.scheduling.events.LocationDesc;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 
 public class LocationMatchPrioritizer implements Comparator<ThreadInfo> {
 

@@ -1,4 +1,4 @@
-package edu.tamu.aser.pooltest;
+package edu.tamu.aser.tests.pooltest;
 
 import pool107.org.apache.commons.pool.PoolableObjectFactory;
 

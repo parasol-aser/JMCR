@@ -1,8 +1,8 @@
-package edu.tamu.aser.scheduling.filtering;
+package edu.tamu.aser.tests.scheduling.filtering;
 
 import java.util.SortedSet;
 
-import edu.tamu.aser.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.tests.scheduling.strategy.ChoiceType;
 
 /**
  * Interface that can be implemented to specify a scheduling filter that

@@ -1,9 +1,9 @@
-package edu.tamu.aser.icb;
+package edu.tamu.aser.tests.icb;
 
 import java.util.HashMap;
 import java.util.Set;
 
-import edu.tamu.aser.instrumentation.Instrumentor;
+import edu.tamu.aser.tests.instrumentation.Instrumentor;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;

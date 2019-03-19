@@ -1,12 +1,12 @@
-package edu.tamu.aser.listeners;
+package edu.tamu.aser.tests.listeners;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.tamu.aser.reex.Scheduler;
-import edu.tamu.aser.scheduling.events.EventDesc;
-import edu.tamu.aser.scheduling.events.LocationDesc;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.reex.Scheduler;
+import edu.tamu.aser.tests.scheduling.events.EventDesc;
+import edu.tamu.aser.tests.scheduling.events.LocationDesc;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 
 public class ExplorationContextSwitchListener extends ExplorationListenerAdapter {
     

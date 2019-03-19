@@ -1,9 +1,9 @@
-package edu.tamu.aser.mutual_exclusion;
+package edu.tamu.aser.tests.mutual_exclusion;
 
 
 import static org.junit.Assert.*;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

@@ -1,5 +1,5 @@
 
-package edu.tamu.aser.constraints;
+package edu.tamu.aser.tests.constraints;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,11 +9,11 @@ import java.nio.file.Files;
 import java.util.*;
 import java.util.Map.Entry;
 
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.graph.ReachabilityEngine;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.graph.ReachabilityEngine;
 import org.w3c.tools.sexpr.SimpleSExprStream;
 
-import edu.tamu.aser.config.Util;
+import edu.tamu.aser.tests.config.Util;
 
 /**
  * Constraint solving with Z3 solver

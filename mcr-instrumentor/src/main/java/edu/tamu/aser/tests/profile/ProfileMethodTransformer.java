@@ -1,7 +1,7 @@
-package edu.tamu.aser.profile;
+package edu.tamu.aser.tests.profile;
 
-import edu.tamu.aser.instrumentation.RVConfig;
-import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
+import edu.tamu.aser.tests.instrumentation.RVConfig;
+import edu.tamu.aser.tests.instrumentation.RVGlobalStateForInstrumentation;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -9,7 +9,7 @@ import org.objectweb.asm.Type;
 
 public class ProfileMethodTransformer extends MethodVisitor implements Opcodes {
 
-    final static String logClass = "edu/tamu/aser/profile/ProfileRunTime";
+    final static String logClass = "edu/tamu/aser/tests/profile/ProfileRunTime";
 
 	final static String CLASS_INTEGER = "java/lang/Integer";
 	final static String CLASS_BOOLEAN = "java/lang/Boolean";

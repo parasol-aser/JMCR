@@ -1,8 +1,7 @@
-package edu.tamu.aser.icb;
+package edu.tamu.aser.tests.icb;
 
-import edu.tamu.aser.instrumentation.Instrumentor;
+import edu.tamu.aser.tests.instrumentation.Instrumentor;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 /**
  * 
@@ -22,8 +21,8 @@ public class FireEventsMethodTransformer extends LocationAwareLocalVariablesSort
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
-        if (name.equals(FIRE_EVENT_METHOD_NAME) && owner.equals(IMUNIT_CLASS_NAME) && opcode == Opcodes.INVOKESTATIC && desc.equals(STRING_VOID)) {
-           super.mv.visitMethodInsn(Opcodes.INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, SCHEDULER_FIRE_EVENT_METHOD_NAME, STRING_VOID);
+        if (name.equals(FIRE_EVENT_METHOD_NAME) && owner.equals(IMUNIT_CLASS_NAME) && opcode == INVOKESTATIC && desc.equals(STRING_VOID)) {
+           super.mv.visitMethodInsn(INVOKESTATIC, Instrumentor.INSTR_EVENTS_RECEIVER, SCHEDULER_FIRE_EVENT_METHOD_NAME, STRING_VOID);
         } else {
             super.visitMethodInsn(opcode, owner, name, desc);
         }

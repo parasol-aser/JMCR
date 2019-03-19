@@ -1,16 +1,14 @@
-package edu.tamu.aser.sdg;
+package edu.tamu.aser.tests.sdg;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.graph.ReachabilityEngine;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.graph.ReachabilityEngine;
 
 public class ReadSDG {
 	

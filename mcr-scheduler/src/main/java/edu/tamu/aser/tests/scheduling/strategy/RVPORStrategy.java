@@ -1,8 +1,8 @@
-package edu.tamu.aser.scheduling.strategy;
+package edu.tamu.aser.tests.scheduling.strategy;
 
 import com.google.common.collect.ImmutableSortedSet;
-import edu.tamu.aser.runtime.RVPORRunTime;
-import edu.tamu.aser.scheduling.MCRProperties;
+import edu.tamu.aser.tests.runtime.RVPORRunTime;
+import edu.tamu.aser.tests.scheduling.MCRProperties;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;

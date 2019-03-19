@@ -1,22 +1,22 @@
 
-package edu.tamu.aser.constraints;
+package edu.tamu.aser.tests.constraints;
 
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.graph.LockSetEngine;
-import edu.tamu.aser.graph.ReachabilityEngine;
-import edu.tamu.aser.trace.AbstractNode;
-import edu.tamu.aser.trace.IMemNode;
-import edu.tamu.aser.trace.ISyncNode;
-import edu.tamu.aser.trace.JoinNode;
-import edu.tamu.aser.trace.LockNode;
-import edu.tamu.aser.trace.LockPair;
-import edu.tamu.aser.trace.NotifyNode;
-import edu.tamu.aser.trace.ReadNode;
-import edu.tamu.aser.trace.StartNode;
-import edu.tamu.aser.trace.Trace;
-import edu.tamu.aser.trace.UnlockNode;
-import edu.tamu.aser.trace.WaitNode;
-import edu.tamu.aser.trace.WriteNode;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.graph.LockSetEngine;
+import edu.tamu.aser.tests.graph.ReachabilityEngine;
+import edu.tamu.aser.tests.trace.AbstractNode;
+import edu.tamu.aser.tests.trace.IMemNode;
+import edu.tamu.aser.tests.trace.ISyncNode;
+import edu.tamu.aser.tests.trace.JoinNode;
+import edu.tamu.aser.tests.trace.LockNode;
+import edu.tamu.aser.tests.trace.LockPair;
+import edu.tamu.aser.tests.trace.NotifyNode;
+import edu.tamu.aser.tests.trace.ReadNode;
+import edu.tamu.aser.tests.trace.StartNode;
+import edu.tamu.aser.tests.trace.Trace;
+import edu.tamu.aser.tests.trace.UnlockNode;
+import edu.tamu.aser.tests.trace.WaitNode;
+import edu.tamu.aser.tests.trace.WriteNode;
 
 import java.util.*;
 import java.util.Map.Entry;

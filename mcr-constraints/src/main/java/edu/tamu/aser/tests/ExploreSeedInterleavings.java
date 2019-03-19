@@ -1,4 +1,4 @@
-package edu.tamu.aser;
+package edu.tamu.aser.tests;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -7,15 +7,15 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import edu.tamu.aser.config.Configuration;
-import edu.tamu.aser.constraints.ConstraintsBuildEngine;
-import edu.tamu.aser.trace.AbstractNode;
-import edu.tamu.aser.trace.IMemNode;
-import edu.tamu.aser.trace.LockNode;
-import edu.tamu.aser.trace.ReadNode;
-import edu.tamu.aser.trace.Trace;
-import edu.tamu.aser.trace.UnlockNode;
-import edu.tamu.aser.trace.WriteNode;
+import edu.tamu.aser.tests.config.Configuration;
+import edu.tamu.aser.tests.constraints.ConstraintsBuildEngine;
+import edu.tamu.aser.tests.trace.AbstractNode;
+import edu.tamu.aser.tests.trace.IMemNode;
+import edu.tamu.aser.tests.trace.LockNode;
+import edu.tamu.aser.tests.trace.ReadNode;
+import edu.tamu.aser.tests.trace.Trace;
+import edu.tamu.aser.tests.trace.UnlockNode;
+import edu.tamu.aser.tests.trace.WriteNode;
 
 //import edu.tamu.aser.rvinstrumentation;
 

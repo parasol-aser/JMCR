@@ -29,7 +29,7 @@
   either expressed or implied, of the FreeBSD Project.
 */
 
-package edu.tamu.aser.constraints;
+package edu.tamu.aser.tests.constraints;
 
 import java.util.Map;
 import java.util.HashMap;

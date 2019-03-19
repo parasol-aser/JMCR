@@ -1,4 +1,4 @@
-package edu.tamu.aser.instrumentation;
+package edu.tamu.aser.tests.instrumentation;
 
 public class RVConfig {
     public static final RVConfig instance = new RVConfig();

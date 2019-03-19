@@ -1,4 +1,4 @@
-package edu.tamu.aser.airline;
+package edu.tamu.aser.tests.airline;
 
 import junit.framework.Assert;
 //import omcr.airline.airline;
@@ -8,7 +8,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 
 @RunWith(JUnit4MCRRunner.class)
 public class AirlineTest {

@@ -26,7 +26,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ******************************************************************************/
-package edu.tamu.aser.trace;
+package edu.tamu.aser.tests.trace;
 
 /**
  * An abstract representation of an event in the trace. Each event has 

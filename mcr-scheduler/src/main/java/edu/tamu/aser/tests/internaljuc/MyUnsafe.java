@@ -1,4 +1,4 @@
-package edu.tamu.aser.internaljuc;
+package edu.tamu.aser.tests.internaljuc;
 
 import java.lang.reflect.Field;
 

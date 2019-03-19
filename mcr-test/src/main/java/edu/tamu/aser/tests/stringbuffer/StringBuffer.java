@@ -1,4 +1,4 @@
-package edu.tamu.aser.stringbuffer;
+package edu.tamu.aser.tests.stringbuffer;
 
 /**
  * simplify the stringBuffer benchmark for debugging a chosen index error

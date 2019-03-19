@@ -1,7 +1,7 @@
-package edu.tamu.aser.misc;
+package edu.tamu.aser.tests.misc;
 
 /****************************MAIN**************************/
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

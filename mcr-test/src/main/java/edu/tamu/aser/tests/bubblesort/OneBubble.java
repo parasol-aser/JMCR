@@ -1,4 +1,4 @@
-package edu.tamu.aser.bubblesort;
+package edu.tamu.aser.tests.bubblesort;
 
 /**
  * Created by IntelliJ IDEA.

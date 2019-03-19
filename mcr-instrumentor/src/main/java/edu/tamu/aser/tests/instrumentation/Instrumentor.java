@@ -1,4 +1,4 @@
-package edu.tamu.aser.instrumentation;
+package edu.tamu.aser.tests.instrumentation;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -10,11 +10,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import edu.tamu.aser.icb.FireEventsClassTransformer;
-import edu.tamu.aser.icb.JUCEventsClassTransformer;
-import edu.tamu.aser.icb.SharedAccessEventsClassTransformer;
-import edu.tamu.aser.icb.ThreadEventsClassTransformer;
-import edu.tamu.aser.mcr.ClassAdapter;
+import edu.tamu.aser.tests.icb.FireEventsClassTransformer;
+import edu.tamu.aser.tests.icb.JUCEventsClassTransformer;
+import edu.tamu.aser.tests.icb.SharedAccessEventsClassTransformer;
+import edu.tamu.aser.tests.icb.ThreadEventsClassTransformer;
+import edu.tamu.aser.tests.mcr.ClassAdapter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 
@@ -26,7 +26,7 @@ public class Instrumentor {
     //
     public static String bufferClass;
 
-    public static final String logClass = "edu/tamu/aser/runtime/RVRunTime";
+    public static final String logClass = "edu/tamu/aser/tests/runtime/RVRunTime";
     private static final String JUC_DOTS = "java.util.concurrent";
 
     private static final String INSTRUMENTATION_PACKAGES_DEFAULT = "default";

@@ -5,7 +5,7 @@
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package edu.tamu.aser.internaljuc;
+package edu.tamu.aser.tests.internaljuc;
 
 /**
  * A synchronizer that may be exclusively owned by a thread.  This

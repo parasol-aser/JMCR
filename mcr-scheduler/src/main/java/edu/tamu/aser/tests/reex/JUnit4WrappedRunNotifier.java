@@ -1,4 +1,4 @@
-package edu.tamu.aser.reex;
+package edu.tamu.aser.tests.reex;
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;

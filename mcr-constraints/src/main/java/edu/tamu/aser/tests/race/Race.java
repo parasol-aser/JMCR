@@ -1,4 +1,4 @@
-package edu.tamu.aser.race;
+package edu.tamu.aser.tests.race;
 
 public class Race {
 

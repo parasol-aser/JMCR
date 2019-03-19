@@ -1,7 +1,7 @@
-package edu.tamu.aser.runtime;
+package edu.tamu.aser.tests.runtime;
 
-import edu.tamu.aser.reex.Scheduler;
-import edu.tamu.aser.scheduling.strategy.RVPORStrategy;
+import edu.tamu.aser.tests.reex.Scheduler;
+import edu.tamu.aser.tests.scheduling.strategy.RVPORStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package edu.tamu.aser.runtime;
+package edu.tamu.aser.tests.runtime;
 
 import java.util.HashMap;
 import java.util.Map.Entry;

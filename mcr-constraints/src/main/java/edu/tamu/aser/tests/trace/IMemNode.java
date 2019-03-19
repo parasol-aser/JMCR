@@ -26,9 +26,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  ******************************************************************************/
-package edu.tamu.aser.trace;
+package edu.tamu.aser.tests.trace;
 
-import edu.tamu.aser.trace.AbstractNode.TYPE;
+import edu.tamu.aser.tests.trace.AbstractNode.TYPE;
 
 /**
  * a common interface for read and write events.

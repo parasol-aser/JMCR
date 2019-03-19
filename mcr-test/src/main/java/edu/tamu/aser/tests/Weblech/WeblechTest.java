@@ -24,9 +24,9 @@
 
 // $Header: /project/jiss/smhuang/leap/weblech/src/driver/WeblechSpider.java,v 1.1 2010/06/30 15:45:29 smhuang Exp $
 
-package edu.tamu.aser.Weblech;
+package edu.tamu.aser.tests.Weblech;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.apache.log4j.Category;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +34,6 @@ import spider.SpiderConfig;
 import spider.Spider;
 
 import spider.Constants;
-import weblech.util.Logger;
 
 import java.util.Properties;
 import java.io.FileInputStream;

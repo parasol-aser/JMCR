@@ -1,4 +1,4 @@
-package edu.tamu.aser.rvtest.derby;
+package edu.tamu.aser.tests.Derby;
 
 public class ViewCreatorDropper implements Runnable {
 	

@@ -1,10 +1,10 @@
-package edu.tamu.aser.util;
+package edu.tamu.aser.tests.util;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-import edu.tamu.aser.config.Configuration;
+import edu.tamu.aser.tests.config.Configuration;
 
 /**
  * Created by TraianSF on 05.08.2014.

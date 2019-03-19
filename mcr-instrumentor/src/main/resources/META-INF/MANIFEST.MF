@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Premain-Class: edu.tamu.aser.instrumentation.Instrumentor
+Premain-Class: edu.tamu.aser.tests.instrumentation.Instrumentor
 Can-Redefine-Classes: true
 Can-Retransform-Classes: true
 

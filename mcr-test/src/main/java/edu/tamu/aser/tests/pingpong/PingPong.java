@@ -1,4 +1,4 @@
-package edu.tamu.aser.pingpong;
+package edu.tamu.aser.tests.pingpong;
 /**
  *@author Golan
  * 17/10/2003
@@ -7,7 +7,7 @@ package edu.tamu.aser.pingpong;
  */
 
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

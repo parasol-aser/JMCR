@@ -1,4 +1,4 @@
-package edu.tamu.aser.icb;
+package edu.tamu.aser.tests.icb;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;

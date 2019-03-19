@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package edu.tamu.aser.pooltest;
+package edu.tamu.aser.tests.pooltest;
 
 import static org.junit.Assert.fail;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

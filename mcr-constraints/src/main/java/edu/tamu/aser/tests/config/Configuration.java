@@ -1,8 +1,8 @@
-package edu.tamu.aser.config;
+package edu.tamu.aser.tests.config;
 
 import com.beust.jcommander.*;
-import edu.tamu.aser.graph.ReachabilityEngine;
-import edu.tamu.aser.sdg.ReadSDG;
+import edu.tamu.aser.tests.graph.ReachabilityEngine;
+import edu.tamu.aser.tests.sdg.ReadSDG;
 
 import java.util.*;
 

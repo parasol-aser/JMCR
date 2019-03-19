@@ -1,4 +1,4 @@
-package edu.tamu.aser.scheduling.strategy;
+package edu.tamu.aser.tests.scheduling.strategy;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.SortedSet;
 
-//import edu.tamu.aser.scheduling.strategy.ChoiceType;
-import edu.tamu.aser.scheduling.MCRProperties;
+//import ChoiceType;
+import edu.tamu.aser.tests.scheduling.MCRProperties;
 
 /**
  * Performs iterative context bounding as described in the original CHESS paper.

@@ -1,6 +1,6 @@
-package edu.tamu.aser.bubblesort;
+package edu.tamu.aser.tests.bubblesort;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

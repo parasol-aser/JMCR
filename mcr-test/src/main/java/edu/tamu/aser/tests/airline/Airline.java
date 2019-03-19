@@ -1,4 +1,4 @@
-package edu.tamu.aser.airline;
+package edu.tamu.aser.tests.airline;
 
 public class Airline implements Runnable {
 

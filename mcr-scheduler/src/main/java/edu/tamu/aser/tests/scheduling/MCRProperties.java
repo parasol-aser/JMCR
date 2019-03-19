@@ -1,4 +1,4 @@
-package edu.tamu.aser.scheduling;
+package edu.tamu.aser.tests.scheduling;
 
 import java.util.Properties;
 

@@ -1,12 +1,12 @@
-package edu.tamu.aser.scheduling.filtering;
+package edu.tamu.aser.tests.scheduling.filtering;
 
 import java.util.SortedSet;
 
-import edu.tamu.aser.listeners.ExplorationListenerAdapter;
-import edu.tamu.aser.listeners.Listeners;
+import edu.tamu.aser.tests.listeners.ExplorationListenerAdapter;
+import edu.tamu.aser.tests.listeners.Listeners;
 //import edu.tamu.aser.rvinstrumentation.MCRProperties;
-import edu.tamu.aser.scheduling.strategy.ChoiceType;
-import edu.tamu.aser.scheduling.strategy.ThreadInfo;
+import edu.tamu.aser.tests.scheduling.strategy.ChoiceType;
+import edu.tamu.aser.tests.scheduling.strategy.ThreadInfo;
 
 /**
  * Filters thread choices (based on the location they are executing).

@@ -1,4 +1,4 @@
-package edu.tamu.aser.graph;
+package edu.tamu.aser.tests.graph;
 
 public class testReachability {
 

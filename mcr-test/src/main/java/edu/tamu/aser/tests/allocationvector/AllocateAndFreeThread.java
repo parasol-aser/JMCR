@@ -1,4 +1,4 @@
-package edu.tamu.aser.allocationvector;
+package edu.tamu.aser.tests.allocationvector;
 
 /**
  * class TestThread1: Used to run thread which allocates and frees blocks by
