@@ -17,23 +17,22 @@ import edu.tamu.aser.config.Configuration;
 import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
 import edu.tamu.aser.trace.Trace;
 import edu.tamu.aser.trace.TraceInfo;
-//import edu.tamu.aser.instrumentation.RVGlobalStateForInstrumentation;
 import edu.tamu.aser.runtime.RVRunTime;
 import edu.tamu.aser.scheduling.events.EventType;
 
 public class MCRStrategy extends SchedulingStrategy {
 
-	protected Queue<List<String>> toExplore;
+	private Queue<List<String>> toExplore;
 	public static List<Integer> choicesMade;
 	public static List<String> schedulePrefix = new ArrayList<String>();
-    public static Trace currentTrace;
+    private static Trace currentTrace;
 	private boolean notYetExecutedFirstSchedule;
 	private final static int NUM_THREADS = 10;
-	public volatile static ExecutorService executor;
-    protected ThreadInfo previousThreadInfo;
+	private volatile static ExecutorService executor;
+    private ThreadInfo previousThreadInfo;
     public static final Boolean fullTrace = false;  //default
 
-	int count;
+	private int count;
 	public MCRStrategy() {
 		count = 0;
 	}
@@ -63,6 +62,7 @@ public class MCRStrategy extends SchedulingStrategy {
 		if (!MCRStrategy.choicesMade.isEmpty()) {   // when not empty
 			MCRStrategy.choicesMade.clear();
 			MCRStrategy.schedulePrefix = new ArrayList<String>();
+			assert prefix != null;
 			for (String choice : prefix) {
 				MCRStrategy.schedulePrefix.add(choice);
 			}
@@ -173,10 +173,11 @@ public class MCRStrategy extends SchedulingStrategy {
 
 	/**
 	 * choose the next statement to execute
+	 * this function needs more inspection
 	 */
 	@Override
-	public Object choose(SortedSet<? extends Object> objectChoices,
-			ChoiceType choiceType) {
+	public Object choose(SortedSet<? extends Object> objectChoices, ChoiceType choiceType)
+	{
 		/*
 		 * Initialize choice
 		 */
@@ -203,34 +204,34 @@ public class MCRStrategy extends SchedulingStrategy {
 			    //one case that can cause this is due to the wait event
 			    //wait has no corresponding schedule index, it has to be announced 
 			    //chose the wait to execute, the wait is trying to acquire the semaphore
-			    for (Iterator<? extends Object> iterator = objectChoices.iterator(); iterator.hasNext();) {
-                     ThreadInfo threadInfo = (ThreadInfo) iterator.next();
-                    if(threadInfo.getEventDesc().getEventType() == EventType.WAIT){
-                        return threadInfo;
-                    }
-                }
+				for (Object objectChoice : objectChoices) {
+					ThreadInfo threadInfo = (ThreadInfo) objectChoice;
+					if (threadInfo.getEventDesc().getEventType() == EventType.WAIT) {
+						return threadInfo;
+					}
+				}
 			    
 			    //what if the chosenObject is still null??
 			    //it might not correct
-			    if (chosenObject == null) {
-		            chosenIndex = 0;
-		            while (true) {
-		                chosenObject = getChosenObject(chosenIndex, objectChoices);
-		                  
-		                if(choiceType.equals(ChoiceType.THREAD_TO_FAIR)
-		                        && chosenObject.equals(previousThreadInfo))
-		                {
-		                    //change to a different thread
-		                }
-		                else 
-		                    break;
-		                chosenIndex++;
-		            }
-		        }
-		        MCRStrategy.choicesMade.add(chosenIndex);
-		                
-		        this.previousThreadInfo = (ThreadInfo) chosenObject;
-                return chosenObject;
+//			    if (chosenObject == null) {
+//		            chosenIndex = 0;
+//		            while (true) {
+//		                chosenObject = getChosenObject(chosenIndex, objectChoices);
+//
+//		                if(choiceType.equals(ChoiceType.THREAD_TO_FAIR)
+//		                        && chosenObject.equals(previousThreadInfo))
+//		                {
+//		                    //change to a different thread
+//		                }
+//		                else
+//		                    break;
+//		                chosenIndex++;
+//		            }
+//		        }
+//		        MCRStrategy.choicesMade.add(chosenIndex);
+//
+//		        this.previousThreadInfo = (ThreadInfo) chosenObject;
+//                return chosenObject;
             }
 			
 		}
@@ -268,9 +269,9 @@ public class MCRStrategy extends SchedulingStrategy {
 	/**
 	 * chose a thread object based on the index
 	 * return -1 if not found
-	 * @param objectChoices
-	 * @param index
-	 * @return
+	 * @param objectChoices set of object choices
+	 * @param index the given index
+	 * @return return the index of chosen thread object
 	 */
 	private int getChosenThread(SortedSet<? extends Object> objectChoices, int index) {
 		String name = MCRStrategy.schedulePrefix.get(index).split("_")[0];
