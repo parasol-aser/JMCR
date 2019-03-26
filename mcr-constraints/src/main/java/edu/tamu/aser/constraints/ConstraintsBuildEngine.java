@@ -30,37 +30,32 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ConstraintsBuildEngine
 {
-	protected AtomicInteger id = new AtomicInteger();//constraint id
-	//protected SMTTaskRun task;
-	
-	protected Configuration config;
-	
-	private ReachabilityEngine reachEngine;//TODO: do segmentation on this
-    private HashMap<AbstractNode,AbstractNode> partialOrderMap = new HashMap<AbstractNode,AbstractNode>();
-	private HashMap<String,Vector<LockPair>> lockPairsMap = new HashMap<String,Vector<LockPair>>();
-	private HashMap<Long,Vector<LockPair>> threadLockPairs = new HashMap<Long,Vector<LockPair>>();
 
-	private HashMap<AbstractNode,HashSet<AbstractNode>>
-	specialDependentNodesMap = new HashMap<AbstractNode,HashSet<AbstractNode>>();
+//    public static int size = 0;
+
+	private ReachabilityEngine reachEngine;//TODO: do segmentation on this
+    private HashMap<AbstractNode,AbstractNode> partialOrderMap = new HashMap<>();
+	private HashMap<String,Vector<LockPair>> lockPairsMap = new HashMap<>();
+	private HashMap<Long,Vector<LockPair>> threadLockPairs = new HashMap<>();
+	private HashMap<AbstractNode,HashSet<AbstractNode>> specialDependentNodesMap = new HashMap<>();
 	
 	//constraints below
 	private StringBuilder CONS_DECLARE;
 	private StringBuilder CONS_ASSERT_PO;
 	private StringBuilder CONS_ASSERT_VALID;
     private final StringBuilder CONS_GETMODEL = new StringBuilder("(check-sat)\n(get-model)\n(exit)");
+
+    protected AtomicInteger id = new AtomicInteger();//constraint id
+    protected Configuration config;
 	
-	
-	
-	public static int size = 0;
-	
-	public static HashSet<String> relatedNodes = new HashSet<String>();  //store the related nodes which need to be in the prefix
+
 	
 	public ConstraintsBuildEngine(Configuration config)
 	{
 		this.config = config;
-		//this.id = 0;
 	}
-	private static String makeVariable(long GID)
+
+	private String makeVariable(long GID)
 	{
 		return "x"+GID;
 	}
@@ -68,15 +63,11 @@ public class ConstraintsBuildEngine
 	/**
 	 * take the constraints as the input
 	 * declare every variable in the constraints as an integer variable
-	 * @param cons
 	 */
     private void declareVariables(StringBuilder cons){
 		
-		CONS_DECLARE = new StringBuilder("");
-		HashSet<String> vars = new HashSet<String>();
-		
-//		System.out.println("consts: " + cons);
-		
+		CONS_DECLARE = new StringBuilder();
+		HashSet<String> vars = new HashSet<>();
 		for(String s : cons.toString().split(" ")){
 			if (s.startsWith("x") && !vars.contains(s)) {
 				vars.add(s);
@@ -88,30 +79,30 @@ public class ConstraintsBuildEngine
 	/**
 	 * This function is for generating constraints for new schedule
 	 * it does not need to contain all the nodes, just the nodes dependent
-	 * @author Alan
-	 * @param trace
-	 * @param depNodes 
+	 * @author shiyou huang
+	 * @param trace the trace
+	 * @param depNodes dependent events that the target read event depends on
 	 */
     private void constructPOConstraintsRMM(Trace trace, HashSet<AbstractNode> depNodes){
 		
-		CONS_ASSERT_PO = new StringBuilder("");
+		CONS_ASSERT_PO = new StringBuilder();
 
 		//get needed data structure
 		HashMap<String,HashMap<Long,Vector<IMemNode>>> indexedMap1 = trace.getIndexedThreadReadWriteNodes();
 		HashMap<Long,Vector<AbstractNode>> mapthreadIdtoNode1 = trace.getThreadNodesMap();
 		
 		//reconstruct the map, only contains the nodes in the depNodes
-		HashMap<String, HashMap<Long, Vector<IMemNode>>> indexedMap = new HashMap<String,HashMap<Long,Vector<IMemNode>>>();
-		HashMap<Long,Vector<AbstractNode>> mapthreadIdtoNode = new HashMap<Long,Vector<AbstractNode>> ();
+		HashMap<String, HashMap<Long, Vector<IMemNode>>> indexedMap = new HashMap<>();
+		HashMap<Long,Vector<AbstractNode>> mapthreadIdtoNode = new HashMap<> ();
 		
 		Set<String> keys = indexedMap1.keySet();
 		for(String key: keys){
 			HashMap<Long,Vector<IMemNode>> map = indexedMap1.get(key);
-			HashMap<Long,Vector<IMemNode>> newMap = new HashMap<Long,Vector<IMemNode>>();
+			HashMap<Long,Vector<IMemNode>> newMap = new HashMap<>();
 			Set<Long> tidKeys = map.keySet();
 			for(Long tid: tidKeys){
 				Vector<IMemNode> iMemNodes = map.get(tid);
-				Vector<IMemNode> newNodes = new Vector<IMemNode>();
+				Vector<IMemNode> newNodes = new Vector<>();
 				for(IMemNode node : iMemNodes){
 					if (depNodes.contains(node)) {
 						newNodes.addElement(node);
@@ -1043,12 +1034,12 @@ public class ConstraintsBuildEngine
 	/**
 	 * construct feasibility constraints, namely, all the reads should return the same value
 	 * to guarantee the reachability of an event
-	 * @param trace
+	 * @param trace the current trace
 	 * @param depNodes :  all the events that happen before the target read and chosen write
 	 * @param readDepNodes : all the events that happen before the target read (cur_rnode here)
-	 * @param cur_rnode
-	 * @param wnode
-	 * @return
+	 * @param cur_rnode the given read event
+	 * @param wnode the write that r reads from
+	 * @return the read-from constraints
 	 * 
 	 * @author Alan
 	 */
@@ -1143,17 +1134,14 @@ public class ConstraintsBuildEngine
 	
 	/**
 	 * construct the read-write constraints to guarantee the read-write consistency
-	 * @param engine
-	 * @param trace
 	 * @param depNodes
 	 * @param rnode: should read from the wnode
 	 * @param wnode
 	 * @param writenodes: other writes that write different values from wnode
 	 * @return
 	 */
-	public StringBuilder constructReadWriteConstraints(ConstraintsBuildEngine engine, Trace trace, 
-			HashSet<AbstractNode> depNodes,
-			AbstractNode rnode, AbstractNode wnode, Vector<AbstractNode> writenodes)
+	public StringBuilder constructReadWriteConstraints(
+			HashSet<AbstractNode> depNodes, AbstractNode rnode, AbstractNode wnode, Vector<AbstractNode> writenodes)
 	{
 		StringBuilder CONS_CAUSAL_RW = new StringBuilder("");
 		String var_w1 = makeVariable(wnode.getGID());

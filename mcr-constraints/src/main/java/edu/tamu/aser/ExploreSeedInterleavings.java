@@ -24,8 +24,6 @@ import edu.tamu.aser.trace.WriteNode;
  *
  */
 public class ExploreSeedInterleavings {
-
-
 	private Queue<List<String>> schedules;
 
 	private static int schedule_id;
@@ -106,7 +104,7 @@ public class ExploreSeedInterleavings {
 				String v = wnode.getValue();
 				ArrayList<WriteNode> list = valueMap.get(v);
 				if (list == null) {
-					list = new ArrayList<WriteNode>();
+					list = new ArrayList<>();
 					valueMap.put(v, list);
 				}
 				list.add(wnode);
@@ -307,10 +305,10 @@ public class ExploreSeedInterleavings {
                 if (rnode.getGID() > wnode.getGID() || !engine.canReach(rnode, wnode)) {
 
                     //for all the events that happen before the target read and chosen write
-                    HashSet<AbstractNode> depNodes = new HashSet<AbstractNode>();
+                    HashSet<AbstractNode> depNodes = new HashSet<>();
 
                     //only for all the events that happen before the target read
-                    HashSet<AbstractNode> readDepNodes = new HashSet<AbstractNode>();
+                    HashSet<AbstractNode> readDepNodes = new HashSet<>();
 
                     if (isfulltrace && schedule_prefix.size() > 0)
                         depNodes.addAll(trace.getFullTrace().subList(0, schedule_prefix.size()));
@@ -342,7 +340,7 @@ public class ExploreSeedInterleavings {
                     //construct read write constraints, namely, all other writes either happen before the Write
                     //or after the Read.
                     StringBuilder sb3 =
-                            engine.constructReadWriteConstraints(engine, trace, depNodes, rnode, wnode, otherWriteNodes);
+                            engine.constructReadWriteConstraints(depNodes, rnode, wnode, otherWriteNodes);
 
                     sb.append(sb3);
 
