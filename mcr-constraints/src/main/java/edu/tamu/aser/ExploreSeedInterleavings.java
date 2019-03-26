@@ -2,11 +2,8 @@ package edu.tamu.aser;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 import edu.tamu.aser.config.Configuration;
 import edu.tamu.aser.constraints.ConstraintsBuildEngine;
 import edu.tamu.aser.trace.AbstractNode;
@@ -17,44 +14,44 @@ import edu.tamu.aser.trace.Trace;
 import edu.tamu.aser.trace.UnlockNode;
 import edu.tamu.aser.trace.WriteNode;
 
-//import edu.tamu.aser.rvinstrumentation;
-
 /**
  * The MCRTest class implements maximal causal model based systematic
  * testing algorithm based on constraint solving. 
  * The events in the trace are loaded and processed window 
  * by window with a configurable window size. 
  * 
- * @author jeffhuang
+ * @author jeffhuang and shiyou huang
  *
  */
 public class ExploreSeedInterleavings {
 
+
+	private Queue<List<String>> schedules;
+
 	private static int schedule_id;
-	private static Queue<List<String>> schedules = new ConcurrentLinkedQueue<List<String>>();
-//	private static HashSet<IViolation> violations= new HashSet<IViolation>();
-	
 	public static String output = "#Read, #Constraints, SolvingTime(ms)\n";
     public static HashSet<Object> races = new HashSet<Object>();
-
 	private static boolean isfulltrace =false;
+	private static ConstraintsBuildEngine iEngine;
 	
 	//prefix-setOfEquivalentPrefixes_map
-	public static HashMap<Vector<String>, Set<Vector<String>>> mapPrefixEquivalent = 
-			new HashMap<>();
-	public static long memUsed = 0;
+	static HashMap<Vector<String>, Set<Vector<String>>> mapPrefixEquivalent = new HashMap<>();
+	static long memUsed = 0;
+
+
+	 ExploreSeedInterleavings(Queue<List<String>> exploreQueue) {
+		this.schedules = exploreQueue;
+	}
 
 	/**
 	 * Trim the schedule to show the last 100 only entries
-	 * 
-	 * @param schedule
-	 * @return
+	 *
 	 */
 	private static Vector<String> trim(Vector<String> schedule)
 	{
 		if(schedule.size()>100)
 		{
-			Vector<String> s = new Vector<String>();
+			Vector<String> s = new Vector<>();
 			s.add("...");
 			for(int i=schedule.size()-100;i<schedule.size();i++)
 				s.add(schedule.get(i));
@@ -73,7 +70,7 @@ public class ExploreSeedInterleavings {
 	 *               prior prefix
 	 * @param schedule_prefix : the prefix that leads to this execution
 	 */
-	private static void genereteCausallyDifferentSchedules(ConstraintsBuildEngine engine, Trace trace, Vector<String> schedule_prefix)
+	private void genereteCausallyDifferentSchedules(ConstraintsBuildEngine engine, Trace trace, Vector<String> schedule_prefix)
 	{
 		//OMCR
 		Vector<HashMap<String, Set<Vector<String>>>> vReadValuePrefixes =
@@ -83,76 +80,71 @@ public class ExploreSeedInterleavings {
 		 * group the writes based on the value written to this variable
 		 * consider each read to check if it can see a different value
 		 */
-		Iterator<String> 
-		addrIt = trace.getIndexedThreadReadWriteNodes().keySet().iterator();
-		while(addrIt.hasNext())
-		{
-			
+		for (String addr : trace.getIndexedThreadReadWriteNodes().keySet()) {
+
 			//the dynamic memory location
-			String addr = addrIt.next();	
-			
 			//get the initial value on this address
 			final String initVal = trace.getInitialWriteValueMap().get(addr);
-			
+
 			//get all read nodes on the address
 			Vector<ReadNode> readnodes = trace.getIndexedReadNodes().get(addr);
-			
+
 			//get all write nodes on the address
 			Vector<WriteNode> writenodes = trace.getIndexedWriteNodes().get(addr);
-			
+
 			//skip if there is no write events to the address
-			if(writenodes==null||writenodes.size()<1)
-			continue;
+			if (writenodes == null || writenodes.size() < 1)
+				continue;
 
 			//check if local variable
-			if(trace.isLocalAddress(addr))
+			if (trace.isLocalAddress(addr))
 				continue;
-							
-			HashMap<String,ArrayList<WriteNode>> valueMap = new HashMap<String,ArrayList<WriteNode>>();
+
+			HashMap<String, ArrayList<WriteNode>> valueMap = new HashMap<String, ArrayList<WriteNode>>();
 			//group writes by their value
-            for (WriteNode wnode : writenodes) {
-                String v = wnode.getValue();
-                ArrayList<WriteNode> list = valueMap.get(v);
-                if (list == null) {
-                    list = new ArrayList<WriteNode>();
-                    valueMap.put(v, list);
-                }
-                list.add(wnode);
-            }
-				
+			for (WriteNode wnode : writenodes) {
+				String v = wnode.getValue();
+				ArrayList<WriteNode> list = valueMap.get(v);
+				if (list == null) {
+					list = new ArrayList<WriteNode>();
+					valueMap.put(v, list);
+				}
+				list.add(wnode);
+			}
+
 			//check read-write
-   			if(readnodes!=null){
-                for (ReadNode readnode : readnodes) {
+			if (readnodes != null) {
+				for (ReadNode readnode : readnodes) {
 
-                    HashMap<String, Set<Vector<String>>> mValuesPrefixes = new HashMap<>();
-                    //if isfulltrace, only consider the read nodes that happen after the prefix
-                    if (isfulltrace && readnode.getGID() <= schedule_prefix.size())
-                        continue;
+					HashMap<String, Set<Vector<String>>> mValuesPrefixes = new HashMap<>();
+					//if isfulltrace, only consider the read nodes that happen after the prefix
+					if (isfulltrace && readnode.getGID() <= schedule_prefix.size())
+						continue;
 
-                    String rValue = readnode.getValue();
-                    //1. first check if the rnode can read from the initial value which is different from rValue
-                    boolean success = false;
-                    if (initVal == null && !rValue.equals("0")
-                            || initVal != null && !initVal.equals(rValue)) {
-                        success = checkInitial(engine, trace, schedule_prefix, writenodes,
-                                readnode, initVal, mValuesPrefixes);
-                    }
+					String rValue = readnode.getValue();
+					//1. first check if the rnode can read from the initial value which is different from rValue
+					boolean success = false;
+					if (initVal == null && !rValue.equals("0")
+							|| initVal != null && !initVal.equals(rValue)) {
+						success = checkInitial(engine, trace, schedule_prefix, writenodes,
+								readnode, initVal, mValuesPrefixes);
+					}
 
-                    //2. then check if it can read from a particular write
-                    for (final String wValue : valueMap.keySet()) {
-                        if (!wValue.equals(rValue)) {
-                            //if it already reads from the initial value, then skip it
-                            if (wValue.equals(initVal) && success) {
-                                continue;
-                            }
-                            checkReadWrite(engine, trace, schedule_prefix, valueMap, readnode, wValue, mValuesPrefixes);
-                        }
-                    }
-                    //for each read, add the values and the corresponding prefixes to the vector
-                    if (!mValuesPrefixes.isEmpty()) {
-                        vReadValuePrefixes.add(mValuesPrefixes);
-                    }
-                } //end for check read write
+					//2. then check if it can read from a particular write
+					for (final String wValue : valueMap.keySet()) {
+						if (!wValue.equals(rValue)) {
+							//if it already reads from the initial value, then skip it
+							if (wValue.equals(initVal) && success) {
+								continue;
+							}
+							checkReadWrite(engine, trace, schedule_prefix, valueMap, readnode, wValue, mValuesPrefixes);
+						}
+					}
+					//for each read, add the values and the corresponding prefixes to the vector
+					if (!mValuesPrefixes.isEmpty()) {
+						vReadValuePrefixes.add(mValuesPrefixes);
+					}
+				} //end for check read write
 			}
 		}  //end while
 		
@@ -163,7 +155,7 @@ public class ExploreSeedInterleavings {
 			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass =
 					new HashMap<>();
 			//compute the equivalent prefixes
-			computeEquPrefixes(vReadValuePrefixes,trace,schedule_prefix, localMapPrefixEquClass);
+			computeEquPrefixes(vReadValuePrefixes,trace, localMapPrefixEquClass);
 			memUsed += memSize(localMapPrefixEquClass);
 			//
 			Set<Vector<String>> equPrefixes = null;
@@ -218,12 +210,8 @@ public class ExploreSeedInterleavings {
                         } else if (prefix == null) {
                             prefix = tmp;
                         }
-//						else if (num == 0){
-//							prefix = tmp;
-//						}
                     }
-                    ////
-                    //
+
                     if (prefix != null) {
                         omcrGenSchedule(trace, prefix, schedule_prefix, localMapPrefixEquClass);
                     }
@@ -233,7 +221,7 @@ public class ExploreSeedInterleavings {
 	}
 	
 	
-	private static boolean checkInitial(ConstraintsBuildEngine engine, Trace trace,
+	private boolean checkInitial(ConstraintsBuildEngine engine, Trace trace,
 			Vector<String> schedule_prefix, Vector<WriteNode> writenodes,
 			ReadNode rnode, String initVal,
 			HashMap<String, Set<Vector<String>>> mValuesPrefixes) {
@@ -262,9 +250,9 @@ public class ExploreSeedInterleavings {
 		//adding rnode.getGid() as a parameter
 		Vector<String> schedule = engine.generateSchedule(sb,rnode.getGID(),rnode.getGID(),isfulltrace?schedule_prefix.size():0);
 		
-		output = output + Long.toString(Configuration.numReads) + " " +
-				Long.toString(Configuration.rwConstraints) + " " +
-				Long.toString(Configuration.solveTime) + "\n";
+		output = output + Configuration.numReads + " " +
+				Configuration.rwConstraints + " " +
+				Configuration.solveTime + "\n";
 			
 		if(schedule!=null){
 			if (Configuration.OMCR) {
@@ -285,7 +273,7 @@ public class ExploreSeedInterleavings {
 	/**
 	 * check if a read can read from a particular write
 	 */
-	private static void checkReadWrite(
+	private void checkReadWrite(
 			ConstraintsBuildEngine engine, 
 			Trace trace,
 			Vector<String> schedule_prefix,
@@ -385,14 +373,6 @@ public class ExploreSeedInterleavings {
 		//add the equivalent class to the whole vector
 		if (Configuration.OMCR && !prefix.isEmpty()) {
 			mValuesPrefixes.put(wValue, prefix);
-//			if (mReadValuePrefixes.containsKey(rnode.getGID())) {
-//				mReadValuePrefixes.get(rnode).put(wValue, prefix);
-//			}
-//			else {
-//				HashMap<String, Set<Vector<String>>> mValuePrefix = new HashMap<>();
-//				mValuePrefix.put(wValue, prefix);
-//				mReadValuePrefixes.put(rnode.getGID(), mValuePrefix);
-//			}			
 		}		
 	}
 
@@ -400,10 +380,9 @@ public class ExploreSeedInterleavings {
     /**
      * Among the new prefix generated, check if any two of them could lead to redundant executions
      */
-	private static void computeEquPrefixes(
+	private void computeEquPrefixes(
 	        Vector<HashMap<String, Set<Vector<String>>>> schedules,
 			Trace trace,
-			Vector<String> schedule_prefix,
 			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass)
 	{
 		//iterate over reads
@@ -555,7 +534,7 @@ public class ExploreSeedInterleavings {
 
     }
 	
-	private static void omcrGenSchedule(Trace trace, Vector<String> schedule, 
+	private void omcrGenSchedule(Trace trace, Vector<String> schedule,
 			Vector<String> schedule_prefix, 
 			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass){
 		
@@ -601,7 +580,7 @@ public class ExploreSeedInterleavings {
 	/**
 	 * Generate the causal schedule
 	 */
-	private static void generateSchedule(
+	private void generateSchedule(
 	        Vector<String> schedule,
             Trace trace,
 			Vector<String> schedule_prefix,
@@ -675,27 +654,7 @@ public class ExploreSeedInterleavings {
 			}
 		}	
 	}
-	
-	private static PrintWriter out;
-	private static ConstraintsBuildEngine iEngine;
 
-	/**
-	 * Initialize the file printer. All race detection statistics are stored
-	 * into the file result."window_size".
-	 */
-	private static void initPrinter(String appname)
-	{
-		if(out==null)
-		try{
-//		String fname = "dataraces."+appname;
-//		out = new PrintWriter(new FileWriter(fname,true));
-		
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
 	private static void report(String msg, MSGTYPE type)
 	{
 		switch(type)
@@ -703,8 +662,6 @@ public class ExploreSeedInterleavings {
 		case REAL:
 		case STATISTICS:
 			System.err.println(msg);
-//			out.println(msg);
-//			out.flush();
 			break;
 		default: break;
 		}
@@ -725,31 +682,21 @@ public class ExploreSeedInterleavings {
 		
 			return iEngine;
 	}
-	public static void setQueue(Queue<List<String>> queue) {
-		
-		schedules = queue;
-	}
 	
 	/**
 	 * start exploring the trace
-	 * @param trace
-	 * @param schedule_prefix
+	 * @param trace: the trace generated by re-execution
+	 * @param schedule_prefix: prefix that leads to the generation of this trace
 	 */
-	static void execute(Trace trace, Vector<String> schedule_prefix) {
-		
-//		System.err.println(schedule_prefix);
+	 void execute(Trace trace, Vector<String> schedule_prefix) {
 		
 		Configuration.numReads = 0;
 		Configuration.rwConstraints = 0;
 		Configuration.solveTime = 0;
-		
-		long s = trace.getFullTrace().size();
 			
 		//OPT: if #sv==0 or #shared rw ==0 continue	
 		if(trace.hasSharedVariable())
 		{
-			initPrinter(trace.getApplicationName());
-			
 			//engine is used for constructing constraints model
 			ConstraintsBuildEngine engine = getEngine(trace.getApplicationName());
 			

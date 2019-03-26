@@ -24,42 +24,31 @@ import edu.tamu.aser.scheduling.events.EventType;
 public class MCRStrategy extends SchedulingStrategy {
 
 	protected Queue<List<String>> toExplore;
-
 	public static List<Integer> choicesMade;
-
 	public static List<String> schedulePrefix = new ArrayList<String>();
-
     public static Trace currentTrace;
-
 	private boolean notYetExecutedFirstSchedule;
-
 	private final static int NUM_THREADS = 10;
-
 	public volatile static ExecutorService executor;
-
-//	public final static boolean fullTrace;
     protected ThreadInfo previousThreadInfo;
-
     public static final Boolean fullTrace = false;  //default
 
-//	static {
-//		fullTrace = Boolean.parseBoolean(MCRProperties.getInstance()
-//				.getProperty(MCRProperties.RV_CAUSAL_FULL_TRACE, "false"));
-//	}
+	int count;
+	public MCRStrategy() {
+		count = 0;
+	}
 
-	@Override
+
 	/**
-	 * Called before a new exploration starts
-	 *  do some initial work for exploring
+	 * before the execution
 	 */
-	
+	@Override
 	public void startingExploration() {
 		this.toExplore = new ConcurrentLinkedQueue<List<String>>();
-
+		this.notYetExecutedFirstSchedule = true;
 		MCRStrategy.choicesMade = new ArrayList<Integer>();
 		MCRStrategy.schedulePrefix = new ArrayList<String>();
 
-		this.notYetExecutedFirstSchedule = true;
 		RVRunTime.currentIndex = 0;
 		executor = Executors.newFixedThreadPool(NUM_THREADS);	
 
@@ -70,7 +59,6 @@ public class MCRStrategy extends SchedulingStrategy {
 	 */
 	@Override
 	public void startingScheduleExecution() {
-	    
 		List<String> prefix = this.toExplore.poll();
 		if (!MCRStrategy.choicesMade.isEmpty()) {   // when not empty
 			MCRStrategy.choicesMade.clear();
@@ -91,11 +79,11 @@ public class MCRStrategy extends SchedulingStrategy {
         return currentTrace;
     }
     
-    //problem here
-    //in the first execution, the initialized trace will be used by the aser-engine project
-    //however, in the first initialization, the trace hasn't been complete yet.
+    /* problem here
+    * in the first execution, the initialized trace will be used by the aser-engine project
+    * however, in the first initialization, the trace hasn't been complete yet.
+    */
 	private void initTrace() {
-	    
        RVRunTime.init();
        TraceInfo traceInfo = new TraceInfo(
                 RVGlobalStateForInstrumentation.variableIdSigMap,
@@ -106,7 +94,9 @@ public class MCRStrategy extends SchedulingStrategy {
        currentTrace = new Trace(traceInfo);
 	}
 
-	int i  = 0 ;
+	/**
+	 * generate new schedules from the trace by this execution
+	 */
 	public void completedScheduleExecution() {
 		this.notYetExecutedFirstSchedule = false;
 
@@ -116,12 +106,11 @@ public class MCRStrategy extends SchedulingStrategy {
 		}
 
 		if (Configuration.DEBUG) {
-		    System.out.print("<< Exploring trace executed along causal schedule " + i + ": ");
-	        i++;
+		    System.out.print("<< Exploring trace executed along causal schedule " + count + ": ");
+	        count++;
 	        System.err.println(choicesMade);
 	        System.out.print("\n");
         }
-        
 
 		//executeMultiThread(trace, prefix);
 		
@@ -165,29 +154,27 @@ public class MCRStrategy extends SchedulingStrategy {
 	public boolean canExecuteMoreSchedules() {
 		boolean result = (!this.toExplore.isEmpty())
 				|| this.notYetExecutedFirstSchedule;
-		if (result) {
+		if (!result) {
+			while (StartExploring.executorsCount.getValue() > 0) {
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			result = (!this.toExplore.isEmpty())
+					|| this.notYetExecutedFirstSchedule;
+			return result;
+		} else {
 			return true;
 		}
 
-		while (StartExploring.executorsCount.getValue() > 0) {
-			try {
-				Thread.sleep(10);
-				// if (!this.toExplore.isEmpty()) {
-				// return true;
-				// }
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		result = (!this.toExplore.isEmpty())
-				|| this.notYetExecutedFirstSchedule;
-		return result;
 	}
 
-	@Override
 	/**
 	 * choose the next statement to execute
 	 */
+	@Override
 	public Object choose(SortedSet<? extends Object> objectChoices,
 			ChoiceType choiceType) {
 		/*
@@ -238,11 +225,8 @@ public class MCRStrategy extends SchedulingStrategy {
 		                else 
 		                    break;
 		                chosenIndex++;
-		                
 		            }
-		            
 		        }
-		        
 		        MCRStrategy.choicesMade.add(chosenIndex);
 		                
 		        this.previousThreadInfo = (ThreadInfo) chosenObject;
@@ -269,9 +253,7 @@ public class MCRStrategy extends SchedulingStrategy {
             }
 			
 		}
-		
 		MCRStrategy.choicesMade.add(chosenIndex);
-        		
 		this.previousThreadInfo = (ThreadInfo) chosenObject;
 		
 		return chosenObject;
@@ -290,12 +272,7 @@ public class MCRStrategy extends SchedulingStrategy {
 	 * @param index
 	 * @return
 	 */
-
-	private int getChosenThread(SortedSet<? extends Object> objectChoices,
-			int index) {
-
-		// String name = this.schedulePreifixName.get(index);
-	    //String name = MCRStrategy.schedulePrefix.get(index);
+	private int getChosenThread(SortedSet<? extends Object> objectChoices, int index) {
 		String name = MCRStrategy.schedulePrefix.get(index).split("_")[0];
 		long tid = -1;
 		for (Entry<Long, String> entry : RVRunTime.threadTidNameMap.entrySet()) {

@@ -9,17 +9,15 @@ import edu.tamu.aser.trace.Trace;
 
 public class StartExploring implements Runnable {
 
-	private Trace traceObj;
-
-	private Vector<String> schedule_prefix;
-
-	private Queue<List<String>> exploreQueue;
+	private Trace traceObj;                        //the current trace
+	private Vector<String> schedule_prefix;        //the prefix that genrates the trace
+	private Queue<List<String>> exploreQueue;      //the seed interleavings
 
 	public static class BoxInt {
 
 		volatile int  value;
 
-		public BoxInt(int initial) {
+		BoxInt(int initial) {
 			this.value = initial;
 		}
 
@@ -38,8 +36,7 @@ public class StartExploring implements Runnable {
 
 	public final static BoxInt executorsCount = new BoxInt(0);
 
-	public StartExploring(Trace trace, Vector<String> prefix,
-			Queue<List<String>> queue) {
+	public StartExploring(Trace trace, Vector<String> prefix, Queue<List<String>> queue) {
 		this.traceObj = trace;
 		this.schedule_prefix = prefix;
 		this.exploreQueue = queue;
@@ -49,13 +46,13 @@ public class StartExploring implements Runnable {
 		return this.traceObj;
 	}
 
-	public Vector<String> getCurrentSchedulePrefix() {
-		return this.schedule_prefix;
-	}
+//	public Vector<String> getCurrentSchedulePrefix() {
+//		return this.schedule_prefix;
+//	}
 
-	public Queue<List<String>> exploreQueue() {
-		return this.exploreQueue;
-	}
+//	public Queue<List<String>> exploreQueue() {
+//		return this.exploreQueue;
+//	}
 
 	/**
 	 * start exploring other interleavings
@@ -63,12 +60,13 @@ public class StartExploring implements Runnable {
 	 */
 	public void run() {
 		try {
-			ExploreSeedInterleavings.setQueue(exploreQueue);
+			ExploreSeedInterleavings explore = new ExploreSeedInterleavings(exploreQueue);
+
 			//load the trace
 			traceObj.finishedLoading(true);
-			//build SMT constraints over the trace and search alternative prefixes
-			ExploreSeedInterleavings.execute(traceObj, schedule_prefix);
 
+			//build SMT constraints over the trace and search alternative prefixes
+			explore.execute(traceObj, schedule_prefix);
 			ExploreSeedInterleavings.memUsed += ExploreSeedInterleavings.memSize(ExploreSeedInterleavings.mapPrefixEquivalent);
 		} catch (Exception e) {
 			e.printStackTrace();

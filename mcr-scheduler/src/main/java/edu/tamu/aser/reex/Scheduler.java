@@ -88,7 +88,7 @@ public class Scheduler {
 
     private static final Unsafe unsafe = MyUnsafe.getUnsafe();
 
-    /**
+    /*
      * Initialize state before everything.
      */
     static {
@@ -97,7 +97,6 @@ public class Scheduler {
         // Catch any uncaught exception thrown by any thread
         // NOTE: this can be overridden by the code under test
         Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-
             /*
              * This method will execute in the context of the thread that raised
              * the exception
@@ -105,39 +104,29 @@ public class Scheduler {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
                 if (e != null) {
-//                    System.err.println("error");
                     e.printStackTrace();
                 }
                 if(e instanceof NullPointerException)//TODO: JEFF
                 {
-                    String message = "";
-                       for( StackTraceElement traceElement : e.getStackTrace())
-                            message +=traceElement.toString()+"\n";
-                    
-                       if(message.isEmpty())
-                    {
-                        System.out.println("DEBUG");
-                    }
-                    
-                    edu.tamu.aser.reex.JUnit4MCRRunner.npes.add(message);
+//                    StringBuilder message = new StringBuilder();
+//                    for( StackTraceElement traceElement : e.getStackTrace())
+//                        message.append(traceElement.toString()).append("\n");
+
+//                    edu.tamu.aser.reex.JUnit4MCRRunner.npes.add(message.toString());
                     failureDetected(null);
                     Listeners.fireCompletedExploration();
                     Scheduler.endThread();
                 }
                 else if (e instanceof ConcurrentModificationException) {
-                    String message = "";
-                    for( StackTraceElement traceElement : e.getStackTrace())
-                         message +=traceElement.toString()+"\n";
-                 
-                    if(message.isEmpty())
-                    {
-                        System.out.println("DEBUG");
-                    }
-                 
-                     edu.tamu.aser.reex.JUnit4MCRRunner.npes.add(message);
-                     failureDetected(null);
-                     Listeners.fireCompletedExploration();
-                     Scheduler.endThread();
+//                    StringBuilder message = new StringBuilder();
+//                    for( StackTraceElement traceElement : e.getStackTrace()) {
+//                        message.append(traceElement.toString()).append("\n");
+//                    }
+
+//                    edu.tamu.aser.reex.JUnit4MCRRunner.npes.add(message.toString());
+                    failureDetected(null);
+                    Listeners.fireCompletedExploration();
+                    Scheduler.endThread();
                 } else {
                     failureDetected(null);
                     Listeners.fireCompletedExploration();
@@ -146,12 +135,11 @@ public class Scheduler {
             }
         });
 
-//        MCRProperties mcrProps = MCRProperties.getInstance();
-        /* Set the scheduling strategy to be used */
 
+        /* Set the scheduling strategy to be used */
         MCRProperties prop = MCRProperties.getInstance();
         String schedulingStrategyClassName = prop.getProperty(MCRProperties.SCHEDULING_STRATEGY_KEY);
-//        "edu.tamu.aser.scheduling.strategy.MCRStrategy";
+
         if (schedulingStrategyClassName != null) {
             try {
                 schedulingStrategy = (SchedulingStrategy) Class.forName(schedulingStrategyClassName).newInstance();
@@ -170,9 +158,7 @@ public class Scheduler {
         }
 
         /* Set the scheduling filter to be used */
-//        String schedulingFilterClassName = mcrProps.getProperty(MCRProperties.SCHEDULING_FILTER_KEY);
-
-        String schedulingFilterClassName = null;
+        String schedulingFilterClassName = prop.getProperty(MCRProperties.SCHEDULING_FILTER_KEY);
         if (schedulingFilterClassName != null) {
             try {
                 schedulingFilter = (SchedulingFilter) Class.forName(schedulingFilterClassName).newInstance();
@@ -184,8 +170,6 @@ public class Scheduler {
         } else {
             schedulingFilter = new DefaultFilter();
         }
-        
-
     }
     
     /**
@@ -195,7 +179,6 @@ public class Scheduler {
         Thread schedulerThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Thread.currentThread().setName("Sheduler");
                 boolean timeout = false;
                 while (true) {  
                     schedulerStateLock.lock();
@@ -482,13 +465,7 @@ public class Scheduler {
      *            the {@link Thread} that will be forked
      */
     public static void beforeForking(Thread childThread) {
-        // For MCR
         beforeEvent(new ThreadLifeEventDesc(EventType.BEGIN), true);
-        
-        Thread.currentThread().getId();
-           childThread.getId();
-        
-        
         if (exploring) {
             schedulerStateLock.lock();
             try {
@@ -1215,7 +1192,6 @@ public class Scheduler {
      */
     private static void beforeEvent(EventDesc eventDesc, boolean pause) {
         ThreadInfo currentThreadInfo;
-
         schedulerStateLock.lock();       
         try {
             Listeners.fireBeforeEvent(eventDesc);

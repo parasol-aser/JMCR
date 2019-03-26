@@ -155,6 +155,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
         System.err.flush();
         System.err.println("\n!!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #" + numSchedules + ": " + ((errorMsg == null) ? "" : errorMsg));
         System.err.println("The following trace triggered this error:");
+        System.err.println(errorMsg);
         
 //        completedExploration();
 //        System.exit(-1);
@@ -165,8 +166,6 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
         for (int i = 0; i < RVRunTime.failure_trace.size() ; i++) {
                 System.err.println("       " + RVRunTime.failure_trace.get(i));
         }
-        
-        
         System.err.flush();
     }
 

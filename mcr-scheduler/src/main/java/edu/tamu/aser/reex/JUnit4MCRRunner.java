@@ -47,8 +47,9 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
     private boolean isDeadlockExpected = false;
 //    race detect
 //    public static RaceDetect rd;
-    //npe
-    public static HashSet<String> npes = new HashSet<String>();
+
+//    npe
+//    public static HashSet<String> npes = new HashSet<String>();
     
     public JUnit4MCRRunner(Class<?> klass) throws InitializationError {
         super(klass);
