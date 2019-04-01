@@ -167,6 +167,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
                 System.err.println("       " + RVRunTime.failure_trace.get(i));
         }
         System.err.flush();
+        completedExploration();
     }
 
     private String getDurationString(long milliSecs) {

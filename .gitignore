@@ -45,6 +45,7 @@ ConstraintsProfile/
 other_libs/
 SDGs/
 tmp/
+properties/
 testTSO/
 testPSO/
 testOMCR/

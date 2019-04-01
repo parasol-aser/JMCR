@@ -63,9 +63,10 @@ public class MCRStrategy extends SchedulingStrategy {
 			MCRStrategy.choicesMade.clear();
 			MCRStrategy.schedulePrefix = new ArrayList<String>();
 			assert prefix != null;
-			for (String choice : prefix) {
-				MCRStrategy.schedulePrefix.add(choice);
-			}
+			MCRStrategy.schedulePrefix.addAll(prefix);
+//			for (String choice : prefix) {
+//				MCRStrategy.schedulePrefix.add(choice);
+//			}
 		}
 		
 		RVRunTime.currentIndex = 0;

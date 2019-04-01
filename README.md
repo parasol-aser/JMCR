@@ -88,7 +88,7 @@ MCR is able to detect concurrency errors caused by deadlocks, order violation, d
     }
 ```
 
-After running MCR on the program above (`./mcr_cmd edu.tamu.aser.results.TestDeadLock`), MCR can generate the specific interleaving which triggers the deadlock and reproduce the failure meanwhile: 
+After running MCR on the program above (`./mcr_cmd edu.tamu.aser.tests.TestDeadLock`), MCR can generate the specific interleaving which triggers the deadlock and reproduce the failure meanwhile: 
 
 ```
 !!! FAILURE DETECTED DURING EXPLORATION OF SCHEDULE #2: Deadlock detected in schedule

@@ -70,8 +70,8 @@ public class Scheduler {
     private static final Reex_ReentrantLock schedulerStateLock = new Reex_ReentrantLock();
     private static final Reex_Condition schedulerWakeupCondition = schedulerStateLock.newCondition();
     private static final String AT = "@";
-    private static final Map<String, Set<Event>> currentOrderings = new HashMap<String, Set<Event>>();
-    private static final Map<String, Thread> currentHappenedEvents = new HashMap<String, Thread>();
+    private static final Map<String, Set<Event>> currentOrderings = new HashMap<>();
+    private static final Map<String, Thread> currentHappenedEvents = new HashMap<>();
 
     private final static Reex_Semaphore deadlockOrFinishNotifier = new Reex_Semaphore(0);
 

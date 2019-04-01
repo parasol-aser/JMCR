@@ -183,6 +183,7 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
                         explorationThread.start();
                         continue;
                     }
+                    break;
                 } else if (isDeadlockExpected && (explorationThread.getState().equals(Thread.State.WAITING) || 
                         explorationThread.getState().equals(Thread.State.BLOCKED))) {
                     Scheduler.completedScheduleExecution();
