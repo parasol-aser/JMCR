@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Premain-Class: edu.tamu.aser.instrumentation.Instrumentor
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+

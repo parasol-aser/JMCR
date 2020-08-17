@@ -623,9 +623,10 @@ public class Scheduler {
         //
         if (exploring) {
             performLock(lockObject, 1);
-        } else {
-            unsafe.monitorEnter(lockObject);
         }
+//        else {
+//            unsafe.monitorEnter(lockObject);
+//        }
     }
 
     /**
@@ -726,9 +727,10 @@ public class Scheduler {
                 schedulerStateLock.unlock();
             }
             afterEvent(unlockEventDesc);
-        } else {
-            unsafe.monitorExit(lockObject);
         }
+//        else {
+//            unsafe.monitorExit(lockObject);
+//        }
     }
 
     /**
