@@ -22,8 +22,7 @@
 
 package external.instrumented.java.util;
 
-import sun.awt.SoftCache;
-//import sun.misc.SoftCache;
+import sun.misc.SoftCache;
 
 import java.io.InputStream;
 import java.lang.ref.Reference;
